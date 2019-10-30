@@ -1,0 +1,75 @@
+page-contact {
+  .star {
+    font-size: 5em;
+    display: inline-block;
+    color: #cce1d7;
+    position:relative;
+}
+.star:last-child {
+    margin-right: 0;
+}
+.btn-primary:hover{
+  background-color: #016a38 !important;
+  border-color: #016a38 !important;
+}
+.star:before {
+    content:'\2605';
+}
+.star.on {
+    color: #016a38;
+}
+.star.half:after {
+    content:'\2605';
+    color: #016a38;
+    position: absolute;
+    left:50%;
+    right:0;
+    top:0;
+    bottom:0;
+    overflow: hidden;
+}
+    .btn-primary {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+    }
+    .row{
+        margin: 0px;
+        padding: 0px;
+    }
+      .item-md h4,.item-md h3, .item-md h2{
+        line-height: 1;
+      }
+    
+        ul {
+            padding: 0px;
+            // margin-top: 5px;
+            &.rating li {
+              padding: 0px 1px !important;
+              background: none;
+              color: rgb(8, 129, 8);
+              
+              ion-icon {
+                font-size: 20px;
+              }
+            }
+          }
+    
+          .col{
+            padding:1px;
+          }
+          .customItem3{
+            -webkit-flex: 0 0 60px;
+            -ms-flex: 0 0 60px;
+            flex: 0 0 60px !important;
+            width: 60px !important;
+            min-width: 60px !important;
+            max-width: 60px !important;
+    
+          }
+          img,h3{
+       
+            *width:50px;
+            display: inline;
+          }
+}

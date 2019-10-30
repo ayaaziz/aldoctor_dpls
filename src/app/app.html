@@ -1,0 +1,33 @@
+<ion-menu side="right" [enabled]="userLoged" [content]="mycontent"> 
+  <!-- [enabled]="userLoged" -->
+        <ion-content style="background-image: url('assets/img/bg_drawer.png');">
+                <div style="text-align:center;">
+                  <!-- user image-->
+                <img src="{{userImageUrl}}" onerror="this.onerror=null;this.src='assets/imgs/default-avatar.png';" (click)="openProfileImg()" class="rounded-circle" style="width: 125px; margin: 10px;height: 125px;" /><br>
+                <h5 style="margin: 0px;color:#8a8a8a">{{userName}}</h5>
+                </div>
+                <ion-list id="side_menu">
+                    <button menuClose ion-item (click)="openHome()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td style="color: #15784e !important;"><ion-icon style="font-size: 30px;" name="ios-home-outline"></ion-icon></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"home" | translate}}</span></td></tr></table></button> 
+                    <button menuClose ion-item  (click)="financialReport()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td style="color: #15784e !important;"><ion-icon name="ios-cash-outline" style="font-size: 30px;"></ion-icon></td><td><span style="padding-right: 10px;padding-left: 10px;">{{reportStr}} </span></td></tr></table></button> 
+                   <button menuClose ion-item (click)="openAbout()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/about.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"aboutApp" | translate}}</span></td></tr></table></button> 
+                   <button menuClose ion-item (click)="openPrivacyPolicy()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/privacy.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"privacy" | translate }} </span></td></tr></table></button> 
+                   <!-- <button menuClose ion-item (click)="openSettings()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/setting.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"settings" | translate }}</span></td></tr></table></button>  -->
+                   <button menuClose ion-item (click)="openContact()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/phone.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"contact" | translate }} </span></td></tr></table></button> 
+                   <!-- <button menuClose ion-item (click)="openNewOrder()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/phone.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"newOrder" | translate }} </span></td></tr></table></button>  -->
+                   <button menuClose ion-item (click)="openPayPolicy()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/pay.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"paymentPolicy" | translate }} </span></td></tr></table></button> 
+                  <!--  link to update user profile-->
+                   <button menuClose ion-item  (click)="openUseOfConditions()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/terms.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"termsOfUse" | translate }}</span></td></tr></table></button> 
+                    <!--link to settings view 
+                    <button menuClose ion-item  (click)="openSendReport()" style='color: #8a8a8a; background-color: transparent;    height: 72px !important;'><table><tr><td><img src='assets/img/ic_drawer_send.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;">إرسال تقرير بمشكلة </span></td></tr></table></button> -->
+                    <button menuClose ion-item  (click)="shareApp()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/share.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"shareApp" | translate }}</span></td></tr></table></button> 
+                    <button menuClose ion-item  (click)="RateApp()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td><img src='assets/icon/star.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"appRating" | translate }} </span></td></tr></table></button> 
+                    <button menuClose ion-item  (click)="sendComplaint()" style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td style="color: #15784e !important;"><ion-icon name="ios-alert-outline" style="font-size: 30px; "></ion-icon></td><td><span style="padding-right: 10px;padding-left: 10px;">إرسال شكوى </span></td></tr></table></button> 
+                    <!-- logout from application -->
+                 <button menuClose ion-item (click)="Logout()"  style='color: #8a8a8a; background-color: transparent;    height: 50px !important;'><table><tr><td> <img src='assets/icon/logout.png' style="width: 25px;height: 25px;"/></td><td><span style="padding-right: 10px;padding-left: 10px;">{{"logout" | translate }}</span></td></tr></table> </button>
+                </ion-list>
+                
+                
+              </ion-content> 
+      </ion-menu>
+      
+      <ion-nav #mycontent [root]="rootPage"></ion-nav>

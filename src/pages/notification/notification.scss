@@ -1,0 +1,28 @@
+page-notification {
+    // img {
+    //     max-width: 100%;
+    //     border: 2px solid #016a38;
+    //     margin-top: 12px;
+    // }
+    .btn-primary {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+    }
+    .btn-primary:hover{
+        background-color: #016a38 !important;
+        border-color: #016a38 !important;
+      }
+    .scroll-content {
+        padding: 8px !important;
+        
+    }
+    .card{
+        width: 100% !important;
+        margin: 0px !important;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.12) !important;
+    }
+    td, th {
+        padding: 1px !important;
+    }
+}

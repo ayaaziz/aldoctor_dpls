@@ -1,0 +1,62 @@
+<ion-header class={{lang_direction}}>
+
+<ion-navbar  color="doctor" hideBackButton>
+    <ion-title style=" color:#7a7a7a">{{"orderHistory" | translate}}</ion-title>
+    <ion-buttons style="display: inherit;" left>
+      <button ion-button icon-only  menuToggle><img src="assets/icon/menu.png" width="30" style="border: 0px;"></button>
+  </ion-buttons>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content class={{lang_direction}}>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        refreshingSpinner="circles"
+       >
+       </ion-refresher-content>
+       </ion-refresher>
+    <ion-card>  
+        <ion-card-content style="padding: 0px;">
+          <ion-row style="width:100%;margin: 0px" >
+    <ion-col style="max-width:62px;">
+      
+        <img src="assets/imgs/first.jpg" class="rounded-circle" style="border: 2px solid #016a38; width: 60px; height: 60px;">
+     
+    </ion-col>
+    <ion-col class="{{lang_direction}}">
+      <table style="font-size:12px;margin-top: 10px;" >
+        <tr><td>
+        <h2 color="kawaeb" style="color: #595959">
+            احمد المصري
+          </h2>
+      </td></tr>
+      <tr><td style="color:#9f9f9f">
+          
+              <ion-icon name="pin" style="margin: 0 4px;color:#016a38"></ion-icon><span style="color:#9f9f9f"> المنصوره - حي الجامعه</span>
+  
+      </td></tr>
+      <tr><td> 
+          <ion-icon name="md-star" [ngStyle]="{'color': ratingStatus >= 1 ? '#016a38' : '#cce1d7'}" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" [ngStyle]="{'color': ratingStatus >= 2 ? '#016a38' : '#cce1d7'}" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" [ngStyle]="{'color': ratingStatus >= 3 ? '#016a38' : '#cce1d7'}" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" [ngStyle]="{'color': ratingStatus >= 4 ? '#016a38' : '#cce1d7'}" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" [ngStyle]="{'color': ratingStatus >= 5 ? '#016a38' : '#cce1d7'}" style="font-size: 20px;"></ion-icon>
+
+      </td></tr>
+    </table>
+   
+    </ion-col>
+  </ion-row>
+  </ion-card-content>
+  </ion-card>
+  <!-- <button type="button" (click)="sign()" class="btn btn-primary btn-lg btn-block">SignUp</button>
+  <button type="button" (click)="login()" class="btn btn-primary btn-lg btn-block">logIn</button>
+  <button type="button" (click)="code()" class="btn btn-primary btn-lg btn-block">code</button>
+  <button type="button" (click)="confirm()" class="btn btn-primary btn-lg btn-block">confirm</button>
+  <button type="button" (click)="retime()" class="btn btn-primary btn-lg btn-block">موعد الاعاده</button>
+  <button type="button" (click)="neworder()" class="btn btn-primary btn-lg btn-block">طلب جديد</button>
+  <button type="button" (click)="patientrev()" class="btn btn-primary btn-lg btn-block">تقييم المريض</button>
+  <button type="button" (click)="currentor()" class="btn btn-primary btn-lg btn-block">الطلب الحالى</button> -->
+
+</ion-content>

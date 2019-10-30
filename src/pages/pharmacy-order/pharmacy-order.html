@@ -1,0 +1,120 @@
+  
+<ion-header class={{lang_direction}}>
+
+  <ion-navbar>
+      <ion-title style=" color:#7a7a7a"></ion-title> 
+      
+    <ion-buttons style="display: inherit;" right>
+      <button ion-button icon-only ><img src="assets/imgs/dlogo.png" width="25" height="25" style="border: 0px;"></button>
+  </ion-buttons>
+    </ion-navbar> 
+  </ion-header>
+<ion-content class={{lang_direction}} padding style="height: 100%;font-family: 'Cairo';background-color:white">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="text-center" style="max-height: 100%; min-height: 100px;">
+    <div>
+    <img [src]="userImageUrl" onerror="this.onerror=null;this.src='assets/imgs/dlogo.png';" width="120" height="120" class="rounded-circle " ><br>
+    
+  </div>
+    <h4  style="color:#5d5a5a;margin: 3px 0px 0px 0px;" >{{userName}} </h4>
+    <h5  style="color:#928f8f; margin:0px;margin-bottom: 10px" >{{userAddress}}</h5>
+    <ion-icon name="md-star" *ngIf="ratingStatus == 0" class="star" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 0 && ratingStatus < 1" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 1" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 1 && ratingStatus < 2" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 2" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus < 2 && ratingStatus <=1" class="star" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 2 && ratingStatus < 3" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 3" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus < 3 && ratingStatus <=2 " class="star" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 3 && ratingStatus < 4" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 4" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus < 4 && ratingStatus <=3" class="star" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 4 && ratingStatus < 5" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 5" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus < 5 && ratingStatus <=4" class="star" style="font-size: 20px;"></ion-icon>
+          <br>
+          <br>
+          </div>
+    <div class="text-center" *ngIf="noOrder || anotherOneAccepted" >
+        <table style="margin:auto; ">
+            <tr *ngIf="order_no" ><td style="color:#016a38;font-weight: bold;width: 150px;">رقم الطلب: </td><td> {{order_no}}</td></tr>
+            <!-- <tr *ngIf="patient_forfit" ><td style="color:#016a38;font-weight: bold;width: 150px;">غرامات مستحقة: </td><td> {{patient_forfit}}</td></tr> -->
+            <!-- <tr *ngIf="showReview" ><td style="color:#016a38;font-weight: bold;width: 100px;">
+                <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:100px;border-color:#80b49b;width:50%"   (click)="openReview()" >تقييم الطلب</button>
+            </td><td>
+                <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:190px;border-color:#80b49b;width:50%"  (click)="closeOrder()" >إغلاق الطلب</button>
+                </td></tr> -->
+            </table>
+            <img src="assets/imgs/homevector.png" class="img-responsive" style="border-color:#ffffff;max-width:100%;max-height:100%">
+           </div>
+            <div *ngIf="newOrder" style=" text-align: center;"> 
+              <img src = "assets/imgs/loading.png" style="width: 48px;height: 48px;border:0px;" >
+                <!-- <h3 style="font-size:2rem;margin-bottom: 0px;color:#919191"> {{"expectedTimeToDeliver" | translate}} {{arriveTime}} </h3> -->
+                <h3 style="font-size:2rem;margin-top: 0px;color:#919191">{{"remainingTimeToAccept" | translate}} {{timeLeft}}</h3>
+                <table style="margin:auto; ">
+                  <tr *ngIf="order_no" ><td style="color:#016a38;font-weight: bold;width: 150px;">رقم الطلب: </td><td> {{order_no}}</td></tr>
+                  <!-- <tr *ngIf="patient_forfit" ><td style="color:#016a38;font-weight: bold;width: 150px;">غرامات مستحقة: </td><td> {{patient_forfit}}</td></tr> -->
+                  </table>
+                <table style="width: 100%;">
+                  <tr *ngIf="files?.length > 0" style="text-align:center;"><td colspan="2">
+                      <div class="center" *ngIf="files?.length > 0" (click)="openPrescription()">
+                        <div class="center" style="margin: 10px 0;">
+                          <ion-col col-4 *ngFor="let item of files">
+                            <img [src]="server_url+item.path" style="width:100px;height:100px">
+                          </ion-col>
+                        </div>
+                      </div>
+                  </td></tr>
+                  <tr><td style="height:30px;"></td></tr>
+                  <tr style="text-align:center;">
+                    <td >
+                        <button type="button" (click)="orderUpdateStatus(2)" class="btn btn-primary btn-lg btn-sx " style="background-color:#016a38;width:100px">   {{"accept" | translate}}       </button>  
+                    </td>
+                    <td>
+                <button type="button" (click)="orderUpdateStatus(10)" class="btn btn-primary btn-lg btn-sx" style="background-color:#389e6e;width:100px">   {{"reject" | translate}}       </button>  
+
+                    </td>
+                  </tr>
+                </table>
+                
+                
+</div>
+<div class="text-center" *ngIf="orderAccepted && !anotherOneAccepted" style="">
+  <table style="margin:auto; ">
+    <tr *ngIf="order_no" ><td style="color:#016a38;font-weight: bold;width: 150px;">رقم الطلب: </td><td> {{order_no}}</td></tr>
+    <!-- <tr *ngIf="patient_forfit" ><td style="color:#016a38;font-weight: bold;width: 150px;">غرامات مستحقة: </td><td> {{patient_forfit}}</td></tr> -->
+    </table>
+  <div class="center" *ngIf="files?.length > 0" (click)="openPrescription()">
+    <div class="center" style="margin: 10px 0;">
+    <ion-col col-4 *ngFor="let item of files">
+      <img [src]="server_url+item.path" style="width:100px;height:100px">
+    </ion-col>
+  </div>
+</div>
+    <!-- <button type="button" disabled *ngIf="disablePrescription" class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#b2d2c3;" >   {{"prescription" | translate}}      </button> <br><br> 
+    <button type="button" *ngIf="!disablePrescription" class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#b2d2c3;"  (click)="openPrescription()">   {{"prescription" | translate}}      </button> <br><br>  -->
+    
+  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#80b49b;" [disabled]="moveToPatientStatus"  (click)="orderUpdateStatus(8)" >   {{"pharmStartDelivery" | translate}}       </button>  <br><br>
+  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#80b49b;" [disabled]="cancelDetectionStatus"  (click)="orderUpdateStatus(11)" >   {{"pharmCancelNoMedicine" | translate}}       </button>  <br><br>
+  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#418f6a;" (click)="shareLoc()">    {{"shareLoc" | translate}}      </button>  <br><br>
+  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#016a38;" [disabled]="endDetectionStatus"  (click)="orderUpdateStatus(5)">   {{"orderDelivered" | translate}}       </button>  
+
+  </div>
+  
+      <ion-fab *ngIf="orderAccepted && !anotherOneAccepted" left bottom>
+        <button ion-fab style="background-color:#026938">
+         
+        اتصال
+        </button>
+        <ion-fab-list side="right" *ngIf="orderAccepted && !anotherOneAccepted">
+            <a button ion-fab  (click)="whatsAppPatient()" >
+                <ion-icon   style="color:#026938;" name="logo-whatsapp"></ion-icon></a>
+       
+                <a button ion-fab  (click)="callPatient()" >
+                    <ion-icon   style="color:#026938;" name="call"></ion-icon></a>
+            </ion-fab-list>
+      </ion-fab>
+</ion-content>

@@ -1,0 +1,38 @@
+
+
+<ion-header class={{langDirection}}>
+  <ion-navbar >
+    <ion-title>{{"cancelOrder" | translate }}</ion-title>
+    <ion-buttons style="display: inherit;" right>
+      <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="25" height="25" style="border: 0px;"></button>
+  </ion-buttons>
+  </ion-navbar>
+  </ion-header>
+
+<ion-content style="background-color:white" class={{langDirection}} padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+    <h4 *ngIf="langDirection == 'rtl'" style="text-align:right;color:grey;font-size:20px">{{"title" | translate}} </h4>
+    <h4 *ngIf="langDirection != 'rtl'" style="color:grey;font-size:20px">{{"title" | translate}} </h4>
+
+<ion-row *ngFor="let item of reasons" style="margin:0px;">
+
+  <ion-col col-2 col-sm-1 style="text-align:center">
+    <ion-checkbox [(ngModel)]="item.checked" (click)="reasonChecked(item,$event)" style="padding-top: 15px;"></ion-checkbox>
+    
+  </ion-col>
+  <ion-col col-10 col-sm-11>
+      <ion-label *ngIf="langDirection == 'rtl'" style="text-align:right;color:grey"> {{item.value}} </ion-label>
+      <ion-label *ngIf="langDirection != 'rtl'" style="color:grey"> {{item.value}} </ion-label>
+  </ion-col>
+</ion-row>
+
+    <div class="form-group">
+        <textarea [(ngModel)]="desc" class="form-control" rows="5" id="comment" style="background-color: #e8f1ed"></textarea>
+      </div>
+    <ion-item style="text-align:center;" no-lines>
+        <button type="button" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black';margin:10px auto;" (click)="cancelOrder()"> {{"cancelOrder" | translate}}</button>  
+      </ion-item>
+
+</ion-content>

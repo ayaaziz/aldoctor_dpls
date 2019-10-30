@@ -1,0 +1,53 @@
+<!--
+  Generated template for the ChangePhonePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class={{lang_direction}}>
+ 
+    <ion-navbar >
+      <ion-title> {{title}} </ion-title>
+      <ion-buttons style="display: inherit;" right>
+        <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="25" height="25" style="border: 0px;"></button>
+    </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content style="background-color:white" class={{lang_direction}} style="background-color: #ffffff;" padding>
+  
+      <div class="text-center">
+          <img src="assets/imgs/dlogo.png" class="rounded mx-auto d-block" style="margin-top: 80px;max-width:40%;">
+      </div>
+      <br>
+      <br>
+<!--       
+          <div class="text-center">
+              <small id="passwordHelpBlock " class="form-text text-muted " style="color: #8d8d8d !important;
+              font-size: 18px;font-family: 'Cairo SemiBold'">
+      {{"activationCodeTxt" | translate}}      
+        </small>
+              </div> -->
+              <br>
+              <form [formGroup]="phoneForm" style="background-color: white;width: 100%">
+              <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!phoneForm.controls.phone.valid && submitAttempt">
+            <ion-label style="margin: 0"><img src="assets/icon/mark.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+            <ion-input *ngIf="lang_direction == 'rtl'" placeholder="ادخل رقم التليفون"   style="border-radius: 2px;padding: 0px;" formControlName="phone" [(ngModel)]="phone"
+            type="tel"></ion-input>
+            <ion-input *ngIf="lang_direction != 'rtl'" placeholder="Enter Telephone no."    style="border-radius: 2px;padding: 0px;" formControlName="phone" [(ngModel)]="phone"
+        type="tel"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!phoneForm.controls.phone.valid && submitAttempt" no-lines>
+        <p> {{"enterPhone" | translate}} </p>
+        </ion-item>
+               
+        <br>
+        <br>
+      <div class="form-group">
+          <button type="button" style="background-color: #016a38;color:#ffffff" (click)="changePhone()" class="btn btn-lg btn-block">  {{"Send" | translate}}</button>  
+        </div>
+      </form>
+  </ion-content>
+  

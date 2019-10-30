@@ -1,0 +1,112 @@
+<ion-header class={{langDirection}}>
+  <ion-navbar >
+    <ion-title>{{"workingDays" | translate }}</ion-title>
+    <ion-buttons style="display: inherit;" right>
+      <button ion-button icon-only><img src="assets/imgs/dlogo.png" width="30" style="border: 0px;"></button>
+  </ion-buttons>
+    
+  </ion-navbar>
+  </ion-header>
+
+
+  <!-- text-center style="background-color:whitesmoke;" -->
+<ion-content >
+
+  <ion-card>
+
+    <ion-item>
+        <ion-label style="color:#016a38">اليوم</ion-label>
+
+    <ion-select  style="color:#016a38;" [dir]="langDirection"  [(ngModel)]="day"   okText="موافق" cancelText="إلغاء"  >
+      
+   
+  <ion-option value="0">السبت</ion-option>
+  <ion-option value="1">الأحد</ion-option>
+  <ion-option value="2">الأثنين</ion-option>
+  <ion-option value="3">الثلاثاء</ion-option>
+  <ion-option value="4">الأربعاء</ion-option>
+  <ion-option value="5">الخميس</ion-option>
+  <ion-option value="6">الجمعه</ion-option>
+</ion-select>
+</ion-item>
+<ion-row style="margin: 0px;">
+  <ion-col  style="padding: 0px;">
+    <ion-label style="color:#016a38">الفترة من</ion-label>
+  </ion-col>
+    <ion-col style="padding: 0px;" >
+      <ion-datetime style="font-size: 10px !important;" placeholder="HH:mm" displayFormat="hh:mm A" [(ngModel)]="from"  cancelText="إلغاء" doneText="موافق">
+          <ion-icon right ios="md-calendar" md="md-calendar"></ion-icon>
+        </ion-datetime>
+  </ion-col>
+  <ion-col  style="padding: 0px;">
+      <ion-label style="color:#016a38">إلي</ion-label>
+  </ion-col>
+  <ion-col  style="padding: 0px;">
+      <ion-datetime style="font-size: 10px !important;" placeholder="HH:mm" displayFormat="hh:mm A" [(ngModel)]="to"  cancelText="إلغاء" doneText="موافق">
+          <ion-icon right ios="md-calendar" md="md-calendar"></ion-icon>
+        </ion-datetime> 
+  </ion-col>
+</ion-row>
+<ion-item no-lines style="text-align:center;width:100%">
+    <!-- 3a8ccd -->
+  <button ion-button type="submit"   style="font-size:16px;background-color: #016a38;color:white;border:2px solid #016a38;width:35%;padding:15px;text-align:center;" (click)="save()">{{"save" | translate}}</button>
+</ion-item>
+
+</ion-card>
+
+<!-- <ion-datetime style="font-size: 10px !important;" placeholder="HH:mm" displayFormat="hh:mm A" [(ngModel)]="from"  cancelText="{{'btnCancel' | translate}}" doneText="{{'btnOk' | translate}}">
+    <ion-icon right ios="md-calendar" md="md-calendar"></ion-icon>
+  </ion-datetime>
+  <ion-datetime style="font-size: 10px !important;" placeholder="HH:mm" displayFormat="hh:mm A" [(ngModel)]="to"  cancelText="{{'btnCancel' | translate}}" doneText="{{'btnOk' | translate}}">
+      <ion-icon right ios="md-calendar" md="md-calendar"></ion-icon>
+    </ion-datetime> -->
+  
+  <!-- <h3 style="text-align:center; margin:10px;">{{'WeekDays'| translate}}</h3>
+  <ion-row style="font-size:17px;">
+    <ion-col col-3>
+      {{'Day' | translate}}
+    </ion-col>
+    <ion-col col-3>
+      {{'Vacation' | translate}}
+    </ion-col>
+    <ion-col col-3>
+      {{'From' | translate}}
+    </ion-col>
+    <ion-col col-3>
+      {{'To' | translate}}
+    </ion-col>
+  </ion-row>
+  <ion-row *ngFor="let item of weekDays">
+    <ion-col col-3 style="margin-top: 5px; color:#93528a; font-weight:bold; font-size:16px;">
+      {{item.opening_day == 6 ? (this.platform.isRTL ? 'السبت' : 'Saturday'): ''}}
+      {{item.opening_day == 7 ? (this.platform.isRTL ? 'الأحد' : 'Sunday'): ''}}
+      {{item.opening_day == 1 ? (this.platform.isRTL ? 'الأثنين' : 'Monday'): ''}}
+      {{item.opening_day == 2 ? (this.platform.isRTL ? 'الثلاثاء' : 'Tuesday'): ''}}
+      {{item.opening_day == 3 ? (this.platform.isRTL ? 'الأربعاء' : 'Wednesday'): ''}}
+      {{item.opening_day == 4 ? (this.platform.isRTL ? 'الخميس' : 'Thursday'): ''}}
+      {{item.opening_day == 5 ? (this.platform.isRTL ? 'الجمعة' : 'Friday'): ''}}
+    </ion-col>
+    <ion-col col-3>
+      <ion-checkbox [(ngModel)]="item.open_status" color="kawaeb" checked="true" style="margin-top: 10px;"></ion-checkbox>
+    </ion-col>
+    <ion-col col-3>
+      <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey; width:94%; height:90%;">
+        <ion-datetime style="font-size: 10px !important;" placeholder="HH:mm" displayFormat="hh:mm A" [(ngModel)]="item.open_in" cancelText="{{'btnCancel' | translate}}" doneText="{{'btnOk' | translate}}">
+          <ion-icon right ios="md-calendar" md="md-calendar"></ion-icon>
+        </ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col col-3>
+      <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey; width:94%; height:90%;">
+        <ion-datetime style="font-size: 10px !important;" placeholder="HH:mm" displayFormat="hh:mm A" [(ngModel)]="item.open_out"  cancelText="{{'btnCancel' | translate}}" doneText="{{'btnOk' | translate}}">
+          <ion-icon right ios="md-calendar" md="md-calendar"></ion-icon>
+        </ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top:20px;">
+    <ion-col>
+      <button style="font-size:18px;" *ngIf="weekDays.length > 0" ion-button round id="btnLogin" (click)="updateWorkTimes()">{{'Save' | translate}}</button>
+    </ion-col>
+  </ion-row> -->
+</ion-content>

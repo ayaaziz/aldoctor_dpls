@@ -1,0 +1,75 @@
+
+<ion-content style="background-color:white" padding style="font-family: 'Cairo-Regular'; background-color: #ffffff"  class="{{langDirection}}">
+    <!-- <img src="assets/imgs/login.png" (click)="changelang()" style="margin-bottom: 100px;"/> -->
+    
+  <div class="text-center">
+    <img src="assets/imgs/dlogo.png" style="max-width:40%;" class="rounded mx-auto d-block" >
+</div>
+<br>
+<br>
+<form [formGroup]="loginForm">
+   <!-- <ion-input placeholder=" &#xf007;   اسم المستخدم  " class="form-control form-control-lg" [class.invalid]="!loginForm.controls.username.valid && submitAttempt" style="border-radius: 2px;padding: 0px;" formControlName="username" [(ngModel)]="usernameTxt"
+      type="text"></ion-input> -->
+      <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!loginForm.controls.username.valid && submitAttempt">
+          <ion-label><img src="assets/icon/phone.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+          <ion-input *ngIf="langDirection != 'rtl'" placeholder="Mobile no."   style="border-radius: 2px;padding: 0px;" formControlName="username" [(ngModel)]="usernameTxt"
+          type="tel"></ion-input>
+          <ion-input *ngIf="langDirection == 'rtl'" placeholder="رقم التليفون"    style="border-radius: 2px;padding: 0px;" formControlName="username" [(ngModel)]="usernameTxt"
+      type="tel"></ion-input>
+       
+     </ion-item>
+  <ion-item *ngIf="!loginForm.controls.username.valid && submitAttempt" no-lines>
+    <p> {{"enterPhone" | translate}} </p>
+  </ion-item>
+ <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;" [class.invalid]="!loginForm.controls.password.valid && submitAttempt">
+      <ion-label><img src="assets/icon/pass.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+      <ion-input *ngIf="langDirection != 'rtl'" placeholder="Password"    style="border-radius: 2px;padding: 0px;" formControlName="password" [(ngModel)]="passwordTxt"
+      type="password"></ion-input>
+      <ion-input *ngIf="langDirection == 'rtl'" placeholder="كلمة المرور"    style="border-radius: 2px;padding: 0px;" formControlName="password" [(ngModel)]="passwordTxt"
+      type="password"></ion-input>
+   
+ </ion-item>
+    <!-- <ion-input placeholder=" &#xf13e;   كلمه المرور" class="form-control form-control-lg"  [class.invalid]="!loginForm.controls.password.valid && submitAttempt" style="border-radius: 2px;padding: 0px;" formControlName="password" [(ngModel)]="passwordTxt"
+      type="password"></ion-input> -->
+ 
+  <ion-item *ngIf="!loginForm.controls.password.valid && submitAttempt" no-lines>
+    <p>{{"enterPassword" | translate}}</p>
+  </ion-item>
+  <small (click)="openForgotPassword()" class="passwordHelpBlock " class="form-text text-muted" style="margin-top: 10px;width: 100%;color:#016a38;text-decoration: underline;">
+   {{"forgetPassword" | translate}}
+    </small>
+  <ion-item id="btnSignIn" style="text-align:center;" no-lines>
+
+    <button type="button" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black';" (click)="loginToApp()"> {{"Login" | translate}}</button>  
+  </ion-item>
+  <div class="text-center">
+    <small class="text-muted " (click)="register()" style="font-family: 'Cairo';font-size:16px;color:#016a38;text-decoration: underline;">
+    {{"SignUp" | translate}}
+     </small>
+    </div>
+</form>
+<!-- <form>
+<div class="form-group" style="font-family: 'Cairo Black'">
+        
+  <input class="form-control form-control-lg "  type="text" >
+</div>
+<div class="form-group">
+  <input  type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder=" &#xf13e;   كلمه المرور">      
+</div>
+<small id="passwordHelpBlock " class="form-text text-muted pull-right">
+هل نسيت كلمه المرور؟
+</small>placeholder=" &#xf007;   اسم المستخدم  "
+<br>
+<br>
+<div class="form-group">
+  <button type="button" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black'">  تسجيل الدخول</button>  
+</div>
+<div class="text-center">
+
+<small id="passwordHelpBlock " class="form-text text-muted ">
+انشاء حساب جديد؟ 
+ </small>
+</div>
+</form> -->
+<button (click)="openworkingDays()">working days</button>
+</ion-content>

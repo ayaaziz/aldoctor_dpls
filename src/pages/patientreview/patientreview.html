@@ -1,0 +1,46 @@
+<ion-header class={{lang_direction}}>
+<ion-navbar >
+  <ion-title>{{"patientReview" | translate }}</ion-title>
+  <ion-buttons style="display: inherit;" right>
+    <button ion-button icon-only><img src="assets/imgs/dlogo.png" width="30" style="border: 0px;"></button>
+</ion-buttons>
+  
+</ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: white !important;" padding class={{lang_direction}}>
+    <div class="text-center" style="margin-top: 0px">
+        <img [src]="userImageUrl" width="120" height="120" class="rounded-circle " ><br>
+        <!-- <img src="assets/icon/servicegreen.png" style="border-radius: 50% !important; padding: 5px; position: absolute; top: 107px; margin-left: 18px; background-color: white; width: 28px; height: 28px; color: #026938;">   -->
+        <!-- <ion-icon (click)="selectImage()" name="md-camera" style="border-radius: 50% !important; padding: 5px; position: absolute; top: 113px; margin-left: 18px; background-color: white; width: 28px; height: 28px; color: #026938;    border: 2px solid;"></ion-icon> -->
+        <h4  style="color:#919191;margin-bottom: 10px" > {{userName}} </h4>
+        <h5   style="color:#c4c4c4; margin-top:0px;margin-bottom: 10px" >{{userAddress}}</h5>
+        
+        <!-- <div style="padding-bottom: 40px; border-bottom: 2px solid lightgray"> -->
+        <ion-icon *ngFor="let item of ratingStatrs" name="md-star" (click)="ratePatient(item)" [ngStyle]="{'color': ratingStatus >= item.ratingStatus ? '#016a38' : '#cce1d7'}" style="font-size: 35px;"></ion-icon>
+        <h5  style="color:#919191;margin-bottom: 10px"> {{rateDesc}} </h5>
+        <!-- <ion-icon name="md-star" (click)="ratePatient(2)" [ngStyle]="{'color': ratingStatus >= 2 ? '#016a38' : '#cce1d7'}" style="font-size: 35px;"></ion-icon>
+        <ion-icon name="md-star" (click)="ratePatient(3)" [ngStyle]="{'color': ratingStatus >= 3 ? '#016a38' : '#cce1d7'}" style="font-size: 35px;"></ion-icon>
+        <ion-icon name="md-star" (click)="ratePatient(4)" [ngStyle]="{'color': ratingStatus >= 4 ? '#016a38' : '#cce1d7'}" style="font-size: 35px;"></ion-icon>
+        <ion-icon name="md-star" (click)="ratePatient(5)" [ngStyle]="{'color': ratingStatus >= 5 ? '#016a38' : '#cce1d7'}" style="font-size: 35px;"></ion-icon> -->
+        <h5 *ngIf="showEnhance" style="color:#919191;margin-top: 10px"> ماهي ملاحظاتك؟ </h5>  
+      <!-- </div> -->
+        
+        </div>
+        <ion-row  style="text-align:center;" >
+          <ion-col col-6 *ngFor="let item of rateArray"  style="margin: auto;width:48%" ><ion-label text-wrap class="unselected" style="    padding: 10px;height:auto;vertical-align: middle; border-radius: 8px;"  (click)="reviewClicked($event,item)">{{item.value}}</ion-label></ion-col>
+        </ion-row>
+
+      <ion-label *ngIf="langDirection == 'rtl'" style="text-align:right">{{note}}</ion-label>
+      <ion-label *ngIf="langDirection != 'rtl'" >{{note}}</ion-label>
+    
+
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="moreReview" rows="5" id="comment" style="background-color: #e8f1ed;color:black"></textarea>
+      </div>
+      
+      <ion-item style="text-align:center;" no-lines>
+          <button type="button" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black';margin:10px auto;" (click)="sendRate()"> {{"ok" | translate}}</button>  
+       </ion-item>
+
+</ion-content>

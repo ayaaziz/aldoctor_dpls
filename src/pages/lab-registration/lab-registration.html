@@ -1,0 +1,246 @@
+<!--
+  Generated template for the LabRegistrationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="{{langDirection}}">
+
+  <ion-navbar>
+    <!-- <ion-title>{{"Registeration" | translate }}</ion-title> -->
+    <ion-title>{{RegisterationTitle }}</ion-title>
+    <ion-buttons style="display: inherit;" right>
+      <button ion-button icon-only >
+        <img src="assets/imgs/dlogo.png" width="25" height="25" style="border: 0px;">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color:white" padding class="{{langDirection}}">
+  <div class="text-center">
+    <img src="assets/imgs/dlogo.png" class="rounded mx-auto d-block" style="max-width:40%;margin-top: 35px;">
+  </div>
+  <br>
+  <br>
+  <form [formGroup]="registerFormOne">
+    <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.labName.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/user.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-input [placeholder]="this.translate.instant('labName')" style="border-radius: 2px;padding: 0px;" formControlName="labName"
+        [(ngModel)]="labName" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.labName.valid && submitAttempt" no-lines>
+      <p> {{"enterlabName" | translate}} </p>
+    </ion-item>
+
+
+    <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.labOwner.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/user.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-input [placeholder]="this.translate.instant('labOwner')" style="border-radius: 2px;padding: 0px;" formControlName="labOwner"
+        [(ngModel)]="labOwner" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.labOwner.valid && submitAttempt" no-lines>
+      <p> {{"enterlabOwner" | translate}} </p>
+    </ion-item>
+
+    <ion-item *ngIf="!editmode" style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.phone.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/phone.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-input [placeholder]="this.translate.instant('mobile')" style="border-radius: 2px;padding: 0px;" formControlName="phone"
+        [(ngModel)]="phone" type="tel"></ion-input>
+
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.phone.valid && submitAttempt && !editmode" no-lines>
+      <p> {{"enterPhone" | translate}} </p>
+    </ion-item>
+
+    <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.entityphone.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/phone.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-input [placeholder]="this.translate.instant('entitylabphone')" style="border-radius: 2px;padding: 0px;" formControlName="entityphone"
+        [(ngModel)]="entityphone" type="tel"></ion-input>
+
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.entityphone.valid && submitAttempt" no-lines>
+      <p> {{"enterEntityLabPhone" | translate}} </p>
+    </ion-item>
+
+    <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.email.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/mail.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-input [placeholder]="this.translate.instant('email')" style="border-radius: 2px;padding: 0px;" formControlName="email"
+        [(ngModel)]="email" type="text"></ion-input>
+
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.email.valid && submitAttempt" no-lines>
+      <p> {{"enterEmail" | translate}} </p>
+    </ion-item>
+
+    <ion-item *ngIf="!editmode" style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.password.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/pass.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-input [placeholder]="this.translate.instant('Password')" style="border-radius: 2px;padding: 0px;" formControlName="password"
+        [(ngModel)]="passwordTxt" type="password"></ion-input>
+
+    </ion-item>
+    <ion-item text-wrap *ngIf="!registerFormOne.controls.password.valid && submitAttempt && !editmode" no-lines>
+      <p> {{"enterPassword" | translate}} </p>
+    </ion-item>
+
+    <ion-item *ngIf="!editmode" style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.confirmpassword.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/pass.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-input [placeholder]="this.translate.instant('ConfirmPassword')" style="border-radius: 2px;padding: 0px;" formControlName="confirmpassword"
+        [(ngModel)]="confirmpassword" type="password"></ion-input>
+
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.confirmpassword.valid && submitAttempt && !editmode" no-lines>
+      <p> {{"passwordNotConfirmed" | translate}} </p>
+    </ion-item>
+
+    <!-- <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.comRecord.valid && submitAttempt">
+            <ion-label>
+                <img src="assets/icon/mail.png" style="margin: 0 2px;" height="25" width="25">
+            </ion-label>
+            <ion-input placeholder="this.translate.instant('comRecord')" style="border-radius: 2px;padding: 0px;" formControlName="comRecord"
+                [(ngModel)]="comRecord" type="text"></ion-input>
+           
+        </ion-item>
+        <ion-item *ngIf="!registerFormOne.controls.comRecord.valid && submitAttempt" no-lines>
+            <p> {{"entercomRecord" | translate}} </p>
+        </ion-item> -->
+    <ion-row style="margin: -5px;">
+      <ion-col col-10>
+        <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.taxLicense.valid && submitAttempt">
+          <ion-label>
+            <img src="assets/icon/mail.png" style="margin: 0 2px;" height="25" width="25">
+          </ion-label>
+          <ion-input [placeholder]="this.translate.instant('taxLicense')" style="border-radius: 2px;padding: 0px;" formControlName="taxLicense"
+            [(ngModel)]="taxLicense" type="tel"></ion-input>
+
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 style="text-align: center">
+        <ion-icon color="main" style="font-size: 30px;" name="md-attach" (click)="attachTaxFile()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <table style="margin-bottom: 5px;">
+      <tr *ngFor="let item of user_certficits">
+          <td>{{item}}</td>
+      </tr>
+  </table>
+    <ion-item *ngIf="!registerFormOne.controls.taxLicense.valid && submitAttempt" no-lines>
+      <p> {{"entertaxLicense" | translate}} </p>
+    </ion-item>
+    <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.governorate.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/city.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-select [class.invalid]="!registerFormOne.controls.governorate.valid && submitAttempt" [placeholder]="this.translate.instant('Governorate')"
+        formControlName="governorate" interface="popover" [(ngModel)]="governorate" (ngModelChange)="governChanged()" >
+        <ion-option value="{{item.id}}" *ngFor="let item of governorates">{{item.value}}</ion-option>
+
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.governorate.valid && submitAttempt" no-lines>
+      <p> {{"enterGovernorate" | translate}} </p>
+    </ion-item>
+
+
+
+    <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.city.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/city.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-select [disabled]="disableCities" [class.invalid]="!registerFormOne.controls.city.valid && submitAttempt" formControlName="city" interface="popover"
+        [(ngModel)]="city" [placeholder]="this.translate.instant('City')">
+        <ion-option value="{{item.id}}" *ngFor="let item of cities"><span *ngIf="langDirection == 'rtl'">{{item.translation.value}}</span><span *ngIf="langDirection == 'ltr'">{{item.value}}</span></ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.city.valid && submitAttempt" no-lines>
+      <p> {{"selectCity" | translate}} </p>
+    </ion-item>
+
+    <ion-row style="margin:-5px;">
+      <ion-col col-10>
+        <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.address.valid && submitAttempt">
+          <ion-label>
+            <img src="assets/icon/mail.png" style="margin: 0 2px;" height="25" width="25">
+          </ion-label>
+          <ion-input [placeholder]="this.translate.instant('address')" style="border-radius: 2px;padding: 0px;" formControlName="address"
+            [(ngModel)]="address" type="text"></ion-input>
+
+        </ion-item>
+        <ion-item *ngIf="!registerFormOne.controls.address.valid && submitAttempt" no-lines>
+          <p> {{"enterAddress" | translate}} </p>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 (click)="openMap()" style="text-align: center">
+        <ion-icon style="font-size: 30px;" color="main" name="pin"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-item [hidden]="hideImage" (click)="presentActionSheet()" style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;">
+      <ion-label style="color:grey">{{"labLogo" | translate}}</ion-label>
+      <ion-avatar style="margin: 4px" item-end>
+          <ion-icon *ngIf="!imgPreview" name="md-camera" color="main" style="font-size: 30px;margin: 4px"></ion-icon>
+          <img *ngIf="imgPreview" src="{{imgPreview}}" >
+      </ion-avatar>
+    </ion-item>
+
+    <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.deliveryCount.valid && submitAttempt">
+      <ion-label>
+        <img src="assets/icon/aboutdoc.png" style="margin: 0 2px;" height="25" width="25">
+      </ion-label>
+      <ion-input [placeholder]="this.translate.instant('deliveryCount')" style="border-radius: 2px;padding: 0px;" formControlName="deliveryCount"
+        [(ngModel)]="deliveryCount" type="tel"></ion-input>
+
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.deliveryCount.valid && submitAttempt" no-lines>
+      <p> {{"enterdeliveryCount" | translate}} </p>
+    </ion-item>
+
+    <!-- <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;">
+      <ion-label floating>
+        <img src="assets/icon/service.png" style="margin: 0 2px;" height="25" width="25">{{'labServices' | translate}}
+      </ion-label>
+      <ion-select multiple="true" [disabled]="disableCollege" [class.invalid]="!registerFormOne.controls.services.valid && registerAttempt"
+        formControlName="services" interface="popover" [(ngModel)]="services" cancelText="{{this.translate.instant('canceltxt')}}" okText="{{this.translate.instant('doneTxt')}}">
+        <ion-option *ngFor="let item of ServicesData" [value]="item.id">{{item.value}}</ion-option>
+
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.services.valid && registerAttempt" no-lines>
+      <p> {{"enterLabServices" | translate}} </p>
+    </ion-item> -->
+
+    <ion-row *ngIf="!editmode" style="margin: 0px;">
+      <ion-col col-11>
+        <ion-item>
+          <ion-label style="font-size: 14px; color: gray;">{{"agreeConditions" | translate}}</ion-label>
+          <ion-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="termsStatus">
+          </ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <ion-icon (click)="openTermsOfUse()" name="md-information-circle" style="margin-top: 15px;font-size: 26px;color: #016a38"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-item id="btnSignIn" style="text-align:center;" no-lines>
+    <button type="button" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black'" (click)="registerUser()">
+      <!-- {{"register" | translate}} -->
+      {{RegisterationTitle }}
+    </button>
+</ion-item>
+  </form>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header class={{lang_direction}}>
+  <ion-navbar  hideBackButton>
+  <ion-row>
+    <ion-col col-1 style="font-size: 22px;" (click)="openmenue()">
+  <ion-icon name="md-more" style="text-align: right;color:#016a38"></ion-icon>
+  </ion-col>
+  <ion-col col-8>
+  <ion-title style="text-align: right; color:#5d5a5a">الطلب الحالي</ion-title>
+  </ion-col>
+  
+  </ion-row>
+  <ion-buttons right>
+  <button ion-button icon-only (click)="viewCtrl.dismiss()">
+      <ion-icon name="arrow-back" arrow-dripright style="color:#016a38"></ion-icon>
+  </button>
+  </ion-buttons>
+  </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding class={{lang_direction}}>
+  <div class="text-center">
+    <img src="assets/imgs/first.jpg" class="rounded-circle " >  
+    <h3  style="color:#5d5a5a;margin-bottom: 0px" >عمرو سلامه</h3>
+    <h4   style="color:#928f8f; margin-top:0px;margin-bottom: 0px" >المنصوره - حي الجامعه</h4>
+   <i style="font-family: FontAwesome;font-style: normal;color:#016a38">
+     &#xf005;
+   </i>
+   <i style="font-family: FontAwesome;font-style: normal;color:#016a38">
+      &#xf005;
+    </i>
+    <i style="font-family: FontAwesome;font-style: normal;color:#016a38">
+        &#xf005;
+      </i>
+      <i style="font-family: FontAwesome;font-style: normal;color:#5ba984">
+          &#xf005;
+        </i>
+        <i style="font-family: FontAwesome;font-style: normal;color:#5ba984">
+            &#xf005;
+          </i>
+          <br>
+          <hr style="height:1.5px;color:#016a38">
+          
+          </div>
+          <div class="text-center">
+            <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#b2d2c3;width:190px;border-color:#b2d2c3;width:50%">   التوجه الى المريض       </button> <br><br> 
+          <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#80b49b;width:190px;border-color:#80b49b;width:50%">   بدا الكشف       </button>  <br><br>
+          <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#418f6a;width:190px;border-color:#418f6a;width:50%">   طلب اعاده       </button>  <br><br>
+          <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:190px;border-color:#016a38;width:50%">   انهاء الكشف       </button>  
+
+          </div>
+</ion-content>
