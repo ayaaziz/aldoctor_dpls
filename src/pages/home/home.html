@@ -101,4 +101,12 @@
            <ion-infinite-scroll *ngIf="!noOrder" (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="">
               <ion-infinite-scroll-content></ion-infinite-scroll-content>
             </ion-infinite-scroll>
+
+            <ion-fab left bottom>
+              <button ion-fab style="background-color:#026938;font-family: 'Cairo Black';font-size:9px" (click)="customerService()">
+               خدمة عملاء
+                  </button>
+        
+                  </ion-fab>
+
 </ion-content>

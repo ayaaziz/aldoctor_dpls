@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController, ToastController, Events } from 'ionic-angular';
+import { NavController, MenuController, ToastController, Events ,ModalController} from 'ionic-angular';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { LoginServiceProvider } from '../../providers/login-service/login-service';
 import { Storage } from '@ionic/storage';
@@ -48,7 +48,7 @@ export class HomePage {
   currentOrders = []
   page = 1
 
-  constructor(public navCtrl: NavController, public menu: MenuController, public loginservice: LoginServiceProvider
+  constructor(public modalCtrl: ModalController,public navCtrl: NavController, public menu: MenuController, public loginservice: LoginServiceProvider
     , public helper: HelperProvider, public toastCtrl: ToastController, public translate: TranslateService,
     private launchNavigator: LaunchNavigator, public storage: Storage, public events: Events) {
     this.lang_direction = this.helper.lang_direction;
@@ -502,4 +502,16 @@ export class HomePage {
   whatsAppPatient() {
     window.open("https://api.whatsapp.com/send?phone=" + this.patient_tel)
   }
+
+
+  customerService(){
+    console.log("customerService")
+    
+    
+      var modalPage = this.modalCtrl.create('ModalPage',{from:"customerService"});
+      modalPage.present();
+   
+  
+  }
+
 }
