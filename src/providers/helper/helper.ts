@@ -67,8 +67,12 @@ export class HelperProvider {
   public serviceAddress;
   public type_id;
 
-  // <name>ALDOCTOR Partner</name>
-  
+  // <name>ALDOCTOR Partner</name> ios
+  // <name>DPLS</name> andoid
+  // D-Partner 
+
+  // net.ITRoots.dpls    ios
+  // net.ITRoots.AlDoctor     android
   constructor(public platform: Platform, public toastCtrl: ToastController, public alertCtrl: AlertController,
     public http: HttpClient, public diagnostic: Diagnostic, public locationAccuracy: LocationAccuracy,
     public app: App, public translate: TranslateService, private geolocation: Geolocation,
