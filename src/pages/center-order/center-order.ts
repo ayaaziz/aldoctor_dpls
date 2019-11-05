@@ -101,6 +101,7 @@ export class CenterOrderPage {
    })
     storage.get('type').then(val => {
       if (val == 2) {
+        //ashe3a
         this.type = 2
       }
       else if (val == 3) {
@@ -347,7 +348,7 @@ export class CenterOrderPage {
                   this.noOrder = false
                   this.newAppointment = false
                   this.endDetectionStatus = true
-                  this.moveToPatientStatus = true
+                  // this.moveToPatientStatus = true
                 }
                 else if (data.order.status == "4") {
                   this.helper.presentToast(this.translate.instant('patientCanceledOrder'))
@@ -692,7 +693,7 @@ export class CenterOrderPage {
                 this.noOrder = false
                 this.newAppointment = false
                 this.endDetectionStatus = true
-                this.moveToPatientStatus = true
+                // this.moveToPatientStatus = true
               }
               else if (data.order.status == "13") {
                 this.orderAccepted = true

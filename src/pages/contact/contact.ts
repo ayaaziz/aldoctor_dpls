@@ -113,15 +113,17 @@ export class ContactPage {
              ordersData[j].color="grey";
              ordersData[j].desc = this.translate.instant("finishing_order")
            }
-             else if(ordersData[j].status == "1" || ordersData[j].status == "2" || ordersData[j].status == "7" || ordersData[j].status == "8" ||  ordersData[j].status == "13")
+             else if(ordersData[j].status == "1" || ordersData[j].status == "2" || ordersData[j].status == "7" || ordersData[j].status == "8" ||  ordersData[j].status == "13" || ordersData[j].status == "12")
              {
                ordersData[j].color="green";
                ordersData[j].desc = this.translate.instant("running_order")
              }
-             else if(ordersData[j].status == "12"){
-              ordersData[j].color="yellow";
-              ordersData[j].desc = this.translate.instant("waiting_order")
-             }
+
+            //  else if(ordersData[j].status == "12"){
+            //   ordersData[j].color="yellow";
+            //   ordersData[j].desc = this.translate.instant("waiting_order")
+            //  }
+
             // if(ordersData[j].reorder == "1")
             //   ordersData[j].color = "green";
             

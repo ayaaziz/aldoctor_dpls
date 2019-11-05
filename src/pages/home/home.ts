@@ -372,13 +372,16 @@ export class HomePage {
 
   }
   openOrder(order_id, Patient_id) {
+    console.log("open order")
     // this.storage.set("recievedNotificat", order_id).then(() => {
     //    this.storage.set("patient_id", Patient_id).then(() => {
     this.storage.get('type').then(val => {
+      console.log("dpls type : ",val)
       if (val == 1) {
         this.navCtrl.push(PharmacyOrderPage, { recievedNotificat: order_id })
       }
       else if (val == 2) {
+        //ash3a
         this.navCtrl.push(CenterOrderPage, { recievedNotificat: order_id })
       }
       else if (val == 3) {
