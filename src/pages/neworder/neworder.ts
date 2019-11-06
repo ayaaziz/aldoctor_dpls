@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 import { TabsPage } from '../tabs/tabs';
 import { AlertController } from 'ionic-angular';
+import { DatePicker } from '@ionic-native/date-picker';
 
 /**
  * Generated class for the NeworderPage page.
@@ -19,7 +20,7 @@ import { AlertController } from 'ionic-angular';
 @Component({
   selector: 'page-neworder',
   templateUrl: 'neworder.html',
-  providers: [LaunchNavigator]
+  providers: [LaunchNavigator,DatePicker]
 })
 export class NeworderPage {
   ratingStatus = 4
@@ -60,7 +61,19 @@ export class NeworderPage {
   order_no
   showReview = false
   anotherOneAccepted = false
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider
+
+  docDate
+  newAppointment = true;
+  appointement = false
+  appointementDate
+  appointementDateFormated
+  minDate
+  maxDate
+  androidIS42 = 0
+  maxYear
+  appointmentNotesModel = ""
+
+  constructor(private datePicker: DatePicker,public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider
     , public helper: HelperProvider, public toastCtrl: ToastController, private alertCtrl: AlertController,
     public events: Events, private launchNavigator: LaunchNavigator,
     public translate: TranslateService, public storage: Storage) {
@@ -233,6 +246,17 @@ export class NeworderPage {
                   else {
                     this.navCtrl.pop()
                   }
+                }
+                else if (data.order.status == "13") {
+                  this.newAppointment = false
+                }
+                else if (data.order.status == "12") {
+                  this.orderAccepted = true
+                  this.newOrder = false;
+                  this.noOrder = false
+                  this.newAppointment = false
+                  // this.endDetectionStatus = true
+                  // this.moveToPatientStatus = true
                 }
                 else if (data.order.status == "8") {
                   this.helper.updateBusy(1)
@@ -467,6 +491,11 @@ export class NeworderPage {
               this.coupon = data.order.coupon
               this.ratingStatus = data.order.patientProfile.rate
               this.order_no = data.order.id
+              if (data.order.date)
+                this.docDate = data.order.date
+              else
+                this.docDate = ""
+
               if(data.order.reorder_id != 0){
                 this.order_re_no = data.order.reorder_id
               }
@@ -593,6 +622,16 @@ export class NeworderPage {
                 this.requestReturnStatus = true
                 this.terminateStatus = true
                 this.cancelOrder = false
+              }
+              
+              else if (data.order.status == "13" || data.order.status == "12") {
+                this.orderAccepted = true
+                // this.patientApproved = true
+                this.newOrder = false;
+                this.noOrder = false
+                this.newAppointment = false
+                // this.endDetectionStatus = true
+                this.moveToPatientStatus = false
               }
               else if (data.order.status == "5") {
                 //  this.storage.remove("recievedNotificat")
@@ -721,6 +760,123 @@ export class NeworderPage {
     if (this.audio) {
       this.audio.pause();
       this.audio = null;
+    }
+  }
+
+  openAppointment() {
+    this.appointement = true
+  }
+
+  chooseDate() {
+
+    var minmDate;
+    var maxDate;
+    let userLang = this.helper.currentLang;
+    // let x = new Date()
+    // let d = x.getFullYear() + '-' + (x.getMonth() + 1) + '-' + (x.geminDatetDate()) + " 00:00:00.000z"
+    // let v = (x.getFullYear() + 1) + '-' + (x.getMonth() + 1) + '-' + (x.getDate() + 1) + "T00:00:00.000z"
+    // if (this.plt.is('ios')) {
+    //   minmDate = new Date().toISOString()
+    //   //maxDate = new Date(v).toISOString()
+    // }
+    // else {
+      minmDate = new Date().valueOf()
+      //maxDate = new Date(v).valueOf()
+    //}
+    let localLang = 'en_us';
+    let nowTxt = 'Today';
+    let okTxt = 'Done';
+    let cancelTxt = 'Cancel';
+    if (userLang == 'ar') {
+      localLang = 'ar_eg';
+      nowTxt = 'اليوم';
+      okTxt = 'تم';
+      cancelTxt = 'إلغاء'
+    }
+
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'datetime',
+      minDate: minmDate,
+      okText: okTxt,
+      cancelText: cancelTxt,
+      todayText: nowTxt,
+      locale: localLang,
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+    }).then(
+      date => {
+        console.log("date "+date)
+        if(!date){
+          return
+        }
+        if(new Date().valueOf() > new Date(date).valueOf()){
+          this.helper.presentToast("من فضلك أختر تاريخ ووقت أكبر من التاريخ والوقت الحالي")
+          return;
+        }
+        let hourDesc = ""
+        let hours =new Date(date).getHours()
+        if (hours >= 12) {
+          hours -= 12;
+          if(hours == 0)
+          hours = 12;
+          hourDesc = "مساءاً"
+        } else if (hours === 0) {
+          hours = 12;
+          hourDesc = "صباحاً"
+        }
+        else{
+          hourDesc = "صباحاً"
+        }
+        //alert(date + " " + typeof(date) + " test " + new Date(date).getFullYear())
+        this.appointementDateFormated = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + hours + ':' + new Date(date).getMinutes() + " " + hourDesc
+        this.appointementDate = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + new Date(date).getHours() + ':' + new Date(date).getMinutes()
+      },
+      err => {
+        console.log('Error occurred while getting date: ', err);
+
+      }
+    );
+  }
+  cancelAppointment() {
+    this.appointement = false
+    this.appointmentNotesModel = ""
+    this.appointementDate = null
+  }
+  sendAppointment() {
+    if (this.appointementDate) {
+      if (navigator.onLine) {
+        this.storage.get("user_login_token").then((val) => {
+          let d = new Date(this.appointementDate).getFullYear() + '-' + (new Date(this.appointementDate).getMonth() + 1) + '-' + new Date(this.appointementDate).getDate() + ' ' + new Date(this.appointementDate).getUTCHours() + ':' + new Date(this.appointementDate).getMinutes()
+          if(this.androidIS42 == 1){
+            this.appointementDate = d
+          }
+          this.loginservice.setOrderDate(val.access_token, this.currentOrderID, this.appointementDate, this.appointmentNotesModel, this.helper.userType,
+            (data) => {
+              if (data.success == true) {
+                this.helper.presentToast(this.translate.instant("appointementCreatedsuccess"))
+                this.navCtrl.pop()
+              }
+              else {
+                this.helper.presentToast(this.translate.instant("serverError"))
+              }
+            },
+            (data) => {
+              this.helper.presentToast(this.translate.instant("serverError"))
+            })
+        })
+      }
+      else {
+        this.helper.presentToast(this.translate.instant("serverError"))
+      }
+    }
+    else {
+    
+        this.helper.presentToast(this.translate.instant("enterAppointmentdoctorData"))
+      
+    
+       
+      
+
     }
   }
 

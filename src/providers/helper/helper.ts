@@ -73,6 +73,8 @@ export class HelperProvider {
 
   // net.ITRoots.dpls    ios
   // net.ITRoots.AlDoctor     android
+
+  
   constructor(public platform: Platform, public toastCtrl: ToastController, public alertCtrl: AlertController,
     public http: HttpClient, public diagnostic: Diagnostic, public locationAccuracy: LocationAccuracy,
     public app: App, public translate: TranslateService, private geolocation: Geolocation,

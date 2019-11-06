@@ -42,9 +42,14 @@
           <br>
           <br>
           </div>
+
+
+<div *ngIf="!appointement">
+
     <div class="text-center" *ngIf="noOrder || anotherOneAccepted" >
        <table style="margin:auto; ">
                   <tr *ngIf="order_no" ><td style="color:#016a38;font-weight: bold;width: 150px;">رقم الطلب: </td><td> {{order_no}}</td></tr>
+
                   <tr *ngIf="patient_forfit" ><td style="color:#016a38;font-weight: bold;width: 150px;">غرامات مستحقة: </td><td> {{patient_forfit}} جنيه</td></tr>
                   <tr *ngIf="coupon" ><td style="color:#016a38;font-weight: bold;width: 150px;">خصم بقيمة: </td><td> {{coupon}} </td></tr>
                   <!-- <tr *ngIf="showReview" ><td style="color:#016a38;font-weight: bold;width: 100px;">
@@ -77,20 +82,63 @@
         <tr *ngIf="coupon" ><td style="color:#016a38;font-weight: bold;width: 150px;">خصم بقيمة: </td><td> {{coupon}} </td></tr>
         
         </table>
-    <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#b2d2c3;" [disabled]="moveToPatientStatus" (click)="orderUpdateStatus(8)">   {{"moveToPatient" | translate}}      </button> <br><br> 
+
+        <p *ngIf="docDate" style="text-align: center;"><span style="color:#016a38;font-weight: bold;width: 150px;">الموعد المحدد :  </span> {{docDate}} </p>
+ <div *ngIf="newAppointment == true && !docDate" > <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#b2d2c3;"  (click)="openAppointment()">  تحديد موعد      </button> <br><br></div>
+  <!-- <tr *ngIf="docDate" ><td style="color:#016a38;font-weight: bold;width: 150px;">الموعد المحدد :  </td><td> {{docDate}}</td></tr> -->
+
+  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#b2d2c3;" [disabled]="moveToPatientStatus" (click)="orderUpdateStatus(8)">   {{"moveToPatient" | translate}}      </button> <br><br> 
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#80b49b;" [disabled]="startDetectionStatus"  (click)="orderUpdateStatus(7)" >   {{"startDetection" | translate}}       </button>  <br><br>
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#418f6a;" [disabled]="requestReturnStatus"  (click)="orderUpdateStatus(6)" *ngIf="!order_re_no">    {{"requestReturn" | translate}}      </button> <span *ngIf="!order_re_no"><br><br></span> 
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#016a38;" [disabled]="terminateStatus"  (click)="orderUpdateStatus(5)">   {{"terminateDetection" | translate}}       </button>  <br><br>
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#016a38;" [disabled]="cancelOrder" (click)="orderUpdateStatus(11)">   {{"cancelOrder" | translate}}       </button>  
 
   </div>
+
+
+</div>
+  <div class="text-center" *ngIf="orderAccepted && !anotherOneAccepted" style="">
+    
+    
+    <span *ngIf="appointement">
+      <ion-item *ngIf="androidIS42 == 1">
+          <ion-datetime [min]="minDate" [max]='maxYear' placeholder="حدد الموعد" displayFormat="MM/DD/YYYY HH:mm" style="width: 100%;;height:35px;background-color: #e8f1ed;"
+          [(ngModel)]="appointementDate" [cancelText]="this.translate.instant('canceltxt')" [doneText]="this.translate.instant('doneTxt')"></ion-datetime> 
+      </ion-item>
+    <ion-item *ngIf="androidIS42 == 0" (click)="chooseDate()">
+      <ion-label style="margin:0px">
+        <ion-icon color="main" name="ios-time"></ion-icon>{{"appointmentTimeXray" | translate}}
+      </ion-label>
+      <ion-label style="margin:0px"> {{appointementDateFormated}} </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>
+        {{"appointmentNotes" | translate}}
+      </ion-label>
+      <ion-textarea  [(ngModel)]="appointmentNotesModel" type="text"></ion-textarea>
+
+  </ion-item>
+  <ion-row>
+    <ion-col col-6>
+      <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:80%;border-color:#b2d2c3;"  (click)="sendAppointment()">   {{"Send" | translate}}      </button>
+    </ion-col>
+    <ion-col col-6>
+      <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:80%;border-color:#b2d2c3;"  (click)="cancelAppointment()">   {{"canceltxt" | translate}}      </button>
+  </ion-col>
+    </ion-row>
+  </span>
+
+ 
+</div>
+
+
   <!-- <ion-fab *ngIf="orderAccepted" right bottom style="bottom: 60px;">
     <button ion-button style="border-radius: 30px;font-size: 20px; font-weight: bold;" (click)="callPatient()" color="doctor"><ion-icon style="color: #51913b" name="call"></ion-icon></button>
     </ion-fab>
     <ion-fab *ngIf="orderAccepted" right bottom>
       <button ion-button style="border-radius: 30px;font-size: 20px; font-weight: bold;" (click)="whatsAppPatient()" color="doctor"><ion-icon style="color: #51913b" name="logo-whatsapp"></ion-icon></button>
       </ion-fab> -->
-      <ion-fab *ngIf="orderAccepted && !anotherOneAccepted" left bottom>
+      <ion-fab *ngIf="orderAccepted && !anotherOneAccepted && !appointement"  left bottom>
         <button ion-fab style="background-color:#026938">
          
         اتصال

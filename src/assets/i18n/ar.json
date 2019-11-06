@@ -254,6 +254,7 @@
       "currentOrders": "طلبات قيد التنفيذ",
       "appointmentNotes": "ملاحظات",
       "enterAppointmentXrayData": "الرجاء إدخال تاريخ ووقت الأشعة للمريض.",
+      "enterAppointmentdoctorData":"الرجاء إدخال التاريخ و الوقت",
       "enterAppointmentLabData": "الرجاء إدخال تاريخ ووقت أخذ العينة للمريض.",
       "appointementCreatedsuccess": "تم تحديد ارسال الموعد للمريض بنجاح",
       "registerationFillData": "من فضلك قم بإدخال البيانات المطلوبة",
