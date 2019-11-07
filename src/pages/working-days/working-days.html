@@ -9,8 +9,6 @@
   
   </ion-header>
 
-
-  <!-- text-center style="background-color:whitesmoke;" -->
 <ion-content padding>
 
   <ion-row style="color: #016a38;text-align: center;margin:8px" >
@@ -19,16 +17,46 @@
     <ion-col>إلى</ion-col>
   </ion-row>
 
-<ion-row  style="text-align: center;background-color: #d5e6d5;margin:8px">
-  <ion-col style="color: #016a38;"> السبت</ion-col>
-  <ion-col> 
-    <ion-datetime style="font-size: 10px !important;" placeholder="من" displayFormat="hh:mm A" [(ngModel)]="sat_First_From"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
-    <ion-datetime style="font-size: 10px !important;" placeholder="من" displayFormat="hh:mm A" [(ngModel)]="sat_Second_From"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+<ion-row  style="text-align: center;background-color: #d5e6d5;margin:8px"  *ngFor="let item of days; let i = index" >
+  <ion-col style="color: #016a38;" > <p style="margin: 0px;margin-top:25px;">{{item[0].day}}</p> </ion-col>
+  <ion-col>
+
+    <ion-row>
+  <ion-col style="padding: 0px;">
+      <ion-datetime style="font-size: 10px !important;" placeholder="من" displayFormat="hh:mm A" [(ngModel)]="item[1][0]"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+  </ion-col>
+ 
+    </ion-row>
+    <ion-row>
+
+    
+    <ion-col style="padding: 0px;">
+        <ion-datetime style="font-size: 10px !important;" placeholder="من" displayFormat="hh:mm A" [(ngModel)]="item[2][0]"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+    </ion-col> 
+  </ion-row>
 
   </ion-col>
   <ion-col> 
-    <ion-datetime style="font-size: 10px !important;" placeholder="إلى" displayFormat="hh:mm A" [(ngModel)]="sat_First_To"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
-    <ion-datetime style="font-size: 10px !important;" placeholder="إلى" displayFormat="hh:mm A" [(ngModel)]="sat_Second_To"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+
+
+      <ion-row>
+          <ion-col style="padding: 0px;">
+    
+              <ion-datetime style="font-size: 10px !important;" placeholder="إلى" displayFormat="hh:mm A" [(ngModel)]="item[1][1]"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+          </ion-col>
+         
+            </ion-row>
+            <ion-row>
+        
+            
+            <ion-col style="padding: 0px;">
+                <ion-datetime style="font-size: 10px !important;" placeholder="إلى" displayFormat="hh:mm A" [(ngModel)]="item[2][1]"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+            </ion-col> 
+          </ion-row>
+
+          
+    
+
     
   </ion-col>
 </ion-row>
@@ -36,7 +64,7 @@
 
 
 <ion-item no-lines style="text-align:center;width:100%">
-  <!-- 3a8ccd -->
+ 
 <button ion-button type="submit"   style="font-size:16px;background-color: #016a38;color:white;border:2px solid #016a38;width:35%;padding:15px;text-align:center;" (click)="save()">{{"save" | translate}}</button>
 </ion-item>
 

@@ -20,12 +20,48 @@ import { HelperProvider } from '../../providers/helper/helper';
 export class WorkingDaysPage {
 
   lang_direction = "";
+
   sat_First_From = "";
   sat_First_To = "";
-
   sat_Second_From = "";
   sat_Second_To = "";
 
+
+  sun_First_From = "";
+  sun_First_To = "";
+  sun_Second_From = "";
+  sun_Second_To = "";
+
+  mon_First_From = "";
+  mon_First_To = "";
+  mon_Second_From = "";
+  mon_Second_To = "";
+
+  tue_First_From = "";
+  tue_First_To = "";
+  tue_Second_From = "";
+  tue_Second_To = "";
+
+  wed_First_From = "";
+  wed_First_To = "";
+  wed_Second_From = "";
+  wed_Second_To = "";
+
+  thr_First_From = "";
+  thr_First_To = "";
+  thr_Second_From = "";
+  thr_Second_To = "";
+
+  fri_First_From = "";
+  fri_First_To = "";
+  fri_Second_From = "";
+  fri_Second_To = "";
+
+
+  ErrorExist = []
+
+
+  days = []
   day
   from
   to
@@ -42,8 +78,18 @@ export class WorkingDaysPage {
 
       this.lang_direction = this.helper.lang_direction;
 
+this.days = [
+  [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
+  [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
+  [{day:"الأثنين"},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
+  [{day:"الثلاثاء"},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
+  [{day:"الأربعاء"},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
+  [{day:"الخميس"},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
+  [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]]
 
-      var offset = new Date().getTimezoneOffset();
+  ]
+      
+var offset = new Date().getTimezoneOffset();
       this.numberOfHours = offset/-60;
       console.log(offset + ' = ' + this.numberOfHours);
     this.center_id = this.navParams.get('centerid');
@@ -282,23 +328,83 @@ export class WorkingDaysPage {
 
 
   save(){
-    console.log("save")
-    if(this.sat_First_From && !this.sat_First_To)
+    console.log("save ")
+    
+
+    // for(var i=0 ;i<.length;i++){
+  this.days.forEach( (i,index) => {
+    // console.log("i = ",i ,"index : ",index)
+    if(i[1][0] && !i[1][1]){
       this.helper.presentToast("الرجاء إدخال الفترة إلى")
-    else if(this.sat_First_To && !this.sat_First_From  )
+      this.ErrorExist.push("err detect")
+    }
+    else if(i[1][1] && !i[1][0]  ){
       this.helper.presentToast("الرجاء إدخال الفترة من")
-    else if(this.sat_First_From && this.sat_First_To )
-      if(this.sat_First_From > this.sat_First_To)
+      this.ErrorExist.push("err detect")}
+    else if(i[1][0] && i[1][1] ){
+      if(i[1][0] > i[1][1]){
         this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
-      else if(this.sat_First_From == this.sat_First_To)
+        this.ErrorExist.push("err detect")}
+      else if(i[1][0] == i[1][1]){
         this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
+        this.ErrorExist.push("err detect")}
+      else{
+        this.ErrorExist = []
+      }
+    }else{
+      this.ErrorExist = []
+    }
+
+
+
+      if(i[2][0] && !i[2][1]){
+        this.helper.presentToast("الرجاء إدخال الفترة إلى")
+        this.ErrorExist.push("err detect")}
+      else if(i[2][1] && !i[2][0]  ){
+        this.helper.presentToast("الرجاء إدخال الفترة من")
+        this.ErrorExist.push("err detect")}
+      else if(i[2][0] && i[2][1] ){
+        if(i[2][0] > i[2][1]){
+          this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
+          this.ErrorExist.push("err detect")}
+        else if(i[2][0] == i[2][1]){
+          this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
+          this.ErrorExist.push("err detect")}
+          else{
+            this.ErrorExist = []
+          }
+      }else{
+        this.ErrorExist = []
+      }
+
+
+
+    })
+    // console.log("this.sat_First_From",this.sat_First_From)
+    // if(this.sat_First_From && !this.sat_First_To)
+    //   this.helper.presentToast("الرجاء إدخال الفترة إلى")
+    // else if(this.sat_First_To && !this.sat_First_From  )
+    //   this.helper.presentToast("الرجاء إدخال الفترة من")
+    // else if(this.sat_First_From && this.sat_First_To )
+    //   if(this.sat_First_From > this.sat_First_To)
+    //     this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
+    //   else if(this.sat_First_From == this.sat_First_To)
+    //     this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
       
-    var daysArray = []
-    var satArray = []
-    satArray.push([this.sat_First_From,this.sat_First_To])
-    satArray.push([this.sat_Second_From,this.sat_Second_To])
-    daysArray.push(satArray)
-    console.log("days Array ", daysArray)
+    // var daysArray = []
+    // var satArray = []
+    // satArray.push([this.sat_First_From,this.sat_First_To])
+    // satArray.push([this.sat_Second_From,this.sat_Second_To])
+    // daysArray.push(satArray)
+    // console.log("days Array ", daysArray)
+
+// console.log("this.ErrorExist = ",this.ErrorExist)
+//     if(this.ErrorExist.length == 0 ){
+//       console.log("call api to save times")
+//     }
+
+console.log("this.days : ",this.days)
+
   }
 
 }
