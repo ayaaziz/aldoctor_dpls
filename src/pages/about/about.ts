@@ -256,4 +256,8 @@ export class AboutPage {
   changePassword() {
     this.navCtrl.push(ChangePasswordPage)
   }
+  workingHours()
+  {
+    this.navCtrl.push("WorkingDaysPage")
+  }
 }

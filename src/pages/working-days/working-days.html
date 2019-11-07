@@ -1,18 +1,46 @@
-<ion-header class={{langDirection}}>
-  <ion-navbar >
-    <ion-title>{{"workingDays" | translate }}</ion-title>
-    <ion-buttons style="display: inherit;" right>
-      <button ion-button icon-only><img src="assets/imgs/dlogo.png" width="30" style="border: 0px;"></button>
-  </ion-buttons>
-    
-  </ion-navbar>
+<ion-header class={{lang_direction}}>
+ 
+    <ion-navbar >
+      <ion-title> {{"workingDays" | translate }} </ion-title>
+      <ion-buttons style="display: inherit;" right>
+        <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="25" height="25" style="border: 0px;"></button>
+    </ion-buttons>
+    </ion-navbar>
+  
   </ion-header>
 
 
   <!-- text-center style="background-color:whitesmoke;" -->
-<ion-content >
+<ion-content padding>
 
-  <ion-card>
+  <ion-row style="color: #016a38;text-align: center;margin:8px" >
+    <ion-col>اليوم</ion-col>
+    <ion-col>من</ion-col>
+    <ion-col>إلى</ion-col>
+  </ion-row>
+
+<ion-row  style="text-align: center;background-color: #d5e6d5;margin:8px">
+  <ion-col style="color: #016a38;"> السبت</ion-col>
+  <ion-col> 
+    <ion-datetime style="font-size: 10px !important;" placeholder="من" displayFormat="hh:mm A" [(ngModel)]="sat_First_From"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+    <ion-datetime style="font-size: 10px !important;" placeholder="من" displayFormat="hh:mm A" [(ngModel)]="sat_Second_From"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+
+  </ion-col>
+  <ion-col> 
+    <ion-datetime style="font-size: 10px !important;" placeholder="إلى" displayFormat="hh:mm A" [(ngModel)]="sat_First_To"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+    <ion-datetime style="font-size: 10px !important;" placeholder="إلى" displayFormat="hh:mm A" [(ngModel)]="sat_Second_To"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+    
+  </ion-col>
+</ion-row>
+
+
+
+<ion-item no-lines style="text-align:center;width:100%">
+  <!-- 3a8ccd -->
+<button ion-button type="submit"   style="font-size:16px;background-color: #016a38;color:white;border:2px solid #016a38;width:35%;padding:15px;text-align:center;" (click)="save()">{{"save" | translate}}</button>
+</ion-item>
+
+  <!-- <ion-card>
 
     <ion-item>
         <ion-label style="color:#016a38">اليوم</ion-label>
@@ -48,11 +76,11 @@
   </ion-col>
 </ion-row>
 <ion-item no-lines style="text-align:center;width:100%">
-    <!-- 3a8ccd -->
+ 
   <button ion-button type="submit"   style="font-size:16px;background-color: #016a38;color:white;border:2px solid #016a38;width:35%;padding:15px;text-align:center;" (click)="save()">{{"save" | translate}}</button>
 </ion-item>
 
-</ion-card>
+</ion-card> -->
 
 <!-- <ion-datetime style="font-size: 10px !important;" placeholder="HH:mm" displayFormat="hh:mm A" [(ngModel)]="from"  cancelText="{{'btnCancel' | translate}}" doneText="{{'btnOk' | translate}}">
     <ion-icon right ios="md-calendar" md="md-calendar"></ion-icon>

@@ -7,12 +7,9 @@ import { parseDate } from 'ionic-angular/util/datetime-util';
 import { DatePipe } from '@angular/common';
 import { checkNoChangesNode } from '@angular/core/src/view/view';
 
-/**
- * Generated class for the WorkingDaysPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+import { HelperProvider } from '../../providers/helper/helper';
+
 
 @IonicPage()
 @Component({
@@ -21,6 +18,13 @@ import { checkNoChangesNode } from '@angular/core/src/view/view';
   providers:[DatePipe]
 })
 export class WorkingDaysPage {
+
+  lang_direction = "";
+  sat_First_From = "";
+  sat_First_To = "";
+
+  sat_Second_From = "";
+  sat_Second_To = "";
 
   day
   from
@@ -32,9 +36,12 @@ export class WorkingDaysPage {
   weekDays: any[] = [];
   numberOfHours:number = 2;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,
+  constructor(public helper: HelperProvider,public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,
     public loginServiceProvider: LoginServiceProvider, public translate: TranslateService, public toastController: ToastController,
     public platform: Platform, public storage: Storage, public datepipe: DatePipe) {
+
+      this.lang_direction = this.helper.lang_direction;
+
 
       var offset = new Date().getTimezoneOffset();
       this.numberOfHours = offset/-60;
@@ -271,6 +278,27 @@ export class WorkingDaysPage {
       });
       toast.present();
     }
+  }
+
+
+  save(){
+    console.log("save")
+    if(this.sat_First_From && !this.sat_First_To)
+      this.helper.presentToast("الرجاء إدخال الفترة إلى")
+    else if(this.sat_First_To && !this.sat_First_From  )
+      this.helper.presentToast("الرجاء إدخال الفترة من")
+    else if(this.sat_First_From && this.sat_First_To )
+      if(this.sat_First_From > this.sat_First_To)
+        this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
+      else if(this.sat_First_From == this.sat_First_To)
+        this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
+      
+    var daysArray = []
+    var satArray = []
+    satArray.push([this.sat_First_From,this.sat_First_To])
+    satArray.push([this.sat_Second_From,this.sat_Second_To])
+    daysArray.push(satArray)
+    console.log("days Array ", daysArray)
   }
 
 }
