@@ -21,7 +21,7 @@ export class ModalPage {
     public helper: HelperProvider) {
       
       // this.helper.view = "pop";
-      this.accessToken = localStorage.getItem('user_token');
+      this.accessToken = localStorage.getItem('kdkvfkhggsso');
 
       this.from = this.navParams.get("from")
       console.log("modal from : ",this.from)

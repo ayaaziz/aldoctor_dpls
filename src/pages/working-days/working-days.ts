@@ -77,17 +77,44 @@ export class WorkingDaysPage {
     public platform: Platform, public storage: Storage, public datepipe: DatePipe) {
 
       this.lang_direction = this.helper.lang_direction;
+      this.storage.get("user_login_info").then((val) => {
+        console.log("val from storage enter : ",val)
+              if (val != null) {
 
-this.days = [
-  [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
-  [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
-  [{day:"الأثنين"},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
-  [{day:"الثلاثاء"},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
-  [{day:"الأربعاء"},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
-  [{day:"الخميس"},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
-  [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]]
+      this.loginServiceProvider.listWorkingDays(val.id).subscribe(resp=>{
+        console.log("resp from listworkingdays : ",resp)
+        var respdata =  JSON.parse(JSON.stringify(resp))
+        if(respdata.workingDays )
+        {
+          console.log("working days : ",respdata.workingDays)
 
-  ]
+          this.days = [
+            [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
+            [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
+            [{day:"الأثنين"},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
+            [{day:"الثلاثاء"},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
+            [{day:"الأربعاء"},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
+            [{day:"الخميس"},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
+            [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]]
+          
+            ]
+            console.log("this.days after list : ",this.days)
+        }
+      },err=>{
+        console.log("err from listworkingdays : ",err)
+      })
+              }
+            });
+// this.days = [
+//   [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
+//   [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
+//   [{day:"الأثنين"},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
+//   [{day:"الثلاثاء"},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
+//   [{day:"الأربعاء"},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
+//   [{day:"الخميس"},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
+//   [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]]
+
+//   ]
       
 var offset = new Date().getTimezoneOffset();
       this.numberOfHours = offset/-60;
@@ -405,6 +432,33 @@ var offset = new Date().getTimezoneOffset();
 
 console.log("this.days : ",this.days)
 
+this.storage.get("user_login_info").then((val) => {
+  console.log("val from storage enter : ",val)
+        if (val != null) {
+          var xarray = []
+          this.days.forEach( (i,index) => {
+            console.log("i = ", i)
+            xarray.push([[i[1][0],i[1][1]],[i[2][0],i[2][1]]])
+          });
+          console.log("xarray : ",xarray)
+          this.loginServiceProvider.addWorkingDays(val.id,xarray).subscribe(
+            resp=>{
+              console.log("resp from addWorkingDays",resp);
+          
+              
+          
+          
+            },
+            err=>{
+              console.log("errfrom addWorkingDays",err);
+            });
+       
+       
+
+}
+})
+
+  
   }
 
 }

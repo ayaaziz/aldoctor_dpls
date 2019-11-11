@@ -43,7 +43,7 @@ export class AboutPage {
   }
   ionViewDidEnter() {
     this.storage.get("user_login_info").then((val) => {
-
+console.log("val from storage enter : ",val)
       if (val != null) {
         this.storage.get('type').then(type_val => {
          this.type = type_val

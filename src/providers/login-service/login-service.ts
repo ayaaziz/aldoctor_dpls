@@ -1438,4 +1438,45 @@ getCustomerService(id,access_token){
 
 
 
+// addWorkingDays?userId=11&intervals
+addWorkingDays(userId,interval){
+
+  let headers = new HttpHeaders();
+    // let parameter = new HttpParams().set('userId',userId)
+    // .set('intervals',interval);
+    
+    let params={
+      'userId' : userId,
+      'intervals':interval
+    }
+    headers = headers
+    // .set('Content-Type', 'application/x-www-form-urlencoded')
+    .set('Authorization', 'Bearer '+ localStorage.getItem('kdkvfkhggsso'));
+    
+    console.log("interval : ",interval)
+
+   
+  
+  let serviceUrl = this.helper.serviceUrl+ 'api/addWorkingDays';
+  return this.http.post(serviceUrl, params,{headers: headers });
+  
+}
+
+listWorkingDays(userId){
+
+  let headers = new HttpHeaders();
+    // let parameter = new HttpParams().set('userId',userId)
+    // .set('intervals',interval);
+    
+    headers = headers.set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', 'Bearer '+ localStorage.getItem('kdkvfkhggsso'));
+    
+    // console.log("interval : ",interval)
+
+   
+  
+  let serviceUrl = this.helper.serviceUrl+ 'api/workingDays?userId='+userId;
+  return this.http.get(serviceUrl,{headers: headers });
+  
+}
+
 }
