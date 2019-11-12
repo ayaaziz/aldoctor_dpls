@@ -1440,17 +1440,23 @@ getCustomerService(id,access_token){
 
 // addWorkingDays?userId=11&intervals
 addWorkingDays(userId,interval){
-
-  let headers = new HttpHeaders();
-    // let parameter = new HttpParams().set('userId',userId)
-    // .set('intervals',interval);
-    
-    let params={
-      'userId' : userId,
-      'intervals':interval
+let params={
+      "userId" : userId,
+      "intervals":interval
     }
+  let headers = new HttpHeaders();
+    let parameter = new HttpParams().set("data",JSON.stringify(params))
+    // .set('userId',userId)
+    // .set('intervals',interval);
+    console.log("parameters : ",parameter)
+    // let params={
+    //   "userId" : userId,
+    //   "intervals":interval
+    // }
+    // console.log("params : ",JSON.stringify(params))
     headers = headers
-    // .set('Content-Type', 'application/x-www-form-urlencoded')
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    // .set('Content-Type', 'application/form-data')
     .set('Authorization', 'Bearer '+ localStorage.getItem('kdkvfkhggsso'));
     
     console.log("interval : ",interval)
@@ -1458,7 +1464,8 @@ addWorkingDays(userId,interval){
    
   
   let serviceUrl = this.helper.serviceUrl+ 'api/addWorkingDays';
-  return this.http.post(serviceUrl, params,{headers: headers });
+  // {data:JSON.stringify(params)}
+  return this.http.post(serviceUrl,parameter,{headers: headers });
   
 }
 
