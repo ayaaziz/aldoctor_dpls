@@ -79,142 +79,8 @@ export class WorkingDaysPage {
 
       this.lang_direction = this.helper.lang_direction;
       this.todayTime  = new Date().toLocaleString() 
-      this.storage.get("user_login_info").then((val) => {
-        console.log("val from storage enter : ",val)
-              if (val != null) {
-
-      this.loginServiceProvider.listWorkingDays(val.id).subscribe(resp=>{
-        console.log("resp from listworkingdays : ",resp)
-        var respdata =  JSON.parse(JSON.stringify(resp))
-        if(respdata.workingDays )
-        {
-          console.log("working days : ",respdata.workingDays)
-
-          var satarr = respdata.workingDays[0];
-          if(satarr[0].length > 0){
-          this.sat_First_From = satarr[0][0];
-          this.sat_First_To = satarr[0][1];
-          }else{
-            this.sat_First_From = ""
-            this.sat_First_To = ""
-          }
-          if(satarr[1].length > 0){
-          this.sat_Second_From = satarr[1][0];
-          this.sat_Second_To = satarr[1][1];}else{
-            this.sat_Second_From = ""
-          this.sat_Second_To = ""
-          }
-
-          var sunarr = respdata.workingDays[1];
-          console.log("sunarr[0][0] : ",sunarr[0][0])
-          if(sunarr[0].length > 0){
-          this.sun_First_From = sunarr[0][0];
-          this.sun_First_To = sunarr[0][1];
-          }else{
-            this.sun_First_From = "";
-            this.sun_First_To = ""
-          }
-          if(sunarr[1].length > 0){
-          this.sun_Second_From = sunarr[1][0];
-          this.sun_Second_To = sunarr[1][1];}
-          else{
-            this.sun_Second_From = ""
-            this.sun_Second_To = ""
-          }
-
-          var monarr = respdata.workingDays[2];
-          if(monarr[0].length > 0){
-            this.mon_First_From = monarr[0][0]
-            this.mon_First_To = monarr[0][1]
-          }else{
-            this.mon_First_From = ""
-            this.mon_First_To = ""
-          }
-          if(monarr[1].length > 0){
-          this.mon_Second_From = monarr[1][0]
-          this.mon_Second_To = monarr[1][1]
-          }else{
-            this.mon_Second_From = ""
-            this.mon_Second_To = ""
-          }
-
-          var tuearr = respdata.workingDays[3];
-          if(tuearr[0].length > 0){
-          this.tue_First_From = tuearr[0][0]
-          this.tue_First_To = tuearr[0][1]}else{
-            this.tue_First_From = ""
-          this.tue_First_To = ""
-          }
-          if(tuearr[1].length > 0){
-          this.tue_Second_From = tuearr[1][0]
-          this.tue_Second_To = tuearr[1][1]
-          }else{
-            this.tue_Second_From = ""
-          this.tue_Second_To = ""
-          }
-
-          var wedarr = respdata.workingDays[4];
-          if(wedarr[0].length > 0){
-          this.wed_First_From = wedarr[0][0]
-          this.wed_First_To = wedarr[0][1]
-          }else{
-            this.wed_First_From = ""
-            this.wed_First_To = ""
-          }
-          if(wedarr[1].length > 0){
-          this.wed_Second_From = wedarr[1][0]
-          this.wed_Second_To = wedarr[1][1]
-          }else{
-            this.wed_Second_From = ""
-            this.wed_Second_To = ""
-          }
-          var thrarr = respdata.workingDays[5];
-          if(thrarr[0].length > 0){
-          this.thr_First_From = thrarr[0][0]
-          this.thr_First_To = thrarr[0][1]
-          }else{
-            this.thr_First_From = ""
-            this.thr_First_To = ""
-          }
-          if(thrarr[1].length > 0){
-          this.thr_Second_From = thrarr[1][0]
-          this.thr_Second_To = thrarr[1][1]
-          }else{
-            this.thr_Second_From = ""
-          this.thr_Second_To = ""
-          }
-          var friarr = respdata.workingDays[6];
-          if(friarr[0].length > 0){
-          this.fri_First_From = friarr[0][0]
-          this.fri_First_To = friarr[0][1]}else{
-            this.fri_First_From = ""
-          this.fri_First_To = ""
-          }
-          if(friarr[1].length > 0){
-          this.fri_Second_From = friarr[1][0]
-          this.fri_Second_To = friarr[1][1]}else{
-            this.fri_Second_From = ""
-            this.fri_Second_To = ""
-          }
-
-
-          this.days = [
-            [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
-            [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
-            [{day:"الأثنين"},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
-            [{day:"الثلاثاء"},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
-            [{day:"الأربعاء"},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
-            [{day:"الخميس"},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
-            [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]]
-          
-            ]
-            console.log("this.days after list : ",this.days)
-        }
-      },err=>{
-        console.log("err from listworkingdays : ",err)
-      })
-              }
-            });
+      this.listWorkingDays()
+ 
 // this.days = [
 //   [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
 //   [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
@@ -554,8 +420,11 @@ this.storage.get("user_login_info").then((val) => {
           this.loginServiceProvider.addWorkingDays(val.id,xarray).subscribe(
             resp=>{
               console.log("resp from addWorkingDays",resp);
-          if(JSON.parse(JSON.stringify(resp)).success ==  true)
-              this.helper.presentToast("تم الحفظ")
+          if(JSON.parse(JSON.stringify(resp)).success ==  true){
+            this.helper.presentToast("تم الحفظ")
+            this.navCtrl.pop()
+          }
+             
               
           
           
@@ -572,4 +441,146 @@ this.storage.get("user_login_info").then((val) => {
   
   }
 
+  doRefresh(ev){
+    ev.complete();
+    this.listWorkingDays();
+  }
+listWorkingDays(){
+  this.storage.get("user_login_info").then((val) => {
+    console.log("val from storage enter : ",val)
+          if (val != null) {
+
+  this.loginServiceProvider.listWorkingDays(val.id).subscribe(resp=>{
+    console.log("resp from listworkingdays : ",resp)
+    var respdata =  JSON.parse(JSON.stringify(resp))
+    if(respdata.workingDays )
+    {
+      console.log("working days : ",respdata.workingDays)
+
+      var satarr = respdata.workingDays[0];
+      if(satarr[0].length > 0){
+      this.sat_First_From = satarr[0][0];
+      this.sat_First_To = satarr[0][1];
+      }else{
+        this.sat_First_From = ""
+        this.sat_First_To = ""
+      }
+      if(satarr[1].length > 0){
+      this.sat_Second_From = satarr[1][0];
+      this.sat_Second_To = satarr[1][1];}else{
+        this.sat_Second_From = ""
+      this.sat_Second_To = ""
+      }
+
+      var sunarr = respdata.workingDays[1];
+      console.log("sunarr[0][0] : ",sunarr[0][0])
+      if(sunarr[0].length > 0){
+      this.sun_First_From = sunarr[0][0];
+      this.sun_First_To = sunarr[0][1];
+      }else{
+        this.sun_First_From = "";
+        this.sun_First_To = ""
+      }
+      if(sunarr[1].length > 0){
+      this.sun_Second_From = sunarr[1][0];
+      this.sun_Second_To = sunarr[1][1];}
+      else{
+        this.sun_Second_From = ""
+        this.sun_Second_To = ""
+      }
+
+      var monarr = respdata.workingDays[2];
+      if(monarr[0].length > 0){
+        this.mon_First_From = monarr[0][0]
+        this.mon_First_To = monarr[0][1]
+      }else{
+        this.mon_First_From = ""
+        this.mon_First_To = ""
+      }
+      if(monarr[1].length > 0){
+      this.mon_Second_From = monarr[1][0]
+      this.mon_Second_To = monarr[1][1]
+      }else{
+        this.mon_Second_From = ""
+        this.mon_Second_To = ""
+      }
+
+      var tuearr = respdata.workingDays[3];
+      if(tuearr[0].length > 0){
+      this.tue_First_From = tuearr[0][0]
+      this.tue_First_To = tuearr[0][1]}else{
+        this.tue_First_From = ""
+      this.tue_First_To = ""
+      }
+      if(tuearr[1].length > 0){
+      this.tue_Second_From = tuearr[1][0]
+      this.tue_Second_To = tuearr[1][1]
+      }else{
+        this.tue_Second_From = ""
+      this.tue_Second_To = ""
+      }
+
+      var wedarr = respdata.workingDays[4];
+      if(wedarr[0].length > 0){
+      this.wed_First_From = wedarr[0][0]
+      this.wed_First_To = wedarr[0][1]
+      }else{
+        this.wed_First_From = ""
+        this.wed_First_To = ""
+      }
+      if(wedarr[1].length > 0){
+      this.wed_Second_From = wedarr[1][0]
+      this.wed_Second_To = wedarr[1][1]
+      }else{
+        this.wed_Second_From = ""
+        this.wed_Second_To = ""
+      }
+      var thrarr = respdata.workingDays[5];
+      if(thrarr[0].length > 0){
+      this.thr_First_From = thrarr[0][0]
+      this.thr_First_To = thrarr[0][1]
+      }else{
+        this.thr_First_From = ""
+        this.thr_First_To = ""
+      }
+      if(thrarr[1].length > 0){
+      this.thr_Second_From = thrarr[1][0]
+      this.thr_Second_To = thrarr[1][1]
+      }else{
+        this.thr_Second_From = ""
+      this.thr_Second_To = ""
+      }
+      var friarr = respdata.workingDays[6];
+      if(friarr[0].length > 0){
+      this.fri_First_From = friarr[0][0]
+      this.fri_First_To = friarr[0][1]}else{
+        this.fri_First_From = ""
+      this.fri_First_To = ""
+      }
+      if(friarr[1].length > 0){
+      this.fri_Second_From = friarr[1][0]
+      this.fri_Second_To = friarr[1][1]}else{
+        this.fri_Second_From = ""
+        this.fri_Second_To = ""
+      }
+
+
+      this.days = [
+        [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
+        [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
+        [{day:"الأثنين"},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
+        [{day:"الثلاثاء"},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
+        [{day:"الأربعاء"},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
+        [{day:"الخميس"},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
+        [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]]
+      
+        ]
+        console.log("this.days after list : ",this.days)
+    }
+  },err=>{
+    console.log("err from listworkingdays : ",err)
+  })
+          }
+        });
+}
 }

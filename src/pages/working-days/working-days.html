@@ -10,7 +10,10 @@
   </ion-header>
 
 <ion-content padding>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <ion-row style="color: #016a38;text-align: center;margin:8px" >
     <ion-col>اليوم</ion-col>
     <ion-col>من</ion-col>
@@ -23,7 +26,7 @@
 
     <ion-row>
   <ion-col style="padding: 0px;">
-      <ion-datetime  style="font-size: 10px !important;" placeholder="من" displayFormat="hh:mm A" [(ngModel)]="item[1][0]"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
+      <ion-datetime  value="01:20" style="font-size: 10px !important;" placeholder="من" displayFormat="hh:mm A" [(ngModel)]="item[1][0]"  cancelText="إلغاء" doneText="موافق"></ion-datetime>
   </ion-col>
  
     </ion-row>
