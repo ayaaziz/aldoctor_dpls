@@ -423,6 +423,8 @@ this.storage.get("user_login_info").then((val) => {
           if(JSON.parse(JSON.stringify(resp)).success ==  true){
             this.helper.presentToast("تم الحفظ")
             this.navCtrl.pop()
+          }else{
+            this.helper.presentToast("حدث خطأ ما ")
           }
              
               
@@ -457,22 +459,8 @@ listWorkingDays(){
     {
       console.log("working days : ",respdata.workingDays)
 
-      var satarr = respdata.workingDays[0];
-      if(satarr[0].length > 0){
-      this.sat_First_From = satarr[0][0];
-      this.sat_First_To = satarr[0][1];
-      }else{
-        this.sat_First_From = ""
-        this.sat_First_To = ""
-      }
-      if(satarr[1].length > 0){
-      this.sat_Second_From = satarr[1][0];
-      this.sat_Second_To = satarr[1][1];}else{
-        this.sat_Second_From = ""
-      this.sat_Second_To = ""
-      }
-
-      var sunarr = respdata.workingDays[1];
+      
+      var sunarr = respdata.workingDays[0]; //sunday
       console.log("sunarr[0][0] : ",sunarr[0][0])
       if(sunarr[0].length > 0){
       this.sun_First_From = sunarr[0][0];
@@ -489,7 +477,7 @@ listWorkingDays(){
         this.sun_Second_To = ""
       }
 
-      var monarr = respdata.workingDays[2];
+      var monarr = respdata.workingDays[1];
       if(monarr[0].length > 0){
         this.mon_First_From = monarr[0][0]
         this.mon_First_To = monarr[0][1]
@@ -505,7 +493,7 @@ listWorkingDays(){
         this.mon_Second_To = ""
       }
 
-      var tuearr = respdata.workingDays[3];
+      var tuearr = respdata.workingDays[2];
       if(tuearr[0].length > 0){
       this.tue_First_From = tuearr[0][0]
       this.tue_First_To = tuearr[0][1]}else{
@@ -520,7 +508,7 @@ listWorkingDays(){
       this.tue_Second_To = ""
       }
 
-      var wedarr = respdata.workingDays[4];
+      var wedarr = respdata.workingDays[3];
       if(wedarr[0].length > 0){
       this.wed_First_From = wedarr[0][0]
       this.wed_First_To = wedarr[0][1]
@@ -535,7 +523,7 @@ listWorkingDays(){
         this.wed_Second_From = ""
         this.wed_Second_To = ""
       }
-      var thrarr = respdata.workingDays[5];
+      var thrarr = respdata.workingDays[4];
       if(thrarr[0].length > 0){
       this.thr_First_From = thrarr[0][0]
       this.thr_First_To = thrarr[0][1]
@@ -550,7 +538,7 @@ listWorkingDays(){
         this.thr_Second_From = ""
       this.thr_Second_To = ""
       }
-      var friarr = respdata.workingDays[6];
+      var friarr = respdata.workingDays[5];
       if(friarr[0].length > 0){
       this.fri_First_From = friarr[0][0]
       this.fri_First_To = friarr[0][1]}else{
@@ -564,16 +552,31 @@ listWorkingDays(){
         this.fri_Second_To = ""
       }
 
+      var satarr = respdata.workingDays[6];
+      if(satarr[0].length > 0){
+      this.sat_First_From = satarr[0][0];
+      this.sat_First_To = satarr[0][1];
+      }else{
+        this.sat_First_From = ""
+        this.sat_First_To = ""
+      }
+      if(satarr[1].length > 0){
+      this.sat_Second_From = satarr[1][0];
+      this.sat_Second_To = satarr[1][1];}else{
+        this.sat_Second_From = ""
+      this.sat_Second_To = ""
+      }
+
 
       this.days = [
-        [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
+     
         [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
         [{day:"الأثنين"},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
         [{day:"الثلاثاء"},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
         [{day:"الأربعاء"},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
         [{day:"الخميس"},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
-        [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]]
-      
+        [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]],
+        [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]]
         ]
         console.log("this.days after list : ",this.days)
     }
