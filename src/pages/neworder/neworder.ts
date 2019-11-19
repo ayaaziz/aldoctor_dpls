@@ -265,6 +265,7 @@ export class NeworderPage {
                   this.requestReturnStatus = true
                   this.terminateStatus = true
                   this.cancelOrder = true
+                  this.newAppointment = false
                   if (this.patient_lat && this.patient_long) {
                     this.launchNavigator.navigate([this.patient_lat, this.patient_long])
                       .then(

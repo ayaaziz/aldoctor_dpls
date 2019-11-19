@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams , ViewController, ToastController, Platform } from 'ionic-angular';
 import { LoginServiceProvider } from '../../providers/login-service/login-service';
 import { TranslateService } from '@ngx-translate/core';
@@ -62,6 +62,8 @@ export class WorkingDaysPage {
 
   todayTime 
 
+  @ViewChild('datePicker') datePicker;
+  dataInicial: Date;
   days = []
   day
   from
@@ -586,4 +588,18 @@ listWorkingDays(){
           }
         });
 }
+
+// open(x) {
+//   console.log("open date picker : ",x)
+//   if (!this.dataInicial) {
+//       this.dataInicial =  new Date(new Date().toJSON().split('T')[0]);
+//       setTimeout(() => {
+//           this.datePicker.open();
+//       }, 50)
+//   } else {
+//       this.datePicker.open();
+//   }
+
+// }
+
 }
