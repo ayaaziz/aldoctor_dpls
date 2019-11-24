@@ -59,6 +59,7 @@ export class WorkingDaysPage {
 
 
   ErrorExist = []
+  errorFlag = false
 
   todayTime 
 
@@ -334,57 +335,90 @@ var offset = new Date().getTimezoneOffset();
 
   save(){
     console.log("save ")
-    
+    this.ErrorExist = []
 
     // for(var i=0 ;i<.length;i++){
-  this.days.forEach( (i,index) => {
+      for(var x=0;x<this.days.length;x++){
+        var i = this.days[x]
+        console.log("day i : ",i)
+      // }
+  // this.days.forEach( (i,index) => {
     // console.log("i = ",i ,"index : ",index)
     if(i[1][0] && !i[1][1]){
       this.helper.presentToast("الرجاء إدخال الفترة إلى")
       this.ErrorExist.push("err detect")
+      this.errorFlag = true
+      break;
     }
     else if(i[1][1] && !i[1][0]  ){
       this.helper.presentToast("الرجاء إدخال الفترة من")
-      this.ErrorExist.push("err detect")}
+      this.ErrorExist.push("err detect")
+      this.errorFlag = true
+      break;
+    }
     else if(i[1][0] && i[1][1] ){
       if(i[1][0] > i[1][1]){
         this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
-        this.ErrorExist.push("err detect")}
+        this.ErrorExist.push("err detect")
+        this.errorFlag = true
+        break;
+      }
       else if(i[1][0] == i[1][1]){
         this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
-        this.ErrorExist.push("err detect")}
+        this.ErrorExist.push("err detect")
+        this.errorFlag = true
+        break;
+      }
       else{
-        this.ErrorExist = []
+        this.ErrorExist.pop()
+        this.errorFlag = false
       }
     }else{
-      this.ErrorExist = []
+      this.ErrorExist.pop()
+      this.errorFlag = false
     }
 
 
 
       if(i[2][0] && !i[2][1]){
         this.helper.presentToast("الرجاء إدخال الفترة إلى")
-        this.ErrorExist.push("err detect")}
+        this.ErrorExist.push("err detect")
+        this.errorFlag = true
+        break;
+      }
       else if(i[2][1] && !i[2][0]  ){
         this.helper.presentToast("الرجاء إدخال الفترة من")
-        this.ErrorExist.push("err detect")}
+        this.ErrorExist.push("err detect")
+        this.errorFlag = true
+        break;
+      }
       else if(i[2][0] && i[2][1] ){
         if(i[2][0] > i[2][1]){
           this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
-          this.ErrorExist.push("err detect")}
+          this.ErrorExist.push("err detect")
+          this.errorFlag = true
+          break;
+        }
         else if(i[2][0] == i[2][1]){
           this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
-          this.ErrorExist.push("err detect")}
+          this.ErrorExist.push("err detect")
+          this.errorFlag = true
+          break;
+        }
           else{
-            this.ErrorExist = []
+            this.ErrorExist.pop()
+            this.errorFlag = false
           }
       }else{
-        this.ErrorExist = []
+        this.ErrorExist.pop()
+        this.errorFlag = false
       }
 
 
 
-    })
+    // })
+  }
+
     // console.log("this.sat_First_From",this.sat_First_From)
     // if(this.sat_First_From && !this.sat_First_To)
     //   this.helper.presentToast("الرجاء إدخال الفترة إلى")
@@ -403,11 +437,12 @@ var offset = new Date().getTimezoneOffset();
     // daysArray.push(satArray)
     // console.log("days Array ", daysArray)
 
-// console.log("this.ErrorExist = ",this.ErrorExist)
-//     if(this.ErrorExist.length == 0 ){
-//       console.log("call api to save times")
-//     }
-
+console.log("this.ErrorExist = ",this.ErrorExist)
+    // if(this.ErrorExist.length == 0 ){
+      if(this.errorFlag == false){
+      console.log("call api to save times")
+    
+    
 console.log("this.days : ",this.days)
 
 this.storage.get("user_login_info").then((val) => {
@@ -442,7 +477,9 @@ this.storage.get("user_login_info").then((val) => {
 }
 })
 
-  
+}
+
+
   }
 
   doRefresh(ev){

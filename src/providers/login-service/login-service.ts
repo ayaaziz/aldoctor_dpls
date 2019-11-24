@@ -580,7 +580,7 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
         content: "",
       });
        loader.present();
-      this.http.get(this.helper.serviceUrl + 'api/get/lkps/specialities?lang='+this.helper.currentLang)
+      this.http.get(this.helper.serviceUrl + 'api/get/lkps/specialities?lang='+this.helper.currentLang+"&all=1")
       .timeout(10000)
       .subscribe(
        data => {
