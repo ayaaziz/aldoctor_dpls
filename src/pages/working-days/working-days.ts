@@ -502,15 +502,19 @@ listWorkingDays(){
       var sunarr = respdata.workingDays[0]; //sunday
       console.log("sunarr[0][0] : ",sunarr[0][0])
       if(sunarr[0].length > 0){
-      this.sun_First_From = sunarr[0][0];
-      this.sun_First_To = sunarr[0][1];
+        if(sunarr[0][0] != "00:00")
+          this.sun_First_From = sunarr[0][0];
+        if(sunarr[0][1] != "00:00")
+          this.sun_First_To = sunarr[0][1];
       }else{
         this.sun_First_From = "";
         this.sun_First_To = ""
       }
       if(sunarr[1].length > 0){
-      this.sun_Second_From = sunarr[1][0];
-      this.sun_Second_To = sunarr[1][1];}
+        if(sunarr[1][0] != "00:00")
+          this.sun_Second_From = sunarr[1][0];
+        if(sunarr[1][1] != "00:00")
+          this.sun_Second_To = sunarr[1][1];}
       else{
         this.sun_Second_From = ""
         this.sun_Second_To = ""
