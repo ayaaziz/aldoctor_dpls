@@ -21,7 +21,8 @@
   </ion-row>
 
 <ion-row  style="text-align: center;background-color: #d5e6d5;margin:8px"  *ngFor="let item of days; let i = index" >
-  <ion-col style="color: #016a38;" > <p style="margin: 0px;margin-top:25px;">{{item[0].day}}</p> </ion-col>
+  <ion-col > <p style="margin: 0px;margin-top:18px;color: #016a38;">{{item[0].day}}</p> 
+  <p (click)="resetDay(item)" >إعادة الضبط</p> </ion-col>
   <ion-col>
 
     <ion-row>

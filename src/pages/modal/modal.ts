@@ -54,7 +54,16 @@ export class ModalPage {
         this.service.getCustomerService("null",this.accessToken).subscribe(
           resp=>{
             console.log("resp from getHelperTelephones from modal",resp);
-            this.helpersArr = JSON.parse(JSON.stringify(resp));
+            this.helpersArr = JSON.parse(JSON.stringify(resp))[0].value.split(",");
+      
+            for(var i=0;i<this.helpersArr.length;i++){
+              console.log("this.helpersArr[i].length : ",this.helpersArr[i].length)
+              if(this.helpersArr[i].length == 11)
+                this.helpersArr[i] = "+2"+this.helpersArr[i]
+                else if(this.helpersArr[i].length == 12)
+                this.helpersArr[i] = "+"+this.helpersArr[i]
+
+            }
       
       
       

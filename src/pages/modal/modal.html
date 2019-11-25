@@ -25,15 +25,15 @@
     </a> -->
     <ion-row>
       <ion-col col-8>
-          <p style="display:inline-block;" > {{item.value}}+ </p>
+          <p style="display:inline-block;" > {{item}} </p>
       </ion-col>
       <ion-icon col-2>
-          <a button   href="tel:+{{item.value}}" >
+          <a button   href="tel:{{item}}" >
               <ion-icon   style="color:#026938;" name="call"></ion-icon>
             </a>
       </ion-icon>
       <ion-icon col-2>
-          <a button   href="https://api.whatsapp.com/send?phone={{item.value}}" >
+          <a button   href="https://api.whatsapp.com/send?phone={{item}}" >
             <ion-icon   style="color:#026938;" name="logo-whatsapp"></ion-icon>
           </a>
       </ion-icon> 

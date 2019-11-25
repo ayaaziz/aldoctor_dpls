@@ -522,14 +522,18 @@ listWorkingDays(){
 
       var monarr = respdata.workingDays[1];
       if(monarr[0].length > 0){
-        this.mon_First_From = monarr[0][0]
-        this.mon_First_To = monarr[0][1]
+        if(monarr[0][0] != "00:00")
+          this.mon_First_From = monarr[0][0]
+        if(monarr[0][1] != "00:00")
+          this.mon_First_To = monarr[0][1]
       }else{
         this.mon_First_From = ""
         this.mon_First_To = ""
       }
       if(monarr[1].length > 0){
+         if(monarr[1][0] != "00:00")
       this.mon_Second_From = monarr[1][0]
+       if(monarr[1][1] != "00:00")
       this.mon_Second_To = monarr[1][1]
       }else{
         this.mon_Second_From = ""
@@ -538,13 +542,17 @@ listWorkingDays(){
 
       var tuearr = respdata.workingDays[2];
       if(tuearr[0].length > 0){
+         if(tuearr[0][0] != "00:00")
       this.tue_First_From = tuearr[0][0]
+       if(tuearr[0][1] != "00:00")
       this.tue_First_To = tuearr[0][1]}else{
         this.tue_First_From = ""
       this.tue_First_To = ""
       }
       if(tuearr[1].length > 0){
+          if(tuearr[1][0] != "00:00")
       this.tue_Second_From = tuearr[1][0]
+        if(tuearr[1][1] != "00:00")
       this.tue_Second_To = tuearr[1][1]
       }else{
         this.tue_Second_From = ""
@@ -553,14 +561,18 @@ listWorkingDays(){
 
       var wedarr = respdata.workingDays[3];
       if(wedarr[0].length > 0){
+        if(wedarr[0][0] != "00:00")
       this.wed_First_From = wedarr[0][0]
+      if(wedarr[0][1] != "00:00")
       this.wed_First_To = wedarr[0][1]
       }else{
         this.wed_First_From = ""
         this.wed_First_To = ""
       }
       if(wedarr[1].length > 0){
+        if(wedarr[1][0] != "00:00")
       this.wed_Second_From = wedarr[1][0]
+      if(wedarr[1][1] != "00:00")
       this.wed_Second_To = wedarr[1][1]
       }else{
         this.wed_Second_From = ""
@@ -568,14 +580,18 @@ listWorkingDays(){
       }
       var thrarr = respdata.workingDays[4];
       if(thrarr[0].length > 0){
+         if(thrarr[0][0] != "00:00")
       this.thr_First_From = thrarr[0][0]
+       if(thrarr[0][1] != "00:00")
       this.thr_First_To = thrarr[0][1]
       }else{
         this.thr_First_From = ""
         this.thr_First_To = ""
       }
       if(thrarr[1].length > 0){
+           if(thrarr[1][0] != "00:00")
       this.thr_Second_From = thrarr[1][0]
+         if(thrarr[1][1] != "00:00")
       this.thr_Second_To = thrarr[1][1]
       }else{
         this.thr_Second_From = ""
@@ -583,13 +599,17 @@ listWorkingDays(){
       }
       var friarr = respdata.workingDays[5];
       if(friarr[0].length > 0){
+        if(friarr[0][0] != "00:00")
       this.fri_First_From = friarr[0][0]
+      if(friarr[0][1] != "00:00")
       this.fri_First_To = friarr[0][1]}else{
         this.fri_First_From = ""
       this.fri_First_To = ""
       }
       if(friarr[1].length > 0){
+        if(friarr[1][0] != "00:00")
       this.fri_Second_From = friarr[1][0]
+      if(friarr[1][1] != "00:00")
       this.fri_Second_To = friarr[1][1]}else{
         this.fri_Second_From = ""
         this.fri_Second_To = ""
@@ -597,14 +617,18 @@ listWorkingDays(){
 
       var satarr = respdata.workingDays[6];
       if(satarr[0].length > 0){
+        if(satarr[0][0] != "00:00")
       this.sat_First_From = satarr[0][0];
+      if(satarr[0][1] != "00:00")
       this.sat_First_To = satarr[0][1];
       }else{
         this.sat_First_From = ""
         this.sat_First_To = ""
       }
       if(satarr[1].length > 0){
+        if(satarr[1][0] != "00:00")
       this.sat_Second_From = satarr[1][0];
+      if(satarr[1][1] != "00:00")
       this.sat_Second_To = satarr[1][1];}else{
         this.sat_Second_From = ""
       this.sat_Second_To = ""
@@ -642,5 +666,19 @@ listWorkingDays(){
 //   }
 
 // }
+resetDay(day){
+console.log("day from reset :",day)
+   for(var x=0;x<this.days.length;x++){
+        var i = this.days[x]
+        if(i[0] == day[0])
+        {
+          
+          i[1][0] = ""
+           i[2][0] = ""
+            i[1][1] = ""
+             i[2][1] = ""
+        }
+        }
+}
 
 }
