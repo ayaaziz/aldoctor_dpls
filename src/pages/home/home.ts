@@ -305,6 +305,8 @@ export class HomePage {
         if (val != null) {
           this.storage.get('type').then(type_val => {
             if (type_val == 0) {
+            
+
               this.userName = val.nickname
               this.userImageUrl = val.profile_pic
               this.userAddress = val.doctor.address
@@ -312,6 +314,15 @@ export class HomePage {
               if (this.ratingStatus == 0) {
                 this.ratingStatus = 5
               }
+
+              if (val.availability == "0") {
+                // this.presentToast(this.translate.instant('disconnected'))
+                this.user_availablity = false
+              }else if(val.availability == "1"){
+                // this.presentToast(this.translate.instant('connected'))
+                this.user_availablity = true
+              }
+
             }
             else {
               this.userName = val.name
@@ -321,6 +332,16 @@ export class HomePage {
               if (this.ratingStatus == 0) {
                 this.ratingStatus = 5
               }
+
+              if (val.availability == "0") {
+                // this.presentToast(this.translate.instant('disconnected'))
+                this.user_availablity = false
+              }else if(val.availability == "1"){
+                // this.presentToast(this.translate.instant('connected'))
+                this.user_availablity = true
+              }
+
+
             }
           })
         }
@@ -451,25 +472,27 @@ export class HomePage {
     //   }
     // })
     // }
+    
+//correct get status avaliablity
+    // this.storage.get("user_avaial").then(val => {
+    //   if (val) {
+    //     console.log("val from user_avaial :",val)
+    //     //this.user_availablity = val
+    //     if (val == "0") {
+    //       this.presentToast(this.translate.instant('disconnected'))
+    //       this.user_availablity = false
+    //       this.helper.updateStatus(0)
+    //     }
+    //     else {
+    //       if (this.noOrder && this.helper.userAvailable == 1) {
+    //         this.user_availablity = true
+    //         this.presentToast(this.translate.instant('connected'))
+    //         this.helper.updateStatus(1)
+    //       }
 
-    this.storage.get("user_avaial").then(val => {
-      if (val) {
-        //this.user_availablity = val
-        if (val == "0") {
-          this.presentToast(this.translate.instant('disconnected'))
-          this.user_availablity = false
-          this.helper.updateStatus(0)
-        }
-        else {
-          if (this.noOrder && this.helper.userAvailable == 1) {
-            this.user_availablity = true
-            this.presentToast(this.translate.instant('connected'))
-            this.helper.updateStatus(1)
-          }
-
-        }
-      }
-    })
+    //     }
+    //   }
+    // })
     this.storage.get("user_login_info").then((val) => {
 
       if (val != null) {
