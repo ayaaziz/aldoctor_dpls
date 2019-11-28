@@ -59,9 +59,13 @@ export class ModalPage {
             for(var i=0;i<this.helpersArr.length;i++){
               console.log("this.helpersArr[i].length : ",this.helpersArr[i].length)
               if(this.helpersArr[i].length == 11)
-                this.helpersArr[i] = "+2"+this.helpersArr[i]
-                else if(this.helpersArr[i].length == 12)
-                this.helpersArr[i] = "+"+this.helpersArr[i]
+                this.helpersArr[i] = "2"+this.helpersArr[i]
+                // else if(this.helpersArr[i].length == 12)
+                // this.helpersArr[i] = "+"+this.helpersArr[i]
+                if(this.helpersArr[i].length > 12){
+                  if(this.helpersArr[i].charAt(0) == "+")
+                    this.helpersArr[i] = this.helpersArr[i].substr(1)
+                }
 
             }
       

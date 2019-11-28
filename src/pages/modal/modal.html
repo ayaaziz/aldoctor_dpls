@@ -25,20 +25,32 @@
     </a> -->
     <ion-row>
       <ion-col col-8>
-          <p style="display:inline-block;" > {{item}} </p>
+          <!-- item.value -->
+          <p style="display:inline-block;" *ngIf="item.length > 12"> {{item}} </p>
+          <p style="display:inline-block;"  *ngIf="item.length == 12"> {{item}}+ </p>
+          
+
       </ion-col>
       <ion-icon col-2>
-          <a button   href="tel:{{item}}" >
+          <a button  *ngIf="item.length > 12"  href="tel:{{item}}" >
               <ion-icon   style="color:#026938;" name="call"></ion-icon>
             </a>
+            <a button  *ngIf="item.length == 12" href="tel:+{{item}}" >
+              <ion-icon   style="color:#026938;" name="call"></ion-icon>
+            </a>
+
       </ion-icon>
       <ion-icon col-2>
-          <a button   href="https://api.whatsapp.com/send?phone={{item}}" >
+          <a button *ngIf="item.length > 12"  href="https://api.whatsapp.com/send?phone={{item}}" >
             <ion-icon   style="color:#026938;" name="logo-whatsapp"></ion-icon>
           </a>
+          <a button *ngIf="item.length == 12"  href="https://api.whatsapp.com/send?phone=+{{item}}" >
+            <ion-icon   style="color:#026938;" name="logo-whatsapp"></ion-icon>
+          </a>
+
       </ion-icon> 
     </ion-row>
-   
+    
   </ion-item>
 
 
