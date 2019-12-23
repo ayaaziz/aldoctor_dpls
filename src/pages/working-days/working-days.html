@@ -21,17 +21,17 @@
   </ion-row>
   <!-- background-color: #d5e6d5; -->
   <!-- border: 2px solid lightgray;  -->
-<ion-row  style="text-align: center;margin:8px;box-shadow: 2px 2px #eae4e4;border-radius: 10px;border: 1px solid #eae4e4;"  *ngFor="let item of days; let i = index" >
+<ion-row  style="text-align: center;margin:8px;box-shadow: 2px 2px #eae4e4;border-radius: 5px;border: 1px solid #eae4e4;"  *ngFor="let item of days; let i = index" >
   <ion-col > 
     <!-- <div> -->
    
-    <ion-checkbox [(ngModel)]="item[0].checked" (click)="dayChecked(item)" ></ion-checkbox>
+    <ion-checkbox [(ngModel)]="item[0].checked" (click)="dayChecked(item)" style="margin-top: 5px;"></ion-checkbox>
   <!-- </div> -->
   
     <!-- <ion-checkbox [(ngModel)]="item.checked" (click)="doctorChecked(item ,$event)" [disabled]="item.offline"></ion-checkbox>   -->
     <!-- margin-top:18px; -->
     <p style="margin: 0px;color: #868080;">{{item[0].day}}</p> 
-    <p (click)="resetDay(item)" style="color: #016a38;">إعادة الضبط</p> 
+    <p (click)="resetDay(item)" style="color: #016a38;margin-bottom: 0px;">إعادة الضبط</p> 
   </ion-col>
 
   <ion-col>
@@ -41,7 +41,7 @@
   <ion-col style="padding: 0px;" >
     <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>   -->
     <!-- displayFormat="HH:mm " -->
-      <div style="background-color: #075a07;width: 70%;height: 90%;    margin: auto auto;" >
+      <div style="background-color: #075a07;width: 60%;height: 90%;    margin: auto auto;" >
        
          <!-- nnn -->
           <!-- <ion-label style="margin:0px"> {{mendata}} </ion-label> -->
@@ -56,7 +56,7 @@
 
     
     <ion-col style="padding: 0px;">
-      <div style="background-color: #075a07;width: 70%;height: 90%;    margin: auto auto;">
+      <div style="background-color: #075a07;width: 60%;height: 90%;    margin: auto auto;">
         <!-- (ngModelChange)="dateChanged(item[2][0])" -->
         <ion-datetime style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[2][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
       </div>
@@ -69,7 +69,9 @@
 
       <ion-row>
           <ion-col style="padding: 0px;">
-            <div style="background-color: #cd0724;width: 70%;height: 90%;    margin: auto auto;">
+            
+            <!-- cd0724 -->
+            <div style="background-color: #ab051d;width: 60%;height: 90%;    margin: auto auto;">
               <ion-datetime style="font-size: 10px !important;color: white;" placeholder="إلى" displayFormat="hh:mm a" [(ngModel)]="item[1][1]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
           </div>
 
@@ -80,7 +82,7 @@
         
             
             <ion-col style="padding: 0px;">
-              <div style="background-color: #cd0724;width: 70%;height: 90%;    margin: auto auto;">
+              <div style="background-color: #ab051d;width: 60%;height: 90%;    margin: auto auto;">
                 <ion-datetime style="font-size: 10px !important;color: white;" placeholder="إلى" displayFormat="hh:mm a" [(ngModel)]="item[2][1]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
             </div>
               </ion-col> 
