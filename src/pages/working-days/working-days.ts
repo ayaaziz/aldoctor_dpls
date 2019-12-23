@@ -7,7 +7,7 @@ import { parseDate } from 'ionic-angular/util/datetime-util';
 import { DatePipe } from '@angular/common';
 import { checkNoChangesNode } from '@angular/core/src/view/view';
 
-
+import { DatePicker } from '@ionic-native/date-picker';
 import { HelperProvider } from '../../providers/helper/helper';
 
 
@@ -15,7 +15,7 @@ import { HelperProvider } from '../../providers/helper/helper';
 @Component({
   selector: 'page-working-days',
   templateUrl: 'working-days.html',
-  providers:[DatePipe]
+  providers:[DatePipe,DatePicker]
 })
 export class WorkingDaysPage {
 
@@ -58,12 +58,24 @@ export class WorkingDaysPage {
   fri_Second_To = "";
 
 
+  satChecked = false
+  sunChecked = false
+  monChecked = false
+  tueChecked = false
+  wedChecked = false
+  thrChecked = false
+  friChecked = false
+
+
+
+
+
   ErrorExist = []
   errorFlag = false
 
   todayTime 
 
-  @ViewChild('datePicker') datePicker;
+  @ViewChild('datePicker') datePicker2;
   dataInicial: Date;
   days = []
   day
@@ -76,7 +88,9 @@ export class WorkingDaysPage {
   weekDays: any[] = [];
   numberOfHours:number = 2;
 
-  constructor(public helper: HelperProvider,public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,
+  mendata
+
+  constructor(private datePicker: DatePicker,public helper: HelperProvider,public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,
     public loginServiceProvider: LoginServiceProvider, public translate: TranslateService, public toastController: ToastController,
     public platform: Platform, public storage: Storage, public datepipe: DatePipe) {
 
@@ -520,6 +534,15 @@ listWorkingDays(){
         this.sun_Second_To = ""
       }
 
+      if (this.sun_First_From == "" && this.sun_First_To == "" && this.sun_Second_From == "" && this.sun_Second_To == "") 
+      {
+        this.sunChecked = false
+      }
+      else{
+        this.sunChecked = true
+      }
+
+
       var monarr = respdata.workingDays[1];
       if(monarr[0].length > 0){
         if(monarr[0][0] != "00:00")
@@ -540,6 +563,15 @@ listWorkingDays(){
         this.mon_Second_To = ""
       }
 
+      if (this.mon_First_From == "" && this.mon_First_To == "" && this.mon_Second_From == "" && this.mon_Second_To == "") 
+      {
+        this.monChecked = false
+      }
+      else{
+        this.monChecked = true
+      }
+
+
       var tuearr = respdata.workingDays[2];
       if(tuearr[0].length > 0){
          if(tuearr[0][0] != "00:00")
@@ -558,6 +590,15 @@ listWorkingDays(){
         this.tue_Second_From = ""
       this.tue_Second_To = ""
       }
+
+      if (this.tue_First_From == "" && this.tue_First_To == "" && this.tue_Second_From == "" && this.tue_Second_To == "") 
+      {
+        this.tueChecked = false
+      }
+      else{
+        this.tueChecked = true
+      }
+
 
       var wedarr = respdata.workingDays[3];
       if(wedarr[0].length > 0){
@@ -578,6 +619,16 @@ listWorkingDays(){
         this.wed_Second_From = ""
         this.wed_Second_To = ""
       }
+
+      if (this.wed_First_From == "" && this.wed_First_To == "" && this.wed_Second_From == "" && this.wed_Second_To == "") 
+      {
+        this.wedChecked = false
+      }
+      else{
+        this.wedChecked = true
+      }
+
+
       var thrarr = respdata.workingDays[4];
       if(thrarr[0].length > 0){
          if(thrarr[0][0] != "00:00")
@@ -597,6 +648,15 @@ listWorkingDays(){
         this.thr_Second_From = ""
       this.thr_Second_To = ""
       }
+
+      if (this.thr_First_From == "" && this.thr_First_To == "" && this.thr_Second_From == "" && this.thr_Second_To == "") 
+      {
+        this.thrChecked = false
+      }
+      else{
+        this.thrChecked = true
+      }
+
       var friarr = respdata.workingDays[5];
       if(friarr[0].length > 0){
         if(friarr[0][0] != "00:00")
@@ -613,6 +673,14 @@ listWorkingDays(){
       this.fri_Second_To = friarr[1][1]}else{
         this.fri_Second_From = ""
         this.fri_Second_To = ""
+      }
+
+      if (this.fri_First_From == "" && this.fri_First_To == "" && this.fri_Second_From == "" && this.fri_Second_To == "") 
+      {
+        this.friChecked = false
+      }
+      else{
+        this.friChecked = true
       }
 
       var satarr = respdata.workingDays[6];
@@ -634,16 +702,23 @@ listWorkingDays(){
       this.sat_Second_To = ""
       }
 
+      if (this.sat_First_From == "" && this.sat_First_To == "" && this.sat_Second_From == "" && this.sat_Second_To == "") 
+      {
+        this.satChecked = false
+      }
+      else{
+        this.satChecked = true
+      }
 
       this.days = [
      
-        [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
-        [{day:"الأثنين"},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
-        [{day:"الثلاثاء"},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
-        [{day:"الأربعاء"},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
-        [{day:"الخميس"},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
-        [{day:"الجمعة"},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]],
-        [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]]
+        [{day:"الأحد",checked:this.sunChecked},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
+        [{day:"الأثنين",checked:this.monChecked},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
+        [{day:"الثلاثاء",checked:this.tueChecked},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
+        [{day:"الأربعاء",checked:this.wedChecked},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
+        [{day:"الخميس",checked:this.thrChecked},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
+        [{day:"الجمعة",checked:this.friChecked},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]],
+        [{day:"السبت",checked:this.satChecked},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]]
         ]
         console.log("this.days after list : ",this.days)
     }
@@ -679,6 +754,107 @@ console.log("day from reset :",day)
              i[2][1] = ""
         }
         }
+}
+
+dateChanged(date){
+  console.log("change date: ",date)
+
+  let hourDesc = ""
+  // let hours =new Date(date).getHours()
+  let hours =date.split(":")[0]
+  if (hours >= 12) {
+    hours -= 12;
+    if(hours == 0)
+    hours = 12;
+    hourDesc = "مساءاً"
+  } else if (hours === 0) {
+    hours = 12;
+    hourDesc = "صباحاً"
+  }
+  else{
+    hourDesc = "صباحاً"
+  }
+  // this.mendata = hours + ':' + new Date(date).getMinutes() + " " + hourDesc
+  this.mendata = hours + ':' + date.split(":")[1] + " " + hourDesc
+console.log("time after : ",this.mendata)
+}
+chooseDate() {
+console.log("choose date")
+  var minmDate;
+  var maxDate;
+  let userLang = this.helper.currentLang;
+  // let x = new Date()
+  // let d = x.getFullYear() + '-' + (x.getMonth() + 1) + '-' + (x.geminDatetDate()) + " 00:00:00.000z"
+  // let v = (x.getFullYear() + 1) + '-' + (x.getMonth() + 1) + '-' + (x.getDate() + 1) + "T00:00:00.000z"
+  // if (this.plt.is('ios')) {
+  //   minmDate = new Date().toISOString()
+  //   //maxDate = new Date(v).toISOString()
+  // }
+  // else {
+    minmDate = new Date().valueOf()
+    //maxDate = new Date(v).valueOf()
+  //}
+  let localLang = 'en_us';
+  let nowTxt = 'Today';
+  let okTxt = 'Done';
+  let cancelTxt = 'Cancel';
+  if (userLang == 'ar') {
+    localLang = 'ar_eg';
+    nowTxt = 'اليوم';
+    okTxt = 'تم';
+    cancelTxt = 'إلغاء'
+  }
+
+  this.datePicker.show({
+    date: new Date(),
+    // mode: 'datetime',
+    mode: 'time',
+    minDate: minmDate,
+    okText: okTxt,
+    cancelText: cancelTxt,
+    todayText: nowTxt,
+    // locale: localLang,
+    locale:'ar_eg',
+    androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+  }).then(
+    date => {
+      console.log("date "+date)
+      if(!date){
+        return
+      }
+      // if(new Date().valueOf() > new Date(date).valueOf()){
+      //   this.helper.presentToast("من فضلك أختر تاريخ ووقت أكبر من التاريخ والوقت الحالي")
+      //   return;
+      // }
+      let hourDesc = ""
+      let hours =new Date(date).getHours()
+      if (hours >= 12) {
+        hours -= 12;
+        if(hours == 0)
+        hours = 12;
+        hourDesc = "مساءاً"
+      } else if (hours === 0) {
+        hours = 12;
+        hourDesc = "صباحاً"
+      }
+      else{
+        hourDesc = "صباحاً"
+      }
+      //alert(date + " " + typeof(date) + " test " + new Date(date).getFullYear())
+      // this.appointementDateFormated = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + hours + ':' + new Date(date).getMinutes() + " " + hourDesc
+      // this.appointementDate = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + new Date(date).getHours() + ':' + new Date(date).getMinutes()
+    this.mendata = hours + ':' + new Date(date).getMinutes() + " " + hourDesc
+    
+    },
+    err => {
+      console.log('Error occurred while getting date: ', err);
+
+    }
+  );
+}
+dayChecked(item){
+  console.log("dayChecked : ",item)
+
 }
 
 }

@@ -34,4 +34,22 @@ page-working-days {
             .select-ios .select-icon {
                 margin:  0px 5px;
             }
+
+            .datetime-md .datetime-placeholder {
+              color: white;
+            }
+            .datetime-ios .datetime-placeholder {
+              color: white;
+            }
+            .checkbox-icon {
+              width: 20px !important;
+              height: 20px !important;
+              }
+
+              .checkbox-inner {
+                height: 13px !important;
+                width: 7px !important;
+                right: 4px !important;
+            }
+
 }
