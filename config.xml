@@ -133,5 +133,5 @@
     <plugin name="cordova-plugin-market" spec="^1.2.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="^7.1.1" />
+    <engine name="android" spec="8.1.0" />
 </widget>
