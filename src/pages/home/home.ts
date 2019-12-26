@@ -299,6 +299,8 @@ export class HomePage {
   }
   getUserDataSuccessCallback(data) {
     data = JSON.parse(data)
+    console.log("userData : ",data)
+    this.helper.getDoctorlocation(data.id)
     this.storage.set('user_login_info', data).then(() => {
       this.storage.get("user_login_info").then((val) => {
 

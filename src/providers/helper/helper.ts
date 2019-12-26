@@ -81,6 +81,8 @@ export class HelperProvider {
     public events: Events, public storage: Storage) {
   }
 
+  
+
   newGuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
       var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -205,6 +207,38 @@ export class HelperProvider {
     if (!this.userId) return
     firebase.database().ref().child(`user/${this.userId}/location`).update({ loc: loc })
   }
+
+  getDoctorlocation(userId){
+    firebase.database().ref(`user/${userId}/location/loc`).on('value',(snap)=>{
+      //alert("newOrder "+ snap.val())
+      console.log("get doctor location "+snap.val());
+     var xx =  snap.val()
+    // var xx =  ""
+    if (xx){
+      console.log("doctor has loc")
+    }else{
+      console.log("doctor hasn't loc")
+      this.geoLoc(data => this.getCurrentLocforHelper(data));
+    }
+      
+  
+    });
+  }
+
+  getCurrentLocforHelper(loc) {
+
+    //console.log("witting loc " + JSON.stringify(loc))
+    if (loc == "-1") {
+      //this.presentToast(this.translate.instant("locFailed"))
+    }
+    else {
+      // this.DoctorLat = loc.inspectorLat;
+      // this.DoctorLong = loc.inspectorLong;
+      this.updateUserLoc(loc.inspectorLat + ',' + loc.inspectorLong)
+
+    }
+  }
+
   public updateBusy(status) {
     if (!this.userId) return
     if (this.userType != 0) {status= 0}
