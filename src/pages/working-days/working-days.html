@@ -99,7 +99,7 @@
 
 <ion-item no-lines style="text-align:center;width:100%">
  
-<button ion-button type="submit"   style="font-size:16px;background-color: #016a38;color:white;border:2px solid #016a38;width:35%;padding:15px;text-align:center;" (click)="save()">{{"save" | translate}}</button>
+<button ion-button type="submit"   style="font-size:16px;background-color: #016a38;color:white;border:2px solid #016a38;width:35%;padding:15px;text-align:center;" (click)="save()" [disabled]="savebtnClicked" > {{"save" | translate}}</button>
 </ion-item>
 
   <!-- <ion-card>

@@ -68,7 +68,7 @@ export class WorkingDaysPage {
 
 
 
-
+  savebtnClicked = false
 
   ErrorExist = []
   errorFlag = false
@@ -349,6 +349,7 @@ var offset = new Date().getTimezoneOffset();
 
   save(){
     console.log("save ")
+  
     this.ErrorExist = []
 
     // for(var i=0 ;i<.length;i++){
@@ -455,7 +456,7 @@ console.log("this.ErrorExist = ",this.ErrorExist)
     // if(this.ErrorExist.length == 0 ){
       if(this.errorFlag == false){
       console.log("call api to save times")
-    
+      this.savebtnClicked = true
     
 console.log("this.days : ",this.days)
 
@@ -465,6 +466,13 @@ this.storage.get("user_login_info").then((val) => {
           var xarray = []
           this.days.forEach( (i,index) => {
             console.log("i = ", i)
+            if (i[0].checked == false)
+            {
+              i[1][0] = ""
+              i[1][1]= ""
+              i[2][0] =""
+              i[2][1] = ""
+            }
             xarray.push([[i[1][0],i[1][1]],[i[2][0],i[2][1]]])
           });
           console.log("xarray : ",xarray)
