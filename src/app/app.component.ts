@@ -319,15 +319,15 @@ this.market.open(market);
         sound: 'true'
       }
     }
-    // this.push.createChannel({
-    //   id: "doctorchannel1",
-    //   description: "doctor channel",
-    //   // The importance property goes from 1 = Lowest, 2 = Low, 3 = Normal, 4 = High and 5 = Highest.
-    //   importance: 5,
-    //   sound: "ambulance",
+    this.push.createChannel({
+      id: "doctorchannel1",
+      description: "doctor channel",
+      // The importance property goes from 1 = Lowest, 2 = Low, 3 = Normal, 4 = High and 5 = Highest.
+      importance: 5,
+      sound: "ambulance",
     
       
-    //  }).then(() => console.log('Channel created'));
+     }).then(() => console.log('Channel created'));
 
 
     const pushObject: PushObject = this.push.init(options);
