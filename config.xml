@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="10020" id="net.ITRoots.AlDoctor" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>DPLS</name>
+<widget android-versionCode="10020" id="net.ITRoots.dpls" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ALDOCTOR Partner</name>
     <description>Alodoctor DPLS app.</description>
     <author email="info@itroots.net" href="http://ionicframework.com/">ITRoots Team</author>
     <content src="index.html" />
@@ -132,6 +132,6 @@
     <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
     <plugin name="cordova-plugin-market" spec="^1.2.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="8.1.0" />
+    <engine name="ios" spec="5.1.1" />
 </widget>
