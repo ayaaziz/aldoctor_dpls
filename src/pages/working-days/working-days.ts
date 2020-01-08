@@ -365,6 +365,8 @@ var offset = new Date().getTimezoneOffset();
       this.helper.presentToast("الرجاء إدخال الفترة إلى")
       this.ErrorExist.push("err detect")
       this.errorFlag = true
+      this.objerr = i 
+      this.errTXt = "الرجاء إدخال الفترة إلى"
       console.log("11 i err : ",i , "error :الرجاء إدخال الفترة إلى" )
       break;
     }
@@ -372,6 +374,8 @@ var offset = new Date().getTimezoneOffset();
       this.helper.presentToast("الرجاء إدخال الفترة من")
       this.ErrorExist.push("err detect")
       this.errorFlag = true
+      this.objerr = i 
+      this.errTXt = "الرجاء إدخال الفترة من"
       break;
     }
     else if(i[1][0] && i[1][1] ){
@@ -379,21 +383,29 @@ var offset = new Date().getTimezoneOffset();
         this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
+        this.objerr = i 
+        this.errTXt = "الفترة من يجب أن لا تسبق الفترة إلى"
         break;
       }
       else if(i[1][0] == i[1][1]){
         this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
+        this.objerr = i 
+        this.errTXt = "الفترة من يجب أن لا تساوى الفترة إلى"
         break;
       }
       else{
         this.ErrorExist.pop()
         this.errorFlag = false
+        this.objerr = i 
+        this.errTXt = ""
       }
     }else{
       this.ErrorExist.pop()
       this.errorFlag = false
+      this.objerr = i 
+      this.errTXt = ""
     }
 
 
@@ -411,6 +423,8 @@ var offset = new Date().getTimezoneOffset();
         this.helper.presentToast("الرجاء إدخال الفترة من")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
+        this.objerr = i 
+        this.errTXt = "الرجاء إدخال الفترة من"
         break;
       }
       else if(i[2][0] && i[2][1] ){
@@ -418,21 +432,29 @@ var offset = new Date().getTimezoneOffset();
           this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
           this.ErrorExist.push("err detect")
           this.errorFlag = true
+          this.objerr = i 
+          this.errTXt = "الفترة من يجب أن لا تسبق الفترة إلى"
           break;
         }
         else if(i[2][0] == i[2][1]){
           this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
           this.ErrorExist.push("err detect")
           this.errorFlag = true
+          this.objerr = i 
+          this.errTXt = "الفترة من يجب أن لا تساوى الفترة إلى"
           break;
         }
           else{
             this.ErrorExist.pop()
             this.errorFlag = false
+            this.objerr = i 
+            this.errTXt = ""
           }
       }else{
         this.ErrorExist.pop()
         this.errorFlag = false
+        this.objerr = i 
+        this.errTXt = ""
       }
 
 
@@ -469,6 +491,8 @@ if(this.errorFlag == true){
           if (i[0].day == this.objerr[0].day){
             i[0].err = this.errTXt
 // break;
+          }else{
+            i[0].err = ""
           }
         }
 

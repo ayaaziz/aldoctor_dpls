@@ -21,10 +21,12 @@
   </ion-row>
   <!-- background-color: #d5e6d5; -->
   <!-- border: 2px solid lightgray;  -->
-<ion-row  style="text-align: center;margin:8px;box-shadow: 2px 2px #eae4e4;border-radius: 5px;border: 1px solid #eae4e4;"  *ngFor="let item of days; let i = index" >
+
+<div *ngFor="let item of days; let i = index">
+<ion-row  style="text-align: center;margin:8px;box-shadow: 2px 2px #eae4e4;border-radius: 5px;border: 1px solid #eae4e4;"   >
   <ion-col > 
     <!-- <div> -->
-<p *ngIf="item[0].err" >{{item[0].err}}</p>   
+ 
     <ion-checkbox [(ngModel)]="item[0].checked" (click)="dayChecked(item)" style="margin-top: 5px;"></ion-checkbox>
   <!-- </div> -->
   
@@ -93,8 +95,10 @@
 
     
   </ion-col>
+    
 </ion-row>
-
+<p *ngIf="item[0].err" style="color: red;padding-right: 9px;" >{{item[0].err}}</p>
+</div>
 
 
 <ion-item no-lines style="text-align:center;width:100%">
