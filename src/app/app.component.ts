@@ -324,8 +324,8 @@ this.market.open(market);
       description: "doctor channel",
       // The importance property goes from 1 = Lowest, 2 = Low, 3 = Normal, 4 = High and 5 = Highest.
       importance: 5,
-      // sound: "ambulance",
-      sound: "alarm_nice_sound",
+      sound: "ambulance",
+      // sound: "alarm_nice_sound",
     
       
      }).then(() => console.log('Channel created'));
