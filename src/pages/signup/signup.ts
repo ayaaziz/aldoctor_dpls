@@ -332,6 +332,7 @@ export class SignupPage {
     if (this.registerFormOne.valid) {
       this.first = true
       this.second = false
+      this.content.scrollToTop()
     }
     else {
       this.content.scrollToTop()

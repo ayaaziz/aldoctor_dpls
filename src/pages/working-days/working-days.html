@@ -24,7 +24,7 @@
 <ion-row  style="text-align: center;margin:8px;box-shadow: 2px 2px #eae4e4;border-radius: 5px;border: 1px solid #eae4e4;"  *ngFor="let item of days; let i = index" >
   <ion-col > 
     <!-- <div> -->
-   
+<p *ngIf="item[0].err" >{{item[0].err}}</p>   
     <ion-checkbox [(ngModel)]="item[0].checked" (click)="dayChecked(item)" style="margin-top: 5px;"></ion-checkbox>
   <!-- </div> -->
   

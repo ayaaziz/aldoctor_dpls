@@ -67,6 +67,8 @@ export class WorkingDaysPage {
   friChecked = false
 
 
+  objerr
+  errTXt
 
   savebtnClicked = false
 
@@ -363,6 +365,7 @@ var offset = new Date().getTimezoneOffset();
       this.helper.presentToast("الرجاء إدخال الفترة إلى")
       this.ErrorExist.push("err detect")
       this.errorFlag = true
+      console.log("11 i err : ",i , "error :الرجاء إدخال الفترة إلى" )
       break;
     }
     else if(i[1][1] && !i[1][0]  ){
@@ -399,6 +402,9 @@ var offset = new Date().getTimezoneOffset();
         this.helper.presentToast("الرجاء إدخال الفترة إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
+        console.log("22 i err : ",i , "error :الرجاء إدخال الفترة إلى" )
+        this.objerr = i 
+        this.errTXt = "الرجاء إدخال الفترة إلى"
         break;
       }
       else if(i[2][1] && !i[2][0]  ){
@@ -451,7 +457,22 @@ var offset = new Date().getTimezoneOffset();
     // satArray.push([this.sat_Second_From,this.sat_Second_To])
     // daysArray.push(satArray)
     // console.log("days Array ", daysArray)
+if(this.errorFlag == true){
+  // this.objerr 
+        // this.errTXt 
+        for(var x=0;x<this.days.length;x++){
+          var i = this.days[x]
 
+          // console.log("error obj ",this.objerr )
+          // console.log("i obj ",i )
+
+          if (i[0].day == this.objerr[0].day){
+            i[0].err = this.errTXt
+// break;
+          }
+        }
+
+}
 console.log("this.ErrorExist = ",this.ErrorExist)
     // if(this.ErrorExist.length == 0 ){
       if(this.errorFlag == false){
@@ -720,13 +741,13 @@ listWorkingDays(){
 
       this.days = [
      
-        [{day:"الأحد",checked:this.sunChecked},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
-        [{day:"الأثنين",checked:this.monChecked},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
-        [{day:"الثلاثاء",checked:this.tueChecked},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
-        [{day:"الأربعاء",checked:this.wedChecked},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
-        [{day:"الخميس",checked:this.thrChecked},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
-        [{day:"الجمعة",checked:this.friChecked},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]],
-        [{day:"السبت",checked:this.satChecked},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]]
+        [{day:"الأحد",checked:this.sunChecked,err:""},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
+        [{day:"الأثنين",checked:this.monChecked,err:""},[this.mon_First_From ,  this.mon_First_To],[this.mon_Second_From,this.mon_Second_To]],
+        [{day:"الثلاثاء",checked:this.tueChecked,err:""},[this.tue_First_From ,  this.tue_First_To],[this.tue_Second_From,this.tue_Second_To]],
+        [{day:"الأربعاء",checked:this.wedChecked,err:""},[this.wed_First_From ,  this.wed_First_To],[this.wed_Second_From,this.wed_Second_To]],
+        [{day:"الخميس",checked:this.thrChecked,err:""},[this.thr_First_From ,  this.thr_First_To],[this.thr_Second_From,this.thr_Second_To]],
+        [{day:"الجمعة",checked:this.friChecked,err:""},[this.fri_First_From ,  this.fri_First_To],[this.fri_Second_From,this.fri_Second_To]],
+        [{day:"السبت",checked:this.satChecked,err:""},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]]
         ]
         console.log("this.days after list : ",this.days)
     }
