@@ -362,37 +362,37 @@ var offset = new Date().getTimezoneOffset();
   // this.days.forEach( (i,index) => {
     // console.log("i = ",i ,"index : ",index)
     if(i[1][0] && !i[1][1]){
-      this.helper.presentToast("الرجاء إدخال الفترة إلى")
+      this.helper.presentToast("الرجاء إدخال الوقت إلى")
       this.ErrorExist.push("err detect")
       this.errorFlag = true
       this.objerr = i 
-      this.errTXt = "الرجاء إدخال الفترة إلى"
+      this.errTXt = "الرجاء إدخال الوقت إلى"
       console.log("11 i err : ",i , "error :الرجاء إدخال الفترة إلى" )
       break;
     }
     else if(i[1][1] && !i[1][0]  ){
-      this.helper.presentToast("الرجاء إدخال الفترة من")
+      this.helper.presentToast("الرجاء إدخال الوقت من")
       this.ErrorExist.push("err detect")
       this.errorFlag = true
       this.objerr = i 
-      this.errTXt = "الرجاء إدخال الفترة من"
+      this.errTXt = "الرجاء إدخال الوقت من"
       break;
     }
     else if(i[1][0] && i[1][1] ){
       if(i[1][0] > i[1][1]){
-        this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
+        this.helper.presentToast("الوقت من يجب أن لا يسبق الوقت إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
         this.objerr = i 
-        this.errTXt = "الفترة من يجب أن لا تسبق الفترة إلى"
+        this.errTXt = "الوقت من يجب أن لا يسبق الوقت إلى"
         break;
       }
       else if(i[1][0] == i[1][1]){
-        this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
+        this.helper.presentToast("الوقت من يجب أن لا يساوى الوقت إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
         this.objerr = i 
-        this.errTXt = "الفترة من يجب أن لا تساوى الفترة إلى"
+        this.errTXt = "الوقت من يجب أن لا يساوى الوقت إلى"
         break;
       }
       else{
@@ -411,37 +411,37 @@ var offset = new Date().getTimezoneOffset();
 
 
       if(i[2][0] && !i[2][1]){
-        this.helper.presentToast("الرجاء إدخال الفترة إلى")
+        this.helper.presentToast("الرجاء إدخال الوقت إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
         console.log("22 i err : ",i , "error :الرجاء إدخال الفترة إلى" )
         this.objerr = i 
-        this.errTXt = "الرجاء إدخال الفترة إلى"
+        this.errTXt = "الرجاء إدخال الوقت إلى"
         break;
       }
       else if(i[2][1] && !i[2][0]  ){
-        this.helper.presentToast("الرجاء إدخال الفترة من")
+        this.helper.presentToast("الرجاء إدخال الوقت من")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
         this.objerr = i 
-        this.errTXt = "الرجاء إدخال الفترة من"
+        this.errTXt = "الرجاء إدخال الوقت من"
         break;
       }
       else if(i[2][0] && i[2][1] ){
         if(i[2][0] > i[2][1]){
-          this.helper.presentToast("الفترة من يجب أن لا تسبق الفترة إلى")
+          this.helper.presentToast("الوقت من يجب أن لا يسبق الوقت إلى")
           this.ErrorExist.push("err detect")
           this.errorFlag = true
           this.objerr = i 
-          this.errTXt = "الفترة من يجب أن لا تسبق الفترة إلى"
+          this.errTXt = "الوقت من يجب أن لا يسبق الوقت إلى"
           break;
         }
         else if(i[2][0] == i[2][1]){
-          this.helper.presentToast("الفترة من يجب أن لا تساوى الفترة إلى")
+          this.helper.presentToast("الوقت من يجب أن لا يساوى الوقت إلى")
           this.ErrorExist.push("err detect")
           this.errorFlag = true
           this.objerr = i 
-          this.errTXt = "الفترة من يجب أن لا تساوى الفترة إلى"
+          this.errTXt = "الوقت من يجب أن لا يساوى الوقت إلى"
           break;
         }
           else{
