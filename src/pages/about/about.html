@@ -117,38 +117,40 @@
                   <img src="assets/icon/servicegreen.png" width="20" style="border: 0px;">
                 </ion-col>
                 <ion-col col-11 *ngIf="type == 2">
-                    
+                  <!-- <p>type == 2</p> -->
                     <h6 style="color:#919191;margin-top:1px;">  {{"servicesProvided" | translate}} :</h6>
                    <span *ngFor="let item of speciality_services">
                       <!-- &nbsp;&nbsp;&nbsp;(<ion-icon style="font-size: 13px;color: #15784e !important;" name="cash"></ion-icon> &nbsp;<span style="color: #15784e !important;">{{item.price}}</span> ) -->
-                    <h6  style="color:#919191;margin-top:0px;font-size: 12px;padding: 0 10px;">  {{item.name}}</h6>
+                    <h6  style="color:#919191;margin-top:0px;font-size: 12px;padding: 0 10px;">  {{item.name}} &nbsp;&nbsp;&nbsp;( <ion-icon style="font-size: 13px;color: #15784e !important;" name="cash"></ion-icon> &nbsp;<span style="color: #15784e !important;">{{item.price}}</span> ) </h6>
                    
                    </span>
               
                   </ion-col>
                   <ion-col col-11 *ngIf="type != 2 ">
-                    
+                    <!-- <p>type != 2</p> -->
                     <h6 style="color:#919191;margin-top:1px;">  {{"servicesProvided" | translate}} :</h6>
                    <span *ngFor="let item of speciality_services">
-                    <h6 style="color:#919191;margin-top:0px;font-size: 12px;padding: 0 10px;">  {{item.name}}</h6>
+                    <h6 style="color:#919191;margin-top:0px;font-size: 12px;padding: 0 10px;">  {{item.name}} </h6>
                    
                    </span>
               
                   </ion-col>
               </ion-row>
     </ion-grid>
-          
+    
+
+    <!-- rgba(91, 169, 132, 0.5098039215686274) -->
     <ion-row padding style="padding-bottom: 5px;">
-            <h6 style="color:rgba(91, 169, 132, 0.5098039215686274);" (click)="workingHours()"> تحديد ساعات العمل  </h6>
+            <h6 style="color:#ab051d;" (click)="workingHours()"> تحديد ساعات العمل  </h6>
           </ion-row>
 
 
           <ion-row padding style="padding-top:5px;padding-bottom:5px">
-            <h6 style="color:rgba(91, 169, 132, 0.5098039215686274);" (click)="changePassword()"> {{"askResetPassword" | translate}} </h6>
+            <h6 style="color:#ab051d;" (click)="changePassword()"> {{"askResetPassword" | translate}} </h6>
           </ion-row>
           
           <ion-row padding style="padding-top: 5px;">
-              <h6 style="color:rgba(91, 169, 132, 0.5098039215686274);" (click)="changeTelephone()"> {{"askChangeTelephone" | translate}} </h6>
+              <h6 style="color:#ab051d;" (click)="changeTelephone()"> {{"askChangeTelephone" | translate}} </h6>
             </ion-row>
             </div>
 

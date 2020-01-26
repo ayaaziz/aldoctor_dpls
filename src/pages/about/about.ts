@@ -103,25 +103,30 @@ console.log("val from storage enter : ",val)
               this.email = val.email
             }
             if(type_val != 1){
+              console.log("type != 1 for ashe3a")
             let servicesObj = val.entity.speciality_services
             this.speciality_services = []
            
             for (let i = 0; i < servicesObj.length; i++) {
               if(this.helper.userType != 2){
+                console.log("if userType != 2")
                 if (this.helper.currentLang == 'en') {
                   this.speciality_services.push({name: servicesObj[i].service_name })
                 }
                 else {
+                  console.log("if ar")
                   this.speciality_services.push({name: servicesObj[i].service_name})
                   //this.speciality_services.push(servicesObj[i].translation.value)
                 }
               }
               else{
+                console.log("else userType != 2 ashe3a")
               if (this.helper.currentLang == 'en') {
                 if(this.entity_prices[i]){
                   this.speciality_services.push({name: servicesObj[i].service_name , price: this.entity_prices[i] + "جنيه"})
                 }
                 else{
+                  console.log("else ar")
                   this.speciality_services.push({name: servicesObj[i].service_name , price: null})
                 }
                 
