@@ -159,11 +159,14 @@ export class CenterOrderPage {
     let okTxt = 'Done';
     let cancelTxt = 'Cancel';
     if (userLang == 'ar') {
-      localLang = 'ar_eg';
+      // localLang = 'ar_eg';
       nowTxt = 'اليوم';
       okTxt = 'تم';
       cancelTxt = 'إلغاء'
     }
+console.log("new Date() : ,",new Date())
+console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
+
 
     this.datePicker.show({
       date: new Date(),
@@ -176,7 +179,7 @@ export class CenterOrderPage {
       androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
     }).then(
       date => {
-        console.log("date "+date)
+        console.log("date2 ",date)
         if(!date){
           return
         }

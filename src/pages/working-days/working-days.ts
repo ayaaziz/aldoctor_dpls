@@ -9,6 +9,7 @@ import { checkNoChangesNode } from '@angular/core/src/view/view';
 
 import { DatePicker } from '@ionic-native/date-picker';
 import { HelperProvider } from '../../providers/helper/helper';
+import { Content } from 'ionic-angular';
 
 
 @IonicPage()
@@ -18,6 +19,8 @@ import { HelperProvider } from '../../providers/helper/helper';
   providers:[DatePipe,DatePicker]
 })
 export class WorkingDaysPage {
+
+  @ViewChild(Content) content: Content;
 
   lang_direction = "";
 
@@ -348,12 +351,20 @@ var offset = new Date().getTimezoneOffset();
     }
   }
 
+  finderror = false
 
   save(){
     console.log("save ")
   
     this.ErrorExist = []
+var errarray = []
 
+for(var x=0;x<this.days.length;x++){
+  var i = this.days[x]
+
+  i[0].err = ""
+}
+// this.errTXt = ""
     // for(var i=0 ;i<.length;i++){
       for(var x=0;x<this.days.length;x++){
         var i = this.days[x]
@@ -361,100 +372,120 @@ var offset = new Date().getTimezoneOffset();
       // }
   // this.days.forEach( (i,index) => {
     // console.log("i = ",i ,"index : ",index)
-    if(i[1][0] && !i[1][1]){
-      this.helper.presentToast("الرجاء إدخال الوقت إلى")
+    if(i[0].checked == true && i[1][0] && !i[1][1]){
+      // this.helper.presentToast("الرجاء إدخال الوقت إلى")
       this.ErrorExist.push("err detect")
       this.errorFlag = true
       this.objerr = i 
       this.errTXt = "الرجاء إدخال الوقت إلى"
       console.log("11 i err : ",i , "error :الرجاء إدخال الفترة إلى" )
-      break;
+      // break;
+      i[0].err = this.errTXt
+      errarray.push(i)
     }
-    else if(i[1][1] && !i[1][0]  ){
-      this.helper.presentToast("الرجاء إدخال الوقت من")
+    else if(i[0].checked == true && i[1][1] && !i[1][0]  ){
+      // this.helper.presentToast("الرجاء إدخال الوقت من")
       this.ErrorExist.push("err detect")
       this.errorFlag = true
       this.objerr = i 
       this.errTXt = "الرجاء إدخال الوقت من"
-      break;
+      // break;
+      i[0].err = this.errTXt
+      errarray.push(i)
     }
-    else if(i[1][0] && i[1][1] ){
+    else if( i[0].checked == true && i[1][0] && i[1][1] ){
       if(i[1][0] > i[1][1]){
-        this.helper.presentToast("الوقت من يجب أن لا يسبق الوقت إلى")
+        // this.helper.presentToast("الوقت من يجب أن لا يسبق الوقت إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
         this.objerr = i 
         this.errTXt = "الوقت من يجب أن لا يسبق الوقت إلى"
-        break;
+        // break;
+        i[0].err = this.errTXt
+        errarray.push(i)
       }
       else if(i[1][0] == i[1][1]){
-        this.helper.presentToast("الوقت من يجب أن لا يساوى الوقت إلى")
+        // this.helper.presentToast("الوقت من يجب أن لا يساوى الوقت إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
         this.objerr = i 
         this.errTXt = "الوقت من يجب أن لا يساوى الوقت إلى"
-        break;
+        // break;
+        i[0].err = this.errTXt
+        errarray.push(i)
       }
       else{
         this.ErrorExist.pop()
         this.errorFlag = false
         this.objerr = i 
         this.errTXt = ""
+        // i[0].err = this.errTXt
       }
     }else{
       this.ErrorExist.pop()
       this.errorFlag = false
       this.objerr = i 
       this.errTXt = ""
+      // i[0].err = this.errTXt
     }
 
 
 
-      if(i[2][0] && !i[2][1]){
-        this.helper.presentToast("الرجاء إدخال الوقت إلى")
+      if(i[0].checked == true && i[2][0] && !i[2][1]){
+        // this.helper.presentToast("الرجاء إدخال الوقت إلى")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
         console.log("22 i err : ",i , "error :الرجاء إدخال الفترة إلى" )
         this.objerr = i 
         this.errTXt = "الرجاء إدخال الوقت إلى"
-        break;
+        // break;
+        i[0].err = this.errTXt
+        errarray.push(i)
       }
-      else if(i[2][1] && !i[2][0]  ){
-        this.helper.presentToast("الرجاء إدخال الوقت من")
+      else if(i[0].checked == true && i[2][1] && !i[2][0]  ){
+        // this.helper.presentToast("الرجاء إدخال الوقت من")
         this.ErrorExist.push("err detect")
         this.errorFlag = true
         this.objerr = i 
         this.errTXt = "الرجاء إدخال الوقت من"
-        break;
+        // break;
+        i[0].err = this.errTXt
+        errarray.push(i)
       }
-      else if(i[2][0] && i[2][1] ){
+      else if(i[0].checked == true && i[2][0] && i[2][1] ){
         if(i[2][0] > i[2][1]){
-          this.helper.presentToast("الوقت من يجب أن لا يسبق الوقت إلى")
+          // this.helper.presentToast("الوقت من يجب أن لا يسبق الوقت إلى")
           this.ErrorExist.push("err detect")
           this.errorFlag = true
           this.objerr = i 
           this.errTXt = "الوقت من يجب أن لا يسبق الوقت إلى"
-          break;
+          // break;
+          i[0].err = this.errTXt
+          errarray.push(i)
         }
         else if(i[2][0] == i[2][1]){
-          this.helper.presentToast("الوقت من يجب أن لا يساوى الوقت إلى")
+          // this.helper.presentToast("الوقت من يجب أن لا يساوى الوقت إلى")
           this.ErrorExist.push("err detect")
           this.errorFlag = true
           this.objerr = i 
           this.errTXt = "الوقت من يجب أن لا يساوى الوقت إلى"
-          break;
+          // break;
+          i[0].err = this.errTXt
+          errarray.push(i)
         }
           else{
             this.ErrorExist.pop()
             this.errorFlag = false
             this.objerr = i 
             this.errTXt = ""
+            // i[0].err = this.errTXt
           }
       }else{
         this.ErrorExist.pop()
         this.errorFlag = false
         this.objerr = i 
         this.errTXt = ""
+        // i[0].err = this.errTXt
       }
 
 
@@ -479,7 +510,11 @@ var offset = new Date().getTimezoneOffset();
     // satArray.push([this.sat_Second_From,this.sat_Second_To])
     // daysArray.push(satArray)
     // console.log("days Array ", daysArray)
+   
+
+    this.finderror = false
 if(this.errorFlag == true){
+  console.log("if(this.errorFlag == true)")
   // this.objerr 
         // this.errTXt 
         for(var x=0;x<this.days.length;x++){
@@ -490,6 +525,7 @@ if(this.errorFlag == true){
 
           if (i[0].day == this.objerr[0].day){
             i[0].err = this.errTXt
+            this.finderror = true
 // break;
           }else{
             i[0].err = ""
@@ -497,9 +533,11 @@ if(this.errorFlag == true){
         }
 
 }
-console.log("this.ErrorExist = ",this.ErrorExist)
+console.log("errarray : ",errarray)
+console.log("this.days : ",this.days)
     // if(this.ErrorExist.length == 0 ){
-      if(this.errorFlag == false){
+      // if(this.finderror == false){
+        if(errarray.length <= 0){
       console.log("call api to save times")
       this.savebtnClicked = true
     
@@ -544,6 +582,9 @@ this.storage.get("user_login_info").then((val) => {
 }
 })
 
+}else{
+  console.log("scroll content")
+  this.content.scrollToTop()
 }
 
 

@@ -789,7 +789,7 @@ export class NeworderPage {
     let okTxt = 'Done';
     let cancelTxt = 'Cancel';
     if (userLang == 'ar') {
-      localLang = 'ar_eg';
+      // localLang = 'ar_eg';
       nowTxt = 'اليوم';
       okTxt = 'تم';
       cancelTxt = 'إلغاء'
