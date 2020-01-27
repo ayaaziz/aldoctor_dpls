@@ -100,7 +100,8 @@ export class WorkingDaysPage {
     public platform: Platform, public storage: Storage, public datepipe: DatePipe) {
 
       this.lang_direction = this.helper.lang_direction;
-      this.todayTime  = new Date().toLocaleString() 
+      this.todayTime  = new Date().toLocaleString()
+      console.log("today : ",this.todayTime) 
       this.listWorkingDays()
  
 // this.days = [

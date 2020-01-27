@@ -175,7 +175,7 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
       okText: okTxt,
       cancelText: cancelTxt,
       todayText: nowTxt,
-      locale: localLang,
+      locale: 'en_us',
       androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
     }).then(
       date => {

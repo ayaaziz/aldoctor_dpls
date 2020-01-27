@@ -111,12 +111,26 @@
           <ion-datetime [min]="minDate" [max]='maxYear' placeholder="حدد الموعد" displayFormat="MM/DD/YYYY HH:mm" style="width: 100%;;height:35px;background-color: #e8f1ed;"
           [(ngModel)]="appointementDate" [cancelText]="this.translate.instant('canceltxt')" [doneText]="this.translate.instant('doneTxt')"></ion-datetime> 
       </ion-item>
-    <ion-item *ngIf="androidIS42 == 0" (click)="chooseDate()">
+    <!-- <ion-item *ngIf="androidIS42 == 0" (click)="chooseDate()">
       <ion-label style="margin:0px">
         <ion-icon color="main" name="ios-time"></ion-icon>{{"appointmentTimeXray" | translate}}
       </ion-label>
       <ion-label style="margin:0px"> {{appointementDateFormated}} </ion-label>
-    </ion-item>
+    </ion-item> -->
+
+
+    <ion-item  *ngIf="androidIS42 == 0"   [hidden]="!!myDate">
+        <ion-label style="margin:0px;color:black;" >  <ion-icon color="main" name="ios-time"></ion-icon> {{ 'appointmentTimeXray' | translate }} </ion-label>
+        <ion-label style="margin:0px;color: black;" *ngIf="mystartdate">  {{mystartdate}} {{myTime}}</ion-label>
+        <ion-datetime  min="{{date}}" max="2050" cancelText="إلغاء" doneText="موافق" (ngModelChange)="change(datePicker)" displayFormat="DD-MMM-YYYY" [(ngModel)]="myDate"></ion-datetime>
+      </ion-item>
+   
+      <ion-item [hidden]="!myDate" > 
+        <ion-datetime #datePicker cancelText="إلغاء" doneText="موافق"
+        (ionCancel)="myDate=undefined" (ngModelChange)="changeTime()"  displayFormat="hh:mm a"  [(ngModel)]="myTime"></ion-datetime>
+      </ion-item>
+
+      
     <ion-item>
       <ion-label floating>
         {{"appointmentNotes" | translate}}
