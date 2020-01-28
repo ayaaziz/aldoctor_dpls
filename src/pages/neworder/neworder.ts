@@ -90,7 +90,7 @@ date
 
       this.date=new Date().toISOString();
 console.log("date : ",this.date)
-this.myTime = new Date().getHours() + ":"+new Date().getMinutes()
+this.myTime =  new Date().toLocaleTimeString() //new Date().getHours() + ":"+new Date().getMinutes()
 console.log("myTime : ",this.myTime)
 
     this.langDirection = helper.lang_direction
@@ -865,7 +865,7 @@ console.log("myTime : ",this.myTime)
     this.appointementDate = this.mystartdate + " "+ this.myTime ;
 
     console.log("this.mystartdate : ,",this.mystartdate)
-    if (this.mystartdate == "undefined"){
+    if (this.appointementDate.split(" ")[0] == "undefined"){
       this.helper.presentToast(this.translate.instant("enterAppointmentdoctorData"))       
       return
     }

@@ -126,6 +126,7 @@
       </ion-item>
    
       <ion-item [hidden]="!myDate" > 
+        <!-- pickerFormat="h mm A" -->
         <ion-datetime #datePicker cancelText="إلغاء" doneText="موافق"
         (ionCancel)="myDate=undefined" (ngModelChange)="changeTime()"  displayFormat="hh:mm a"  [(ngModel)]="myTime"></ion-datetime>
       </ion-item>

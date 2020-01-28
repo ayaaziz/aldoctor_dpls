@@ -95,6 +95,10 @@ export class WorkingDaysPage {
 
   mendata
 
+  mindate
+
+  @ViewChild('changeTime') changeDateTime;
+
   constructor(private datePicker: DatePicker,public helper: HelperProvider,public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,
     public loginServiceProvider: LoginServiceProvider, public translate: TranslateService, public toastController: ToastController,
     public platform: Platform, public storage: Storage, public datepipe: DatePipe) {
@@ -102,6 +106,10 @@ export class WorkingDaysPage {
       this.lang_direction = this.helper.lang_direction;
       this.todayTime  = new Date().toLocaleString()
       console.log("today : ",this.todayTime) 
+this.mindate = new Date().toLocaleString()
+       
+console.log("myTime : ",new Date().getHours() + ":"+new Date().getMinutes())
+
       this.listWorkingDays()
  
 // this.days = [
@@ -233,6 +241,7 @@ var offset = new Date().getTimezoneOffset();
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WorkingDaysPage');
+    // this.changeDateTime.updateText = () => {};
   }
 
 
@@ -616,8 +625,9 @@ listWorkingDays(){
         if(sunarr[0][1] != "00:00")
           this.sun_First_To = sunarr[0][1];
       }else{
-        this.sun_First_From = "";
-        this.sun_First_To = ""
+        console.log("sun from")
+        this.sun_First_From = this.todayTime ;
+        this.sun_First_To = this.todayTime 
       }
       if(sunarr[1].length > 0){
         if(sunarr[1][0] != "00:00")
@@ -625,8 +635,9 @@ listWorkingDays(){
         if(sunarr[1][1] != "00:00")
           this.sun_Second_To = sunarr[1][1];}
       else{
-        this.sun_Second_From = ""
-        this.sun_Second_To = ""
+        console.log("sun from2")
+        this.sun_Second_From = this.todayTime 
+        this.sun_Second_To = this.todayTime 
       }
 
       if (this.sun_First_From == "" && this.sun_First_To == "" && this.sun_Second_From == "" && this.sun_Second_To == "") 
@@ -950,6 +961,11 @@ console.log("choose date")
 dayChecked(item){
   console.log("dayChecked : ",item)
 
+}
+handleChangeDate(changeDate: string,item) {
+  console.log("item from handleChangeDate ", item)
+  // this.changeDate = changeDate;
+  this.changeDateTime._text = changeDate;
 }
 
 }

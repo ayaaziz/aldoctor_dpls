@@ -75,9 +75,28 @@ export class CenterOrderPage {
   androidIS42 = 0
   maxYear
 
+
+  myDate;
+  // myTime="15:07"
+  myTime
+  
+  // myTime = new Date().getHours() + ":"+new Date().getMinutes()
+  mystartdate
+  date
+
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
     , public helper: HelperProvider, public toastCtrl: ToastController, private datePicker: DatePicker, public plt: Platform, public device: Device,
     public events: Events, private launchNavigator: LaunchNavigator, public translate: TranslateService, public storage: Storage) {
+
+
+      this.date=new Date().toISOString();
+      console.log("date : ",this.date)
+      this.myTime = new Date().getHours() + ":"+new Date().getMinutes()
+      console.log("myTime : ",this.myTime)
+
+
+
     this.lang_direction = helper.lang_direction
     let x = new Date()
     this.maxYear = x.getFullYear()+ 1
@@ -256,6 +275,45 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
   }
 
   sendAppointment() {
+
+    this.appointementDate = this.mystartdate + " "+ this.myTime ;
+
+    console.log("this.mystartdate : ,",this.mystartdate)
+    if (this.appointementDate.split(" ")[0] == "undefined"){
+      if (this.type == 2) {
+        this.helper.presentToast(this.translate.instant("enterAppointmentXrayData"))
+      }
+      else {
+        this.helper.presentToast(this.translate.instant("enterAppointmentLabData"))
+      }
+
+      // this.helper.presentToast(this.translate.instant("enterAppointmentdoctorData"))       
+      return
+    }
+    if(this.appointementDate == "undefined undefined"  )
+    {
+      if (this.type == 2) {
+        this.helper.presentToast(this.translate.instant("enterAppointmentXrayData"))
+      }
+      else {
+        this.helper.presentToast(this.translate.instant("enterAppointmentLabData"))
+      }
+
+      // this.helper.presentToast(this.translate.instant("enterAppointmentdoctorData"))       
+      return
+    }
+
+    
+    var current2=Date.parse(new Date().toString());
+    console.log("current : ",current2)
+    var JobStartTime=Date.parse(this.appointementDate);
+    console.log("JobStartTime : ",JobStartTime)
+    if(current2 > JobStartTime){
+      console.log("current2 > started")
+      this.helper.presentToast("من فضلك أختر تاريخ ووقت أكبر من التاريخ والوقت الحالي")
+      return
+    }
+
     if (this.appointementDate) {
       if (navigator.onLine) {
         this.storage.get("user_login_token").then((val) => {
@@ -838,6 +896,26 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
       this.audio.pause();
       this.audio = null;
     }
+
+    
+  }
+
+
+
+
+
+  change(datePicker){
+    console.log("date",this.myDate);
+    console.log("datePicker",datePicker);
+   
+    datePicker.open();
+    
+  }
+  changeTime(){
+    console.log("myDate : ",this.myDate)
+    console.log("myTime : ",this.myTime)
+    this.mystartdate = this.myDate;
+    this.myDate = ""
   }
 
 

@@ -48,7 +48,8 @@
          <!-- nnn -->
           <!-- <ion-label style="margin:0px"> {{mendata}} </ion-label> -->
           <!-- value="{{todayTime}}" -->
-        <ion-datetime  style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[1][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+          <!-- min="{{mindate}}" -->
+        <ion-datetime #changeTime  (ionChange)="handleChangeDate(item[1][0],item)"  style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[1][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
       </div>
     
   </ion-col>
