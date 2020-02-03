@@ -626,8 +626,8 @@ listWorkingDays(){
           this.sun_First_To = sunarr[0][1];
       }else{
         console.log("sun from")
-        this.sun_First_From = this.todayTime ;
-        this.sun_First_To = this.todayTime 
+        this.sun_First_From = ""
+        this.sun_First_To = "" 
       }
       if(sunarr[1].length > 0){
         if(sunarr[1][0] != "00:00")
@@ -636,8 +636,8 @@ listWorkingDays(){
           this.sun_Second_To = sunarr[1][1];}
       else{
         console.log("sun from2")
-        this.sun_Second_From = this.todayTime 
-        this.sun_Second_To = this.todayTime 
+        this.sun_Second_From = "" 
+        this.sun_Second_To = ""
       }
 
       if (this.sun_First_From == "" && this.sun_First_To == "" && this.sun_Second_From == "" && this.sun_Second_To == "") 
