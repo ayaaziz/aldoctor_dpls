@@ -21,6 +21,10 @@ import { CodepagePage } from '../../pages/codepage/codepage';
   templateUrl: 'change-phone.html',
 })
 export class ChangePhonePage {
+
+  disableBtn = false
+
+
   phoneForm;
   submitAttempt = false;
   phone;
@@ -59,9 +63,12 @@ firstTime = true
       if (this.forgotpass) {
         if (this.phoneForm.valid) {
 
+          this.disableBtn  = true
+
           if (this.firstTime == true) {
             this.firstTime = false
-          
+          //  this.disableBtn  = true
+
             this.time = 60;
             this.enableTimer();
             this.loginservice.UserForgetPasswordSendPhone('2' + this.phone, (data) => {
@@ -73,17 +80,27 @@ firstTime = true
               }
               else{
                 this.helper.presentToast("رقم الموبايل المستخدم غير موجود")
+                this.disableBtn = false
+                clearTimeout(this.timer);
+                      this.time = 0 
+
               }
             }, (data) => {
               this.presentToast(this.translate.instant("serverError"))
+              this.disableBtn = false
+              clearTimeout(this.timer);
+                      this.time = 0 
             })
   
           }else{
 
             if( this.time>0){
               this.helper.presentToast("الرجاء الانتظار "+ this.time + " ثانية ")
+              // this.disableBtn  = true
             }else if( this.time == 0){
               this.time = 60;
+              // this.disableBtn  = true
+
               this.enableTimer();
               this.loginservice.UserForgetPasswordSendPhone('2' + this.phone, (data) => {
                 if(data.success){
@@ -94,9 +111,15 @@ firstTime = true
                 }
                 else{
                   this.helper.presentToast("رقم الموبايل المستخدم غير موجود")
+                  this.disableBtn = false
+                  clearTimeout(this.timer);
+                          this.time = 0 
                 }
               }, (data) => {
                 this.presentToast(this.translate.instant("serverError"))
+                this.disableBtn = false
+    clearTimeout(this.timer);
+            this.time = 0 
               })
 
 
@@ -188,7 +211,7 @@ enableTimer(){
     this.time--;
       if(this.time <= 0){
         console.log("timer off");
-     
+        this.disableBtn = false
         clearTimeout(this.timer);
       }
   },1000);

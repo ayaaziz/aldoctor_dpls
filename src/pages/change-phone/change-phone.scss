@@ -6,4 +6,11 @@ page-change-phone {
     .invalid {
         border: 1px solid #ea6153;
     }
+
+    .btn-primary:disabled{
+        color: #fff;
+          background-color: lightgray !important;
+          border-color: lightgray !important
+      }
+      
 }

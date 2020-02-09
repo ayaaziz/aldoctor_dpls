@@ -46,7 +46,7 @@
         <br>
         <br>
       <div class="form-group">
-          <button type="button" style="background-color: #016a38;color:#ffffff" (click)="changePhone()" class="btn btn-lg btn-block">  {{"Send" | translate}}</button>  
+          <button type="button" style="background-color: #016a38;color:#ffffff" (click)="changePhone()" class="btn btn-lg btn-block" [disabled]="disableBtn">  {{"Send" | translate}}</button>  
         </div>
       </form>
   </ion-content>
