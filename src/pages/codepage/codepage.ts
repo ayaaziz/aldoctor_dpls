@@ -29,6 +29,12 @@ export class CodepagePage {
   phoneToChange
   type
   service_id
+
+
+timer;
+time=60;
+
+
   constructor(public translate: TranslateService, public navCtrl: NavController, public navParams: NavParams,
     public toastCtrl: ToastController, public storage: Storage,
      public formBuilder: FormBuilder, public helper: HelperProvider, public loginservice: LoginServiceProvider) {
@@ -40,6 +46,10 @@ export class CodepagePage {
       this.activationForm = formBuilder.group({
       code: ['', Validators.required]
     })
+
+
+    this.enableTimer();
+    
     //storage.set("test","abc") 
   }
 
@@ -142,8 +152,19 @@ export class CodepagePage {
   }
   resendActivationCode(){
     // this.storage.get("user_login_token").then((val)=>{
+      console.log("resend code ")
+
       if(navigator.onLine){
+
+        if(this.time>0){
+          this.presentToast("الرجاء الانتظار "+ this.time + " ثانية ")
+          }else if(this.time == 0){
+            this.time = 60;
+            this.enableTimer(); 
+
         this.loginservice.resendActivation(this.phoneToChange,(data)=>this.resendActivationSuccessCallback(data),(data)=>this.resendActivationFailureCallback(data))
+          }
+      
       }
       else{
         this.presentToast(this.translate.instant("serverError"))
@@ -159,4 +180,20 @@ export class CodepagePage {
     this.presentToast(this.translate.instant("serverError"))
     
   }
+
+
+
+  enableTimer(){
+  this.timer =setInterval(()=>{
+    this.time--;
+      if(this.time <= 0){
+        console.log("timer off");
+     
+        clearTimeout(this.timer);
+      }
+  },1000);
+}
+
+
+
 }

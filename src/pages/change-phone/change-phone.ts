@@ -27,6 +27,12 @@ export class ChangePhonePage {
   lang_direction = "";
   forgotpass;
   title = ""
+
+  timer;
+  time=60;
+firstTime = true
+
+
   constructor(public translate: TranslateService, public navCtrl: NavController, public navParams: NavParams,
     public toastCtrl: ToastController, public storage: Storage,
     public formBuilder: FormBuilder, public helper: HelperProvider, public loginservice: LoginServiceProvider) {
@@ -52,19 +58,70 @@ export class ChangePhonePage {
     if (navigator.onLine) {
       if (this.forgotpass) {
         if (this.phoneForm.valid) {
-          this.loginservice.UserForgetPasswordSendPhone('2' + this.phone, (data) => {
-            if(data.success){
-            this.presentToast("لقد تم إرسال كود التحقق بنجاح")
-            // this.navCtrl.setRoot(LoginPage)
-            let tel = "2" + this.phone
-            this.navCtrl.push(CodepagePage, { changePhone: 2, phoneToChange: tel })
-            }
-            else{
-              this.helper.presentToast("رقم الموبايل المستخدم غير موجود")
-            }
-          }, (data) => {
-            this.presentToast(this.translate.instant("serverError"))
-          })
+
+          if (this.firstTime == true) {
+            this.firstTime = false
+          
+            this.time = 60;
+            this.enableTimer();
+            this.loginservice.UserForgetPasswordSendPhone('2' + this.phone, (data) => {
+              if(data.success){
+              this.presentToast("لقد تم إرسال كود التحقق بنجاح")
+              // this.navCtrl.setRoot(LoginPage)
+              let tel = "2" + this.phone
+              this.navCtrl.push(CodepagePage, { changePhone: 2, phoneToChange: tel })
+              }
+              else{
+                this.helper.presentToast("رقم الموبايل المستخدم غير موجود")
+              }
+            }, (data) => {
+              this.presentToast(this.translate.instant("serverError"))
+            })
+  
+          }else{
+
+            if( this.time>0){
+              this.helper.presentToast("الرجاء الانتظار "+ this.time + " ثانية ")
+            }else if( this.time == 0){
+              this.time = 60;
+              this.enableTimer();
+              this.loginservice.UserForgetPasswordSendPhone('2' + this.phone, (data) => {
+                if(data.success){
+                this.presentToast("لقد تم إرسال كود التحقق بنجاح")
+                // this.navCtrl.setRoot(LoginPage)
+                let tel = "2" + this.phone
+                this.navCtrl.push(CodepagePage, { changePhone: 2, phoneToChange: tel })
+                }
+                else{
+                  this.helper.presentToast("رقم الموبايل المستخدم غير موجود")
+                }
+              }, (data) => {
+                this.presentToast(this.translate.instant("serverError"))
+              })
+
+
+            }}
+
+          // this.loginservice.UserForgetPasswordSendPhone('2' + this.phone, (data) => {
+          //   if(data.success){
+          //   this.presentToast("لقد تم إرسال كود التحقق بنجاح")
+          //   // this.navCtrl.setRoot(LoginPage)
+          //   let tel = "2" + this.phone
+          //   this.navCtrl.push(CodepagePage, { changePhone: 2, phoneToChange: tel })
+          //   }
+          //   else{
+          //     this.helper.presentToast("رقم الموبايل المستخدم غير موجود")
+          //   }
+          // }, (data) => {
+          //   this.presentToast(this.translate.instant("serverError"))
+          // })
+
+
+
+
+
+
+
         }
       }
       else {
@@ -122,4 +179,20 @@ export class ChangePhonePage {
     });
     toast.present();
   }
+
+
+
+
+enableTimer(){
+  this.timer =setInterval(()=>{
+    this.time--;
+      if(this.time <= 0){
+        console.log("timer off");
+     
+        clearTimeout(this.timer);
+      }
+  },1000);
+}
+
+
 }
