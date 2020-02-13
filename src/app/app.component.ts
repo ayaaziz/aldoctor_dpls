@@ -187,12 +187,14 @@ export class MyApp {
 
       shareLink = "https://itunes.apple.com/us/app/dpls/id1440723867?ls=1&mt=8";
     } else {
-      shareLink = "https://play.google.com/store/apps/details?id=net.ITRoots.AlDoctor";
+      shareLink = "http://play.google.com/store/apps/details?id=net.ITRoots.AlDoctor";
     }
-    this.socialSharing.share("DPLS Application store link", "", "assets/imgs/dlogo.png", shareLink).then(() => {
+
+    // assets/imgs/dlogo.png
+    this.socialSharing.share("DPLS Application store link", null, null, shareLink).then(() => {
       console.log("success")
-    }).catch(() => {
-      console.log("not available")
+    }).catch((err) => {
+      console.log("not available : ",err)
     });
   }
   RateApp(){
