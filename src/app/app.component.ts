@@ -208,7 +208,8 @@ export class MyApp {
 //this.appRate.promptForRating(true);
 let market 
 if (this.platform.is('ios')) {
- market = "id1440723867"
+//  market = "id1440723867"
+market = "id1475922289"
 }
 else {
   market = "net.ITRoots.AlDoctor"
