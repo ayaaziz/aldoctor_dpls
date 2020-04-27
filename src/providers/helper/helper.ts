@@ -54,9 +54,10 @@ export class HelperProvider {
   current_order_dr_no = 1
   logoutMsgStatus = 0
   toastHelper 
-  public serviceUrl: string = "http://aldoctor-app.com/aldoctor/public/";
+
+  // public serviceUrl: string = "http://aldoctor-app.com/aldoctor/public/";
    //last api for testing
-  //  public serviceUrl: string = "http://aldoctor-app.com/aldoctorfinaltest/public/";
+   public serviceUrl: string = "http://aldoctor-app.com/aldoctorfinaltest/public/";
 
 
  // public serviceUrl: string = "http://aldoctor-app.com/aldoctor3/public/";

@@ -214,10 +214,12 @@
       "passwordSent": "تم ارسال رسالة نصية تحتوي على كلمة مرور لاستخدامها في تسجيل الدخول.",
       "detectLocation": "حدد موقعك",
       "xrayName": "اسم مركز الاشعة",
+      "nurseName":"الاسم",
       "pharmacyName": "اسم الصيدلية",
       "labName": "اسم المعمل",
       "enterlabName": "الرجاء إدخال اسم المعمل",
       "enterxrayName": "الرجاء إدخال اسم مركز الاشعة",
+      "enterNurseName":"الرجاء إدخال الاسم",
       "enterpharmacyName": "الرجاء إدخال اسم الصيدلية",
       "xrayOwner": "اسم صاحب المركز",
       "enterxrayOwner": "الرجاء إدخال اسم صاحب المركز",
@@ -234,12 +236,15 @@
       "City": "المدينة",
       "selectCity": "الرجاء اختيار المدينة",
       "xrayLogo": "شعار المركز",
+      "NurseLogo":"الصورة الشخصية",
       "labLogo": "شعار المعمل",
       "pharmacyLogo": "شعار الصيدلية",
       "deliveryCount": "عدد أفراد التوصيل",
       "enterdeliveryCount": "الرجاء إدخال عدد أفراد التوصيل",
       "xrayServices": "انواع الأشعة",
+      "nursinService":"خدمات التمريض",
       "enterXrayServices": "الرجاء اختيار انواع الأشعة",
+      "enternursingServices":"الرجاء اختيار خدمات التمريض",
       "labServices": "أنواع التحاليل",
       "enterLabServices": "الرجاء اختيار انواع التحاليل",
       "prescription": "عرض الروشته",
@@ -279,6 +284,7 @@
       "selectReview": "من فضلك اختر التقييم",
       "forgotPassword": "نسيت كلمة المرور",
       "entityAdministrationMsg": "تم إنشاء حسابك بنجاح، سيتم التواصل معك في أسرع وقت لتفعيل الحساب",
-      "workingDays":"ساعات العمل"
+      "workingDays":"ساعات العمل",
+      "nurse":"ممرض"
 
 }

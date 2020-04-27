@@ -237,6 +237,12 @@ export class LoginPage {
           name: 'analysis',
           label: this.translate.instant("Analysis"),
           value:'4'
+        },
+        {
+          type:'radio',
+          name: 'nurse',
+          label: this.translate.instant("nurse"),
+          value:'5'
         }
       ],
       buttons: [
@@ -262,6 +268,8 @@ export class LoginPage {
           }
           else if(data == '4'){
             this.navCtrl.push("LabRegistrationPage")
+          }else if(data == '5'){
+            this.navCtrl.push("nurseRegistrationPage")
           }
           }
         }
