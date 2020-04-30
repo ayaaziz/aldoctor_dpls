@@ -56,6 +56,13 @@ export class PharmacyOrderPage {
   endDetectionStatus = false
   
 
+
+  thanksAlert = true;
+  opacityOfAllContent = 1;
+  LE
+  PT
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider
     , public helper: HelperProvider, public toastCtrl: ToastController, private alertCtrl: AlertController,
     public events: Events, private launchNavigator: LaunchNavigator, 
@@ -194,9 +201,20 @@ export class PharmacyOrderPage {
               else if (data.order.status == "6") {
               }
               else if (data.order.status == "8") {
-                this.moveToPatientStatus = true
-                this.cancelDetectionStatus = true
-                this.endDetectionStatus = false
+
+
+                // this.moveToPatientStatus = true
+                // this.cancelDetectionStatus = true
+                // this.endDetectionStatus = false
+
+//s
+
+
+this.thanksAlert = false;
+this.opacityOfAllContent = 0.1;
+
+
+
                 // if (this.patient_lat && this.patient_long) {
                 //   this.launchNavigator.navigate([this.patient_lat, this.patient_long])
                 //     .then(
@@ -637,4 +655,15 @@ export class PharmacyOrderPage {
     }
   }
   
+
+  sendPrice(){
+    this.moveToPatientStatus = true
+    this.cancelDetectionStatus = true
+    this.endDetectionStatus = false
+
+  }
+
+
+  
+
 }

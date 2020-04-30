@@ -33,6 +33,9 @@ export class LoginPage {
 
   thanksAlert = true;
   opacityOfAllContent = 1;
+  LE
+  PT
+
 
   constructor(public toastCtrl: ToastController, public loginservice: LoginServiceProvider,
      public formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams
