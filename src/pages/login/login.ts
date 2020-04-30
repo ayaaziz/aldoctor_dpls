@@ -31,6 +31,9 @@ export class LoginPage {
   usernameLocal: string;
   passwordLocal: string;
 
+  thanksAlert = true;
+  opacityOfAllContent = 1;
+
   constructor(public toastCtrl: ToastController, public loginservice: LoginServiceProvider,
      public formBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams
      ,public helper: HelperProvider, public storage: Storage, public translate: TranslateService
@@ -289,4 +292,10 @@ export class LoginPage {
     console.log("open working days")
     this.navCtrl.push("WorkingDaysPage")
   }
+
+  ReportProblem(){
+    this.thanksAlert = false;
+    this.opacityOfAllContent = 0.1;
+  }
+
 }

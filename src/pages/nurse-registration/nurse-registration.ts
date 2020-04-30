@@ -227,7 +227,7 @@ export class NurseRegistrationPage {
             serviceData.governorate_id = this.governorate
             serviceData.city_id = this.city
             // serviceData.deliveryCount = this.deliveryCount
-            serviceData.type_id = "2"
+            serviceData.type_id = "4"
             // serviceData.entityphone = this.entityphone
             serviceData.extra_info = this.extra_info
             serviceData.entity_services = this.services

@@ -1,7 +1,12 @@
 
 <ion-content style="background-color:white" padding style="font-family: 'Cairo-Regular'; background-color: #ffffff"  class="{{langDirection}}">
     <!-- <img src="assets/imgs/login.png" (click)="changelang()" style="margin-bottom: 100px;"/> -->
+   
     
+
+    <div [style.opacity]="opacityOfAllContent">
+      
+
   <div class="text-center">
     <img src="assets/imgs/dlogo.png" style="max-width:40%;margin-top: 30px;" class="rounded mx-auto d-block" >
 </div>
@@ -48,6 +53,11 @@
      </small>
     </div>
 </form>
+
+
+
+</div>
+
 <!-- <form>
 <div class="form-group" style="font-family: 'Cairo Black'">
         
@@ -75,7 +85,21 @@
 
 
 <!-- <button (click)="openworkingDays()">working days</button> -->
+<button (click)="ReportProblem()">ReportProblem</button>
 
+
+  
+<ion-row [hidden]="thanksAlert" justify-content-center align-items-center style="height: 100%"> 
+  <ion-col >
+    <div  style="padding-left: 30px;padding-right: 30px;box-shadow: 0 0 15px lightgray;position: absolute;top: -620px;left: 5%;z-index: 999;background-color:white;border-radius: 10px;text-align:center;width:300px;height:300px">
+      <img src="assets/imgs/check_circle_2.png" style="margin-top:20px;width: 80px;">
+      <p style="color:#6aaf25;text-align:center;font-size: 26px;margin-bottom: 0px;">Thank you!</p>
+      <p style="color:black;text-align:center;font-size: 16px;margin-bottom: 30px;">Report submitted successfully.</p>
+      <button ion-button  block style="padding: 25px 0px;font-size:16px;border-radius: 10px;margin-top:20px;background-color: #38b5ed;" (click)="returnToSite()">RETURN TO SITE</button>
+           
+    </div>  
+  </ion-col>
+</ion-row>
 
 
 </ion-content>
