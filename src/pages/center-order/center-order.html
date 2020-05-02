@@ -13,6 +13,11 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
+
+  <div [style.opacity]="opacityOfAllContent">
+
+
   <div class="text-center" style="max-height: 100%; min-height: 100px;">
     <div>
     <img [src]="userImageUrl" onerror="this.onerror=null;this.src='assets/imgs/dlogo.png';" width="120" height="120" class="rounded-circle " ><br>
@@ -196,13 +201,13 @@
   <button type="button" *ngIf="!disablePrescription"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#b2d2c3;"  (click)="openPrescription()">   {{"prescription" | translate}}      </button> <br><br>  -->
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#80b49b;" [disabled]="moveToPatientStatus"  (click)="orderUpdateStatus(8)" >   {{"moveToPatient" | translate}}       </button>  <br><br>
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#80b49b;" [disabled]="cancelDetectionStatus" (click)="orderUpdateStatus(11)" >   {{"pharmCancelNoMedicine" | translate}}       </button>  <br><br>
-  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#418f6a;" (click)="shareLoc()">    {{"shareLoc" | translate}}      </button>  <br><br>
+  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#418f6a;" (click)="shareLoc()" [disabled]="shareStatus" >    {{"shareLoc" | translate}}      </button>  <br><br>
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#016a38;" [disabled]="endDetectionStatus" (click)="orderUpdateStatus(5)">   {{"orderDelivered" | translate}}       </button>  
 </span>
   </div>
   
       <ion-fab *ngIf="orderAccepted && !anotherOneAccepted" left bottom>
-        <button ion-fab style="background-color:#026938">
+        <button ion-fab style="background-color:#026938" [disabled]="contactStatus">
          
         اتصال
         </button>
@@ -214,4 +219,65 @@
                     <ion-icon   style="color:#026938;" name="call"></ion-icon></a>
             </ion-fab-list>
       </ion-fab>
-</ion-content>
+
+    </div>
+
+      <ion-row [hidden]="thanksAlert" justify-content-center align-items-center style="height: 100%"> 
+        <ion-col >
+          <div  style="padding-left: 30px;padding-right: 30px;box-shadow: 0 0 15px lightgray;position: absolute;top: -620px;left: 5%;z-index: 999;background-color:white;border-radius: 10px;text-align:center;width:300px;height:190px">
+            
+            <ion-row>
+              <ion-col col-11 style="text-align: right;">
+                <!-- <ion-label style="margin-bottom: 0px !important;">أدخل إجمالي سعر الدواء</ion-label> -->
+                <ion-label style="margin-bottom: 0px !important;">أدخل إجمالي سعر التحاليل</ion-label>
+              </ion-col>
+              <ion-col col-1>
+              
+                  <ion-icon name="md-close-circle" style="color: #016a38;font-size: 30px;margin-top: 6px;" (click)="closePopup()"></ion-icon>
+              
+              </ion-col>
+            </ion-row>
+      
+            
+            <ion-row>
+              <ion-col col-2></ion-col>
+              <ion-col col-4>
+      
+                <ion-label style="margin-top: 0px;
+                margin-bottom: 5px;">قرش</ion-label>
+      
+                <ion-input  style="border-radius: 2px;border: 1px solid lightgray;background-color:white" 
+                [(ngModel)]="PT" type="tel"></ion-input>
+      
+              </ion-col>
+              <ion-col col-4>
+              
+                <ion-label style="margin-top: 0px;
+                margin-bottom: 5px;">جنيه</ion-label>
+      
+                <ion-input  style="border-radius: 2px;border: 1px solid lightgray;background-color:white" 
+                [(ngModel)]="LE" type="tel"></ion-input>
+      
+              </ion-col>
+              <ion-col col-2></ion-col>
+            </ion-row>
+      
+            <button ion-button  style="padding: 0px 0px;font-size:16px;border-radius: 10px;margin-top:10px;"  class="btn btn-primary btn-lg btn-block2" (click)="sendPrice()">إرسال</button>
+           
+            
+            <!-- <img src="assets/imgs/check_circle_2.png" style="margin-top:20px;width: 80px;">
+            <p style="color:#6aaf25;text-align:center;font-size: 26px;margin-bottom: 0px;">Thank you!</p>
+            <p style="color:black;text-align:center;font-size: 16px;margin-bottom: 30px;">Report submitted successfully.</p>
+            <button ion-button  block style="padding: 25px 0px;font-size:16px;border-radius: 10px;margin-top:20px;background-color: #38b5ed;" (click)="returnToSite()">RETURN TO SITE</button>
+                  -->
+      
+          </div>  
+        </ion-col>
+      </ion-row>
+      
+
+      
+
+    </ion-content>
+
+

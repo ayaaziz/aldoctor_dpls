@@ -84,6 +84,15 @@ export class CenterOrderPage {
   mystartdate
   date
 
+
+
+  thanksAlert = true;
+  opacityOfAllContent = 1;
+  LE
+  PT
+  shareStatus  = false
+contactStatus = false
+
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
     , public helper: HelperProvider, public toastCtrl: ToastController, private datePicker: DatePicker, public plt: Platform, public device: Device,
@@ -362,6 +371,24 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
         if (navigator.onLine) {
           this.storage.get("user_login_token").then((val) => {
 
+
+            if(status == 8 ){
+
+  
+              this.moveToPatientStatus = true
+              this.cancelDetectionStatus = true
+              this.shareStatus  = true
+              this.contactStatus = true
+            
+            this.thanksAlert = false;
+            this.opacityOfAllContent = 0.1;
+            
+            
+            }else{
+
+            
+
+
             this.loginservice.updateCurrentOrder(this.currentOrderID, status, this.helper.userType, val.access_token, (data) => {
               if(data.status == -2){
                 this.helper.presentToast("لا يمكنك إستقبال المزيد من الطلبات حتى يتم إنهاء الطلبات الحالية")
@@ -433,10 +460,20 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
                 else if (data.order.status == "6") {
                 }
                 else if (data.order.status == "8") {
-                  this.moveToPatientStatus = true
-                  this.cancelDetectionStatus = true
-                  this.endDetectionStatus = false
-                  this.newAppointment = false
+                  // this.moveToPatientStatus = true
+                  // this.cancelDetectionStatus = true
+                  // this.endDetectionStatus = false
+                  // this.newAppointment = false
+
+
+
+//s
+
+
+this.thanksAlert = false;
+this.opacityOfAllContent = 0.1;
+
+
                   // if (this.patient_lat && this.patient_long) {
                   //   this.launchNavigator.navigate([this.patient_lat, this.patient_long])
                   //     .then(
@@ -528,6 +565,8 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
             }, (data) => {
               this.helper.presentToast(this.translate.instant("serverError"))
             })
+          }
+
           })
         }
         else {
@@ -916,6 +955,63 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
     console.log("myTime : ",this.myTime)
     this.mystartdate = this.myDate;
     this.myDate = ""
+  }
+
+
+  closePopup(){
+    this.thanksAlert = true;
+    this.opacityOfAllContent = 1;
+    this.newAppointment = false
+    this.moveToPatientStatus = false
+    this.cancelDetectionStatus = false
+    this.shareStatus  = false
+    this.contactStatus = false
+
+  }
+  sendPrice(){
+
+    if(this.LE){
+
+      // this.moveToPatientStatus = true
+      // this.cancelDetectionStatus = true
+      // this.endDetectionStatus = false
+  
+      console.log("call api to send price")
+      // this.LE , this.PT
+
+      this.storage.get("user_login_token").then((val) => {
+       
+      this.loginservice.updateCurrentOrder(this.currentOrderID, 8 ,this.helper.userType, val.access_token, (data) => {
+
+
+
+        this.shareStatus  = false
+        this.contactStatus = false
+
+     this.moveToPatientStatus = true
+      this.cancelDetectionStatus = true
+      this.endDetectionStatus = false
+      this.newAppointment = false
+
+      this.thanksAlert = true;
+      this.opacityOfAllContent = 1;
+
+
+      },(err)=>{});
+      })
+
+
+
+
+    }else{
+      console.log("le empty")
+  
+      this.helper.presentToast("الرجاء إدخال سعر التحاليل")
+  
+    }
+
+
+
   }
 
 

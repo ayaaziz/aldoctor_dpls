@@ -6,6 +6,7 @@ import { HelperProvider } from '../../providers/helper/helper';
 import { TranslateService } from '@ngx-translate/core';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { AlertController } from 'ionic-angular';
+import { isEmpty } from 'rxjs/operators';
 
 /**
  * Generated class for the PharmacyOrderPage page.
@@ -61,6 +62,9 @@ export class PharmacyOrderPage {
   opacityOfAllContent = 1;
   LE
   PT
+  shareStatus  = false
+contactStatus = false
+
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider
@@ -157,6 +161,23 @@ export class PharmacyOrderPage {
       if (navigator.onLine) {
         this.storage.get("user_login_token").then((val) => {
           // alert("here")
+
+if(status == 8 ){
+
+  
+  this.moveToPatientStatus = true
+  this.cancelDetectionStatus = true
+  this.shareStatus  = true
+  this.contactStatus = true
+
+this.thanksAlert = false;
+this.opacityOfAllContent = 0.1;
+
+
+}else{
+
+
+
           this.loginservice.updateCurrentOrder(this.currentOrderID, status,this.helper.userType, val.access_token, (data) => {
             if(data.status == -2){
               this.helper.presentToast("لا يمكنك إستقبال المزيد من الطلبات حتى يتم إنهاء الطلبات الحالية")
@@ -311,6 +332,9 @@ this.opacityOfAllContent = 0.1;
           }, (data) => {
             this.helper.presentToast(this.translate.instant("serverError"))
           })
+
+        }
+
         })
       }
       else {
@@ -655,15 +679,61 @@ this.opacityOfAllContent = 0.1;
     }
   }
   
+  closePopup(){
+    this.thanksAlert = true;
+    this.opacityOfAllContent = 1;
 
+    this.moveToPatientStatus = false
+    this.cancelDetectionStatus = false
+    this.shareStatus  = false
+    this.contactStatus = false
+
+  }
   sendPrice(){
-    this.moveToPatientStatus = true
-    this.cancelDetectionStatus = true
-    this.endDetectionStatus = false
+
+    if(this.LE){
+
+      // this.moveToPatientStatus = true
+      // this.cancelDetectionStatus = true
+      // this.endDetectionStatus = false
+  
+      console.log("call api to send price")
+      // this.LE , this.PT
+
+      this.storage.get("user_login_token").then((val) => {
+       
+      this.loginservice.updateCurrentOrder(this.currentOrderID, 8 ,this.helper.userType, val.access_token, (data) => {
+
+
+
+        this.shareStatus  = false
+        this.contactStatus = false
+
+     this.moveToPatientStatus = true
+      this.cancelDetectionStatus = true
+      this.endDetectionStatus = false
+      this.thanksAlert = true;
+      this.opacityOfAllContent = 1;
+
+
+      },(err)=>{});
+      })
+
+
+
+
+    }else{
+      console.log("le empty")
+  
+      this.helper.presentToast("الرجاء إدخال سعر الدواء")
+  
+    }
+
+
 
   }
 
 
-  
+
 
 }
