@@ -29,6 +29,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { CenterOrderPage } from '../pages/center-order/center-order';
 import { NeworderPage } from '../pages/neworder/neworder';
 import { PharmacyOrderPage } from '../pages/pharmacy-order/pharmacy-order';
+// import { IonicTimepickerModule } from '@logisticinfotech/ionic-timepicker';
+
 //import { HttpModule, Http } from '@angular/http';
 //import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate/ng2-translate';
 export function createTranslateLoader(http: HttpClient) {

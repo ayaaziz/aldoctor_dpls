@@ -267,4 +267,33 @@ console.log("val from storage enter : ",val)
   {
     this.navCtrl.push("WorkingDaysPage")
   }
+
+
+//   myTime = '11:01 PM'; 
+// // (please assign time with proper format which is describe below)
+// timePickerObj = {
+//     inputTime: '11:01 PM', // for 12 hour time in timePicker
+//     timeFormat: '', // default 'hh:mm A'
+//     setLabel: 'Set', // default 'Set'
+//     closeLabel: 'Close', // default 'Close'
+//     titleLabel: 'Select a Time', // default 'Time'
+//     clearButton: false, // default true
+//     btnCloseSetInReverse: true, // default false
+//     momentLocale: 'pt-BR', //  default 'en-US'
+ 
+//     btnProperties: {
+//         expand: '', // "block" | "full" (deafault 'block')
+//         fill: '', // "clear" | "default" | "outline" | "solid" 
+//                  // (deafault 'solid')
+//         size: '', // "default" | "large" | "small" (deafault 'default')
+//         disabled: '', // boolean (default false)
+//         strong: '', // boolean (default false)
+//         color: ''
+//         // "primary", "secondary", "tertiary", "success", 
+//         // "warning", "danger", "light", "medium", "dark" , 
+//         // and give color in string (default 'primary')
+//       }
+//     };
+
+
 }

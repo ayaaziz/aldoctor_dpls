@@ -656,4 +656,16 @@ if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 |
     //   infiniteScroll.enable(false);
     // }
   }
+
+
+  sendReport(item){
+    console.log("sendReport(item) : ",item)
+// ReportForLabsOrCentersPage 
+
+this.navCtrl.push("ReportForLabsOrCentersPage", {recievedItem : item})
+ 
+  }
+
+  
+
 }

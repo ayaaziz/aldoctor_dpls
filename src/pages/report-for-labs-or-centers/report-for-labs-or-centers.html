@@ -1,0 +1,41 @@
+<ion-header class={{lang_direction}}>
+ 
+  <ion-navbar >
+    <ion-title> إرسال التقرير  </ion-title>
+    <ion-buttons style="display: inherit;" right>
+      <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="25" height="25" style="border: 0px;"></button>
+  </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+  <ion-item  no-lines  > 
+    <ion-label style="color:#016a38;"  item-start>التقرير </ion-label>
+    <ion-icon name="md-cloud-upload" item-end style="font-size: 30px;color:#016a38;" (click)="selectWorkerCertificate()" ></ion-icon>
+  </ion-item>
+  <div style="text-align: center; ">
+  <p style="display: inline-block;color: grey;text-align: center;    margin: 6px;">{{certtxtname}}</p>
+  </div>
+  
+
+    <ion-row>
+      <ion-col col-2></ion-col>
+      <ion-col col-4 *ngFor="let photo of reportData; let id = index" style="text-align:right">
+
+          <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+          <img [src]="photo.data" *ngIf="photo.imgOrFile == 1" style="width:90px;height:80px" (click)="fullScreen(id)"/>
+  
+      </ion-col>
+  
+  </ion-row>
+
+  
+
+
+
+<button type="button" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black';margin:20px auto;" (click)="sendReport()"> إرسال التقرير </button>  
+
+</ion-content>
