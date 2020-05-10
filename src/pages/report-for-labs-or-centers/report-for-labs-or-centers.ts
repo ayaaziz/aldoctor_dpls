@@ -29,8 +29,10 @@ export class ReportForLabsOrCentersPage {
   cv_ext="";
   cv_data="";
 
-  reportData=[{imgOrFile:0,data:""}]
+  reportData=[]
+  photosToShow = []
 
+  //photosToShow = [{imgOrFile:2,data:"lll"},{imgOrFile:1,data:"assets/imgs/default-avatar.png"},{imgOrFile:2,data:"assets/imgs/default-avatar.png"},{imgOrFile:2,data:"assets/imgs/default-avatar.png"}] 
 
 
   constructor(private camera: Camera, public actionSheetCtrl: ActionSheetController, private iab: InAppBrowser,private filePicker: IOSFilePicker,
@@ -103,12 +105,19 @@ export class ReportForLabsOrCentersPage {
       // this.storage.get("js_info").then((val) => {
        // this.userImageUrl = 'data:image/jpeg;base64,' + imageData
         //this.storage.set("user_image",this.userImageUrl)
+
+        // this.image = 'data:image/jpeg;base64,' + imageData;
+
+        this.photosToShow.push({imgOrFile:1,data:'data:image/jpeg;base64,' + imageData});
+
+
         let imgdata = encodeURIComponent(imageData)
         // this.certttxt = this.translate.instant("imageCaptured");
-        if(typex == 1 )
-        this.certtxtname = "تم إختيار الصورة"
-        else if(typex == 2)
-        this.certtxtname = "تم التقاط الصورة"
+
+        // if(typex == 1 )
+        // this.certtxtname = "تم إختيار الصورة"
+        // else if(typex == 2)
+        // this.certtxtname = "تم التقاط الصورة"
         
         this.cv_ext =  'jpeg'
         this.cv_data = imgdata
@@ -177,6 +186,20 @@ export class ReportForLabsOrCentersPage {
 
             this.cv_data = encodeURIComponent(val.split(",")[1]);
 
+            if (cvextuper == "JPEG".toUpperCase() || cvextuper == "PNG".toUpperCase() || cvextuper == "JPG".toUpperCase() || cvextuper == "GIF".toUpperCase() || cvextuper == "BMP".toUpperCase()) {
+
+              // this.photosToShow.push({imgOrFile:1,data: uri});
+              this.certtxtname = ""
+              this.reportData.push({imgOrFile:1,data:this.cv_data})
+              this.photosToShow.push({imgOrFile:1,data:this.pathforview})
+
+            }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
+
+              this.reportData.push({imgOrFile:2,data:this.cv_data})
+              this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+            }
+
+
             console.log("this.cv_data: ", this.cv_data);
             console.log("this.user_cv_name : ", this.user_cv_name);
             console.log("this.cv_ext : ", this.cv_ext)
@@ -193,7 +216,7 @@ export class ReportForLabsOrCentersPage {
       this.fileChooser.open()
         .then(uri => {
           console.log("uuu" + uri)
-          
+          //alert("uri : "+ uri)
 
           this.filePath.resolveNativePath(uri).then((result) => {
             this.base64.encodeFile(result).then((base64File: string) => {
@@ -214,6 +237,19 @@ export class ReportForLabsOrCentersPage {
                   // this.cv_ext.push(fileExt)
                   this.cv_ext = fileExt;
                   var cvextuper = this.cv_ext.toUpperCase();
+                  if (cvextuper == "JPEG".toUpperCase() || cvextuper == "PNG".toUpperCase() || cvextuper == "JPG".toUpperCase() || cvextuper == "GIF".toUpperCase() || cvextuper == "BMP".toUpperCase()) {
+
+                    // this.photosToShow.push({imgOrFile:1,data: uri});
+                    this.certtxtname = ""
+                    this.reportData.push({imgOrFile:1,data:this.cv_data})
+                    this.photosToShow.push({imgOrFile:1,data:this.pathforview})
+
+                  }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
+
+                    this.reportData.push({imgOrFile:2,data:this.cv_data})
+                    this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+                  }
+
                   if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase() || cvextuper == "JPEG".toUpperCase() || cvextuper == "PNG".toUpperCase() || cvextuper == "JPG".toUpperCase() || cvextuper == "GIF".toUpperCase() || cvextuper == "BMP".toUpperCase()) {
                     console.log("from if : ", cvextuper);
                     // this.helper.presentToast(this.translate.instant("fileupsu"));
@@ -291,8 +327,26 @@ showcv() {
     
   }
 
-  sendReport(){
+  deletePhoto(index){
+    console.log("photo index",index);
+    this.reportData.splice(index, 1);
+    this.photosToShow.splice(index,1);
+    // this.photosForApi.splice(index,1);
+    // this.imageExt.pop();
+    // this.imageFlag = true;
+  }
 
+  sendReport(){
+ console.log("this.reportData: ",this.reportData)
+//  alert("this.reportData.length : " + this.reportData)
+if (this.photosToShow.length <= 0){
+
+  this.helper.presentToast("الرجاء إضافة مرفقات التقرير ")
+}else{
+  // send reportData array to api  (this.reportData)
+  console.log("call api to send report imgs ")
+}
+ 
   }
 
 

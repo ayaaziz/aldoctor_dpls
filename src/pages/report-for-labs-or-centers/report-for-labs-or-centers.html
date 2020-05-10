@@ -16,20 +16,32 @@
     <ion-label style="color:#016a38;"  item-start>التقرير </ion-label>
     <ion-icon name="md-cloud-upload" item-end style="font-size: 30px;color:#016a38;" (click)="selectWorkerCertificate()" ></ion-icon>
   </ion-item>
-  <div style="text-align: center; ">
+  <!-- <div style="text-align: center; ">
   <p style="display: inline-block;color: grey;text-align: center;    margin: 6px;">{{certtxtname}}</p>
-  </div>
+  </div> -->
   
+  <div *ngFor="let photo of photosToShow; let id = index" >
+  <ion-item  no-lines *ngIf="photo.imgOrFile == 2"> 
+  
+    <ion-label style="color:gray;margin-top: 0px !important;
+    margin-bottom: 0px !important;"  item-start >{{photo.data}} </ion-label>
+    <ion-icon  name="trash" item-end style="font-size: 20px;color:#016a38; margin-top: 0px !important;
+    margin-bottom: 0px !important;" (click)="deletePhoto(id)" ></ion-icon>
+  </ion-item>
+</div>
 
-    <ion-row>
-      <ion-col col-2></ion-col>
-      <ion-col col-4 *ngFor="let photo of reportData; let id = index" style="text-align:right">
 
-          <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
-          <img [src]="photo.data" *ngIf="photo.imgOrFile == 1" style="width:90px;height:80px" (click)="fullScreen(id)"/>
+    <ion-row *ngFor="let photo of photosToShow; let id = index">
+      <!-- <ion-col col-2></ion-col> -->
+      <div>
+      <ion-col col-4  style="text-align:right" *ngIf="photo.imgOrFile == 1">
+
+          <ion-icon name="trash"   class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+          <img [src]="photo.data"  style="width:90px;height:80px" />
   
       </ion-col>
-  
+    </div>
+
   </ion-row>
 
   

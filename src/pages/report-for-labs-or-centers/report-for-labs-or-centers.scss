@@ -48,5 +48,15 @@ page-report-for-labs-or-centers {
         // background-color: #016a38 !important;
         border-color: #016a38 !important;
     }
+
+    .deleteIcon {
+      position: absolute !important;
+      color: #016a38 !important;
+      margin-left: 80% !important;
+    }
+    .deleteIcon:before {
+      font-size: 25px !important;
+    }
+
     
 }
