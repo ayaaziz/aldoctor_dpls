@@ -34,8 +34,16 @@ export class ReportForLabsOrCentersPage {
   cv_data="";
 
   reportData=[]
-  photosToShow = []
   filesExt = [];
+  accessToken;
+  orderFiles = [];
+  files = [];
+  photos = [];
+  photosToShow = [];
+  filesToShow = [];
+
+
+
 
   //photosToShow = [{imgOrFile:2,data:"lll"},{imgOrFile:1,data:"assets/imgs/default-avatar.png"},{imgOrFile:2,data:"assets/imgs/default-avatar.png"},{imgOrFile:2,data:"assets/imgs/default-avatar.png"}] 
 
@@ -57,6 +65,63 @@ export class ReportForLabsOrCentersPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReportForLabsOrCentersPage');
+
+
+    //ayaaaaa
+    this.accessToken = localStorage.getItem('user_login_token');
+    this.service.getCurrentOrder(this.item.orderId,this.accessToken,
+      resp => {
+        console.log("orderDetails ",resp);
+        var myorder = JSON.parse(JSON.stringify(resp)).order;
+      
+        if(myorder.files)
+        {
+          this.orderFiles = myorder.files;
+
+          for(var i=0;i<this.orderFiles.length;i++) {
+
+            if(this.orderFiles[i].type == 2) {
+
+              let fileExt = this.orderFiles[i].path.split('.').pop();
+              if(fileExt == "jpeg" || fileExt == "png" || fileExt == "jpg" || fileExt =="BMP" || fileExt == "gif") {
+                this.photos.push({id:this.orderFiles[i].id,path:this.helper.serviceUrl+this.orderFiles[i].path});    
+              } else {
+                // let fileName = this.orderFiles[i].path.split('/').pop();
+                this.files.push({id:this.orderFiles[i].id,path:this.orderFiles[i].fileName});    
+              }
+            }
+          
+          }
+          console.log("ayaaaa files",this.files);
+
+          // if(this.orderFiles.length == 2)
+          // {
+          //   this.imageFlag = false;
+          //   this.disabled2btn = true;
+          // }
+          // else if(this.orderFiles.length == 1)
+          // {
+          //   this.imageFlag = true;
+          //   this.disabled2btn = false;
+          // }
+            
+        
+        //   }else{
+        //   this.disabled2btn = false;
+        // }
+        }
+      },
+      error => {
+        console.log(error);
+      }
+      
+      
+      
+      
+      )
+       
+          
+   
   }
 
 
@@ -108,36 +173,20 @@ export class ReportForLabsOrCentersPage {
       targetHeight:200
     };
     this.camera.getPicture(options).then((imageData: string) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      // this.storage.get("js_info").then((val) => {
-       // this.userImageUrl = 'data:image/jpeg;base64,' + imageData
-        //this.storage.set("user_image",this.userImageUrl)
-
-        // this.image = 'data:image/jpeg;base64,' + imageData;
-
-        this.photosToShow.push({imgOrFile:1,data:'data:image/jpeg;base64,' + imageData});
-
+    
+        // this.photosToShow.push({imgOrFile:1,data:'data:image/jpeg;base64,' + imageData});
+        this.photosToShow.push('data:image/jpeg;base64,' + imageData);
 
         let imgdata = encodeURIComponent(imageData)
-        // this.certttxt = this.translate.instant("imageCaptured");
-
-        // if(typex == 1 )
-        // this.certtxtname = "تم إختيار الصورة"
-        // else if(typex == 2)
-        // this.certtxtname = "تم التقاط الصورة"
+      
         
-        this.cv_ext =  'jpeg'
-        this.cv_data = imgdata
-        // this.hidecrtforexperience = true;
-        
-        // this.reportData.push({imgOrFile:1,data:this.cv_data})
-        //ayaaa
+        this.cv_ext =  'jpeg';
+        this.cv_data = imgdata;
+      
+   
         this.reportData.push(this.cv_data);
         this.filesExt.push(this.cv_ext);
 
-
-      // })
     }, (err) => {
       // Handle error
     });
@@ -202,19 +251,23 @@ export class ReportForLabsOrCentersPage {
 
           
               this.certtxtname = ""
-              this.photosToShow.push({imgOrFile:1,data:this.pathforview})
+              // this.photosToShow.push({imgOrFile:1,data:this.pathforview})
               // this.reportData.push({imgOrFile:1,data:this.cv_data})
+
 
               //ayaaa
               this.reportData.push(this.cv_data);
               this.filesExt.push(this.cv_ext);
+              this.photosToShow.push(this.pathforview);
+
 
 
 
 
             }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
 
-              this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+              // this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+              this.filesToShow.push(this.certtxtname);
               // this.reportData.push({imgOrFile:2,data:this.cv_data})
 
               //ayaaaaa
@@ -265,17 +318,19 @@ export class ReportForLabsOrCentersPage {
 
                     // this.photosToShow.push({imgOrFile:1,data: uri});
                     this.certtxtname = ""
-                    this.photosToShow.push({imgOrFile:1,data:this.pathforview})
+                    // this.photosToShow.push({imgOrFile:1,data:this.pathforview})
                     // this.reportData.push({imgOrFile:1,data:this.cv_data})
 
                     //ayaaaa
                     this.reportData.push(this.cv_data);
                     this.filesExt.push(this.cv_ext);
+                    this.photosToShow.push(this.pathforview);
 
 
                   }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
 
-                    this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+                    // this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+                    this.filesToShow.push(this.certtxtname);
                     // this.reportData.push({imgOrFile:2,data:this.cv_data})
 
                      //ayaaaa
@@ -361,13 +416,55 @@ showcv() {
     
   }
 
-  deletePhoto(index){
-    console.log("photo index",index);
-    this.reportData.splice(index, 1);
-    this.photosToShow.splice(index,1);
-    // this.photosForApi.splice(index,1);
-    // this.imageExt.pop();
-    // this.imageFlag = true;
+  deleteFile(x,index){
+    console.log("file index",index);
+    console.log("x: ",x);
+
+    // this.reportData.splice(index, 1);
+
+    if(x == 1) {
+      this.photosToShow.splice(index,1);
+    } else if(x == 2) {
+      this.filesToShow.splice(index,1);
+    }
+  }
+
+  removeFile(x,id,index) {
+    // if(x == 1) {
+    //   this.photos.splice(index,1);
+    // } else if (x == 2) {
+    //   this.files.splice(index,1);
+    // }
+
+    console.log("file id",id);
+    console.log("x: ",x);
+
+    //api for delete
+    if(navigator.onLine) {
+      this.storage.get("user_login_token").then((val) => {
+       
+        this.service.deleteResultFile(id,val.access_token).subscribe(
+          resp => {
+            if(JSON.parse(JSON.stringify(resp)).success ){   
+   
+              if(x == 1) {
+                this.photos.splice(index,1);
+              } else if (x == 2) {
+                this.files.splice(index,1);
+              }
+
+            } else {
+              this.helper.presentToast(this.translate.instant("serverError"));
+            }
+          },
+          err => {
+            this.helper.presentToast(this.translate.instant("serverError"));
+          }
+        );
+      })
+    } else {
+      this.helper.presentToast(this.translate.instant("serverError"))
+    }
   }
 
   sendReport(){
@@ -388,16 +485,13 @@ if (this.photosToShow.length <= 0){
       this.service.uploadReport(this.item.orderId,val.access_token,this.reportData,this.filesExt.join(',')).subscribe(
         resp => {
           if(JSON.parse(JSON.stringify(resp)).success ){
-          console.log("saveOrder resp: ",resp);
-          var newOrder = JSON.parse(JSON.stringify(resp));
-        
-          
-          }else{
+            this.helper.presentToast(this.translate.instant("reportSent"));
+            this.navCtrl.pop();
+          } else {
             this.helper.presentToast(this.translate.instant("serverError"));
           }
         },
-        err=>{
-          console.log("saveOrder error: ",err);
+        err => {
           this.helper.presentToast(this.translate.instant("serverError"));
         }
       );

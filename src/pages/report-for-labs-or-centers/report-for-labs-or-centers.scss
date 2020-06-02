@@ -52,11 +52,11 @@ page-report-for-labs-or-centers {
     .deleteIcon {
       position: absolute !important;
       color: #016a38 !important;
-      margin-left: 80% !important;
+      right: 4px;
     }
-    .deleteIcon:before {
-      font-size: 25px !important;
-    }
+    // .deleteIcon:before {
+    //   font-size: 25px !important;
+    // }
 
     
 }

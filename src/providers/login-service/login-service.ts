@@ -1570,8 +1570,15 @@ uploadReport(orderId,access_token,reportFiles,files_ext){
   headers = headers.set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', 'Bearer '+access_token);
   let serviceUrl = this.helper.serviceUrl +'api/orders/UploadResultFile';
   return this.http.post(serviceUrl,parameter,{headers: headers });
-
-  
 }
+
+  deleteResultFile(fileId,access_token) {
+    let headers = new HttpHeaders();
+    let parameter = new HttpParams().set('fileID',fileId);
+    
+    headers = headers.set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', 'Bearer '+access_token);
+    let serviceUrl = this.helper.serviceUrl +'api/orders/DeleteResultFile';
+    return this.http.post(serviceUrl,parameter,{headers: headers });
+  }
 
 }

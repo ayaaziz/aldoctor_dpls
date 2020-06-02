@@ -191,7 +191,7 @@
       "From": "From",
       "To":"To",
       "noMoreData": "No more data to show",
-      "orderCancled": "Order Canceled Successfuly.",
+      "orderCancled": "Order Canceled Successfully.",
       "invalidCode": "Invalid verification code",
       "invalid_credentials" : "Invalid credentials",
       "codeSent": "Verification code resent successfully",
@@ -283,5 +283,6 @@
       "forgotPassword":"Forgot Password",
       "entityAdministrationMsg": "Your account has been successfully created, we will contact you as soon as possible to activate your account",
       "workingDays":"Working Hours",
-      "nurse":"Nurse"
+      "nurse":"Nurse",
+      "reportSent":"Report Sent Successfully"
 }
