@@ -412,6 +412,9 @@ export class HomePage {
       }
       else if (val == 0) {
         this.navCtrl.push(NeworderPage, { recievedNotificat: order_id })
+      }else if (val == 5){
+        
+        this.navCtrl.push("NursingOrderPage", { recievedNotificat: order_id })
       }
     })
     //  })

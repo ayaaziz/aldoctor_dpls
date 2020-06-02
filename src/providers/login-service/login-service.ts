@@ -50,6 +50,13 @@ getGovernerates(lang, successCallback , failCallback){
    getXrayTypes(lang, successCallback , failCallback){
     this.http.get(this.helper.serviceUrl+'api/get/lkps/specialities-xray?lang='+lang).subscribe(data => successCallback(data) , err => failCallback(err))
    }
+   getNursingTypes(lang, successCallback , failCallback){
+    // http://aldoctor-app.com/aldoctorfinaltest/public/api/get/lkps/specialities-nursing?lang=ar
+
+    this.http.get(this.helper.serviceUrl+'api/get/lkps/specialities-nursing?lang='+lang).subscribe(data => successCallback(data) , err => failCallback(err))
+   }
+
+
 getCities(id,lang, successCallback , failCallback){
    this.http.get(this.helper.serviceUrl+'api/get/lkps/cities?governerate_id='+id+'?lang='+lang).subscribe(data => successCallback(data) , err => failCallback(err))
 }
@@ -548,6 +555,41 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
       )
    
     }
+
+    NurseRegister(name, email, phone,entityphone, profile_pic, profile_pic_ext, password, tax_liscence_pic, address, extra_info,
+      tax_liscence_pic_ext, owner_name, terms, type_id, tax_liscence, governorate_id, city_id, staff_num ,
+       speciality_services ,gender,categoriesSuccessCallback,categoriesFailureCallback) {
+      let loader = this.loadingCtrl.create({
+        content: "",
+      });
+       loader.present();
+      let headers = new HttpHeaders();
+      let parameter = new HttpParams().set('name',name).set('email',email).set('phone',phone).set('address',address).set('entity_phone',"12345678974")
+      .set('tax_liscence_pic',tax_liscence_pic).set('tax_liscence_pic_ext',tax_liscence_pic_ext).set('entity_phone',"12345678974").set('extra_info',extra_info)
+      .set('owner_name',"nurse").set('type_id',type_id).set('tax_liscence',tax_liscence)
+      .set('governorate_id',governorate_id).set('city_id',city_id).set('profile_pic',profile_pic)
+      .set('speciality_services',speciality_services).set('gender',gender)
+      .set('terms',terms).set('password',password).set('profile_pic_ext',profile_pic_ext).set('staff_num',staff_num)
+      headers = headers.set('Content-Type', 'application/x-www-form-urlencoded')
+      let serviceUrl = this.helper.serviceUrl +'api/entity/register';
+      this.http.post(serviceUrl,parameter,{headers: headers })
+      
+       .subscribe(
+        data => {
+          loader.dismiss().catch(() => console.log('ERROR CATCH: LoadingController dismiss'));
+          
+                console.log(JSON.stringify(data))
+                categoriesSuccessCallback(data)
+        },
+        err => {
+          loader.dismiss().catch(() => console.log('ERROR CATCH: LoadingController dismiss'));
+         
+          categoriesFailureCallback("-2")
+        }
+      )
+   
+    }
+
     userEditProfile(first_name,second_name,last_name,nickname,union_id,birth_date,college_id,graduation_year,bio,bio_ar,certifications,speciality_services,email,gender,speciality_id,address,terms,educational_degree,access_token,certifications_ext,categoriesSuccessCallback,categoriesFailureCallback) {
       let loader = this.loadingCtrl.create({
         content: "",
@@ -847,6 +889,9 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
         serviceUrl = this.helper.serviceUrl +'api/get/lkps/center-rate-criteriea?lang='+lang;
       else if (type == 2)
         serviceUrl = this.helper.serviceUrl +'api/get/lkps/xray-rate-criteriea?lang='+lang;
+      else if (type == 5)
+        serviceUrl = this.helper.serviceUrl +'api/get/lkps/nursing-rate-criteriea?lang='+lang;
+
       this.http.get(serviceUrl)
        .timeout(10000)
        .subscribe(
@@ -1154,6 +1199,9 @@ terms(access_token,lang, SuccessCallback,FailureCallback){
          serviceUrl = this.helper.serviceUrl +'api/get/lkps/center-rate-criteriea?rate='+rate;
        else if (type == 2)
          serviceUrl = this.helper.serviceUrl +'api/get/lkps/xray-rate-criteriea?rate='+rate;
+      else if (type == 5)
+         serviceUrl = this.helper.serviceUrl +'api/get/lkps/nursing-rate-criteriea?rate='+rate;
+        
       return this.http.get(serviceUrl,{headers: headers });
   
   }
@@ -1289,6 +1337,9 @@ terms(access_token,lang, SuccessCallback,FailureCallback){
         serviceUrl = this.helper.serviceUrl +'api/get/lkps/t7alel-cancel-reasons?lang='+lang;
       else if (type == 2)
         serviceUrl = this.helper.serviceUrl +'api/get/lkps/ashe3a-cancel-reasons?lang='+lang;
+      else if (type == 5)
+        serviceUrl = this.helper.serviceUrl +'api/get/lkps/nursing-cancel-reasons?lang='+lang;
+
       return this.http.get(serviceUrl,{headers: headers })
       
   }
@@ -1328,7 +1379,7 @@ terms(access_token,lang, SuccessCallback,FailureCallback){
     }
     let parameter = new HttpParams().set('name',data.name)
     .set('tax_liscence_pic',data.certificateData).set('tax_liscence_pic_ext',data.certifications_ext)
-    .set('email',data.email).set('address',data.address)
+    .set('email',data.email).set('address',data.address).set("gender",data.gender)
     .set('owner_name',data.owner).set('type_id',data.type_id)
     .set('tax_liscence',data.tax_liscence).set('speciality_services',data.entity_services)
     .set('governorate_id',data.governorate_id).set('city_id',data.city_id)
@@ -1351,6 +1402,9 @@ terms(access_token,lang, SuccessCallback,FailureCallback){
         serviceUrl = this.helper.serviceUrl +'api/get/lkps/t7alel-use-conditions?lang='+lang;
       else if (type == 2)
         serviceUrl = this.helper.serviceUrl +'api/get/lkps/xray-use-conditions?lang='+lang;
+      else if (type == 5)
+        serviceUrl = this.helper.serviceUrl +'api/get/lkps/nursing-use-conditions?lang='+lang;
+
 
       this.http.get(serviceUrl,{headers: headers })
       .timeout(10000)
@@ -1382,6 +1436,9 @@ terms(access_token,lang, SuccessCallback,FailureCallback){
       serviceUrl = this.helper.serviceUrl +'api/get/lkps/t7alel-pay-policy?lang='+lang;
     else if (type == 2)
       serviceUrl = this.helper.serviceUrl +'api/get/lkps/xray-pay-policy?lang='+lang;
+    else if (type == 5)
+      serviceUrl = this.helper.serviceUrl +'api/get/lkps/nursing-pay-policy?lang='+lang;
+    
       
       this.http.get(serviceUrl,{headers: headers })
       .timeout(10000)
@@ -1409,6 +1466,8 @@ terms(access_token,lang, SuccessCallback,FailureCallback){
       serviceUrl = this.helper.serviceUrl +'api/get/lkps/t7alel-privacy-policy?lang='+lang;
     else if (type == 2)
       serviceUrl = this.helper.serviceUrl +'api/get/lkps/xray-privacy-policy?lang='+lang;
+    else if (type == 5)
+      serviceUrl = this.helper.serviceUrl +'api/get/lkps/nursing-privacy-policy?lang='+lang;
     
     
     this.http.get(serviceUrl,{headers: headers })
@@ -1483,6 +1542,35 @@ listWorkingDays(userId){
   
   let serviceUrl = this.helper.serviceUrl+ 'api/workingDays?userId='+userId;
   return this.http.get(serviceUrl,{headers: headers });
+  
+}
+
+
+//ayaaaaaa
+
+uploadReport(orderId,access_token,reportFiles,files_ext){
+  let headers = new HttpHeaders();
+  // console.log("lat from service ",this.helper.lat);
+  // console.log("lon from service ",this.helper.lon);
+  
+  // let userLocation = this.helper.lat + "," + this.helper.lon;
+
+  let parameter = new HttpParams()
+  .set('orderid',orderId)
+  .set('files',reportFiles)
+  .set('service_id','3')
+  .set('fiels_ext',files_ext)
+
+  // .set('extra',userLocation)
+  // .set('type_id',this.helper.type_id)
+  // .set('service_number',serviceNmber)
+  // .set('entity_service_id',centerId);
+  
+  
+  headers = headers.set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', 'Bearer '+access_token);
+  let serviceUrl = this.helper.serviceUrl +'api/orders/UploadResultFile';
+  return this.http.post(serviceUrl,parameter,{headers: headers });
+
   
 }
 

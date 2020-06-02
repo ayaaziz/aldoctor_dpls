@@ -367,6 +367,11 @@ this.market.open(market);
                           
                             
                           }
+                          else if (val == 5) {
+                            this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]})
+                      
+                        }
+
                         })
 
                       }
@@ -407,7 +412,13 @@ this.market.open(market);
                               this.nav.push(NeworderPage, {recievedNotificat : notification.additionalData.OrderID})
                            // })
                             
+                          }else if (val == 5){
+                            
+                            this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
+
                           }
+
+
                         })
                   //     })
                   //   })
@@ -436,6 +447,10 @@ this.market.open(market);
                 }
                 else if (val == 0) {
                   this.nav.push(NeworderPage, {recievedNotificat : notification.additionalData.OrderID})
+                }else if (val == 5){
+                  
+                  this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
+
                 }
               })
            // })

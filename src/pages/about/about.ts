@@ -161,8 +161,8 @@ console.log("val from storage enter : ",val)
       }
       else if (val == 0) {
         this.navCtrl.push('EditProfilePage')
-      }else if (val == 4) {
-        this.navCtrl.push("NurseRegistrationPage", { edit: 1 })
+      }else if (val == 5) {
+        this.navCtrl.push("nurseRegistrationPage", { edit: 1 })
       }
     })
 

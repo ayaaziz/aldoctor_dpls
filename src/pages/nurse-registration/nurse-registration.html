@@ -216,7 +216,8 @@
     <ion-item *ngIf="!registerFormOne.controls.deliveryCount.valid && submitAttempt" no-lines>
       <p> {{"enterdeliveryCount" | translate}} </p>
     </ion-item> -->
-    <ion-item *ngIf="!editmode" style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.services.valid && submitAttempt">
+    <!-- style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" -->
+    <ion-item *ngIf="!editmode"  [class.invalid]="!registerFormOne.controls.services.valid && submitAttempt">
       <ion-label floating>
         <img src="assets/icon/service.png" style="margin: 0 2px;" height="25" width="25">{{'nursinService' | translate}}
       </ion-label>
@@ -237,8 +238,8 @@
           <img src="assets/icon/gender.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
       <ion-select [class.invalid]="!registerFormOne.controls.gender.valid && submitAttempt" [placeholder]="this.translate.instant('Gender')" formControlName="gender" interface="popover"
           [(ngModel)]="gender">
-          <ion-option value="1">{{"male" | translate}}</ion-option>
-          <ion-option value="0">{{"female" | translate}}</ion-option>
+          <ion-option value="0">{{"male" | translate}}</ion-option>
+          <ion-option value="1">{{"female" | translate}}</ion-option>
       </ion-select>
   </ion-item>
   <ion-item *ngIf="!registerFormOne.controls.gender.valid && submitAttempt" no-lines>

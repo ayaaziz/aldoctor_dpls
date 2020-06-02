@@ -37,7 +37,7 @@ lang_direction= ""
      this.resetForm = formBuilder.group({
       oldpassword: ['', Validators.required],
       password: ['', Validators.compose([Validators.minLength(4), Validators.required])],
-      confirmPassword: ['',Validators.compose([Validators.minLength(4), Validators.required])]
+      confirmPassword: ['',Validators.compose([Validators.minLength(4), Validators.required,matchOtherValidator('password')])]
     }); 
 }
 
@@ -61,7 +61,7 @@ lang_direction= ""
       })
     }
     else{
-      this.helper.presentToast("يجب ادخال كلمة المرور الحالية وكلمة المرور الجديد لا تقل عن أربعة حروف أو أرقام")
+     // this.helper.presentToast("يجب ادخال كلمة المرور الحالية وكلمة المرور الجديد لا تقل عن أربعة حروف أو أرقام")
     }
   }
   resetSuccessCallback(data){

@@ -10,19 +10,22 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { AlertController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 
+
 /**
- * Generated class for the CenterOrderPage page.
+ * Generated class for the NursingOrderPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
+@IonicPage()
 @Component({
-  selector: 'page-center-order',
-  templateUrl: 'center-order.html',
+  selector: 'page-nursing-order',
+  templateUrl: 'nursing-order.html',
   providers: [LaunchNavigator, DatePicker, Device]
 })
-export class CenterOrderPage {
+export class NursingOrderPage {
+
   ratingStatus = 4
   orderAccepted = false;
   userName = ""
@@ -93,14 +96,13 @@ export class CenterOrderPage {
   shareStatus  = false
 contactStatus = false
 
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
     , public helper: HelperProvider, public toastCtrl: ToastController, private datePicker: DatePicker, public plt: Platform, public device: Device,
     public events: Events, private launchNavigator: LaunchNavigator, public translate: TranslateService, public storage: Storage) {
-
-// this.chooseDate22()
-
-
+ 
+ 
+ 
       this.date=new Date().toISOString();
       console.log("date : ",this.date)
       this.myTime = new Date().getHours() + ":"+new Date().getMinutes()
@@ -142,6 +144,8 @@ contactStatus = false
       }
       else if (val == 1) {
         this.type = 1
+      }else if (val == 5) {
+        this.type = 5
       }
     })
 
@@ -164,98 +168,101 @@ contactStatus = false
 
     });
 
-  }
-  openAppointment() {
-    this.appointement = true
-  }
-  chooseDate() {
-
-    var minmDate;
-    var maxDate;
-    let userLang = this.helper.currentLang;
-    // let x = new Date()
-    // let d = x.getFullYear() + '-' + (x.getMonth() + 1) + '-' + (x.geminDatetDate()) + " 00:00:00.000z"
-    // let v = (x.getFullYear() + 1) + '-' + (x.getMonth() + 1) + '-' + (x.getDate() + 1) + "T00:00:00.000z"
-    // if (this.plt.is('ios')) {
-    //   minmDate = new Date().toISOString()
-    //   //maxDate = new Date(v).toISOString()
-    // }
-    // else {
-      minmDate = new Date().valueOf()
-      //maxDate = new Date(v).valueOf()
-    //}
-    let localLang = 'en_us';
-    let nowTxt = 'Today';
-    let okTxt = 'Done';
-    let cancelTxt = 'Cancel';
-    if (userLang == 'ar') {
-      // localLang = 'ar_eg';
-      nowTxt = 'اليوم';
-      okTxt = 'تم';
-      cancelTxt = 'إلغاء'
+ 
     }
-console.log("new Date() : ,",new Date())
-console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
 
-
-    this.datePicker.show({
-      date: new Date(),
-      mode: 'datetime',
-      minDate: minmDate,
-      okText: okTxt,
-      cancelText: cancelTxt,
-      todayText: nowTxt,
-      locale: 'en_us',
-      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
-    }).then(
-      date => {
-     alert("choose date ,, datetime picker  "+date)
-        if(!date){
-          return
-        }
-        if(new Date().valueOf() > new Date(date).valueOf()){
-          this.helper.presentToast("من فضلك أختر تاريخ ووقت أكبر من التاريخ والوقت الحالي")
-          return;
-        }
-        let hourDesc = ""
-        let hours =new Date(date).getHours()
-        if (hours >= 12) {
-          hours -= 12;
-          if(hours == 0)
-          hours = 12;
-          hourDesc = "مساءاً"
-        } else if (hours === 0) {
-          hours = 12;
-          hourDesc = "صباحاً"
-        }
-        else{
-          hourDesc = "صباحاً"
-        }
-        //alert(date + " " + typeof(date) + " test " + new Date(date).getFullYear())
-        this.appointementDateFormated = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + hours + ':' + new Date(date).getMinutes() + " " + hourDesc
-        this.appointementDate = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + new Date(date).getHours() + ':' + new Date(date).getMinutes()
-     alert("this.appointementDate  : "+this.appointementDate)
-     
-      },
-      err => {
-        console.log('Error occurred while getting date: ', err);
-
+    openAppointment() {
+      this.appointement = true
+    }
+    chooseDate() {
+  
+      var minmDate;
+      var maxDate;
+      let userLang = this.helper.currentLang;
+      // let x = new Date()
+      // let d = x.getFullYear() + '-' + (x.getMonth() + 1) + '-' + (x.geminDatetDate()) + " 00:00:00.000z"
+      // let v = (x.getFullYear() + 1) + '-' + (x.getMonth() + 1) + '-' + (x.getDate() + 1) + "T00:00:00.000z"
+      // if (this.plt.is('ios')) {
+      //   minmDate = new Date().toISOString()
+      //   //maxDate = new Date(v).toISOString()
+      // }
+      // else {
+        minmDate = new Date().valueOf()
+        //maxDate = new Date(v).valueOf()
+      //}
+      let localLang = 'en_us';
+      let nowTxt = 'Today';
+      let okTxt = 'Done';
+      let cancelTxt = 'Cancel';
+      if (userLang == 'ar') {
+        // localLang = 'ar_eg';
+        nowTxt = 'اليوم';
+        okTxt = 'تم';
+        cancelTxt = 'إلغاء'
       }
-    );
-  }
-  ionViewDidLeave(){
-    this.stopAudio()
-    clearInterval(this.interval)
-  }
+  console.log("new Date() : ,",new Date())
+  console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
+  
+  
+      this.datePicker.show({
+        date: new Date(),
+        mode: 'datetime',
+        minDate: minmDate,
+        okText: okTxt,
+        cancelText: cancelTxt,
+        todayText: nowTxt,
+        locale: 'en_us',
+        androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_LIGHT
+      }).then(
+        date => {
+       alert("choose date ,, datetime picker  "+date)
+          if(!date){
+            return
+          }
+          if(new Date().valueOf() > new Date(date).valueOf()){
+            this.helper.presentToast("من فضلك أختر تاريخ ووقت أكبر من التاريخ والوقت الحالي")
+            return;
+          }
+          let hourDesc = ""
+          let hours =new Date(date).getHours()
+          if (hours >= 12) {
+            hours -= 12;
+            if(hours == 0)
+            hours = 12;
+            hourDesc = "مساءاً"
+          } else if (hours === 0) {
+            hours = 12;
+            hourDesc = "صباحاً"
+          }
+          else{
+            hourDesc = "صباحاً"
+          }
+          //alert(date + " " + typeof(date) + " test " + new Date(date).getFullYear())
+          this.appointementDateFormated = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + hours + ':' + new Date(date).getMinutes() + " " + hourDesc
+          this.appointementDate = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + new Date(date).getHours() + ':' + new Date(date).getMinutes()
+       alert("this.appointementDate  : "+this.appointementDate)
+       
+        },
+        err => {
+          console.log('Error occurred while getting date: ', err);
+  
+        }
+      );
+    }
+    ionViewDidLeave(){
+      this.stopAudio()
+      clearInterval(this.interval)
+    }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NeworderPage');
+    console.log('ionViewDidLoad NursingOrderPage');
     this.orderAccepted = false;
     this.newOrder = false;
     this.noOrder = true;
-    console.log('ionViewDidLoad NotificationPage');
-
 
   }
+
+
   startTimer() {
     this.timeLeft = Math.round(this.remaining_time)
     this.playAudio();
@@ -376,19 +383,19 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
           this.storage.get("user_login_token").then((val) => {
 
 
-            if(status == 8 ){
+            // if(status == 8 ){
 
   
-              this.moveToPatientStatus = true
-              this.cancelDetectionStatus = true
-              this.shareStatus  = true
-              this.contactStatus = true
+            //   this.moveToPatientStatus = true
+            //   this.cancelDetectionStatus = true
+            //   this.shareStatus  = true
+            //   this.contactStatus = true
             
-            this.thanksAlert = false;
-            this.opacityOfAllContent = 0.1;
+            // this.thanksAlert = false;
+            // this.opacityOfAllContent = 0.1;
             
             
-            }else{
+            // }else{
 
             
 
@@ -464,18 +471,18 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
                 else if (data.order.status == "6") {
                 }
                 else if (data.order.status == "8") {
-                  // this.moveToPatientStatus = true
-                  // this.cancelDetectionStatus = true
-                  // this.endDetectionStatus = false
-                  // this.newAppointment = false
+                  this.moveToPatientStatus = true
+                  this.cancelDetectionStatus = true
+                  this.endDetectionStatus = false
+                  this.newAppointment = false
 
 
 
 //s
 
 
-this.thanksAlert = false;
-this.opacityOfAllContent = 0.1;
+// this.thanksAlert = false;
+// this.opacityOfAllContent = 0.1;
 
 
                   // if (this.patient_lat && this.patient_long) {
@@ -569,7 +576,7 @@ this.opacityOfAllContent = 0.1;
             }, (data) => {
               this.helper.presentToast(this.translate.instant("serverError"))
             })
-          }
+          // }
 
           })
         }
@@ -1085,6 +1092,9 @@ this.opacityOfAllContent = 0.1;
       }     
       );
   }
+
+
+
 
 
 }

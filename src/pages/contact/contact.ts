@@ -31,7 +31,7 @@ export class ContactPage {
 
   orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
   "name":"","profile_pic":"","rate":"","patient_id":"",
-"custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":""};
+"custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
 
   tostClass ;
   refresher;
@@ -159,6 +159,8 @@ export class ContactPage {
                   this.orderobject.orderId = ordersData[j].id;
                   this.orderobject.order_status = ordersData[j].status;
                   this.orderobject.created_at = ordersData[j].created_at_new
+                  this.orderobject.service_id = ordersData[j].service_id
+
                   if(ordersData[j].reorder == "1")
                   {
                     this.orderobject.custom_date = ordersData[j].custom_date;
@@ -174,7 +176,7 @@ export class ContactPage {
 
                   this.orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
                   "name":"","profile_pic":"","rate":"","patient_id":"",
-                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":""};
+                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
                   //  }
 
           //   }
@@ -298,7 +300,7 @@ export class ContactPage {
                   this.data.push(this.orderobject);
                   this.orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
                   "name":"","profile_pic":"","rate":"","patient_id":"",
-                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":""};
+                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
             //         }
 
             // }
@@ -408,7 +410,7 @@ export class ContactPage {
                   this.data.push(this.orderobject);
                   this.orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
                   "name":"","profile_pic":"","rate":"","patient_id":"",
-                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":""};
+                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
             //         }
 
             // }
@@ -512,7 +514,7 @@ export class ContactPage {
                   this.data.push(this.orderobject);
                   this.orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
                   "name":"","profile_pic":"","rate":"","patient_id":"",
-                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":""};
+                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
             //         }
 
             // }
@@ -572,6 +574,9 @@ if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 |
       }
       else if (val == 0) {
         this.navCtrl.push(NeworderPage, {recievedNotificat : item.orderId})
+      }
+      else if (val == 5) {
+        this.navCtrl.push("NursingOrderPage", {recievedNotificat : item.orderId})
       }
     })
  // })

@@ -118,7 +118,10 @@ else{
         }
         else if (val == 0) {
           this.navCtrl.push(NeworderPage, {recievedNotificat : item.data.url})
+        } else if (val == 5) {
+          this.navCtrl.push("NursingOrderPage", {recievedNotificat : item.data.url})
         }
+
       })
     }
   }

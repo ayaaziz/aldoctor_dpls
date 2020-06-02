@@ -57,6 +57,7 @@ export class FinancialPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad FinancialPage');
     this.storage.get("user_login_info").then((val) => {
+      console.log("user info val: ",val)
       let sup_date = val.date_of_subscription
       let date_day = (new Date(sup_date)).getDate()
       this.subscribe_date_str = sup_date //(new Date().getFullYear()) + "-" + (new Date().getMonth() + 2) + "-" + date_day

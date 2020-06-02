@@ -119,6 +119,7 @@ export class NurseRegistrationPage {
             // this.taxLicense = val.extraInfo.tax_liscence
             this.governorate = val.entity.governorate_id
             this.city = val.entity.city_id
+            this.gender = val.gender
             // this.deliveryCount = val.extraInfo.staff_num
             // this.entityphone = val.extraInfo.phone
             this.extra_info = val.extraInfo.extra_info
@@ -176,7 +177,7 @@ export class NurseRegistrationPage {
     this.loginservice.getGovernerates(this.helper.currentLang, data => {
       this.governorates = data
     }, data => { this.helper.presentToast(this.translate.instant('serverError')) })
-    this.loginservice.getXrayTypes(this.helper.currentLang, (data) => { this.ServicesData = data }, (data) => { this.helper.presentToast(this.translate.instant('serverError')) })
+    this.loginservice.getNursingTypes(this.helper.currentLang, (data) => { this.ServicesData = data }, (data) => { this.helper.presentToast(this.translate.instant('serverError')) })
   }
   registerUser() {
     this.submitAttempt = true;
@@ -191,11 +192,12 @@ export class NurseRegistrationPage {
       city_id: "",
       // deliveryCount: "",
       type_id: "",
-      // entityphone: "",
+       entityphone: "",
       extra_info: "",
       entity_services: "",
       certificateData: "",
-      certifications_ext:""
+      certifications_ext:"",
+      gender:""
     }
     this.submitAttempt = true;
     
@@ -222,32 +224,34 @@ export class NurseRegistrationPage {
             serviceData.name = this.xrayName
             serviceData.email = this.email
             serviceData.address = this.address
-            // serviceData.owner = this.xrayOwner
+             serviceData.owner = "nurse"
             // serviceData.tax_liscence = this.taxLicense
             serviceData.governorate_id = this.governorate
             serviceData.city_id = this.city
             // serviceData.deliveryCount = this.deliveryCount
             serviceData.type_id = "4"
-            // serviceData.entityphone = this.entityphone
+            serviceData.entityphone = "12345678911"
             serviceData.extra_info = this.extra_info
             serviceData.entity_services = this.services
             serviceData.certificateData = String(this.certificateData)
             serviceData.certifications_ext = String(this.certifications_ext)
+            serviceData.gender = this.gender
+
 
             this.storage.get('user_login_token').then(data => {
               console.log("data access token", data);
-              // this.loginservice.editserviceProfile(serviceData, data.access_token).subscribe(
-              //   resp => {
-              //     console.log("resp from edit serviceprofile", resp);
-              //     if (JSON.parse(JSON.stringify(resp)).success)
-              //       this.helper.presentToast(this.translate.instant('ProfileUpdated'))
-              //       this.events.publish("user:userLoginSucceeded", JSON.parse(JSON.stringify(resp)).user)
-              //     this.navCtrl.setRoot(TabsPage)
+               this.loginservice.editserviceProfile(serviceData, data.access_token).subscribe(
+                 resp => {
+                   console.log("resp from edit serviceprofile", resp);
+                   if (JSON.parse(JSON.stringify(resp)).success)
+                     this.helper.presentToast(this.translate.instant('ProfileUpdated'))
+                     this.events.publish("user:userLoginSucceeded", JSON.parse(JSON.stringify(resp)).user)
+                   this.navCtrl.setRoot(TabsPage)
 
-              //   }, err => {
-              //     console.log("err from edit serviceprofile", err);
-              //   }
-              // )
+                 }, err => {
+                   console.log("err from edit serviceprofile", err);
+                 }
+               )
             })
 
           }
@@ -272,7 +276,8 @@ export class NurseRegistrationPage {
   }
   authSuccessCallback(data) {
     if (navigator.onLine) {
-      // this.loginservice.entityRegister(this.xrayName, this.email, "2" + this.phone, this.entityphone, this.logoImg, this.profile_pic_ext, this.passwordTxt, String(this.certificateData), this.address, this.extra_info, String(this.certifications_ext), this.xrayOwner, 1, 2, this.taxLicense, this.governorate, this.city, this.deliveryCount, this.services, this.gender, (data) => this.successCallback(data), (data) => this.failureCallback(data))
+
+      this.loginservice.NurseRegister(this.xrayName, this.email, "2" + this.phone, "", this.logoImg, this.profile_pic_ext, this.passwordTxt, String(this.certificateData), this.address, this.extra_info, String(this.certifications_ext), "", 1, 5, "", this.governorate, this.city, "" , this.services, this.gender, (data) => this.successCallback(data), (data) => this.failureCallback(data))
     }
     else {
       this.helper.presentToast(this.translate.instant("serverError"))

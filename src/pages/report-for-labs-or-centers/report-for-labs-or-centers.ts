@@ -8,6 +8,10 @@ import { Base64 } from '@ionic-native/base64';
 import { FilePath } from '@ionic-native/file-path';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { LoginServiceProvider } from '../../providers/login-service/login-service';
+import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
+
 
 
 
@@ -31,13 +35,17 @@ export class ReportForLabsOrCentersPage {
 
   reportData=[]
   photosToShow = []
+  filesExt = [];
 
   //photosToShow = [{imgOrFile:2,data:"lll"},{imgOrFile:1,data:"assets/imgs/default-avatar.png"},{imgOrFile:2,data:"assets/imgs/default-avatar.png"},{imgOrFile:2,data:"assets/imgs/default-avatar.png"}] 
 
 
   constructor(private camera: Camera, public actionSheetCtrl: ActionSheetController, private iab: InAppBrowser,private filePicker: IOSFilePicker,
     private file: File, private filePath: FilePath, public platform: Platform,
-    private base64: Base64, private fileChooser: FileChooser,public helper: HelperProvider, public navCtrl: NavController, public navParams: NavParams) {
+    private base64: Base64, private fileChooser: FileChooser,public helper: HelperProvider, public navCtrl: NavController, public navParams: NavParams,
+    private service:LoginServiceProvider,
+    private storage:Storage,
+    private translate:TranslateService) {
     this.item = this.navParams.get('recievedItem')
     console.log("item from report for labs and centeers :", this.item)
 
@@ -123,7 +131,11 @@ export class ReportForLabsOrCentersPage {
         this.cv_data = imgdata
         // this.hidecrtforexperience = true;
         
-        this.reportData.push({imgOrFile:1,data:this.cv_data})
+        // this.reportData.push({imgOrFile:1,data:this.cv_data})
+        //ayaaa
+        this.reportData.push(this.cv_data);
+        this.filesExt.push(this.cv_ext);
+
 
       // })
     }, (err) => {
@@ -188,15 +200,27 @@ export class ReportForLabsOrCentersPage {
 
             if (cvextuper == "JPEG".toUpperCase() || cvextuper == "PNG".toUpperCase() || cvextuper == "JPG".toUpperCase() || cvextuper == "GIF".toUpperCase() || cvextuper == "BMP".toUpperCase()) {
 
-              // this.photosToShow.push({imgOrFile:1,data: uri});
+          
               this.certtxtname = ""
-              this.reportData.push({imgOrFile:1,data:this.cv_data})
               this.photosToShow.push({imgOrFile:1,data:this.pathforview})
+              // this.reportData.push({imgOrFile:1,data:this.cv_data})
+
+              //ayaaa
+              this.reportData.push(this.cv_data);
+              this.filesExt.push(this.cv_ext);
+
+
+
 
             }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
 
-              this.reportData.push({imgOrFile:2,data:this.cv_data})
               this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+              // this.reportData.push({imgOrFile:2,data:this.cv_data})
+
+              //ayaaaaa
+              this.reportData.push(this.cv_data);
+              this.filesExt.push(this.cv_ext);
+
             }
 
 
@@ -241,13 +265,23 @@ export class ReportForLabsOrCentersPage {
 
                     // this.photosToShow.push({imgOrFile:1,data: uri});
                     this.certtxtname = ""
-                    this.reportData.push({imgOrFile:1,data:this.cv_data})
                     this.photosToShow.push({imgOrFile:1,data:this.pathforview})
+                    // this.reportData.push({imgOrFile:1,data:this.cv_data})
+
+                    //ayaaaa
+                    this.reportData.push(this.cv_data);
+                    this.filesExt.push(this.cv_ext);
+
 
                   }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
 
-                    this.reportData.push({imgOrFile:2,data:this.cv_data})
                     this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+                    // this.reportData.push({imgOrFile:2,data:this.cv_data})
+
+                     //ayaaaa
+                     this.reportData.push(this.cv_data);
+                     this.filesExt.push(this.cv_ext);
+
                   }
 
                   if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase() || cvextuper == "JPEG".toUpperCase() || cvextuper == "PNG".toUpperCase() || cvextuper == "JPG".toUpperCase() || cvextuper == "GIF".toUpperCase() || cvextuper == "BMP".toUpperCase()) {
@@ -342,9 +376,35 @@ showcv() {
 if (this.photosToShow.length <= 0){
 
   this.helper.presentToast("الرجاء إضافة مرفقات التقرير ")
+
 }else{
   // send reportData array to api  (this.reportData)
   console.log("call api to send report imgs ")
+
+    // ayaaaaaa
+  if (navigator.onLine) {
+    this.storage.get("user_login_token").then((val) => {
+     
+      this.service.uploadReport(this.item.orderId,val.access_token,this.reportData,this.filesExt.join(',')).subscribe(
+        resp => {
+          if(JSON.parse(JSON.stringify(resp)).success ){
+          console.log("saveOrder resp: ",resp);
+          var newOrder = JSON.parse(JSON.stringify(resp));
+        
+          
+          }else{
+            this.helper.presentToast(this.translate.instant("serverError"));
+          }
+        },
+        err=>{
+          console.log("saveOrder error: ",err);
+          this.helper.presentToast(this.translate.instant("serverError"));
+        }
+      );
+    })
+  } else {
+    this.helper.presentToast(this.translate.instant("serverError"))
+  }
 }
  
   }

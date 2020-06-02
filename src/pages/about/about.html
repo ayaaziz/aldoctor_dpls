@@ -41,7 +41,7 @@
       <div (tap)="openEditProfile()" class="edit_img">
         <img src="assets/icon/edite.png"  width="20" style="border-radius: 50% !important; padding: 2px; position: absolute;width: 30px; left: 15px;">
       </div>
-      <ion-row>
+      <ion-row *ngIf="type != 5">
           <ion-col col-1>
             <img src="assets/icon/member.png" width="20" style="border: 0px;">
           </ion-col>
@@ -59,7 +59,7 @@
           
           </ion-col>
       </ion-row>
-      <ion-row *ngIf="entityphone">
+      <ion-row *ngIf="entityphone && type != 5">
         <ion-col col-1>
           <img src="assets/icon/phonegreen.png" width="20" style="border: 0px;">
         </ion-col>
