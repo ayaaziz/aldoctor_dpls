@@ -15,19 +15,19 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.picker-opts-right {
-    justify-content: flex-start !important;
-    order: 3 !important;
-}
+// .picker-opts-right {
+//     justify-content: flex-start !important;
+//     order: 3 !important;
+// }
 
-.picker-opts-left {
-    justify-content: flex-end !important;
-    order: 1 !important;
-}
+// .picker-opts-left {
+//     justify-content: flex-end !important;
+//     order: 1 !important;
+// }
 
-.picker-md .picker-col:nth-of-type(3) {
-    order: 2 !important;
-}
+// .picker-md .picker-col:nth-of-type(3) {
+//     order: 2 !important;
+// }
 
 
 .bar-button-default-ios{
