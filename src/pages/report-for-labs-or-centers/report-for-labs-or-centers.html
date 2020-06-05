@@ -23,7 +23,7 @@
       <ion-col col-4 *ngFor="let photo of photos; let indx = index">
         <ion-col col-12 style="justify-content: center;display: flex;border: 1px solid #016a38;">
           <ion-icon name="trash" class="deleteIcon" (click)="removeFile(1,photo.id,indx)" ></ion-icon>
-          <img [src]="photo.path" style="width:90px;height:80px" (click)="fullScreen(id)" />
+          <img [src]="photo.path" style="width:90px;height:80px" (click)="fullScreen(indx)" />
         </ion-col>
       </ion-col>
 
@@ -31,7 +31,7 @@
       <ion-col col-4 *ngFor="let photo of photosToShow; let id = index">
         <ion-col col-12 style="justify-content: center;display: flex;border: 1px solid #016a38;">
           <ion-icon name="trash" class="deleteIcon" (click)="deleteFile(1,id)"></ion-icon>
-          <img [src]="photo" style="width:90px;height:80px" />
+          <img [src]="photo" style="width:90px;height:80px" (click)="fullScreen(indx)"/>
         </ion-col>
       </ion-col>
     </ion-row>
@@ -50,13 +50,15 @@
     <!-- files from db -->
     <ion-col col-12 *ngFor="let file of files; let indx = index" style="justify-content: center;display: flex;">
       <ion-icon  name="trash" item-end style="font-size: 20px;color:#016a38; margin: 0 10px;" (click)="removeFile(2,file.id,indx)" ></ion-icon>
-      <ion-label style="color:gray;margin: 0;" item-start>{{file.path}} </ion-label>
+      <ion-label style="color:gray;margin: 0;" item-start>{{file.fileName}} </ion-label>
+      <!-- <a [href]="file.path" style="color:gray;margin: 0;" item-start>{{file.fileName}} </a> -->
     </ion-col>
 
     <!-- when choose files from picker -->
     <ion-col col-12 *ngFor="let file of filesToShow; let id = index">
       <ion-icon  name="trash" item-end style="font-size: 20px;color:#016a38; margin: 0 10px" (click)="deleteFile(2,id)" ></ion-icon> 
-      <ion-label style="color:gray;margin:0;display: inline-flex;" item-start >{{file}} </ion-label>
+      <ion-label style="color:gray;margin:0;display: inline-flex;" item-start >{{file.fileName}} </ion-label>
+      <!-- <a [href]="file.path" style="color:gray;margin: 0;" item-start>{{file.fileName}} </a> -->
     </ion-col>
   </ion-row>
 

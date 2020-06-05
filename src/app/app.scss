@@ -15,19 +15,52 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-// .picker-opts-right {
-//     justify-content: flex-start !important;
-//     order: 3 !important;
-// }
+.picker-col::before {
+    margin-right: -1px;
+    margin-bottom: -21px;
+    display: block;
+    width: 71px;
+    background: #fff;
+    z-index: 1000;
+    position: absolute;
+    color: #f00;
+    font-size: 18px;
+    padding: 0 10px 10px 10px;
+    color: #488aff;
+}
 
-// .picker-opts-left {
-//     justify-content: flex-end !important;
-//     order: 1 !important;
-// }
+.picker-col.picker-opts-right {
+    justify-content: flex-start !important;
+    order: 2 !important;
 
-// .picker-md .picker-col:nth-of-type(3) {
-//     order: 2 !important;
-// }
+    &::before {
+        content: "الشهر";
+    }
+}
+
+.picker-opts-left {
+    justify-content: flex-start !important;
+    order: 1 !important;
+
+    &::before {
+        content: "السنة";
+    }
+}
+
+.picker-md .picker-col:nth-of-type(3) {
+    order: 2 !important;
+    justify-content: flex-start;
+    
+    &::before {
+        content: "اليوم";
+        margin-right: 3px;
+    }
+}
+
+.picker-md .picker-col {
+    flex-direction: column !important;
+    max-width: 70px !important;
+}
 
 
 .bar-button-default-ios{

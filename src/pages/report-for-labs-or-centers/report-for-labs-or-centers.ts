@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ActionSheetController, Platform} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ActionSheetController, Platform, AlertController} from 'ionic-angular';
 import { HelperProvider } from '../../providers/helper/helper';
 import { File } from '@ionic-native/file';
 import { IOSFilePicker } from '@ionic-native/file-picker';
@@ -53,7 +53,9 @@ export class ReportForLabsOrCentersPage {
     private base64: Base64, private fileChooser: FileChooser,public helper: HelperProvider, public navCtrl: NavController, public navParams: NavParams,
     private service:LoginServiceProvider,
     private storage:Storage,
-    private translate:TranslateService) {
+    private translate:TranslateService,
+    private alertCtrl:AlertController) {
+
     this.item = this.navParams.get('recievedItem')
     console.log("item from report for labs and centeers :", this.item)
 
@@ -74,7 +76,7 @@ export class ReportForLabsOrCentersPage {
         console.log("orderDetails ",resp);
         var myorder = JSON.parse(JSON.stringify(resp)).order;
       
-        if(myorder.files)
+        if(myorder.files.length > 0)
         {
           this.orderFiles = myorder.files;
 
@@ -87,41 +89,19 @@ export class ReportForLabsOrCentersPage {
                 this.photos.push({id:this.orderFiles[i].id,path:this.helper.serviceUrl+this.orderFiles[i].path});    
               } else {
                 // let fileName = this.orderFiles[i].path.split('/').pop();
-                this.files.push({id:this.orderFiles[i].id,path:this.orderFiles[i].fileName});    
+                // this.files.push({id:this.orderFiles[i].id,path:this.orderFiles[i].fileName});   
+                this.files.push({id:this.orderFiles[i].id,path:this.helper.serviceUrl+this.orderFiles[i].path,fileName:this.orderFiles[i].fileName});  
               }
             }
           
           }
           console.log("ayaaaa files",this.files);
-
-          // if(this.orderFiles.length == 2)
-          // {
-          //   this.imageFlag = false;
-          //   this.disabled2btn = true;
-          // }
-          // else if(this.orderFiles.length == 1)
-          // {
-          //   this.imageFlag = true;
-          //   this.disabled2btn = false;
-          // }
-            
-        
-        //   }else{
-        //   this.disabled2btn = false;
-        // }
         }
       },
       error => {
         console.log(error);
-      }
-      
-      
-      
-      
-      )
+      })
        
-          
-   
   }
 
 
@@ -267,7 +247,11 @@ export class ReportForLabsOrCentersPage {
             }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
 
               // this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
-              this.filesToShow.push(this.certtxtname);
+              // this.filesToShow.push(this.certtxtname);
+              console.log("ayaa pathforview: "+this.pathforview);
+              this.filesToShow.push({fileName:this.certtxtname,path:this.pathforview});
+
+              
               // this.reportData.push({imgOrFile:2,data:this.cv_data})
 
               //ayaaaaa
@@ -314,30 +298,7 @@ export class ReportForLabsOrCentersPage {
                   // this.cv_ext.push(fileExt)
                   this.cv_ext = fileExt;
                   var cvextuper = this.cv_ext.toUpperCase();
-                  if (cvextuper == "JPEG".toUpperCase() || cvextuper == "PNG".toUpperCase() || cvextuper == "JPG".toUpperCase() || cvextuper == "GIF".toUpperCase() || cvextuper == "BMP".toUpperCase()) {
 
-                    // this.photosToShow.push({imgOrFile:1,data: uri});
-                    this.certtxtname = ""
-                    // this.photosToShow.push({imgOrFile:1,data:this.pathforview})
-                    // this.reportData.push({imgOrFile:1,data:this.cv_data})
-
-                    //ayaaaa
-                    this.reportData.push(this.cv_data);
-                    this.filesExt.push(this.cv_ext);
-                    this.photosToShow.push(this.pathforview);
-
-
-                  }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
-
-                    // this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
-                    this.filesToShow.push(this.certtxtname);
-                    // this.reportData.push({imgOrFile:2,data:this.cv_data})
-
-                     //ayaaaa
-                     this.reportData.push(this.cv_data);
-                     this.filesExt.push(this.cv_ext);
-
-                  }
 
                   if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase() || cvextuper == "JPEG".toUpperCase() || cvextuper == "PNG".toUpperCase() || cvextuper == "JPG".toUpperCase() || cvextuper == "GIF".toUpperCase() || cvextuper == "BMP".toUpperCase()) {
                     console.log("from if : ", cvextuper);
@@ -348,8 +309,7 @@ export class ReportForLabsOrCentersPage {
                       fileEntry.getMetadata((metadata) => {
             
                           console.log("worker cert meta data from resolveLocalFilesystemUrl : ",metadata);//metadata.size is the size in bytes
-                          // metadata.size: 20761
-            // this.vedioSize = (metadata.size / 1024)/1024
+                        
                           console.log("(metadata.size / 1024)/1024 : ",(metadata.size / 1024)/1024)
                           if((metadata.size / 1024)/1024 > 1){
                            this.helper.presentToast("أقصى حجم للملف ١ ميجا")
@@ -360,9 +320,34 @@ export class ReportForLabsOrCentersPage {
                            
                            this.user_cv_name = [];
                           }
-                          // else{
+                          else{
+                            if (cvextuper == "JPEG".toUpperCase() || cvextuper == "PNG".toUpperCase() || cvextuper == "JPG".toUpperCase() || cvextuper == "GIF".toUpperCase() || cvextuper == "BMP".toUpperCase()) {
 
-                          // }
+                              // this.photosToShow.push({imgOrFile:1,data: uri});
+                              this.certtxtname = ""
+                              // this.photosToShow.push({imgOrFile:1,data:this.pathforview})
+                              // this.reportData.push({imgOrFile:1,data:this.cv_data})
+          
+                              //ayaaaa
+                              this.reportData.push(this.cv_data);
+                              this.filesExt.push(this.cv_ext);
+                              this.photosToShow.push(this.pathforview);
+          
+          
+                            }else if (cvextuper == "pdf".toUpperCase() || cvextuper == "docx".toUpperCase() || cvextuper == "doc".toUpperCase()){
+          
+                              // this.photosToShow.push({imgOrFile:2,data:this.certtxtname})
+                              // this.reportData.push({imgOrFile:2,data:this.cv_data})
+          
+                              // this.filesToShow.push(this.certtxtname);
+                              this.filesToShow.push({fileName:this.certtxtname,path:this.pathforview});                    
+          
+                               //ayaaaa
+                               this.reportData.push(this.cv_data);
+                               this.filesExt.push(this.cv_ext);
+          
+                            }
+                          }
 
                           })
                         })
@@ -400,7 +385,6 @@ export class ReportForLabsOrCentersPage {
 
 showcv() {
     
-      
       if(this.linktoview){
         console.log("if editedu or editexp open ",this.linktoview);
         // window.open(this.linktoview);
@@ -410,10 +394,6 @@ showcv() {
         this.helper.presentToast("لا يوجد شهادة لعرضها");
       }
    // }
-
-    
-    
-    
   }
 
   deleteFile(x,index){
@@ -422,49 +402,75 @@ showcv() {
 
     // this.reportData.splice(index, 1);
 
-    if(x == 1) {
-      this.photosToShow.splice(index,1);
-    } else if(x == 2) {
-      this.filesToShow.splice(index,1);
-    }
+    let alert = this.alertCtrl.create({
+      title: this.translate.instant("deleteFile"),
+      message: this.translate.instant("confirmDeleteFile"),
+      buttons: [
+        {
+          text: this.translate.instant("canceltxt"),
+          role: 'cancel'
+        },
+        {
+          text: this.translate.instant("confirmtxt"),
+          handler: ()=> {
+            if(x == 1) {
+              this.photosToShow.splice(index,1);
+            } else if(x == 2) {
+              this.filesToShow.splice(index,1);
+            }
+          }
+        }]
+    });
+    alert.present();
   }
 
   removeFile(x,id,index) {
-    // if(x == 1) {
-    //   this.photos.splice(index,1);
-    // } else if (x == 2) {
-    //   this.files.splice(index,1);
-    // }
-
     console.log("file id",id);
     console.log("x: ",x);
 
-    //api for delete
-    if(navigator.onLine) {
-      this.storage.get("user_login_token").then((val) => {
-       
-        this.service.deleteResultFile(id,val.access_token).subscribe(
-          resp => {
-            if(JSON.parse(JSON.stringify(resp)).success ){   
-   
-              if(x == 1) {
-                this.photos.splice(index,1);
-              } else if (x == 2) {
-                this.files.splice(index,1);
-              }
 
+    let alert = this.alertCtrl.create({
+      title: this.translate.instant("deleteFile"),
+      message: this.translate.instant("confirmDeleteFile"),
+      buttons: [
+        {
+          text: this.translate.instant("canceltxt"),
+          role: 'cancel'
+        },
+        {
+          text: this.translate.instant("confirmtxt"),
+          handler: ()=> {
+            //api for delete
+            if(navigator.onLine) {
+              this.storage.get("user_login_token").then((val) => {
+              
+                this.service.deleteResultFile(id,val.access_token).subscribe(
+                  resp => {
+                    if(JSON.parse(JSON.stringify(resp)).success ){   
+          
+                      if(x == 1) {
+                        this.photos.splice(index,1);
+                      } else if (x == 2) {
+                        this.files.splice(index,1);
+                      }
+
+                    } else {
+                      this.helper.presentToast(this.translate.instant("serverError"));
+                    }
+                  },
+                  err => {
+                    this.helper.presentToast(this.translate.instant("serverError"));
+                  }
+                );
+              })
             } else {
-              this.helper.presentToast(this.translate.instant("serverError"));
+              this.helper.presentToast(this.translate.instant("serverError"))
             }
-          },
-          err => {
-            this.helper.presentToast(this.translate.instant("serverError"));
           }
-        );
-      })
-    } else {
-      this.helper.presentToast(this.translate.instant("serverError"))
-    }
+        }]
+    });
+    alert.present();
+
   }
 
   sendReport(){
@@ -478,7 +484,7 @@ if (this.photosToShow.length <= 0){
   // send reportData array to api  (this.reportData)
   console.log("call api to send report imgs ")
 
-    // ayaaaaaa
+  // ayaaaaaa
   if (navigator.onLine) {
     this.storage.get("user_login_token").then((val) => {
      

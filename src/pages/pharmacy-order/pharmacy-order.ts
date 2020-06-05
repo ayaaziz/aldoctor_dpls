@@ -64,6 +64,7 @@ export class PharmacyOrderPage {
   PT
   shareStatus  = false
 contactStatus = false
+totalPrice;
 
 
 
@@ -178,7 +179,7 @@ this.opacityOfAllContent = 0.1;
 
 
 
-          this.loginservice.updateCurrentOrder(this.currentOrderID, status,this.helper.userType, val.access_token, (data) => {
+          this.loginservice.updateCurrentOrder(this.currentOrderID, status,this.helper.userType,0,val.access_token, (data) => {
             if(data.status == -2){
               this.helper.presentToast("لا يمكنك إستقبال المزيد من الطلبات حتى يتم إنهاء الطلبات الحالية")
               this.navCtrl.pop()
@@ -700,10 +701,11 @@ this.opacityOfAllContent = 0.1;
       console.log("call api to send price")
       // this.LE , this.PT
 
+      this.totalPrice = this.LE +"."+this.PT;
+
       this.storage.get("user_login_token").then((val) => {
        
-      this.loginservice.updateCurrentOrder(this.currentOrderID, 8 ,this.helper.userType, val.access_token, (data) => {
-
+      this.loginservice.updateCurrentOrder(this.currentOrderID, 8 ,this.helper.userType,this.totalPrice, val.access_token, (data) => {
 
 
         this.shareStatus  = false

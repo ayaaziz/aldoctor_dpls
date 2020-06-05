@@ -199,7 +199,7 @@ console.log("myTime : ",this.myTime)
         if (navigator.onLine) {
           this.storage.get("user_login_token").then((val) => {
             // alert("here")
-            this.loginservice.updateCurrentOrder(this.currentOrderID, status, this.helper.userType, val.access_token, (data) => {
+            this.loginservice.updateCurrentOrder(this.currentOrderID, status, this.helper.userType,0, val.access_token, (data) => {
              
                if(data.status == -2){
                  this.helper.presentToast("لا يمكنك إستقبال المزيد من الطلبات حتى يتم إنهاء الطلب الحالي")

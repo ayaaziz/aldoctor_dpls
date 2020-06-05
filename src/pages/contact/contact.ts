@@ -28,6 +28,7 @@ export class ContactPage {
   color="grey";
   ordersArray=[];
   page=1;
+  userTypeId;
 
   orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
   "name":"","profile_pic":"","rate":"","patient_id":"",
@@ -540,6 +541,14 @@ export class ContactPage {
     this.page = 1
     this.noData = false
     this.getOrders();
+
+
+    //aya
+    this.storage.get('type').then(val => {
+      this.userTypeId = val;
+      console.log("type id: "+this.userTypeId);
+    })
+
   }
   followOrder(item){
     console.log("follow item ",item);
@@ -667,7 +676,7 @@ if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 |
     console.log("sendReport(item) : ",item)
 // ReportForLabsOrCentersPage 
 
-this.navCtrl.push("ReportForLabsOrCentersPage", {recievedItem : item})
+    this.navCtrl.push("ReportForLabsOrCentersPage", {recievedItem : item})
  
   }
 

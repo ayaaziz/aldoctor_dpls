@@ -81,7 +81,7 @@
       "changelanguage":"تغيير اللغة",
       "notification":"الاشعارات",
       "confirmdelete":"تأكيد الحذف",
-      "alertmsg":"هل تريد حذف هذا الطلب ؟",
+      "alertmsg":"هل تريد حذف هذا الطلب؟",
       "confirmtxt":"نعم",
       "canceltxt":"إلغاء",
       "authorized":"مسموح لك بذلك , حاول مرة أخري  ",
@@ -286,6 +286,8 @@
       "entityAdministrationMsg": "تم إنشاء حسابك بنجاح، سيتم التواصل معك في أسرع وقت لتفعيل الحساب",
       "workingDays":"ساعات العمل",
       "nurse":"ممرض",
-      "reportSent":"تم إرسال التقرير للمريض"
+      "reportSent":"تم إرسال التقرير للمريض",
+      "deleteFile":"حذف الملف",
+      "confirmDeleteFile":"هل تريد حذف هذا الملف؟"
 
 }

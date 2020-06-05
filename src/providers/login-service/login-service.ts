@@ -986,13 +986,13 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
      
     }
 
-    updateCurrentOrder(order_id,status ,type, access_token, SuccessCallback,FailureCallback){
+    updateCurrentOrder(order_id,status ,type,totalPrice, access_token, SuccessCallback,FailureCallback){
       let headers = new HttpHeaders();
       let loader = this.loadingCtrl.create({
         content: "",
       }); 
        loader.present();
-      let parameter = new HttpParams().set('order_id', order_id).set('status', status).set('type',type)
+      let parameter = new HttpParams().set('order_id', order_id).set('status', status).set('type',type).set('totalPrice',totalPrice)
       headers = headers.set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', 'Bearer '+ localStorage.getItem('kdkvfkhggsso'));
       let serviceUrl = this.helper.serviceUrl +'api/orders/update';
       this.http.post(serviceUrl, parameter, {headers: headers })

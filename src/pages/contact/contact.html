@@ -124,7 +124,7 @@
             <!-- <button *ngIf="item.service_id == 2 && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="width:46px;padding: 2px 0;margin-top: 10px;" (click)="sendReport(item)" >إرسال <br/> التقرير </button> -->
 
             <!-- ayaaaa -->
-            <button *ngIf="(item.service_id == 3)  && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="width:46px;padding: 2px 0;margin-top: 10px;" (click)="sendReport(item)" >إرسال <br/> التقرير </button>
+            <button *ngIf="(item.service_id == 3) && (userTypeId == 2 || userTypeId == 3) && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="width:46px;padding: 2px 0;margin-top: 10px;" (click)="sendReport(item)" >إرسال <br/> التقرير </button>
 
 
           </ion-col>
