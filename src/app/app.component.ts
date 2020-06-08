@@ -16,6 +16,7 @@ import { Market } from '@ionic-native/market';
 import { CenterOrderPage } from '../pages/center-order/center-order';
 import { NeworderPage } from '../pages/neworder/neworder';
 import { PharmacyOrderPage } from '../pages/pharmacy-order/pharmacy-order';
+import { TestPickerPage } from '../pages/test-picker/test-picker';
 var firebaseConfig  = {
   apiKey: "AIzaSyBPvbu83CtqeV67AihfGfwxKRzq4ExENNo",
   authDomain: "aldoctor-b33ed.firebaseapp.com",
@@ -129,9 +130,22 @@ export class MyApp {
       }
 
     })
+  
+    // events.subscribe('pickerDisplayed', () => {
+    //   var el = document.getElementsByClassName("picker-wrapper")[0];
+    //   if(el) {
+    //     console.log("eleeeeement picker: "+el);
+    //   }
+
+    // });
+
+  ////////////
+  
   }
   openHome() {
+    ////ayaaaa
     this.nav.setRoot(TabsPage)
+    // this.nav.setRoot("TestPickerPage");
   }
   openAbout() {
     this.nav.setRoot('AboutAppPage')
@@ -485,4 +499,7 @@ this.market.open(market);
     pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
     
   }
+
+
+
 }

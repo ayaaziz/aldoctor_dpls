@@ -11,14 +11,22 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { HelperProvider } from '../../providers/helper/helper';
 import { Content } from 'ionic-angular';
 
+import * as Moment from 'moment';
+
+/**
+ * Generated class for the TestPickerPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-working-days',
-  templateUrl: 'working-days.html',
+  selector: 'page-test-picker',
+  templateUrl: 'test-picker.html',
   providers:[DatePipe,DatePicker]
 })
-export class WorkingDaysPage {
+export class TestPickerPage {
 
   @ViewChild(Content) content: Content;
 
@@ -239,6 +247,15 @@ var offset = new Date().getTimezoneOffset();
       // );
     }
 
+    ///ayaaaaaaaa test picker
+    // events.publish('pickerDisplayed', () => {
+    //   var el = document.getElementsByClassName("picker-wrapper");
+    //   if(el) {
+    //     console.log("eleeeeement picker: "+el);
+    //   }
+
+    // });
+
 
 
   }
@@ -246,6 +263,13 @@ var offset = new Date().getTimezoneOffset();
   ionViewDidLoad() {
     console.log('ionViewDidLoad WorkingDaysPage');
     // this.changeDateTime.updateText = () => {};
+  }
+
+  selectedDate
+  myDate
+  date(){
+    console.log("selected date......."+ Moment( this.selectedDate._d).locale('en').format('YYYY-MM-DD HH:mm:ss'))
+    this.myDate= Moment( this.selectedDate._d).locale('en').format('YYYY-MM-DD HH:mm:ss')
   }
 
 
@@ -888,8 +912,8 @@ dateChanged(date){
   this.mendata = hours + ':' + date.split(":")[1] + " " + hourDesc
 console.log("time after : ",this.mendata)
 }
-chooseDate() {
-console.log("choose date")
+chooseDate(i,x) {
+console.log("choose date",JSON.stringify(i));
   var minmDate;
   var maxDate;
   let userLang = this.helper.currentLang;
@@ -918,7 +942,8 @@ console.log("choose date")
   this.datePicker.show({
     date: new Date(),
     // mode: 'datetime',
-    mode: 'time',
+    // mode: 'time',
+    mode: 'date',
     minDate: minmDate,
     okText: okTxt,
     cancelText: cancelTxt,
@@ -954,6 +979,14 @@ console.log("choose date")
       // this.appointementDateFormated = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + hours + ':' + new Date(date).getMinutes() + " " + hourDesc
       // this.appointementDate = new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() + ' ' + new Date(date).getHours() + ':' + new Date(date).getMinutes()
     this.mendata = hours + ':' + new Date(date).getMinutes() + " " + hourDesc
+
+    //ayaaaaaa
+    // var el = document.getElementById(i+x);
+    // el.textContent = this.mendata;
+
+    // console.log("el "+el)
+    // console.log("textcontent "+el.textContent)
+
     
     },
     err => {
@@ -971,6 +1004,7 @@ handleChangeDate(changeDate: string,item) {
   // this.changeDate = changeDate;
   this.changeDateTime._text = changeDate;
 }
+
 
 
 

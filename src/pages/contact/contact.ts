@@ -55,6 +55,7 @@ export class ContactPage {
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad OrderhistoryPage');
   }
  
@@ -679,7 +680,4 @@ if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 |
     this.navCtrl.push("ReportForLabsOrCentersPage", {recievedItem : item})
  
   }
-
-  
-
 }

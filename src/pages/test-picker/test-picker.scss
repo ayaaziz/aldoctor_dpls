@@ -1,0 +1,139 @@
+page-test-picker {
+    font-family: HarfWebCD;
+
+    .text-input-md {
+      margin: 5px 8px !important;
+      text-align: center;
+    }
+  
+    #btnLogin {
+      background-color: #996478;
+      width: 50%;
+    }
+  
+    ion-picker-cmp {
+      direction: ltr !important;
+    }
+  
+    .picker-md {
+      direction: ltr !important;
+    }
+
+    .select-md {
+        padding: 0px;
+        }
+
+        .select-ios {
+            padding: 0px;
+            }
+
+            .select-md .select-icon {
+                margin:  0px 5px;
+            }
+
+            .select-ios .select-icon {
+                margin:  0px 5px;
+            }
+
+            .datetime-md .datetime-placeholder {
+              color: white;
+            }
+            .datetime-ios .datetime-placeholder {
+              color: white;
+            }
+            .checkbox-icon {
+              width: 20px !important;
+              height: 20px !important;
+              }
+
+              .checkbox-inner {
+                height: 13px !important;
+                width: 7px !important;
+                right: 4px !important;
+            }
+
+            @mixin color($x) {
+              @if($x == 1) {
+                  color: aqua;
+              } @else if($x == 2) {
+                  color: red;
+              } @else if $x == 3 {
+                  color: purple;
+              } @else if $x == 4 {
+                  color: blue;
+              } @else if $x == 5 {
+                  color: #f0f;
+              }
+          }
+
+
+          // @function my-function() {
+          //   @return 4;
+          // }
+
+
+// $x:my-function();
+// @if(my-function() != 4) {
+
+  .picker-col::before {
+    margin-right: -1px;
+    margin-bottom: -21px;
+    display: block;
+    width: 71px;
+    background: #fff;
+    z-index: 1000;
+    position: absolute;
+    font-size: 18px;
+    padding: 0 10px 10px 10px;
+    color: #488aff;
+  }
+  
+  .picker-col.picker-opts-right {
+    justify-content: flex-start !important;
+    order: 2 !important;
+    
+  
+    &::before {
+        content: "الدقائق";
+    }
+  }
+  
+  .picker-opts-left {
+    justify-content: flex-start !important;
+    order: 1 !important;
+  
+    &::before {
+        content: "صباحا";
+    }
+  }
+  
+  .picker-md .picker-col:nth-of-type(3) {
+    order: 2 !important;
+    justify-content: flex-start;
+    
+    &::before {
+        content: "الساعات";
+        margin-right: 3px;
+    }
+  }
+  
+  .picker-md .picker-col {
+      flex-direction: column !important;
+      max-width: 70px !important;
+  }  
+  
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

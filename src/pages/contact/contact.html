@@ -54,7 +54,7 @@
   
     <ion-col col-4 style="background-color: #e8f1ed;height:35px;">    
       <ion-datetime [max]="minDate" style="height:35px;" displayFormat="MM/DD/YYYY"
-          [(ngModel)]="to" cancelText="{{cancelTxt}}" doneText="{{doneTxt}}" (ionChange)="dateToChanged($event)" ></ion-datetime>
+          [(ngModel)]="to" cancelText="{{cancelTxt}}" doneText="{{doneTxt}}" (ionChange)="dateToChanged($event)"></ion-datetime>
           
           <div *ngIf="langDirection != 'rtl'" style="text-align:right">
             <img src="assets/icon/arrow.png" style="margin-top:-25px;width:20px;height:20px;float: left">  
@@ -145,4 +145,6 @@
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-content>
+
+  
   
