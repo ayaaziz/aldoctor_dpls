@@ -98,7 +98,7 @@ export class WorkingDaysPage {
   mindate
 
   MyCustomColor = "22";
-
+  customPickerOptions:any;
 
   @ViewChild('changeTime') changeDateTime;
 
@@ -240,6 +240,25 @@ var offset = new Date().getTimezoneOffset();
     }
 
 
+    //ayaaaaaaaaaaaaaaaaa
+    this.customPickerOptions = {
+      buttons: [{
+        text: 'ساعة',
+        handler: () => {
+          return false;
+        }
+      }, {
+        text: 'دقيقة',
+        handler: () => {
+          return false;
+        }
+      },{
+        text: 'صباحاً/مساءًا',
+        handler: () => {
+          return false;
+        }
+      }]
+    }
 
   }
 

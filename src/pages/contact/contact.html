@@ -33,14 +33,22 @@
       <ion-label style="margin:0px;text-align:center;font-size: 11px;padding-top: 9px;">{{"From" | translate}}</ion-label>
     </ion-col>
     
+    <!-- ayaaaaaaaaaaa -->
     <ion-col col-4 style="background-color: #e8f1ed;height:35px;">
-      <ion-datetime [max]="minDate" displayFormat="MM/DD/YYYY" style="height:35px;background-color: #e8f1ed;"
-        [(ngModel)]="from" [cancelText]="this.translate.instant('canceltxt')" [doneText]="this.translate.instant('doneTxt')" (ionChange)="dateFromChanged($event)"></ion-datetime> 
+
+
+      <ion-item style="background-color: transparent;width: 102px;">
+        <!-- displayFormat="MM/DD/YYYY" -->
+        <!-- Reverse Format because i reversed the date cols  -->
+        <ion-datetime [max]="minDate" displayFormat="DD/MM/YYYY" style="background-color: #e8f1ed;"
+        [(ngModel)]="from" [cancelText]="this.translate.instant('canceltxt')" [pickerOptions]="customPickerOptions" [doneText]="this.translate.instant('doneTxt')" (ionChange)="dateFromChanged($event)"></ion-datetime> 
+      </ion-item>
+
         <div *ngIf="langDirection != 'rtl'" style="text-align:right">
-        <img src="assets/icon/arrow.png" style="margin-top:-25px;width:20px;height:20px;float: left;">  
+        <img src="assets/icon/arrow.png" style="margin-top:-34px;width:20px;height:20px;float: left;">  
       </div>
       <div *ngIf="langDirection == 'rtl'" > 
-        <img src="assets/icon/arrow.png" style="margin-top:-25px;width:20px;height:20px;float: left;">  
+        <img src="assets/icon/arrow.png" style="margin-top:-34px;width:20px;height:20px;float: left;">  
       </div>
       </ion-col>
     <!-- <ion-col style="background-color: #e8f1ed;height:36px;"  col-1>
@@ -51,16 +59,17 @@
         <!-- fixed class="customItem3"  -->
       <ion-label style="margin:0px;text-align:center;font-size: 11px;padding-top: 9px;">{{"To" | translate}}</ion-label>
     </ion-col>
-  
-    <ion-col col-4 style="background-color: #e8f1ed;height:35px;">    
-      <ion-datetime [max]="minDate" style="height:35px;" displayFormat="MM/DD/YYYY"
-          [(ngModel)]="to" cancelText="{{cancelTxt}}" doneText="{{doneTxt}}" (ionChange)="dateToChanged($event)"></ion-datetime>
-          
+    <!-- displayFormat="MM/DD/YYYY" -->
+    <ion-col col-4 style="background-color: #e8f1ed;height: 35px;">    
+      <ion-item style="background-color: transparent;width: 102px;"> 
+        <ion-datetime [max]="minDate" displayFormat="DD/MM/YYYY"
+        [(ngModel)]="to" cancelText="{{cancelTxt}}" [pickerOptions]="customPickerOptions" doneText="{{doneTxt}}" (ionChange)="dateToChanged($event)"></ion-datetime>
+      </ion-item>
           <div *ngIf="langDirection != 'rtl'" style="text-align:right">
-            <img src="assets/icon/arrow.png" style="margin-top:-25px;width:20px;height:20px;float: left">  
+            <img src="assets/icon/arrow.png" style="margin-top:-34px;width:20px;height:20px;float: left">  
           </div>
           <div *ngIf="langDirection == 'rtl'" >
-            <img src="assets/icon/arrow.png" style="margin-top:-25px;width:20px;height:20px;float: left">  
+            <img src="assets/icon/arrow.png" style="margin-top:-34px;width:20px;height:20px;float: left">  
           </div>
           <!-- <img src="assets/icon/arrow.png" style="margin-top:-55px;width:20px;height:20px;"> -->
     </ion-col>

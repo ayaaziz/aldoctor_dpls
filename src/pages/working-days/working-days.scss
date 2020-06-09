@@ -53,6 +53,16 @@ page-working-days {
                 right: 4px !important;
             }
 
+
+         ion-item div.input-wrapper {
+           justify-content: center;
+         }
+
+         .datetime-md,
+         .datetime-ios {
+           padding: 0;
+         }
+
          
 }
 

@@ -15,68 +15,78 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-// .picker-col::before {
-//     margin-right: -1px;
-//     margin-bottom: -21px;
-//     display: block;
-//     width: 71px;
-//     background: #fff;
-//     z-index: 1000;
-//     position: absolute;
-//     color: #f00;
-//     font-size: 18px;
-//     padding: 0 10px 10px 10px;
-//     color: #488aff;
-// }
 
-// .picker-col.picker-opts-right {
-//     justify-content: flex-start !important;
-//     order: 2 !important;
+//ayaaaaaaaaaaaaaaa
 
-//     &::before {
-//         content: "الشهر";
-//     }
-// }
+.picker-wrapper {
+    width: 361px !important;
+}
 
-// .picker-opts-left {
-//     justify-content: flex-start !important;
-//     order: 1 !important;
-
-//     &::before {
-//         content: "السنة";
-//     }
-// }
-
-// .picker-md .picker-col:nth-of-type(3) {
-//     order: 2 !important;
-//     justify-content: flex-start;
-    
-//     &::before {
-//         content: "اليوم";
-//         margin-right: 3px;
-//     }
-// }
-
-// .picker-md .picker-col {
-//     flex-direction: column !important;
-//     max-width: 70px !important;
-// }
-
-////////////////////////////
-
-.picker-opts-right {
-    justify-content: flex-start !important;
+.picker-col.picker-opts-right {
+    justify-content: flex-start;
     order: 3 !important;
+
+    .picker-opts {
+      max-width: 63px !important;
+    }
 }
 
 .picker-opts-left {
-    justify-content: flex-end !important;
+    justify-content: flex-end;
     order: 1 !important;
+
+    .picker-opts {
+      max-width: 63px !important;
+    }
 }
 
 .picker-md .picker-col:nth-of-type(3) {
     order: 2 !important;
+    justify-content: flex-start;
 }
+
+.picker-toolbar {
+  height: 126px !important;
+}
+
+div.picker-toolbar-button:first-of-type {
+
+  & button.picker-button {
+    position: absolute;
+    top: 41px;
+    z-index: 1000;
+    left: 88px;
+    // left: 90px;
+  }
+}
+
+div.picker-toolbar-button:nth-of-type(2) {
+
+  & button.picker-button {
+    position: absolute;
+    top: 41px;
+    z-index: 1000;
+    // left: 147px;
+    left: 150px;
+  }
+}
+
+div.picker-toolbar-button:nth-of-type(3) {
+
+  & button.picker-button {
+    position: absolute;
+    top: 41px;
+    z-index: 1000;
+    left: 226px;
+
+    .button-inner {
+      width: 15px;
+      white-space: normal;
+    }
+  }
+}
+//ayaaaaaaaaaaaaaaa
+
 
 
 .bar-button-default-ios{

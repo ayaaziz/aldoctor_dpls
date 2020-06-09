@@ -30,6 +30,11 @@ export class ContactPage {
   page=1;
   userTypeId;
 
+  //ayaaaaaa
+  customPickerOptions: any;
+
+
+
   orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
   "name":"","profile_pic":"","rate":"","patient_id":"",
 "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
@@ -52,6 +57,31 @@ export class ContactPage {
       
       //console.log("langdir:",this.langDirection);
       //this.translate.use(this.helper.currentLang);
+
+
+      //ayaaaaaaaaaaaaaaaaa
+      this.customPickerOptions = {
+        buttons: [{
+          text: 'يوم',
+          handler: () => {
+            return false;
+          }      
+        }, {
+          text: 'شهر',
+          handler: () => {
+            return false;
+          }
+        },{
+          text: 'سنة',
+          handler: () => {
+            return false;
+          }
+        }]
+      }
+  }
+
+  getYears() {
+    return [1992,1993,1994,1995,1996,1997,1998,1999,2000];
   }
 
   ionViewDidLoad() {

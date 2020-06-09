@@ -50,7 +50,9 @@
           <!-- value="{{todayTime}}" -->
           <!-- min="{{mindate}}" -->
           <!-- #changeTime  (ionChange)="handleChangeDate(item[1][0],item)" -->
-        <ion-datetime  style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[1][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+          <ion-item style="background-color: transparent;">
+            <ion-datetime [pickerOptions]="customPickerOptions" style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[1][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+          </ion-item>
       </div>
     
   </ion-col>
@@ -62,7 +64,9 @@
     <ion-col style="padding: 0px;">
       <div style="background-color: #075a07;width: 60%;height: 90%;    margin: auto auto;">
         <!-- (ngModelChange)="dateChanged(item[2][0])" -->
-        <ion-datetime style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[2][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+        <ion-item style="background-color: transparent;">
+          <ion-datetime [pickerOptions]="customPickerOptions" style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[2][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+        </ion-item>
       </div>
       </ion-col> 
   </ion-row>
@@ -76,7 +80,9 @@
             
             <!-- cd0724 -->
             <div style="background-color: #ab051d;width: 60%;height: 90%;    margin: auto auto;">
-              <ion-datetime style="font-size: 10px !important;color: white;" placeholder="إلى" displayFormat="hh:mm a" [(ngModel)]="item[1][1]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+              <ion-item style="background-color: transparent;">
+                <ion-datetime [pickerOptions]="customPickerOptions" style="font-size: 10px !important;color: white;" placeholder="إلى" displayFormat="hh:mm a" [(ngModel)]="item[1][1]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+              </ion-item>
           </div>
 
           </ion-col>
@@ -87,7 +93,9 @@
             
             <ion-col style="padding: 0px;">
               <div style="background-color: #ab051d;width: 60%;height: 90%;    margin: auto auto;">
-                <ion-datetime style="font-size: 10px !important;color: white;" placeholder="إلى" displayFormat="hh:mm a" [(ngModel)]="item[2][1]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+                <ion-item style="background-color: transparent;">
+                  <ion-datetime [pickerOptions]="customPickerOptions" style="font-size: 10px !important;color: white;" placeholder="إلى" displayFormat="hh:mm a" [(ngModel)]="item[2][1]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+                </ion-item>
             </div>
               </ion-col> 
           </ion-row>

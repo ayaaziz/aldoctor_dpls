@@ -73,6 +73,8 @@ export class NeworderPage {
   maxYear
   appointmentNotesModel = ""
 
+  customPickerOptions:any;
+  customPickerOptionsHours:any;
 
   myDate;
 // myTime="15:07"
@@ -126,6 +128,46 @@ console.log("myTime : ",this.myTime)
         this.busyStatus = busy
       }
     });
+
+
+        //ayaaaaaaaaaaaaaaaaa
+        this.customPickerOptions = {
+          buttons: [{
+            text: 'يوم',
+            handler: () => {
+              return false;
+            }      
+          }, {
+            text: 'شهر',
+            handler: () => {
+              return false;
+            }
+          },{
+            text: 'سنة',
+            handler: () => {
+              return false;
+            }
+          }]
+        }
+    
+        this.customPickerOptionsHours = {
+          buttons: [{
+            text: 'ساعة',
+            handler: () => {
+              return false;
+            }      
+          }, {
+            text: 'دقيقة',
+            handler: () => {
+              return false;
+            }
+          },{
+            text: 'صباحاً/مساءًا',
+            handler: () => {
+              return false;
+            }
+          }]
+        }
   }
   // 
   ionViewDidLoad() {

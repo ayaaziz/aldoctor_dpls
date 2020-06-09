@@ -96,6 +96,9 @@ export class NursingOrderPage {
   shareStatus  = false
 contactStatus = false
 
+customPickerOptions:any;
+customPickerOptionsHours:any;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
     , public helper: HelperProvider, public toastCtrl: ToastController, private datePicker: DatePicker, public plt: Platform, public device: Device,
@@ -168,6 +171,44 @@ contactStatus = false
 
     });
 
+     //ayaaaaaaaaaaaaaaaaa
+     this.customPickerOptions = {
+      buttons: [{
+        text: 'يوم',
+        handler: () => {
+          return false;
+        }      
+      }, {
+        text: 'شهر',
+        handler: () => {
+          return false;
+        }
+      },{
+        text: 'سنة',
+        handler: () => {
+          return false;
+        }
+      }]
+    }
+
+    this.customPickerOptionsHours = {
+      buttons: [{
+        text: 'ساعة',
+        handler: () => {
+          return false;
+        }      
+      }, {
+        text: 'دقيقة',
+        handler: () => {
+          return false;
+        }
+      },{
+        text: 'صباحاً/مساءًا',
+        handler: () => {
+          return false;
+        }
+      }]
+    }
  
     }
 

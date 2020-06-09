@@ -36,6 +36,8 @@ export class RetimePage {
   order_finished = 0
   maxYear
 
+  customPickerOptions:any;
+
   constructor(public toastCtrl: ToastController, public doctor_service: LoginServiceProvider, public navCtrl: NavController, public helper: HelperProvider,
     public translate: TranslateService , public storage: Storage , public navParams: NavParams) {
     this.lang_direction = this.helper.lang_direction;
@@ -50,6 +52,28 @@ export class RetimePage {
     this.yearTime = translate.instant("year")
     this.reOrderDate = translate.instant("reOrderDate")
     this.storage.set("openReview",0)
+
+    
+      //ayaaaaaaaaaaaaaaaaa
+      this.customPickerOptions = {
+      buttons: [{
+        text: 'يوم',
+        handler: () => {
+          return false;
+        }      
+      }, {
+        text: 'شهر',
+        handler: () => {
+          return false;
+        }
+      },{
+        text: 'سنة',
+        handler: () => {
+          return false;
+        }
+      }]
+    }
+
   }
 succ(data){
   

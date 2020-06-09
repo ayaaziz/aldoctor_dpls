@@ -30,9 +30,13 @@
     <ion-col col-4 >
         <ion-datetime style="background-color: #b2d2c3" displayFormat="MM" [placeholder]="monthTime" [(ngModel)]="month"></ion-datetime><ion-icon class="timeArrow" name="ios-arrow-down"></ion-icon>
       </ion-col> --> 
+      <!-- displayFormat="DD-MM-YYYY" -->
       <ion-col col-12 >
-          <ion-datetime [min]="minDate" [max]='maxYear' style="background-color: #b2d2c3;text-align: center; font-size: 20px; padding: 9px;" displayFormat="DD-MM-YYYY" [placeholder]="reOrderDate" [(ngModel)]="orderDate"
-          [cancelText]="this.translate.instant('canceltxt')" [doneText]="this.translate.instant('doneTxt')"></ion-datetime><ion-icon class="timeArrow" name="ios-arrow-down"></ion-icon>
+        <ion-item>
+          <ion-datetime [min]="minDate" [max]='maxYear' style="background-color: #b2d2c3;text-align: center; font-size: 20px; padding: 9px;width: 100%;" [pickerOptions]="customPickerOptions" displayFormat="DD-MM-YYYY" [placeholder]="reOrderDate" [(ngModel)]="orderDate"
+          [cancelText]="this.translate.instant('canceltxt')" [doneText]="this.translate.instant('doneTxt')"></ion-datetime>
+        </ion-item>
+        <ion-icon class="timeArrow" name="ios-arrow-down"></ion-icon>
         </ion-col>
   </ion-row>
 

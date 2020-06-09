@@ -92,7 +92,10 @@ export class CenterOrderPage {
   PT
   shareStatus  = false
 contactStatus = false
+totalPrice;
 
+customPickerOptions:any;
+customPickerOptionsHours:any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
     , public helper: HelperProvider, public toastCtrl: ToastController, private datePicker: DatePicker, public plt: Platform, public device: Device,
@@ -163,6 +166,45 @@ contactStatus = false
       }
 
     });
+
+       //ayaaaaaaaaaaaaaaaaa
+       this.customPickerOptions = {
+        buttons: [{
+          text: 'يوم',
+          handler: () => {
+            return false;
+          }      
+        }, {
+          text: 'شهر',
+          handler: () => {
+            return false;
+          }
+        },{
+          text: 'سنة',
+          handler: () => {
+            return false;
+          }
+        }]
+      }
+  
+      this.customPickerOptionsHours = {
+        buttons: [{
+          text: 'ساعة',
+          handler: () => {
+            return false;
+          }      
+        }, {
+          text: 'دقيقة',
+          handler: () => {
+            return false;
+          }
+        },{
+          text: 'صباحاً/مساءًا',
+          handler: () => {
+            return false;
+          }
+        }]
+      }
 
   }
   openAppointment() {
@@ -983,9 +1025,11 @@ this.opacityOfAllContent = 0.1;
       console.log("call api to send price")
       // this.LE , this.PT
 
+      this.totalPrice = this.LE +"."+this.PT;
+
       this.storage.get("user_login_token").then((val) => {
        
-      this.loginservice.updateCurrentOrder(this.currentOrderID, 8 ,this.helper.userType, 0,val.access_token, (data) => {
+      this.loginservice.updateCurrentOrder(this.currentOrderID, 8 ,this.helper.userType, this.totalPrice,val.access_token, (data) => {
 
 
 
