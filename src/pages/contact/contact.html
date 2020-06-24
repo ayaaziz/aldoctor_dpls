@@ -87,11 +87,11 @@
         #{{item.orderId}}
       </ion-col>
       
-      <ion-col  col-8 col-sm-8>
+      <ion-col  col-10 col-sm-10>
         <ion-item style="padding:0px" text-wrap>
 
           <h2 style="width:100%;margin-top:0px;">{{item.name}}  &#x200e;</h2>
-          <div>
+          <div style="margin-top: 15px;"> 
             <ion-icon name="pin" style="margin: 0 4px;color:#016a38"></ion-icon><span style="color:#9f9f9f;font-size: 13px;"> {{item.patient_address}} </span>
           </div>
           <div>
@@ -117,10 +117,18 @@
           {{item.created_at}}
         </div>
         </ion-item>
+
+        <div style="display: inline-block;position: absolute;left: 5px;top: 13px;">
+          <ion-icon [style.color]="item.color" name="radio-button-on"></ion-icon><span [ngStyle]="{'background-color': item.status == 0 ? '#016a38' : 'none'}" ><span [ngStyle]="{'color': item.status == 0 ? 'white' : 'black'}" style="padding: 2px;">{{item.desc}}</span></span> 
+        </div>
+
+        <button *ngIf="item.rated == 0 && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="padding: 4px 6px;float: left;margin-left: 5px;" (click)="rateagain(item)" >{{"rateOrder" | translate}}</button>
         
+         <!-- ayaaaa -->
+         <button *ngIf="(item.service_id == 3) && (userTypeId == 2 || userTypeId == 3) && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="padding: 4px 6px;float: left;margin-left: 5px;" (click)="sendReport(item)" >إرسال التقرير </button>
       </ion-col>
 
-      <ion-col col-2 col-sm-2 style="margin-top:10px;" >
+      <!-- <ion-col col-2 col-sm-2 style="margin-top:10px;" >
           <ion-row>
               <ion-col style="font-size: 11px;" >
                 <ion-icon [style.color]="item.color" name="radio-button-on"></ion-icon><span [ngStyle]="{'background-color': item.status == 0 ? '#016a38' : 'none'}" ><span [ngStyle]="{'color': item.status == 0 ? 'white' : 'black'}" style="padding: 2px;">{{item.desc}}</span></span> 
@@ -130,9 +138,7 @@
           <ion-col>
             <button *ngIf="item.rated == 0 && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="width:46px;padding: 2px 0;margin-top: 10px;" (click)="rateagain(item)" >{{"rateOrder" | translate}}</button>
            
-            <!-- <button *ngIf="item.service_id == 2 && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="width:46px;padding: 2px 0;margin-top: 10px;" (click)="sendReport(item)" >إرسال <br/> التقرير </button> -->
-
-            <!-- ayaaaa -->
+          
             <button *ngIf="(item.service_id == 3) && (userTypeId == 2 || userTypeId == 3) && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="width:46px;padding: 2px 0;margin-top: 10px;" (click)="sendReport(item)" >إرسال <br/> التقرير </button>
 
 
@@ -141,9 +147,9 @@
        
       
       
-      <!-- <button *ngIf="item.reorder == '1'" class="btn btn-primary " style="margin-top:5px;width:90px" (click)="reorder(item)">{{"reorder" | translate}}</button> -->
-      </ion-col>
+      </ion-col> -->
     </ion-row>
+      <!-- <button *ngIf="item.reorder == '1'" class="btn btn-primary " style="margin-top:5px;width:90px" (click)="reorder(item)">{{"reorder" | translate}}</button> -->
     
 </ion-card>
   

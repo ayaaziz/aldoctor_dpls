@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ActionSheetController, Platform, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ActionSheetController, Platform, AlertController, LoadingController} from 'ionic-angular';
 import { HelperProvider } from '../../providers/helper/helper';
 import { File } from '@ionic-native/file';
 import { IOSFilePicker } from '@ionic-native/file-picker';
@@ -41,7 +41,7 @@ export class ReportForLabsOrCentersPage {
   photos = [];
   photosToShow = [];
   filesToShow = [];
-
+  loading;
 
 
 
@@ -54,7 +54,8 @@ export class ReportForLabsOrCentersPage {
     private service:LoginServiceProvider,
     private storage:Storage,
     private translate:TranslateService,
-    private alertCtrl:AlertController) {
+    private alertCtrl:AlertController,
+    private loadingCtrl: LoadingController) {
 
     this.item = this.navParams.get('recievedItem')
     console.log("item from report for labs and centeers :", this.item)
@@ -476,7 +477,7 @@ showcv() {
   sendReport(){
  console.log("this.reportData: ",this.reportData)
 //  alert("this.reportData.length : " + this.reportData)
-if (this.photosToShow.length <= 0){
+if (this.photosToShow.length <= 0 && this.photos.length <= 0 && this.files.length <= 0 && this.filesToShow.length <= 0){
 
   this.helper.presentToast("الرجاء إضافة مرفقات التقرير ")
 
@@ -487,17 +488,20 @@ if (this.photosToShow.length <= 0){
   // ayaaaaaa
   if (navigator.onLine) {
     this.storage.get("user_login_token").then((val) => {
-     
+
+      this.presentLoadingCustom();
       this.service.uploadReport(this.item.orderId,val.access_token,this.reportData,this.filesExt.join(',')).subscribe(
         resp => {
+          this.loading.dismiss();
           if(JSON.parse(JSON.stringify(resp)).success ){
             this.helper.presentToast(this.translate.instant("reportSent"));
             this.navCtrl.pop();
           } else {
-            this.helper.presentToast(this.translate.instant("serverError"));
+            this.helper.presentToast("الرجاء إضافة مرفقات");
           }
         },
         err => {
+          this.loading.dismiss();
           this.helper.presentToast(this.translate.instant("serverError"));
         }
       );
@@ -507,6 +511,20 @@ if (this.photosToShow.length <= 0){
   }
 }
  
+  }
+
+
+  presentLoadingCustom() {
+    this.loading = this.loadingCtrl.create({
+      content: "",
+      duration: 5000
+    });
+
+    this.loading.onDidDismiss(() => {
+      console.log('Dismissed loading');
+    });
+
+    this.loading.present();
   }
 
 

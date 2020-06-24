@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="10025" id="net.ITRoots.AlDoctor" version="2.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="10026" id="net.ITRoots.AlDoctor" version="2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>DPLS</name>
     <description>Alodoctor DPLS app.</description>
     <author email="info@itroots.net" href="http://ionicframework.com/">ITRoots Team</author>

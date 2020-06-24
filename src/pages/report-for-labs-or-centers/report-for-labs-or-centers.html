@@ -19,7 +19,7 @@
 
 
     <!-- files from db -->
-    <ion-row>
+    <ion-row style="padding: 0 20px;">
       <ion-col col-4 *ngFor="let photo of photos; let indx = index">
         <ion-col col-12 style="justify-content: center;display: flex;border: 1px solid #016a38;">
           <ion-icon name="trash" class="deleteIcon" (click)="removeFile(1,photo.id,indx)" ></ion-icon>
@@ -46,7 +46,7 @@
     </div>
   </ion-row> -->
 
-  <ion-row>
+  <ion-row style="padding: 0 9px;">
     <!-- files from db -->
     <ion-col col-12 *ngFor="let file of files; let indx = index" style="justify-content: center;display: flex;">
       <ion-icon  name="trash" item-end style="font-size: 20px;color:#016a38; margin: 0 10px;" (click)="removeFile(2,file.id,indx)" ></ion-icon>
