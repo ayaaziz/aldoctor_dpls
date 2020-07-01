@@ -18,19 +18,24 @@
   </ion-item>
 
 
-    <!-- files from db -->
+    <!-- photos from db -->
     <ion-row style="padding: 0 20px;">
       <ion-col col-4 *ngFor="let photo of photos; let indx = index">
         <ion-col col-12 style="justify-content: center;display: flex;border: 1px solid #016a38;">
-          <ion-icon name="trash" class="deleteIcon" (click)="removeFile(1,photo.id,indx)" ></ion-icon>
+          <span class="deleteIconWrapper">
+            <ion-icon name="close" class="deleteIcon" (click)="removeFile(1,photo.id,indx)" ></ion-icon>
+          </span>
+          
           <img [src]="photo.path" style="width:90px;height:80px" (click)="fullScreen(indx)" />
         </ion-col>
       </ion-col>
 
-      <!-- when choose files from picker -->
+      <!-- when choose photos from picker -->
       <ion-col col-4 *ngFor="let photo of photosToShow; let id = index">
         <ion-col col-12 style="justify-content: center;display: flex;border: 1px solid #016a38;">
-          <ion-icon name="trash" class="deleteIcon" (click)="deleteFile(1,id)"></ion-icon>
+          <span class="deleteIconWrapper">
+            <ion-icon name="close" class="deleteIcon" (click)="deleteFile(1,id)"></ion-icon>
+          </span>
           <img [src]="photo" style="width:90px;height:80px" (click)="fullScreen(indx)"/>
         </ion-col>
       </ion-col>
@@ -49,15 +54,19 @@
   <ion-row style="padding: 0 9px;">
     <!-- files from db -->
     <ion-col col-12 *ngFor="let file of files; let indx = index" style="justify-content: center;display: flex;">
-      <ion-icon  name="trash" item-end style="font-size: 20px;color:#016a38; margin: 0 10px;" (click)="removeFile(2,file.id,indx)" ></ion-icon>
-      <ion-label style="color:gray;margin: 0;" item-start>{{file.fileName}} </ion-label>
+      <span class="deleteIconWrapperFile">
+        <ion-icon  name="close" style="color:#016a38;margin-right: 5px;font-size: 17px;margin-top: 1px;" (click)="removeFile(2,file.id,indx)" ></ion-icon>
+      </span>
+      <ion-label style="color:gray;margin-right: 7px;margin-top: 0;">{{file.fileName}} </ion-label>
       <!-- <a [href]="file.path" style="color:gray;margin: 0;" item-start>{{file.fileName}} </a> -->
     </ion-col>
 
     <!-- when choose files from picker -->
     <ion-col col-12 *ngFor="let file of filesToShow; let id = index">
-      <ion-icon  name="trash" item-end style="font-size: 20px;color:#016a38; margin: 0 10px" (click)="deleteFile(2,id)" ></ion-icon> 
-      <ion-label style="color:gray;margin:0;display: inline-flex;" item-start >{{file.fileName}} </ion-label>
+      <span class="deleteIconWrapperFile">
+        <ion-icon  name="close" style="color:#016a38;margin-right: 5px;font-size: 17px;margin-top: 1px;" (click)="deleteFile(2,id)" ></ion-icon> 
+      </span>
+      <ion-label style="color:gray;margin:0;display: inline-flex;margin-right: 7px;margin-top: 0;">{{file.fileName}} </ion-label>
       <!-- <a [href]="file.path" style="color:gray;margin: 0;" item-start>{{file.fileName}} </a> -->
     </ion-col>
   </ion-row>

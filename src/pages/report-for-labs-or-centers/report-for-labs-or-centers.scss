@@ -50,12 +50,34 @@ page-report-for-labs-or-centers {
     }
 
     .deleteIcon {
-      position: absolute !important;
       color: #016a38 !important;
+      position: absolute !important;
+      top: 1px;
       right: 4px;
     }
+
+    .deleteIconWrapper {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid #016a38;
+      padding: 5px;
+      background-color: #fff;
+      position: absolute !important;
+      right: -9px;
+      top: -10px;
+    }
+
+    .deleteIconWrapperFile {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid #016a38;
+      background-color: #fff;
+    }
+
     .deleteIcon:before {
-      font-size: 25px !important;
+      font-size: 17px !important;
     }
 
     

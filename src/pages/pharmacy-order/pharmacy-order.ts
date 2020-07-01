@@ -692,7 +692,36 @@ this.opacityOfAllContent = 0.1;
   }
   sendPrice(){
 
-    if(this.LE){
+    if(!this.LE || !this.PT) {
+      this.helper.presentToast("الرجاء إدخال سعر التحاليل");
+      return;
+    } 
+
+    let poundsArr = this.LE.split(".");
+    let pTArr = this.PT.split(".");
+
+    console.log("arrrrr: "+poundsArr);
+    console.log("arrrrr2: "+pTArr);
+
+    if(poundsArr.length > 1 || pTArr.length > 1) {
+      this.helper.presentToast("الرجاء إدخال أرقام فقط");
+      return;
+    }
+
+    if(this.LE.length > 6) {
+      this.helper.presentToast("الرجاء إدخال في خانة الجنيه عدد أرقام لا يتجاوز ٦ أرقام");
+      return;
+    }
+
+    if(this.PT.length > 2) {
+      this.helper.presentToast("الرجاء إدخال في خانة القروش عدد أرقام لا يتجاوز رقمين");
+      return;
+    }
+
+    if(this.LE == "0" || this.LE == "00" || this.LE == "000" || this.LE == "0000" || this.LE == "00000" || this.LE == "000000") {
+      this.helper.presentToast("الرجاء إدخال سعر أكبر من صفر");
+      return;
+    }
 
       // this.moveToPatientStatus = true
       // this.cancelDetectionStatus = true
@@ -720,17 +749,6 @@ this.opacityOfAllContent = 0.1;
 
       },(err)=>{});
       })
-
-
-
-
-    }else{
-      console.log("le empty")
-  
-      this.helper.presentToast("الرجاء إدخال سعر الدواء")
-  
-    }
-
 
 
   }

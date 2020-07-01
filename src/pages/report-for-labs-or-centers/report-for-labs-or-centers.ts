@@ -150,8 +150,8 @@ export class ReportForLabsOrCentersPage {
       saveToPhotoAlbum: false,
       correctOrientation: true,
       allowEdit:true,
-      targetWidth:200,
-      targetHeight:200
+      // targetWidth:200,
+      // targetHeight:200
     };
     this.camera.getPicture(options).then((imageData: string) => {
     
