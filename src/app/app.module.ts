@@ -30,6 +30,10 @@ import { CenterOrderPage } from '../pages/center-order/center-order';
 import { NeworderPage } from '../pages/neworder/neworder';
 import { PharmacyOrderPage } from '../pages/pharmacy-order/pharmacy-order';
 // import { IonicTimepickerModule } from '@logisticinfotech/ionic-timepicker';
+import { FileOpener } from '@ionic-native/file-opener';
+
+import { File } from '@ionic-native/file';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 //import { HttpModule, Http } from '@angular/http';
 //import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate/ng2-translate';
@@ -97,7 +101,10 @@ export function createTranslateLoader(http: HttpClient) {
     LocationAccuracy,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginServiceProvider,
-    HelperProvider
+    HelperProvider,
+    FileOpener,
+    FileTransfer,
+    File
   ]
 })
 export class AppModule {}

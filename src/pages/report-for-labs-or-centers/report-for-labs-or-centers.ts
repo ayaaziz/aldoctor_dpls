@@ -11,6 +11,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { LoginServiceProvider } from '../../providers/login-service/login-service';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
+import { FileOpener } from '@ionic-native/file-opener';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 
 
@@ -55,7 +57,9 @@ export class ReportForLabsOrCentersPage {
     private storage:Storage,
     private translate:TranslateService,
     private alertCtrl:AlertController,
-    private loadingCtrl: LoadingController) {
+    private loadingCtrl: LoadingController,
+    private fileOpener:FileOpener,
+    private transfer:FileTransfer) {
 
     this.item = this.navParams.get('recievedItem')
     console.log("item from report for labs and centeers :", this.item)
@@ -528,4 +532,49 @@ if (this.photosToShow.length <= 0 && this.photos.length <= 0 && this.files.lengt
   }
 
 
+  openFile(file,x) {
+
+    if(x == 1) {
+
+       ///////
+    console.log("pdf_file "+file.path);
+
+    let path = null;
+
+    if(this.platform.is('ios')) {
+      path = this.file.documentsDirectory;
+    } else {
+      // path = this.file.dataDirectory;
+      path = this.file.externalApplicationStorageDirectory
+    }
+
+    console.log("path***** "+path);
+
+    const fileTransfer = this.transfer.create();
+
+    // fileTransfer.download('https://motivationletter.net/wp-content/uploads/2018/09/Motivation-Letter-For-Master-Degree-Sample-PDF.pdf',path + 'CarFeatures.pdf').then(entry => {
+    fileTransfer.download(file.path?file.path:"",path + file.fileName).then(entry => {
+      
+      let url = entry.toURL();
+
+      console.log("url***** "+url);
+
+
+      console.log(url);
+      // this.document.viewDocument(url, 'application/pdf',{});
+      this.fileOpener.open(url, 'application/pdf');
+    })
+
+    } else if(x == 2) {
+      let fileExt = file.path.split('.').pop();
+      console.log("urllllll: "+file.path);
+      console.log("fileExt: "+fileExt);
+  
+      this.fileOpener.open(file.path, 'application/'+fileExt)
+      .then((data) => console.log('File is opened: '+data))
+      .catch(e => console.log('Error opening file', e));
+    }
+  
+  }
+  
 }
