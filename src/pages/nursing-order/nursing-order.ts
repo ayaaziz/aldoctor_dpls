@@ -9,6 +9,7 @@ import { TabsPage } from '../tabs/tabs';
 import { DatePicker } from '@ionic-native/date-picker';
 import { AlertController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
+import { ContactPage } from '../contact/contact';
 
 
 /**
@@ -960,7 +961,10 @@ customPickerOptionsHours:any;
           text: 'رجوع',
           handler: () => {
             console.log('Cancel clicked');
-            this.navCtrl.pop()
+
+            //ayaaaaaaa
+            // this.navCtrl.pop();
+            this.navCtrl.setRoot(ContactPage);
           }
         },
         {

@@ -9,6 +9,7 @@ import { TabsPage } from '../tabs/tabs';
 import { DatePicker } from '@ionic-native/date-picker';
 import { AlertController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
+import { ContactPage } from '../contact/contact';
 
 /**
  * Generated class for the CenterOrderPage page.
@@ -954,7 +955,10 @@ this.opacityOfAllContent = 0.1;
           text: 'رجوع',
           handler: () => {
             console.log('Cancel clicked');
-            this.navCtrl.pop()
+
+            //ayaaaaaaaa
+            // this.navCtrl.pop();
+            this.navCtrl.setRoot(ContactPage);
           }
         },
         {

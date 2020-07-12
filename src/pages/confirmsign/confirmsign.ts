@@ -28,8 +28,17 @@ export class ConfirmsignPage {
     this.lang_direction = this.helper.lang_direction;
     this.type = navParams.get('type')
       this.service_id = navParams.get('service_id')
+
+
+      //ayaaaaa
+      this.helper.userAvailable = 0;
   }
   goToLogin(){
+    
+    //ayaaaaa
+    this.helper.userAvailable = 1;
+
+
     this.navCtrl.setRoot(LoginPage)
   }
 

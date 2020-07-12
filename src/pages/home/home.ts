@@ -87,7 +87,11 @@ export class HomePage {
         this.helper.updateStatus(0)
       }
     });
+
     events.subscribe('clearTimout', () => {
+
+    console.log("home clearTimout");
+
       this.storage.remove('recievedNotificat')
       if (this.interval) {
         clearInterval(this.interval)
@@ -107,6 +111,7 @@ export class HomePage {
     document.addEventListener('resume', () => {
       this.helper.appInBackground = 0;
     });
+
     this.trackDoctor()
   }
   // unBusyUser(){
@@ -165,8 +170,13 @@ export class HomePage {
       this.helper.presentToast(this.translate.instant("serverError"))
     }
   }
+  
   trackDoctor() {
+
     if (this.helper.userAvailable == 1) {
+
+    console.log("this.helper.userAvailable: "+this.helper.userAvailable);
+
       this.storage.get("user_login_token").then((val) => {
         if (val) {
           console.log("track doctor")
@@ -180,7 +190,10 @@ export class HomePage {
               if (resp.success == true) {
                 this.events.publish('lengthdata', resp.count)
                 if (resp.user_status != "1") {
-                  this.helper.presentToast("يجب عليك تسجيل الدخول لأستخدام التطبيق")
+
+                  console.log("inside trackdoctor 1");
+
+                  this.helper.presentToast("يجب عليك تسجيل الدخول لاستخدام التطبيق")
                   this.events.publish('user:userLogedout')
                 }
               }
@@ -203,24 +216,32 @@ export class HomePage {
       })
       this.trackInterval = setInterval(() => {
         //if (this.appInBackground == 1) {
-        this.storage.get("user_login_token").then((val) => {
-          if (val) {
-            this.loginservice.getCountOfNotifications(val.access_token,
-              resp => {
-                if (resp.success == true) {
-                  this.events.publish('lengthdata', resp.count)
-                  if (resp.user_status != "1") {
-                    this.helper.presentToast("يجب عليك تسجيل الدخول لأستخدام التطبيق")
-                    this.events.publish('user:userLogedout')
+
+        console.log("this.helper.userAvailable: "+this.helper.userAvailable);
+        
+        if (this.helper.userAvailable == 1) { //ayaaa// check ei user available each time
+          console.log("inside here!!!");
+          this.storage.get("user_login_token").then((val) => {
+            if (val) {
+              this.loginservice.getCountOfNotifications(val.access_token,
+                resp => {
+                  if (resp.success == true) {
+                    this.events.publish('lengthdata', resp.count)
+                    if (resp.user_status != "1") {
+
+                    console.log("inside trackdoctor 2");
+
+                      this.helper.presentToast("يجب عليك تسجيل الدخول لاستخدام التطبيق")
+                      this.events.publish('user:userLogedout')
+                    }
                   }
+                }, err => {
                 }
-              }, err => {
-              }
-            );
-          }
-        })
-        //}
-      }, 20000)
+              );
+            }
+          })
+        }
+      }, 20000);
     }
   }
 

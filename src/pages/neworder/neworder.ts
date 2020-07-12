@@ -8,6 +8,7 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
 import { TabsPage } from '../tabs/tabs';
 import { AlertController } from 'ionic-angular';
 import { DatePicker } from '@ionic-native/date-picker';
+import { ContactPage } from '../contact/contact';
 
 /**
  * Generated class for the NeworderPage page.
@@ -779,7 +780,10 @@ console.log("myTime : ",this.myTime)
           text: 'رجوع',
           handler: () => {
             console.log('Cancel clicked');
-            this.navCtrl.pop()
+
+            //ayaaaaaa
+            // this.navCtrl.pop();
+            this.navCtrl.setRoot(ContactPage);
           }
         },
         {

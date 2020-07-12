@@ -77,6 +77,16 @@ export class SignupPage {
   user_certficits = []
   user_img = []
   termsError = false
+  customPickerOptions:any;
+  customPickerOptionsOnlyYear:any;
+
+  disableCities = true;
+  governorates = [];
+  governorate;
+  cities = [];
+  city;
+
+
   constructor(public toastCtrl: ToastController, private camera: Camera, public helper: HelperProvider,
     public actionSheetCtrl: ActionSheetController, public loginservice: LoginServiceProvider,
     public translate: TranslateService, public formBuilder: FormBuilder, private file: File,
@@ -98,7 +108,9 @@ export class SignupPage {
       confirmpassword: ['', Validators.compose([matchOtherValidator('password')])],
       birthdate: ['', Validators.required],
       gender: ['', Validators.required],
-      Syndicate: ['', Validators.required]
+      Syndicate: ['', Validators.required],
+      governorate: ['', Validators.required],
+      city: ['', Validators.required]
     });
     this.registerFormTwo = formBuilder.group({
 
@@ -109,6 +121,47 @@ export class SignupPage {
       aboutdr: ['', Validators.required],
       drservices: ['', Validators.required]
     });
+
+
+    //ayaaaaaaaaa
+      //ayaaaaaaaaaaaaaaaaa
+      this.customPickerOptions = {
+        buttons: [{
+          text: 'يوم',
+          handler: () => {
+            return false;
+          }
+        }, {
+          text: 'شهر',
+          handler: () => {
+            return false;
+          }
+        },{
+          text: 'سنة',
+          handler: () => {
+            return false;
+          }
+        }]
+      }
+
+      this.customPickerOptionsOnlyYear = {
+        buttons: [{
+          text: '',
+          handler: () => {
+            return false;
+          }
+        }, {
+          text: '',
+          handler: () => {
+            return false;
+          }
+        },{
+          text: '',
+          handler: () => {
+            return false;
+          }
+        }]
+      }
 
   }
   openTermsOfUse() {
@@ -228,7 +281,31 @@ export class SignupPage {
     this.cancelTxt = this.translate.instant("canceltxt");
     this.doneTxt = this.translate.instant("doneTxt");
     this.getSpecializationsData()
+
+
+
+    //ayaaaaaaaaaaaaaaaaaa
+    this.loginservice.getGovernerates(this.helper.currentLang, data => {
+      this.governorates = data
+    }, data => { this.helper.presentToast(this.translate.instant('serverError')) })
+
+    ///////////////////////
   }
+
+
+  //ayaaaaaaaaa
+  governChanged() {
+    if (this.governorate) {
+      this.loginservice.getCities(this.governorate, this.helper.currentLang, data => {
+        this.cities = data
+        this.disableCities = false;
+      }, data => { this.helper.presentToast(this.translate.instant('serverError')) }
+      )
+    }
+
+  }
+
+
   //user select years 
   yearsChanged() {
     if (this.gradyear != undefined) {
@@ -368,7 +445,7 @@ export class SignupPage {
     //localStorage.setItem('adftrmee', data.access_token)
     //this.mainService.categoriesService( this.helper.DeviceId, (data) => this.categoriesSuccessCallback(data), (data) => this.categoriesFailureCallback(data));
     if (navigator.onLine) {
-      this.loginservice.userRegister(this.firstname, this.secondname, this.surname, this.Nickname, "2" + this.phone, this.Syndicate, this.birthdate, this.College, this.gradyear, this.aboutdr, this.aboutdr, this.certificateData.toString(), this.doctorImg, this.DrServices, this.email, this.passwrodTxt, this.gender, this.Specialization, this.address, 1, this.Degree, data.access_token, this.certifications_ext.toString(), this.profile_pic_ext.toString(), (data) => this.successCallback(data), (data) => this.failureCallback(data))
+      this.loginservice.userRegister(this.firstname, this.secondname, this.surname, this.Nickname, "2" + this.phone, this.Syndicate, this.birthdate, this.College, this.gradyear, this.aboutdr, this.aboutdr, this.certificateData.toString(), this.doctorImg, this.DrServices, this.email, this.passwrodTxt, this.gender, this.Specialization, this.address, 1, this.Degree, data.access_token, this.certifications_ext.toString(), this.profile_pic_ext.toString(),this.governorate,this.city,(data) => this.successCallback(data), (data) => this.failureCallback(data))
     }
     else {
       this.presentToast(this.translate.instant("serverError"))

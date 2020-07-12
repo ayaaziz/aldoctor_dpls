@@ -42,6 +42,7 @@ export class FinancialPage {
   forfiet_deserved
   coupon
   subscribe_date_str
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public service: LoginServiceProvider, public storage: Storage,
     public helper: HelperProvider, public translate: TranslateService) {

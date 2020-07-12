@@ -49,14 +49,17 @@
     </table>
    
     </ion-col>
-    <span *ngIf="item.user">
-    <ion-col col-2 *ngIf="(item.orderstatus == 0 || item.orderstatus == 1 || item.orderstatus == 2 || item.orderstatus == 7 || item.orderstatus == 8 || item.orderstatus == 13 || item.orderstatus == 12) && item.ordercurrentstatus != 4 && item.orderstatus != 20">
-        <button class="btn btn-primary " style="padding: 4px 6px;margin-top: 10px;float:left;margin-bottom: 2px;" (click)="openOrder(item)" >{{"follow" | translate}}</button>
+
+    <!-- ayaaaaaaaaaa -->
+  <ng-container *ngIf="item.user">
+    <ion-col style="display: flex;justify-content: flex-end;" *ngIf="(item.orderstatus == 0 || item.orderstatus == 1 || item.orderstatus == 2 || item.orderstatus == 7 || item.orderstatus == 8 || item.orderstatus == 13 || item.orderstatus == 12) && item.ordercurrentstatus != 4 && item.orderstatus != 20">
+        <!-- <button class="btn btn-primary " style="padding: 4px 6px;margin-top: 10px;float:left;margin-bottom: 2px;" (click)="openOrder(item)" >{{"follow" | translate}}</button> -->
+        <button class="btn btn-primary" (click)="openOrder(item)" >{{"follow" | translate}}</button>
     </ion-col>
-    <ion-col *ngIf="(item.orderstatus == 3 || item.ordercurrentstatus == 3) && item.orderstatus != 0">
-      <button class="btn btn-danger " style="padding: 4px 6px;margin-top: 10px;color:white;float:left;margin-bottom: 2px;" >{{"missed" | translate}}</button>
-  </ion-col>
-  </span>
+    <ion-col style="display: flex;justify-content: flex-end;" *ngIf="(item.orderstatus == 3 || item.ordercurrentstatus == 3) && item.orderstatus != 0">
+      <button class="btn btn-danger " style="color:#fff;" >{{"missed" | translate}}</button>
+    </ion-col>
+  </ng-container>
   </ion-row>
   </ion-card-content>
   </ion-card>

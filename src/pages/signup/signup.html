@@ -8,6 +8,7 @@
     </ion-navbar>
   
   </ion-header>
+
   
 <ion-content style="background-color:white" padding class="{{langDirection}}">
     <div class="text-center">
@@ -104,6 +105,37 @@
             <p> {{"enterPhone" | translate}} </p>
         </ion-item>
 
+        <!-- ayaaaaaaaaaaaa -->
+        <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.governorate.valid && submitAttempt">
+            <ion-label>
+              <img src="assets/icon/city.png" style="margin: 0 2px;" height="25" width="25">
+            </ion-label>
+            <ion-select [class.invalid]="!registerFormOne.controls.governorate.valid && submitAttempt" [placeholder]="this.translate.instant('Governorate')"
+              formControlName="governorate" interface="popover" [(ngModel)]="governorate" (ngModelChange)="governChanged()" >
+              <ion-option value="{{item.id}}" *ngFor="let item of governorates">{{item.value}}</ion-option>
+      
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="!registerFormOne.controls.governorate.valid && submitAttempt" no-lines>
+            <p> {{"enterGovernorate" | translate}} </p>
+          </ion-item>
+      
+      
+      
+          <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.city.valid && submitAttempt">
+            <ion-label>
+              <img src="assets/icon/city.png" style="margin: 0 2px;" height="25" width="25">
+            </ion-label>
+            <ion-select [disabled]="disableCities" [class.invalid]="!registerFormOne.controls.city.valid && submitAttempt" formControlName="city" interface="popover"
+              [(ngModel)]="city" [placeholder]="this.translate.instant('City')">
+              <ion-option value="{{item.id}}" *ngFor="let item of cities"><span *ngIf="langDirection == 'rtl'">{{item.translation.value}}</span><span *ngIf="langDirection == 'ltr'">{{item.value}}</span></ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="!registerFormOne.controls.city.valid && submitAttempt" no-lines>
+            <p> {{"selectCity" | translate}} </p>
+          </ion-item>
+        <!-- ////////////////////// -->
+
         <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.address.valid && submitAttempt">
             <ion-label>
                 <img src="assets/icon/mail.png" style="margin: 0 2px;" height="25" width="25">
@@ -147,7 +179,8 @@
             <ion-label>
                 <img src="assets/icon/calender.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
 
-            <ion-datetime [class.invalid]="!registerFormOne.controls.birthdate.valid && submitAttempt" [placeholder]="this.translate.instant('Dateofbirth')" formControlName="birthdate" displayFormat="MM/DD/YYYY"
+            <!-- displayFormat="MM/DD/YYYY" -->
+            <ion-datetime [pickerOptions]="customPickerOptions" [class.invalid]="!registerFormOne.controls.birthdate.valid && submitAttempt" [placeholder]="this.translate.instant('Dateofbirth')" formControlName="birthdate" displayFormat="DD/MM/YYYY"
                 [(ngModel)]="birthdate" cancelText="{{cancelTxt}}" doneText="{{doneTxt}}"></ion-datetime>
         </ion-item>
         <ion-item *ngIf="!registerFormOne.controls.birthdate.valid && submitAttempt" no-lines>
@@ -211,7 +244,7 @@
       <ion-option  *ngFor="let item of gradyears" [value] ="item.id">{{item.value}}</ion-option>
       
       </ion-select> -->
-            <ion-datetime [class.invalid]="!registerFormTwo.controls.gradyear.valid && registerAttempt" [placeholder]="this.translate.instant('gradyear')" formControlName="gradyear" displayFormat="YYYY"
+            <ion-datetime [pickerOptions]="customPickerOptionsOnlyYear" [class.invalid]="!registerFormTwo.controls.gradyear.valid && registerAttempt" [placeholder]="this.translate.instant('gradyear')" formControlName="gradyear" displayFormat="YYYY"
                 [(ngModel)]="gradyear" cancelText="{{cancelTxt}}" doneText="{{doneTxt}}" (ngModelChange)="yearsChanged()"></ion-datetime>
 
         </ion-item>

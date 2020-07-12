@@ -132,6 +132,7 @@ export class LoginPage {
     data = JSON.parse(data)
     this.storage.set("user_avaial", data.availability)
     
+    //notActivated in admin
     if(data.status == "0"){
       if(data.type == "doctor"){
         let services = data.doctor.speciality_services

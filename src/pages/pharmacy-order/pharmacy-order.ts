@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { AlertController } from 'ionic-angular';
 import { isEmpty } from 'rxjs/operators';
+import { ContactPage } from '../contact/contact';
 
 /**
  * Generated class for the PharmacyOrderPage page.
@@ -637,7 +638,10 @@ this.opacityOfAllContent = 0.1;
           text: 'رجوع',
           handler: () => {
             console.log('Cancel clicked');
-            this.navCtrl.pop()
+
+            //ayaaaaaa
+            // this.navCtrl.pop();
+            this.navCtrl.setRoot(ContactPage);
           }
         },
         {

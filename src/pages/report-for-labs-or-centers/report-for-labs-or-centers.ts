@@ -43,6 +43,11 @@ export class ReportForLabsOrCentersPage {
   photos = [];
   photosToShow = [];
   filesToShow = [];
+  photosContainer = [];
+  filesContainer = [];
+  photosContainerExt = [];
+  filesContainerExt = [];
+
   loading;
 
 
@@ -169,8 +174,10 @@ export class ReportForLabsOrCentersPage {
         this.cv_data = imgdata;
       
    
-        this.reportData.push(this.cv_data);
-        this.filesExt.push(this.cv_ext);
+        // this.reportData.push(this.cv_data);
+        this.photosContainer.push(this.cv_data);
+        // this.filesExt.push(this.cv_ext);
+        this.photosContainerExt.push(this.cv_ext);
 
     }, (err) => {
       // Handle error
@@ -241,8 +248,10 @@ export class ReportForLabsOrCentersPage {
 
 
               //ayaaa
-              this.reportData.push(this.cv_data);
-              this.filesExt.push(this.cv_ext);
+              // this.reportData.push(this.cv_data);
+              this.photosContainer.push(this.cv_data);
+              // this.filesExt.push(this.cv_ext);
+              this.photosContainerExt.push(this.cv_ext);
               this.photosToShow.push(this.pathforview);
 
 
@@ -260,8 +269,10 @@ export class ReportForLabsOrCentersPage {
               // this.reportData.push({imgOrFile:2,data:this.cv_data})
 
               //ayaaaaa
-              this.reportData.push(this.cv_data);
-              this.filesExt.push(this.cv_ext);
+              // this.reportData.push(this.cv_data);
+              this.filesContainer.push(this.cv_data);
+              // this.filesExt.push(this.cv_ext);
+              this.filesContainerExt.push(this.cv_ext);
 
             }
 
@@ -334,8 +345,10 @@ export class ReportForLabsOrCentersPage {
                               // this.reportData.push({imgOrFile:1,data:this.cv_data})
           
                               //ayaaaa
-                              this.reportData.push(this.cv_data);
-                              this.filesExt.push(this.cv_ext);
+                              // this.reportData.push(this.cv_data);
+                              this.photosContainer.push(this.cv_data);
+                              // this.filesExt.push(this.cv_ext);
+                              this.photosContainerExt.push(this.cv_ext);
                               this.photosToShow.push(this.pathforview);
           
           
@@ -348,8 +361,10 @@ export class ReportForLabsOrCentersPage {
                               this.filesToShow.push({fileName:this.certtxtname,path:this.pathforview});                    
           
                                //ayaaaa
-                               this.reportData.push(this.cv_data);
-                               this.filesExt.push(this.cv_ext);
+                              //  this.reportData.push(this.cv_data);
+                              this.filesContainer.push(this.cv_data);
+                              // this.filesExt.push(this.cv_ext);
+                              this.filesContainerExt.push(this.cv_ext);
           
                             }
                           }
@@ -420,8 +435,13 @@ showcv() {
           handler: ()=> {
             if(x == 1) {
               this.photosToShow.splice(index,1);
+              this.photosContainer.splice(index,1);
+              this.photosContainerExt.splice(index,1);
+
             } else if(x == 2) {
               this.filesToShow.splice(index,1);
+              this.filesContainer.splice(index,1);
+              this.filesContainerExt.splice(index,1);
             }
           }
         }]
@@ -481,6 +501,31 @@ showcv() {
   sendReport(){
  console.log("this.reportData: ",this.reportData)
 //  alert("this.reportData.length : " + this.reportData)
+
+console.log("this.photosToShow.length: "+this.photosToShow.length);
+console.log("this.filesToShow.length: "+this.filesToShow.length);
+console.log("this.photosToShow: "+this.photosToShow[length-1]);
+console.log("this.filesToShow.length: "+this.filesToShow[length-1]);
+
+
+this.photosContainer.forEach(element => {
+  this.reportData.push(element);
+});
+
+this.filesContainer.forEach(element => {
+  this.reportData.push(element);
+});
+
+
+this.photosContainerExt.forEach(element => {
+  this.filesExt.push(element);
+});
+
+this.filesContainerExt.forEach(element => {
+  this.filesExt.push(element);
+});
+
+
 if (this.photosToShow.length <= 0 && this.photos.length <= 0 && this.files.length <= 0 && this.filesToShow.length <= 0){
 
   this.helper.presentToast("الرجاء إضافة مرفقات التقرير ")
@@ -532,7 +577,14 @@ if (this.photosToShow.length <= 0 && this.photos.length <= 0 && this.files.lengt
   }
 
 
+  //ayaaaaaaaaa
   openFile(file,x) {
+
+    let fileExt = file.path.split('.').pop();
+    let mimeType;
+
+    console.log("urllllll: "+file.path);
+    console.log("fileExt: "+fileExt);
 
     if(x == 1) {
 
@@ -561,16 +613,32 @@ if (this.photosToShow.length <= 0 && this.photos.length <= 0 && this.files.lengt
 
 
       console.log(url);
-      // this.document.viewDocument(url, 'application/pdf',{});
-      this.fileOpener.open(url, 'application/pdf');
+      
+      if(fileExt == "doc") {
+        mimeType = "msword";
+      } else if(fileExt == "docx") {
+        mimeType = "vnd.openxmlformats-officedocument.wordprocessingml.document";
+      } else {
+        mimeType = fileExt;
+      }
+
+      this.fileOpener.open(url, 'application/'+mimeType)
+      .then((data) => console.log('File is opened: '+data))
+      .catch(e => console.log('Error opening file', e));
     })
 
     } else if(x == 2) {
-      let fileExt = file.path.split('.').pop();
-      console.log("urllllll: "+file.path);
-      console.log("fileExt: "+fileExt);
-  
-      this.fileOpener.open(file.path, 'application/'+fileExt)
+
+      if(fileExt == "doc") {
+        mimeType = "msword";
+      } else if(fileExt == "docx") {
+        mimeType = "vnd.openxmlformats-officedocument.wordprocessingml.document";
+      } else {
+        mimeType = fileExt;
+      }
+
+
+      this.fileOpener.open(file.path, 'application/'+mimeType)
       .then((data) => console.log('File is opened: '+data))
       .catch(e => console.log('Error opening file', e));
     }

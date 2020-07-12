@@ -495,7 +495,7 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
    
     }
  
-    userRegister(first_name,second_name,last_name,nickname,phone,union_id,birth_date,college_id,graduation_year,bio,bio_ar,certifications,profile_pic,speciality_services,email,password,gender,speciality_id,address,terms,educational_degree,access_token,certifications_ext,profile_pic_ext,categoriesSuccessCallback,categoriesFailureCallback) {
+    userRegister(first_name,second_name,last_name,nickname,phone,union_id,birth_date,college_id,graduation_year,bio,bio_ar,certifications,profile_pic,speciality_services,email,password,gender,speciality_id,address,terms,educational_degree,access_token,certifications_ext,profile_pic_ext,governorate,city,categoriesSuccessCallback,categoriesFailureCallback) {
       let loader = this.loadingCtrl.create({
         content: "",
       });
@@ -504,6 +504,9 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
       let parameter = new HttpParams().set('first_name',first_name).set('second_name',second_name).set('last_name',last_name).set('nickname',nickname)
       .set('phone',phone).set('union_id',union_id).set('birth_date',birth_date).set('college_id',college_id).set('graduation_year',graduation_year)
       .set('bio',bio).set('bio_ar',bio_ar).set('certifications',String(certifications)).set('profile_pic',profile_pic).set('speciality_services',speciality_services).set('email',email).set('gender',gender).set('speciality_id',speciality_id).set('address',address).set('terms',terms).set('educational_degree',educational_degree).set('password',password).set('certifications_ext',String(certifications_ext)).set('profile_pic_ext',profile_pic_ext)
+      //ayaaaaaaaa
+      .set('governorate',governorate).set('city',city)
+
       headers = headers.set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', 'Bearer '+ localStorage.getItem('kdkvfkhggsso'));
       let serviceUrl = this.helper.serviceUrl +'api/doctor/register';
       this.http.post(serviceUrl,parameter,{headers: headers })
@@ -907,6 +910,7 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
       )
      
     }
+
     getTools(lang,type,service_id,SuccessCallback,FailureCallback){ 
       let headers = new HttpHeaders();
       let loader = this.loadingCtrl.create({
