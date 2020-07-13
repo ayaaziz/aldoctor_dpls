@@ -79,7 +79,8 @@ export class CenterOrderPage {
 
   myDate;
   // myTime="15:07"
-  myTime
+  myTime;
+  myDetailedTime;
   
   // myTime = new Date().getHours() + ":"+new Date().getMinutes()
   mystartdate
@@ -1000,9 +1001,48 @@ this.opacityOfAllContent = 0.1;
     datePicker.open();
     
   }
-  changeTime(){
-    console.log("myDate : ",this.myDate)
-    console.log("myTime : ",this.myTime)
+  changeTime(ev){
+    // console.log("myDate : ",this.myDate)
+    // console.log("myTime : ",this.myTime)
+
+    console.log("time picker change event: "+JSON.stringify(ev));
+
+    //ayaaaaaaaaaaaa
+
+    this.myTime = ev.hour + ":" + ev.minute;
+
+    console.log("myTime: "+ this.myTime);
+    console.log("myDate : ",this.myDate);
+
+    if(ev.hour == "0") ev.hour = "12";
+    if(ev.minute == "0") ev.minute = "00";
+
+    let hour;
+    let min = ev.minute;
+    let ampm;
+
+
+    if(ev.ampm == "pm") {
+      if(ev.hour > 12) {
+        hour = ev.hour - 12;
+      } else {
+        hour = ev.hour;
+      }
+
+      ampm = "مساءًا";
+
+    } else {
+      hour = ev.hour;
+      ampm = "صباحاً";
+    }
+
+    if(hour < 10) hour = "0" + hour;
+    if(min < 10) min = "0" + min;
+
+    this.myDetailedTime = hour + ":" + min + " " + ampm;
+
+    //////////////////
+
     this.mystartdate = this.myDate;
     this.myDate = ""
   }

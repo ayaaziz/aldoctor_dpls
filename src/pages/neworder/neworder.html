@@ -122,14 +122,15 @@
     <!-- displayFormat="DD-MMM-YYYY" -->
     <ion-item  *ngIf="androidIS42 == 0"   [hidden]="!!myDate">
         <ion-label style="margin:0px;color:black;" >  <ion-icon color="main" name="ios-time"></ion-icon> {{ 'appointmentTimeXray' | translate }} </ion-label>
-        <ion-label style="margin:0px;color: black;" *ngIf="mystartdate">  {{mystartdate}} {{myTime}}</ion-label>
+        <ion-label style="margin:0px;color: black;" *ngIf="mystartdate">  {{mystartdate}}   {{myDetailedTime}}</ion-label>
         <ion-datetime  min="{{date}}" max="2050" cancelText="إلغاء" doneText="موافق" (ngModelChange)="change(datePicker)" [pickerOptions]="customPickerOptions" displayFormat="DD-MMM-YYYY" [(ngModel)]="myDate"></ion-datetime>
       </ion-item>
    
       <ion-item [hidden]="!myDate" > 
-        <!-- pickerFormat="h mm A" -->
+        <!-- <ion-datetime #datePicker cancelText="إلغاء" doneText="موافق"
+        (ionCancel)="myDate=undefined" (ngModelChange)="changeTime()"  displayFormat="hh:mm a" [pickerOptions]="customPickerOptionsHours" [(ngModel)]="myTime"></ion-datetime> -->
         <ion-datetime #datePicker cancelText="إلغاء" doneText="موافق"
-        (ionCancel)="myDate=undefined" (ngModelChange)="changeTime()"  displayFormat="hh:mm a" [pickerOptions]="customPickerOptionsHours" [(ngModel)]="myTime"></ion-datetime>
+        (ionCancel)="myDate=undefined" (ionChange)="changeTime($event)"  displayFormat="hh:mm a" [pickerOptions]="customPickerOptionsHours"></ion-datetime>
       </ion-item>
 
       
