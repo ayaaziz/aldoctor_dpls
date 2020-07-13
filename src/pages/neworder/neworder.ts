@@ -990,7 +990,6 @@ console.log("myTime constructor: ",this.myTime)
     console.log("myDate : ",this.myDate);
 
     if(ev.hour == "0") ev.hour = "12";
-    if(ev.minute == "0") ev.minute = "00";
 
     let hour;
     let min = ev.minute;
