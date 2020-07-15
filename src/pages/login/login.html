@@ -19,7 +19,7 @@
           <ion-label><img src="assets/icon/phone.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
           <ion-input *ngIf="langDirection != 'rtl'" placeholder="Mobile no."   style="border-radius: 2px;padding: 0px;" formControlName="username" [(ngModel)]="usernameTxt"
           type="tel"></ion-input>
-          <ion-input *ngIf="langDirection == 'rtl'" placeholder="رقم التليفون"    style="border-radius: 2px;padding: 0px;" formControlName="username" [(ngModel)]="usernameTxt"
+          <ion-input *ngIf="langDirection == 'rtl'" placeholder="رقم التليفون"  disabled="false"  style="border-radius: 2px;padding: 0px;" formControlName="username" [(ngModel)]="usernameTxt"
       type="tel"></ion-input>
        
      </ion-item>
@@ -30,7 +30,7 @@
       <ion-label><img src="assets/icon/pass.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
       <ion-input *ngIf="langDirection != 'rtl'" placeholder="Password"    style="border-radius: 2px;padding: 0px;" formControlName="password" [(ngModel)]="passwordTxt"
       type="password"></ion-input>
-      <ion-input *ngIf="langDirection == 'rtl'" placeholder="كلمة المرور"    style="border-radius: 2px;padding: 0px;" formControlName="password" [(ngModel)]="passwordTxt"
+      <ion-input *ngIf="langDirection == 'rtl'" placeholder="كلمة المرور"  disabled="false"  style="border-radius: 2px;padding: 0px;" formControlName="password" [(ngModel)]="passwordTxt"
       type="password"></ion-input>
    
  </ion-item>

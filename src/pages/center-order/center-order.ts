@@ -11,6 +11,8 @@ import { AlertController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { ContactPage } from '../contact/contact';
 
+import * as moment from 'moment';
+
 /**
  * Generated class for the CenterOrderPage page.
  *
@@ -98,6 +100,9 @@ totalPrice;
 
 customPickerOptions:any;
 customPickerOptionsHours:any;
+
+isFirst:boolean = false;
+
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
     , public helper: HelperProvider, public toastCtrl: ToastController, private datePicker: DatePicker, public plt: Platform, public device: Device,
@@ -108,7 +113,13 @@ customPickerOptionsHours:any;
 
       this.date=new Date().toISOString();
       console.log("date : ",this.date)
-      this.myTime = new Date().getHours() + ":"+new Date().getMinutes()
+      // this.myTime = new Date().getHours() + ":"+new Date().getMinutes()
+
+      //ayaaaaaaaaaa
+      this.myTime = moment().format();
+      //////////////
+
+
       console.log("myTime : ",this.myTime)
 
 
@@ -1007,43 +1018,52 @@ this.opacityOfAllContent = 0.1;
 
     console.log("time picker change event: "+JSON.stringify(ev));
 
-    //ayaaaaaaaaaaaa
+     //ayaaaaaaaaaaaa
 
-    this.myTime = ev.hour + ":" + ev.minute;
+     this.myTime = ev.hour + ":" + ev.minute;
 
-    console.log("myTime: "+ this.myTime);
-    console.log("myDate : ",this.myDate);
-
-    if(ev.hour == "0") ev.hour = "12";
-
-    let hour;
-    let min = ev.minute;
-    let ampm;
-
-
-    if(ev.ampm == "pm") {
-      if(ev.hour > 12) {
-        hour = ev.hour - 12;
-      } else {
-        hour = ev.hour;
-      }
-
-      ampm = "مساءًا";
-
-    } else {
-      hour = ev.hour;
-      ampm = "صباحاً";
-    }
-
-    if(hour < 10) hour = "0" + hour;
-    if(min < 10) min = "0" + min;
-
-    this.myDetailedTime = hour + ":" + min + " " + ampm;
-
-    //////////////////
-
-    this.mystartdate = this.myDate;
-    this.myDate = ""
+     console.log("myTime: "+ this.myTime);
+     
+ 
+     if(ev.hour == "0") ev.hour = "12";
+ 
+     let hour;
+     let min = ev.minute;
+     let ampm;
+ 
+ 
+     if(ev.ampm == "pm") {
+       if(ev.hour > 12) {
+         hour = ev.hour - 12;
+       } else {
+         hour = ev.hour;
+       }
+ 
+       ampm = "مساءًا";
+ 
+     } else {
+       hour = ev.hour;
+       ampm = "صباحاً";
+     }
+ 
+     if(hour < 10) hour = "0" + hour;
+     if(min < 10) min = "0" + min;
+     
+     this.myDetailedTime = hour + ":" + min + " " + ampm;
+ 
+     if(this.myDate) this.mystartdate = this.myDate;
+ 
+     if(this.isFirst) {
+       this.myDate = "";
+     } else {
+       this.isFirst = true;
+     }
+ 
+ 
+     console.log("myDate: ",this.myDate);
+     console.log("mystartdate: ",this.mystartdate);
+ 
+     //////////////////
   }
 
 

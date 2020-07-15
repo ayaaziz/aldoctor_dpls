@@ -286,5 +286,8 @@
       "nurse":"Nurse",
       "reportSent":"Report Sent Successfully",
       "deleteFile":"Delete file",
-      "confirmDeleteFile":"Are you sure you want to delete this file?"
+      "confirmDeleteFile":"Are you sure you want to delete this file?",
+      "graduateFrom":"Graduate From",
+      "selectGraduateFrom":"Please select faculty/institute",
+      "enteraboutNurse":"Please enter about Nurse"
 }

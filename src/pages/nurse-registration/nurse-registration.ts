@@ -55,7 +55,7 @@ export class NurseRegistrationPage {
   profile_pic_ext = []
   logoImg = ""
   imgPreview
-  certificateData = []
+  certificateData = [];
   certifications_ext = []
   user_certficits = []
   // entityphone
@@ -63,6 +63,21 @@ export class NurseRegistrationPage {
   RegisterationTitle
   extra_info
 
+  birthdate;
+  Syndicate;
+  gradyear;
+  aboutdr;
+
+  Colleges = [];
+  College;
+  gradyears = [];
+  graduateFrom;
+
+  cancelTxt;
+  doneTxt;
+
+  customPickerOptions:any;
+  customPickerOptionsOnlyYear:any;
 
   constructor(public toastCtrl: ToastController, private camera: Camera, public helper: HelperProvider,
     public actionSheetCtrl: ActionSheetController, public loginservice: LoginServiceProvider,public events:Events,
@@ -78,19 +93,21 @@ export class NurseRegistrationPage {
       this.registerFormOne = formBuilder.group({ 
   
         xrayName: ['', Validators.required],
-        // xrayOwner: ['', Validators.required],
-        // entityphone: ['', Validators.required],
-        email: ['', emailValidator.isValid],
         phone: ['', Validators.compose([Validators.minLength(11), Validators.maxLength(11), Validators.required])],
-        address: ['', Validators.required],
+        address: [''],
         password: ['', Validators.compose([Validators.minLength(4), Validators.required])],
         confirmpassword: ['', Validators.compose([matchOtherValidator('password')])],
-        // taxLicense: ['', Validators.required],
         governorate: ['', Validators.required],
         city: ['', Validators.required],
         gender: ['', Validators.required],
-        // deliveryCount: ['', Validators.required],
-        services: ['', Validators.required]
+        services: ['', Validators.required],
+        graduateFrom: ['', Validators.required],
+        College: ['', Validators.required],
+        gradyear: ['', Validators.required],
+        aboutdr: ['', Validators.required],
+        Syndicate: [''],
+        birthdate: ['', Validators.required]
+        
       });
       this.editmode = navParams.get('edit')
       if (this.editmode) {
@@ -145,6 +162,46 @@ export class NurseRegistrationPage {
       }
 
 
+            //ayaaaaaaaaaaaaaaaaa
+            this.customPickerOptions = {
+              buttons: [{
+                text: 'يوم',
+                handler: () => {
+                  return false;
+                }
+              }, {
+                text: 'شهر',
+                handler: () => {
+                  return false;
+                }
+              },{
+                text: 'سنة',
+                handler: () => {
+                  return false;
+                }
+              }]
+            }
+      
+            this.customPickerOptionsOnlyYear = {
+              buttons: [{
+                text: '',
+                handler: () => {
+                  return false;
+                }
+              }, {
+                text: '',
+                handler: () => {
+                  return false;
+                }
+              },{
+                text: '',
+                handler: () => {
+                  return false;
+                }
+              }]
+            }
+      
+            ///////////////////////////
 
   }
 
@@ -276,8 +333,9 @@ export class NurseRegistrationPage {
   }
   authSuccessCallback(data) {
     if (navigator.onLine) {
-
-      this.loginservice.NurseRegister(this.xrayName, this.email, "2" + this.phone, "", this.logoImg, this.profile_pic_ext, this.passwordTxt, String(this.certificateData), this.address, this.extra_info, String(this.certifications_ext), "", 1, 5, "", this.governorate, this.city, "" , this.services, this.gender, (data) => this.successCallback(data), (data) => this.failureCallback(data))
+      // this.loginservice.NurseRegister(this.xrayName, this.email, "2" + this.phone, "", this.logoImg, this.profile_pic_ext, this.passwordTxt, String(this.certificateData), this.address, this.extra_info, String(this.certifications_ext), "", 1, 5, "", this.governorate, this.city, "" , this.services, this.gender, (data) => this.successCallback(data), (data) => this.failureCallback(data))
+      this.loginservice.NurseRegister(this.xrayName, "", "2" + this.phone, "", this.logoImg, this.profile_pic_ext, this.passwordTxt, this.certificateData.toString(), this.address, this.extra_info, this.certifications_ext.toString(), "", 1, 5, "", this.governorate, this.city, "" , this.services, this.gender,
+      this.Syndicate, this.birthdate, this.College, this.gradyear, this.aboutdr,this.graduateFrom, (data) => this.successCallback(data), (data) => this.failureCallback(data))
     }
     else {
       this.helper.presentToast(this.translate.instant("serverError"))
@@ -354,57 +412,120 @@ export class NurseRegistrationPage {
       // Handle error
     });
   }
-  attachTaxFile() {
-    if (this.platform.is('ios')) {
-      this.filePicker.pickFile()
-        .then(uri => {
-          let correctPath = uri.substr(0, uri.lastIndexOf('/') + 1);
-          let filename = uri.substr(uri.lastIndexOf('/') + 1)
-          this.user_certficits.push(filename)
-          let fileExt = filename.split('.').pop();
-          this.certifications_ext.push(fileExt)
-          this.file.readAsDataURL("file:///" + correctPath, filename).then((val) => {
-            this.certificateData.push(encodeURIComponent(val.split(',')[1]))
-          }).catch(err => console.log('Error reader' + err));
-        }).catch(err => console.log('Error' + err));
-    }
-    else if (this.platform.is('android')) {
-      this.fileChooser.open()
-        .then(uri => {
-          console.log("uuu" + uri)
-          this.filePath.resolveNativePath(uri).then((filePathResult) => {
+  // attachTaxFile() {
+  //   if (this.platform.is('ios')) {
+  //     this.filePicker.pickFile()
+  //       .then(uri => {
+  //         let correctPath = uri.substr(0, uri.lastIndexOf('/') + 1);
+  //         let filename = uri.substr(uri.lastIndexOf('/') + 1)
+  //         this.user_certficits.push(filename)
+  //         let fileExt = filename.split('.').pop();
+  //         this.certifications_ext.push(fileExt)
+  //         this.file.readAsDataURL("file:///" + correctPath, filename).then((val) => {
+  //           this.certificateData.push(encodeURIComponent(val.split(',')[1]))
+  //         }).catch(err => console.log('Error reader' + err));
+  //       }).catch(err => console.log('Error' + err));
+  //   }
+  //   else if (this.platform.is('android')) {
+  //     this.fileChooser.open()
+  //       .then(uri => {
+  //         console.log("uuu" + uri)
+  //         this.filePath.resolveNativePath(uri).then((filePathResult) => {
+  //           console.log("filePathResult " + filePathResult)
+  //         this.base64.encodeFile(filePathResult)
+  //           .then(base64File => {
+  //             let filename = filePathResult.substr(filePathResult.lastIndexOf('/') + 1)
+  //             this.user_certficits.push(filename)
+  //             let fileExt = filename.split('.').pop();
+  //             this.certifications_ext.push(fileExt)
+  //             let fileData = base64File.split(',')[1];
+  //             this.certificateData.push(encodeURIComponent(fileData))
+  //             //alert(filename + " vv "+fileExt+" here is encoded image "+ fileData)
+  //           })
+  //           .catch((e) => {
+  //             console.log('Error reading file' + JSON.stringify(e));
+  //           })
+
+  //         }, (err) => {
+  //           console.log(err);
+  //         })
+
+
+  //       })
+  //       .catch(e => console.log(e));
+  //   }
+  // }
+
+    //get doctor certificates 
+    getCertificates() {
+      if (this.platform.is('ios')) {
+        this.filePicker.pickFile()
+          .then(uri => {
+            let correctPath = uri.substr(0, uri.lastIndexOf('/') + 1);
+            let filename = uri.substr(uri.lastIndexOf('/') + 1)
+            this.user_certficits.push(filename)
+            let fileExt = filename.split('.').pop();
+            this.certifications_ext.push(fileExt)
+            this.file.readAsDataURL("file:///" + correctPath, filename).then((val) => {
+              this.certificateData.push(encodeURIComponent(val.split(',')[1]))
+            }).catch(err => console.log('Error reader' + err));
+          }).catch(err => console.log('Error' + err));
+      }
+      else if (this.platform.is('android')) {
+        this.fileChooser.open().then((filePath) => {
+          console.log("filePath " + filePath)
+          this.filePath.resolveNativePath(filePath).then((filePathResult) => {
             console.log("filePathResult " + filePathResult)
-          this.base64.encodeFile(filePathResult)
-            .then(base64File => {
-              let filename = filePathResult.substr(filePathResult.lastIndexOf('/') + 1)
-              this.user_certficits.push(filename)
-              let fileExt = filename.split('.').pop();
-              this.certifications_ext.push(fileExt)
-              let fileData = base64File.split(',')[1];
-              this.certificateData.push(encodeURIComponent(fileData))
-              //alert(filename + " vv "+fileExt+" here is encoded image "+ fileData)
-            })
-            .catch((e) => {
-              console.log('Error reading file' + JSON.stringify(e));
-            })
-
-          }, (err) => {
-            console.log(err);
+            this.base64.encodeFile(filePathResult)
+              .then(base64File => {
+                let filename = filePathResult.substr(filePathResult.lastIndexOf('/') + 1)
+                this.user_certficits.push(filename)
+                let fileExt = filename.split('.').pop();
+                this.certifications_ext.push(fileExt)
+                let fileData = base64File.split(',')[1];
+                this.certificateData.push(encodeURIComponent(fileData))
+                //alert(filename + " vv "+fileExt+" here is encoded image "+ fileData)
+              })
+              .catch((e) => {
+                console.log('Error reading file' + JSON.stringify(e));
+              })
+  
+          }).catch((error) => {
+  
           })
-
-
         })
-        .catch(e => console.log(e));
+  
+      }
     }
-  }
+
+
   openMap() {
     this.navCtrl.push('partner-address');
   }
   ionViewWillEnter() {
+    this.cancelTxt = this.translate.instant("canceltxt");
+    this.doneTxt = this.translate.instant("doneTxt");
     if(this.helper.serviceAddress){
       this.address = this.helper.serviceAddress;
     }
 
+  }
+
+  openAboutInfo() {
+    let alert = this.alertCtrl.create({
+      title: this.translate.instant("aboutDRInfo"),
+      message: 'يجب إضافة معلومات خاصة بتخصصك',
+      buttons: [
+        {
+          text: this.translate.instant("ok"),
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 

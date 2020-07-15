@@ -123,7 +123,6 @@ export class SignupPage {
     });
 
 
-    //ayaaaaaaaaa
       //ayaaaaaaaaaaaaaaaaa
       this.customPickerOptions = {
         buttons: [{
@@ -162,6 +161,8 @@ export class SignupPage {
           }
         }]
       }
+
+      ///////////////////////////
 
   }
   openTermsOfUse() {

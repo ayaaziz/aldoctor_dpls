@@ -116,7 +116,7 @@
       <!-- <ion-datetime #datePicker cancelText="إلغاء" doneText="موافق"
       (ionCancel)="myDate=undefined" (ngModelChange)="changeTime()" [pickerOptions]="customPickerOptionsHours" displayFormat="hh:mm a"  [(ngModel)]="myTime"></ion-datetime> -->
       <ion-datetime #datePicker cancelText="إلغاء" doneText="موافق"
-      (ionCancel)="myDate=undefined" (ionChange)="changeTime($event)" [pickerOptions]="customPickerOptionsHours" displayFormat="hh:mm a"></ion-datetime>
+      (ionCancel)="myDate=undefined" (ionChange)="changeTime($event)" [pickerOptions]="customPickerOptionsHours" displayFormat="hh:mm a" [(ngModel)]="myTime"></ion-datetime>
     </ion-item>
 
 
@@ -168,7 +168,7 @@
         <!-- <ion-datetime #datePicker cancelText="إلغاء" doneText="موافق"
         (ionCancel)="myDate=undefined" (ngModelChange)="changeTime()"  displayFormat="hh:mm a" [pickerOptions]="customPickerOptionsHours" [(ngModel)]="myTime"></ion-datetime> -->
         <ion-datetime #datePicker cancelText="إلغاء" doneText="موافق"
-        (ionCancel)="myDate=undefined" (ionChange)="changeTime($event)" displayFormat="hh:mm a" [pickerOptions]="customPickerOptionsHours"></ion-datetime>
+        (ionCancel)="myDate=undefined" (ionChange)="changeTime($event)" displayFormat="hh:mm a" [pickerOptions]="customPickerOptionsHours" [(ngModel)]="myTime"></ion-datetime>
       </ion-item>
 
       <ion-item>

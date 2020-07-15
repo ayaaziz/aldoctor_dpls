@@ -10,6 +10,7 @@ import { AlertController } from 'ionic-angular';
 import { DatePicker } from '@ionic-native/date-picker';
 import { ContactPage } from '../contact/contact';
 
+import * as moment from 'moment';
 /**
  * Generated class for the NeworderPage page.
  *
@@ -81,6 +82,8 @@ export class NeworderPage {
 // myTime="15:07"
 myTime;
 myDetailedTime;
+isFirst:boolean = false;
+
 
 // myTime = new Date().getHours() + ":"+new Date().getMinutes()
 mystartdate
@@ -94,7 +97,12 @@ date
 
       this.date=new Date().toISOString();
 console.log("date : ",this.date)
-this.myTime =  new Date().toLocaleTimeString() //new Date().getHours() + ":"+new Date().getMinutes()
+// this.myTime =  new Date().toLocaleTimeString() //new Date().getHours() + ":"+new Date().getMinutes()
+
+//ayaaaaaaaaaa
+this.myTime = moment().format();
+//////////////
+
 console.log("myTime constructor: ",this.myTime)
 
     this.langDirection = helper.lang_direction
@@ -978,6 +986,7 @@ console.log("myTime constructor: ",this.myTime)
     datePicker.open();
     
   }
+
   changeTime(ev){
 
     console.log("time picker change event: "+JSON.stringify(ev));
@@ -987,7 +996,7 @@ console.log("myTime constructor: ",this.myTime)
     this.myTime = ev.hour + ":" + ev.minute;
 
     console.log("myTime: "+ this.myTime);
-    console.log("myDate : ",this.myDate);
+    
 
     if(ev.hour == "0") ev.hour = "12";
 
@@ -1015,10 +1024,20 @@ console.log("myTime constructor: ",this.myTime)
     
     this.myDetailedTime = hour + ":" + min + " " + ampm;
 
+    if(this.myDate) this.mystartdate = this.myDate;
+
+    if(this.isFirst) {
+      this.myDate = "";
+    } else {
+      this.isFirst = true;
+    }
+
+    console.log("myDate: ",this.myDate);
+    console.log("mystartdate: ",this.mystartdate);
+
     //////////////////
 
-    this.mystartdate = this.myDate;
-    this.myDate = ""
+
   }
 
 }

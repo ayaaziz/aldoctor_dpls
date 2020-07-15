@@ -559,9 +559,15 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
    
     }
 
+    // NurseRegister(name, email, phone,entityphone, profile_pic, profile_pic_ext, password, tax_liscence_pic, address, extra_info,
+    //   tax_liscence_pic_ext, owner_name, terms, type_id, tax_liscence, governorate_id, city_id, staff_num ,
+    //    speciality_services ,gender,categoriesSuccessCallback,categoriesFailureCallback)
+
     NurseRegister(name, email, phone,entityphone, profile_pic, profile_pic_ext, password, tax_liscence_pic, address, extra_info,
       tax_liscence_pic_ext, owner_name, terms, type_id, tax_liscence, governorate_id, city_id, staff_num ,
-       speciality_services ,gender,categoriesSuccessCallback,categoriesFailureCallback) {
+       speciality_services ,gender,
+       Syndicate,birthdate, College,gradyear,aboutdr,graduateFrom,
+       categoriesSuccessCallback,categoriesFailureCallback) {
       let loader = this.loadingCtrl.create({
         content: "",
       });
@@ -572,7 +578,20 @@ userLogin(email,password,categoriesSuccessCallback,categoriesFailureCallback) {
       .set('owner_name',"nurse").set('type_id',type_id).set('tax_liscence',tax_liscence)
       .set('governorate_id',governorate_id).set('city_id',city_id).set('profile_pic',profile_pic)
       .set('speciality_services',speciality_services).set('gender',gender)
-      .set('terms',terms).set('password',password).set('profile_pic_ext',profile_pic_ext).set('staff_num',staff_num)
+      .set('terms',terms).set('password',password).
+      set('profile_pic_ext',profile_pic_ext)
+      .set('staff_num',staff_num)
+
+      .set('Syndicate',Syndicate)
+      .set('birthdate',birthdate)
+      .set('College',College)
+      .set('gradyear',gradyear)
+      .set('aboutdr',aboutdr)
+      
+      //add this in backend api 
+      // .set('graduateFrom',graduateFrom)
+      ////////////////////////
+
       headers = headers.set('Content-Type', 'application/x-www-form-urlencoded')
       let serviceUrl = this.helper.serviceUrl +'api/entity/register';
       this.http.post(serviceUrl,parameter,{headers: headers })

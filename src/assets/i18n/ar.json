@@ -214,7 +214,7 @@
       "passwordSent": "تم ارسال رسالة نصية تحتوي على كلمة مرور لاستخدامها في تسجيل الدخول.",
       "detectLocation": "حدد موقعك",
       "xrayName": "اسم مركز الاشعة",
-      "nurseName":"الاسم",
+      "nurseName":"الاسم بالكامل",
       "pharmacyName": "اسم الصيدلية",
       "labName": "اسم المعمل",
       "enterlabName": "الرجاء إدخال اسم المعمل",
@@ -288,6 +288,9 @@
       "nurse":"ممرض",
       "reportSent":"تم إرسال التقرير للمريض",
       "deleteFile":"حذف الملف",
-      "confirmDeleteFile":"هل تريد حذف هذا الملف؟"
+      "confirmDeleteFile":"هل تريد حذف هذا الملف؟",
+      "graduateFrom":"خريج",
+      "selectGraduateFrom":"يرجى اختيار كلية/معهد",
+      "enteraboutNurse":"الرجاء إدخال نبذة عن الممرض"
 
 }
