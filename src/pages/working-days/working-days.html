@@ -50,6 +50,16 @@
           <!-- value="{{todayTime}}" -->
           <!-- min="{{mindate}}" -->
           <!-- #changeTime  (ionChange)="handleChangeDate(item[1][0],item)" -->
+
+          <!-- <ion-item style="background-color: transparent;">
+            <ion-input style="font-size: 10px !important;color: white;" placeholder="من" [value]="item[1][0]" disabled="true" (click)="openPicker()"></ion-input>
+          </ion-item>
+
+          <ion-item style="background-color: transparent;">
+            <ion-datetime #myDatePicker hidden="true" [pickerOptions]="customPickerOptions" style="font-size: 10px !important;color: white;" displayFormat="hh:mm a" [(ngModel)]="timeNow" cancelText="إلغاء" doneText="موافق" (ionChange)="changeTime(i,1,0,$event)"></ion-datetime>
+          </ion-item> -->
+
+
           <ion-item style="background-color: transparent;">
             <ion-datetime [pickerOptions]="customPickerOptions" style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[1][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
           </ion-item>

@@ -85,6 +85,19 @@ div.picker-toolbar-button:nth-of-type(3) {
     }
   }
 }
+
+
+.picker-md .picker-button,
+.picker-md .picker-button.activated {
+    color: #016a38;
+}
+
+.picker-md .picker-prefix, 
+.picker-md .picker-suffix, 
+.picker-md .picker-opt.picker-opt-selected {
+    color: #016a38;
+}
+
 //ayaaaaaaaaaaaaaaa
 
 

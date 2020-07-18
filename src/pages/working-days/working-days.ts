@@ -11,6 +11,8 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { HelperProvider } from '../../providers/helper/helper';
 import { Content } from 'ionic-angular';
 
+import * as moment from 'moment';
+
 
 @IonicPage()
 @Component({
@@ -81,6 +83,10 @@ export class WorkingDaysPage {
   todayTime 
 
   @ViewChild('datePicker') datePicker2;
+
+  @ViewChild('myDatePicker') myDatePicker;
+
+
   dataInicial: Date;
   days = []
   day
@@ -100,6 +106,8 @@ export class WorkingDaysPage {
   MyCustomColor = "22";
   customPickerOptions:any;
 
+  timeNow;
+
   @ViewChild('changeTime') changeDateTime;
 
   constructor(private datePicker: DatePicker,public helper: HelperProvider,public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,
@@ -115,7 +123,18 @@ console.log("myTime : ",new Date().getHours() + ":"+new Date().getMinutes())
 
       this.listWorkingDays()
 
- 
+
+          //ayaaaaaaaaaa
+          this.timeNow = moment().format();
+
+          // this.days.forEach(item => {
+          //   item[1][0] = moment().format();
+          //   item[2][0] = moment().format();
+          //   item[1][1] = moment().format();
+          //   item[2][1] = moment().format(); 
+          // });
+          //////////////
+
 // this.days = [
 //   [{day:"السبت"},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]],
 //   [{day:"الأحد"},[this.sun_First_From ,  this.sun_First_To],[this.sun_Second_From,this.sun_Second_To]],
@@ -850,6 +869,7 @@ listWorkingDays(){
         [{day:"السبت",checked:this.satChecked,err:""},[this.sat_First_From ,  this.sat_First_To],[this.sat_Second_From,this.sat_Second_To]]
         ]
         console.log("this.days after list : ",this.days)
+
     }
   },err=>{
     console.log("err from listworkingdays : ",err)
@@ -907,6 +927,7 @@ dateChanged(date){
   this.mendata = hours + ':' + date.split(":")[1] + " " + hourDesc
 console.log("time after : ",this.mendata)
 }
+
 chooseDate() {
 console.log("choose date")
   var minmDate;
@@ -981,6 +1002,7 @@ console.log("choose date")
     }
   );
 }
+
 dayChecked(item){
   console.log("dayChecked : ",item)
 
@@ -993,5 +1015,55 @@ handleChangeDate(changeDate: string,item) {
 
 
 
+// openPicker() {
+//   if (!this.timeNow) {
+//     this.timeNow = moment().format();      
+//       setTimeout(() => {
+//           this.myDatePicker.open();
+//       }, 50)
+//   } else {
+//       this.myDatePicker.open();
+//   }
+
+// }
+
+// changeTime(index,i,j,ev) {
+
+//   // this.timeNow = ev.hour + ":" + ev.minute;
+
+
+
+//   console.log("index: "+ index);
+  
+
+//   if(ev.hour == "0") ev.hour = "12";
+
+//   let hour;
+//   let min = ev.minute;
+//   let ampm;
+
+
+//   if(ev.ampm == "pm") {
+//     if(ev.hour > 12) {
+//       hour = ev.hour - 12;
+//     } else {
+//       hour = ev.hour;
+//     }
+
+//     ampm = "مساءًا";
+
+//   } else {
+//     hour = ev.hour;
+//     ampm = "صباحاً";
+//   }
+
+//   if(hour < 10) hour = "0" + hour;
+//   if(min < 10) min = "0" + min;
+  
+//   // this.timeNow = hour + ":" + min + " " + ampm;
+  
+//   console.log("timeNow: "+this.timeNow);
+//   this.days[index][i][j] = hour + ":" + min + " " + ampm;;
+// }
 
 }
