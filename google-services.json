@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "381921023811",
+    "firebase_url": "https://aldoctor-b33ed.firebaseio.com",
+    "project_id": "aldoctor-b33ed",
+    "storage_bucket": "aldoctor-b33ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381921023811:android:b397ec7da262b939",
+        "android_client_info": {
+          "package_name": "net.ITRoots.AlDoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381921023811-qfn10ms064kk73n8f7o7ecceg26v178i.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "381921023811-qfn10ms064kk73n8f7o7ecceg26v178i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ1pZVXL465Bgk6ET1bPGUqfQyYHvYUmA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

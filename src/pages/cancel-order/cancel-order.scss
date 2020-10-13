@@ -1,0 +1,49 @@
+page-cancel-order {
+    .btn-primary {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+        width:70%;
+    }
+    .btn-primary:focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(169, 167, 167, 0.17);
+        box-shadow: 0 0 0 0.2rem rgba(169, 167, 167, 0.17);
+    }
+      .btn-primary:hover {
+        color: #fff;
+        background-color:#016a38;
+        border-color: #016a38;
+    }
+      .btn-primary:not(:disabled):not(.disabled):active{
+        color: #fff;
+        background-color: #016a38 !important;
+        border-color: #016a38 !important;
+    }
+    .col{
+        padding: 0px;
+    }
+    .checkbox-icon:after {
+        border: none;
+    }
+    div.button-effect{
+        width:0px;
+        height: 0px;
+    }
+
+    .customIcon{
+        height:20px; 
+        width:20px;
+        
+    }
+    .row{
+        margin: 0px;
+        padding: 0px;
+    }
+}
+
+.toastRight{
+    text-align: right;
+  }
+  .toastLeft{
+    text-align: left;
+  }

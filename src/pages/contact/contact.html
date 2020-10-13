@@ -1,0 +1,165 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="more"></ion-icon>
+    </button>
+    
+    <ion-title *ngIf="langDirection == 'rtl'" style="text-align: right;">{{"Orders History" | translate}}</ion-title>
+    <ion-title *ngIf="langDirection != 'rtl'" >{{"Orders History" | translate}}</ion-title>
+
+  </ion-navbar>
+</ion-header> -->
+
+<ion-header class={{langDirection}}>
+
+    <ion-navbar  hideBackButton>
+        <ion-title style=" color:#7a7a7a">{{"orderHistory" | translate}}</ion-title>
+        <ion-buttons style="display: inherit;" left>
+          <button ion-button icon-only  menuToggle><img src="assets/icon/menu.png" width="25" height="25" style="border: 0px;"></button>
+      </ion-buttons>
+      <ion-buttons style="display: inherit;" right>
+        <button ion-button icon-only ><img src="assets/imgs/dlogo.png" width="30" style="border: 0px;"></button>
+    </ion-buttons>
+      </ion-navbar> 
+    </ion-header>
+  
+  <ion-content style="background-color:white" padding>
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+  <ion-row style="margin:0px;width:100%;padding-bottom:7px; border-bottom:2px solid rgb(205, 219, 205);">
+    <ion-col col-2 >
+        <!-- fixed class="customItem3" -->
+      <ion-label style="margin:0px;text-align:center;font-size: 11px;padding-top: 9px;">{{"From" | translate}}</ion-label>
+    </ion-col>
+    
+    <!-- ayaaaaaaaaaaa -->
+    <ion-col col-4 style="background-color: #e8f1ed;height:35px;">
+
+
+      <ion-item style="background-color: transparent;width: 102px;">
+        <!-- displayFormat="MM/DD/YYYY" -->
+        <!-- Reverse Format because i reversed the date cols  -->
+        <ion-datetime [max]="minDate" displayFormat="DD/MM/YYYY"
+        [(ngModel)]="from" [cancelText]="this.translate.instant('canceltxt')" [pickerOptions]="customPickerOptions" [doneText]="this.translate.instant('doneTxt')" (ionChange)="dateFromChanged($event)"></ion-datetime> 
+      </ion-item>
+
+        <div *ngIf="langDirection != 'rtl'" style="text-align:right">
+        <img src="assets/icon/arrow.png" style="margin-top:-34px;width:20px;height:20px;float: left;">  
+      </div>
+      <div *ngIf="langDirection == 'rtl'" > 
+        <img src="assets/icon/arrow.png" style="margin-top:-34px;width:20px;height:20px;float: left;">  
+      </div>
+      </ion-col>
+    <!-- <ion-col style="background-color: #e8f1ed;height:36px;"  col-1>
+      <img src="assets/icon/arrow.png" style="margin-top:12px;width:20px;height:20px;">
+    </ion-col> -->
+  
+    <ion-col col-2>
+        <!-- fixed class="customItem3"  -->
+      <ion-label style="margin:0px;text-align:center;font-size: 11px;padding-top: 9px;">{{"To" | translate}}</ion-label>
+    </ion-col>
+    <!-- displayFormat="MM/DD/YYYY" -->
+    <ion-col col-4 style="background-color: #e8f1ed;height: 35px;">    
+      <ion-item style="background-color: transparent;width: 102px;"> 
+        <ion-datetime [max]="minDate" displayFormat="DD/MM/YYYY"
+        [(ngModel)]="to" cancelText="{{cancelTxt}}" [pickerOptions]="customPickerOptions" doneText="{{doneTxt}}" (ionChange)="dateToChanged($event)"></ion-datetime>
+      </ion-item>
+          <div *ngIf="langDirection != 'rtl'" style="text-align:right">
+            <img src="assets/icon/arrow.png" style="margin-top:-34px;width:20px;height:20px;float: left">  
+          </div>
+          <div *ngIf="langDirection == 'rtl'" >
+            <img src="assets/icon/arrow.png" style="margin-top:-34px;width:20px;height:20px;float: left">  
+          </div>
+          <!-- <img src="assets/icon/arrow.png" style="margin-top:-55px;width:20px;height:20px;"> -->
+    </ion-col>
+  <!-- 
+    <ion-col style="background-color: #e8f1ed;height:36px;"  col-1>
+      <img src="assets/icon/arrow.png" style="margin-top:12px;width:20px;height:20px;">
+    </ion-col> -->
+  </ion-row> 
+  <ion-item padding *ngIf="noData == true" style="text-align: center;color: #016a38;margin-top: 50%;" no-lines>{{"noData" | translate}}</ion-item>
+  <ion-card *ngFor="let item of data" style="height:auto;border-width: 3px;"  (click)="followOrder(item)" >          
+    <ion-row style="width: calc(100% - 5px);margin: 2px;">
+
+      <ion-col  col-2  col-sm-2  style="margin-top:10px;padding-top:5px;text-align: center;max-width: 62px;" >
+        <img [src]="item.profile_pic" class="rounded-circle" style="border: 2px solid #016a38;width: 50px; height: 50px;" >
+        #{{item.orderId}}
+      </ion-col>
+      
+      <ion-col  col-10 col-sm-10>
+        <ion-item style="padding:0px" text-wrap>
+
+          <h2 style="width:100%;margin-top:0px;">{{item.name}}  &#x200e;</h2>
+          <div style="margin-top: 15px;"> 
+            <ion-icon name="pin" style="margin: 0 4px;color:#016a38"></ion-icon><span style="color:#9f9f9f;font-size: 13px;"> {{item.patient_address}} </span>
+          </div>
+          <div>
+          <!-- <ion-icon name="md-star" [ngStyle]="{'color': item.rate >= 1 ? '#016a38' : '#cce1d7'}" style="font-size: 20px;"></ion-icon> -->
+          <ion-icon name="md-star" *ngIf="item.rate == 0" class="star" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate > 0 && item.rate < 1" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate >= 1" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate > 1 && item.rate < 2" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate >= 2" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate < 2 && item.rate <=1" class="star" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate > 2 && item.rate < 3" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate >= 3" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate < 3 && item.rate <=2 " class="star" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate > 3 && item.rate < 4" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate >= 4" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate < 4 && item.rate <=3" class="star" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate > 4 && item.rate < 5" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate >= 5" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.rate < 5 && item.rate <=4" class="star" style="font-size: 20px;"></ion-icon>
+         
+        </div>
+        <div style="font-size: 14px; color: #788087;">
+          {{item.created_at}}
+        </div>
+        </ion-item>
+
+        <div style="display: inline-block;position: absolute;left: 5px;top: 13px;">
+          <ion-icon [style.color]="item.color" name="radio-button-on"></ion-icon><span [ngStyle]="{'background-color': item.status == 0 ? '#016a38' : 'none'}" ><span [ngStyle]="{'color': item.status == 0 ? 'white' : 'black'}" style="padding: 2px;">{{item.desc}}</span></span> 
+        </div>
+
+        <button *ngIf="item.rated == 0 && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="padding: 4px 6px;float: left;margin-left: 5px;" (click)="rateagain(item)" >{{"rateOrder" | translate}}</button>
+        
+         <!-- ayaaaa -->
+         <button *ngIf="(item.service_id == 3) && (userTypeId == 2 || userTypeId == 3) && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="padding: 4px 6px;float: left;margin-left: 5px;" (click)="sendReport(item)" >إرسال التقرير </button>
+      </ion-col>
+
+      <!-- <ion-col col-2 col-sm-2 style="margin-top:10px;" >
+          <ion-row>
+              <ion-col style="font-size: 11px;" >
+                <ion-icon [style.color]="item.color" name="radio-button-on"></ion-icon><span [ngStyle]="{'background-color': item.status == 0 ? '#016a38' : 'none'}" ><span [ngStyle]="{'color': item.status == 0 ? 'white' : 'black'}" style="padding: 2px;">{{item.desc}}</span></span> 
+              </ion-col>
+            </ion-row>
+        <ion-row>
+          <ion-col>
+            <button *ngIf="item.rated == 0 && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="width:46px;padding: 2px 0;margin-top: 10px;" (click)="rateagain(item)" >{{"rateOrder" | translate}}</button>
+           
+          
+            <button *ngIf="(item.service_id == 3) && (userTypeId == 2 || userTypeId == 3) && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="width:46px;padding: 2px 0;margin-top: 10px;" (click)="sendReport(item)" >إرسال <br/> التقرير </button>
+
+
+          </ion-col>
+        </ion-row>
+       
+      
+      
+      </ion-col> -->
+    </ion-row>
+      <!-- <button *ngIf="item.reorder == '1'" class="btn btn-primary " style="margin-top:5px;width:90px" (click)="reorder(item)">{{"reorder" | translate}}</button> -->
+    
+</ion-card>
+  
+    
+     
+    
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
+
+  
+  

@@ -1,0 +1,90 @@
+<ion-header class={{lang_direction}}>
+ 
+  <ion-navbar >
+    <ion-title> إرسال التقرير  </ion-title>
+    <ion-buttons style="display: inherit;" right>
+      <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="25" height="25" style="border: 0px;"></button>
+  </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+  <ion-item  no-lines> 
+    <ion-label style="color:#016a38;"  item-start>التقرير </ion-label>
+    <ion-icon name="md-cloud-upload" item-end style="font-size: 30px;color:#016a38;" (click)="selectWorkerCertificate()" ></ion-icon>
+  </ion-item>
+
+
+    <!-- photos from db -->
+    <ion-row style="padding: 0 20px;">
+      <ion-col col-4 *ngFor="let photo of photos; let indx = index">
+        <ion-col col-12 style="justify-content: center;display: flex;border: 1px solid #016a38;">
+          <span class="deleteIconWrapper">
+            <ion-icon name="close" class="deleteIcon" (click)="removeFile(1,photo.id,indx)" ></ion-icon>
+          </span>
+          
+          <img [src]="photo.path" style="width:90px;height:80px" (click)="fullScreen(indx,1)" />
+        </ion-col>
+      </ion-col>
+
+      <!-- when choose photos from picker -->
+      <ion-col col-4 *ngFor="let photo of photosToShow; let indx = index">
+        <ion-col col-12 style="justify-content: center;display: flex;border: 1px solid #016a38;">
+          <span class="deleteIconWrapper">
+            <ion-icon name="close" class="deleteIcon" (click)="deleteFile(1,id)"></ion-icon>
+          </span>
+          <img [src]="photo" style="width:90px;height:80px" (click)="fullScreen(indx,2)"/>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+
+  <!-- when choose files from picker -->
+  <!-- <ion-row *ngIf="photosToShow.length > 0"> 
+    <div *ngFor="let photo of photosToShow; let id = index">
+      <ion-col col-12 *ngIf="photo.imgOrFile == 1" style="justify-content: center;display: flex;">
+        <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+        <img [src]="photo.data" style="width:90px;height:80px" />
+      </ion-col>
+    </div>
+  </ion-row> -->
+
+  <ion-row style="padding: 0 9px;">
+    <!-- files from db -->
+    <ion-col col-12 *ngFor="let file of files; let indx = index" style="justify-content: center;display: flex;">
+      <span class="deleteIconWrapperFile">
+        <ion-icon  name="close" style="color:#016a38;margin-right: 5px;font-size: 17px;margin-top: 1px;" (click)="removeFile(2,file.id,indx)" ></ion-icon>
+      </span>
+      <ion-label style="color: #1265A9;text-decoration: underline;margin-right: 7px;margin-top: 0;" (click)="openFile(file,1)">{{file.fileName}} </ion-label>
+      <!-- <a [href]="file.path" style="margin-right: 7px;margin-top: 0;">{{file.fileName}} </a> -->
+    </ion-col>
+
+    <!-- when choose files from picker -->
+    <ion-col col-12 *ngFor="let file of filesToShow; let id = index">
+      <span class="deleteIconWrapperFile" style="display: inline-flex;"> 
+        <ion-icon  name="close" style="color:#016a38;margin-right: 5px;font-size: 17px;margin-top: 1px;" (click)="deleteFile(2,id)" ></ion-icon> 
+      </span>
+      <ion-label style="color: #1265A9;text-decoration: underline;margin-right: 5px;margin-top: 0;display: inline-flex;" (click)="openFile(file,2)">{{file.fileName}} </ion-label>
+      <!-- <a [href]="file.path" style="display: inline-flex;margin-right: 7px;margin-top: 0;">{{file.fileName}} </a> -->
+    </ion-col>
+  </ion-row>
+
+
+
+  <!-- when choose files from picker -->
+  <!-- <ion-row *ngIf="filesToShow.length > 0"> 
+    <div *ngFor="let photo of filesToShow; let id = index">
+      <ion-col col-12 *ngIf="photo.imgOrFile == 2">
+        <ion-icon  name="trash" item-end style="font-size: 20px;color:#016a38; margin: 0 10px" (click)="deletePhoto(id)" ></ion-icon> 
+        <ion-label style="color:gray;margin:0;display: inline-block;" item-start >{{photo.data}} </ion-label>
+      </ion-col>
+    </div>
+  </ion-row> -->
+
+
+
+<button type="button" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black';margin:20px auto;" (click)="sendReport()"> إرسال التقرير </button>  
+
+</ion-content>

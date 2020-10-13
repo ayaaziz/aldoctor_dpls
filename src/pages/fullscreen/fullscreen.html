@@ -1,0 +1,28 @@
+
+<ion-header>
+
+  <ion-navbar hideBackButton>
+
+        <ion-buttons  right>
+          <button ion-button (click)="dismiss()">
+            <img src="assets/icon/leftarrow.png"  (click)="dismiss()" class="customIcon" >
+          </button>
+        </ion-buttons>
+     
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding >
+    
+    <!-- id="image" style="height: 100%;" -->
+    <ion-row justify-content-center align-items-center style="height: 100%">
+    <ion-col style="text-align:center">
+        <img [src]="image" style="width: 75%;height: 80%;" > 
+    </ion-col>  
+    </ion-row>
+    
+  
+
+</ion-content>

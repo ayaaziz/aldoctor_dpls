@@ -1,0 +1,49 @@
+page-patientreview {
+
+    img {
+       // max-width: 30%;
+        border: 2px solid #016a38;
+    }
+    .btn-primary {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+    }
+    [col-4]{
+        width: auto !important;
+        max-width: 100% !important;
+        margin: auto !important;
+    }
+    .form-control:focus {
+        background-color: #016a38;
+        color:#ffffff;
+        border-color: #016a38;
+    }
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+    }
+      .btn-primary:not(:disabled):not(.disabled):active{
+        color: #fff;
+        background-color: #016a38 !important;
+        border-color: #016a38 !important;
+    }
+    .btn-block
+    {
+        width:40%;
+    }
+    .selected{
+        background-color: #016a38;
+        color: #fff;
+        border:2px solid #016a38;
+    }
+    .unselected{
+        background-color: #fff;
+        color: black;
+        border:2px solid lightgray;
+    }
+    .label-md {
+        margin: 0px;
+    } 
+}

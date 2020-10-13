@@ -1,0 +1,33 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class={{lang_direction}}>
+
+  <ion-navbar  hideBackButton>
+    <ion-title>{{"settings" | translate }}</ion-title>
+    <ion-buttons style="display: inherit;" left>
+        <button ion-button icon-only  menuToggle><img src="assets/icon/menu.png" width="25" height="25" style="border: 0px;"></button>
+    </ion-buttons>
+    <ion-buttons style="display: inherit;" right>
+      <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="30" style="border: 0px;"></button>
+  </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class={{lang_direction}}>
+    <ion-list>
+        <ion-item>
+            <ion-label id="lblLanguage">
+            <ion-icon ios="ios-globe" md="md-globe" style="min-width: 28px;color: black; font-size: 16px;padding-top: 2px;padding-right: 3px;padding-left: 3px;"></ion-icon><span style="vertical-align: middle;" class="settingLabel">{{"language" | translate}}</span></ion-label>
+            <ion-label class="changeToLang" (click)='onLanguageChange()'>
+            <span style="padding-top: 5px;font-size: 12px; vertical-align: middle; color: rgb(132,132,132); padding-right: 10px;padding-left: 10px;">{{changeToLang}}</span><img
+                width="9px" height="auto" class="arrow-settings" src="{{imgArrow}}"></ion-label>
+      
+          </ion-item>
+          </ion-list>
+</ion-content>

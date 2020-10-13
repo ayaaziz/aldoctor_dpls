@@ -1,0 +1,228 @@
+<ion-header class={{langDirection}}>
+    <ion-navbar >
+      <ion-title>{{"editProfil" | translate }}</ion-title>
+      <ion-buttons style="display: inherit;" right>
+        <button ion-button icon-only><img src="assets/imgs/dlogo.png" width="30" style="border: 0px;"></button>
+    </ion-buttons>
+      
+    </ion-navbar>
+    </ion-header>
+<ion-content style="background-color:white" padding class={{langDirection}}>
+    <div class="text-center"> 
+              <img src="assets/imgs/dlogo.png" class="rounded mx-auto d-block" style="max-width:40%;margin-top: 35px;">
+</div>
+<br>
+<br>
+    <!-- <img src="assets/imgs/dlogo.png" style="text-align: center "> -->     
+    <form [formGroup]="registerFormOne" [hidden]="first">
+      
+           <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.firstname.valid && submitAttempt">
+               <ion-label><img src="assets/icon/user.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+               <ion-input *ngIf="langDirection != 'rtl'" placeholder="First Name"   style="border-radius: 2px;padding: 0px;" formControlName="firstname" [(ngModel)]="firstname"
+               type="text"></ion-input>
+               <ion-input *ngIf="langDirection == 'rtl'" placeholder="الاسم الاول"    style="border-radius: 2px;padding: 0px;" formControlName="firstname" [(ngModel)]="firstname"
+           type="text"></ion-input>
+          </ion-item>
+       <ion-item *ngIf="!registerFormOne.controls.firstname.valid && submitAttempt" no-lines>
+         <p> {{"enterFirstName" | translate}} </p>
+       </ion-item>
+       <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" >
+          <ion-label><img src="assets/icon/user.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+          <ion-input *ngIf="langDirection != 'rtl'" placeholder="Second Name"   style="border-radius: 2px;padding: 0px;" [ngModelOptions]="{standalone: true}" [(ngModel)]="secondname"
+          type="text"></ion-input>
+          <ion-input *ngIf="langDirection == 'rtl'" placeholder="الاسم الثاني"    style="border-radius: 2px;padding: 0px;" [ngModelOptions]="{standalone: true}" [(ngModel)]="secondname"
+      type="text"></ion-input>
+     </ion-item>
+  <!-- <ion-item *ngIf="!registerFormOne.controls.secondname.valid && submitAttempt" no-lines>
+    <p> {{"enterSecondName" | translate}} </p>
+  </ion-item> -->
+  <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.surname.valid && submitAttempt">
+      <ion-label><img src="assets/icon/user.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+      <ion-input *ngIf="langDirection == 'rtl'" placeholder="الجد أو اللقب"   style="border-radius: 2px;padding: 0px;" formControlName="surname" [(ngModel)]="surname"
+      type="text"></ion-input>
+      <ion-input *ngIf="langDirection != 'rtl'" placeholder="Grandpa or Surname"    style="border-radius: 2px;padding: 0px;" formControlName="surname" [(ngModel)]="surname"
+  type="text"></ion-input>
+ </ion-item>
+<ion-item *ngIf="!registerFormOne.controls.surname.valid && submitAttempt" no-lines>
+<p> {{"enterSurnameName" | translate}} </p>
+</ion-item>
+<ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.Nickname.valid && submitAttempt">
+    <ion-label>
+        <img src="assets/icon/user.png" style="margin: 0 2px;" height="25" width="25">
+    </ion-label>
+    <ion-input *ngIf="langDirection == 'rtl'" placeholder="الاسم المستعار" style="border-radius: 2px;padding: 0px;" formControlName="Nickname"
+        [(ngModel)]="Nickname" type="text"></ion-input>
+    <ion-input *ngIf="langDirection != 'rtl'" placeholder="Nickname" style="border-radius: 2px;padding: 0px;" formControlName="Nickname"
+        [(ngModel)]="Nickname" type="text"></ion-input>
+</ion-item>
+<ion-item *ngIf="!registerFormOne.controls.Nickname.valid && submitAttempt" no-lines>
+    <p> {{"enterNicknameName" | translate}} </p>
+</ion-item>
+<ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.Syndicate.valid && submitAttempt">
+    <ion-label><img src="assets/icon/num.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+    <ion-input *ngIf="langDirection == 'rtl'" placeholder="رقم النقابة"   style="border-radius: 2px;padding: 0px;" formControlName="Syndicate" [(ngModel)]="Syndicate"
+    type="text"></ion-input>
+    <ion-input *ngIf="langDirection != 'rtl'" placeholder="No. Syndicate"    style="border-radius: 2px;padding: 0px;" formControlName="Syndicate" [(ngModel)]="Syndicate"
+type="text"></ion-input>
+</ion-item>
+<ion-item *ngIf="!registerFormOne.controls.Syndicate.valid && submitAttempt" no-lines>
+    <p> {{"enterSyndicate" | translate}} </p>
+    </ion-item>
+<ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.email.valid && submitAttempt">
+    <ion-label><img src="assets/icon/mail.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+    <ion-input *ngIf="langDirection == 'rtl'" placeholder="البريد الالكتروني"   style="border-radius: 2px;padding: 0px;" formControlName="email" [(ngModel)]="email"
+    type="text"></ion-input>
+    <ion-input *ngIf="langDirection != 'rtl'" placeholder="email"    style="border-radius: 2px;padding: 0px;" formControlName="email" [(ngModel)]="email"
+type="text"></ion-input>
+</ion-item>
+<ion-item *ngIf="!registerFormOne.controls.email.valid && submitAttempt" no-lines>
+<p> {{"enterEmail" | translate}} </p>
+</ion-item>
+
+<!-- ///////////// -->
+<ion-item no-lines>
+  <span style="color: firebrick;">التطبيق متاح فقط في المناطق التالية: </span>
+</ion-item>
+<ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.city.valid && submitAttempt">
+  <ion-label>
+    <img src="assets/icon/city.png" style="margin: 0 2px;" height="25" width="25">
+  </ion-label>
+  <ion-select [class.invalid]="!registerFormOne.controls.city.valid && submitAttempt" formControlName="city" interface="popover"
+    [(ngModel)]="city" [placeholder]="this.translate.instant('City')">
+    <ion-option value="{{item.id}}" *ngFor="let item of cities"><span>{{item.region}}</span></ion-option>
+  </ion-select>
+</ion-item>
+<ion-item *ngIf="!registerFormOne.controls.city.valid && submitAttempt" no-lines>
+  <p> {{"selectCity" | translate}} </p>
+</ion-item>
+
+<ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!registerFormOne.controls.address.valid && submitAttempt">
+  <ion-label><img src="assets/icon/mail.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+  <ion-input *ngIf="langDirection == 'rtl'" placeholder="العنوان"   style="border-radius: 2px;padding: 0px;" formControlName="address" [(ngModel)]="address"
+  type="text"></ion-input>
+  <ion-input *ngIf="langDirection != 'rtl'" placeholder="address"    style="border-radius: 2px;padding: 0px;" formControlName="address" [(ngModel)]="address"
+type="text"></ion-input>
+</ion-item>
+<ion-item *ngIf="!registerFormOne.controls.address.valid && submitAttempt" no-lines>
+<p> {{"enterAddress" | translate}} </p>
+</ion-item>
+
+
+
+<ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;">
+    <ion-label><img src="assets/icon/calender.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+    
+<ion-datetime [class.invalid]="!registerFormOne.controls.birthdate.valid && submitAttempt" formControlName="birthdate" [placeholder]="this.translate.instant('Dateofbirth')" displayFormat="MM/DD/YYYY"
+              [(ngModel)]="birthdate" cancelText="{{cancelTxt}}" doneText="{{doneTxt}}"></ion-datetime>
+</ion-item>
+<ion-item *ngIf="!registerFormOne.controls.birthdate.valid && submitAttempt" no-lines>
+<p> {{"enterDOB" | translate}} </p>
+</ion-item>
+
+<ion-item>
+    <ion-label ><img src="assets/icon/gender.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+    <ion-select [class.invalid]="!registerFormOne.controls.gender.valid && submitAttempt"  [placeholder]="this.translate.instant('Gender')" formControlName="gender" interface="popover"
+      [(ngModel)]="gender">
+      <ion-option value="1">{{"male" | translate}}</ion-option>
+      <ion-option value="0">{{"female" | translate}}</ion-option> 
+      </ion-select>
+  </ion-item>
+  <ion-item *ngIf="!registerFormOne.controls.gender.valid && submitAttempt" no-lines>
+    <p> {{"selectGender" | translate}} </p>
+    </ion-item>
+      
+        <ion-item>
+            <ion-label ><img src="assets/icon/specialist.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+            <ion-select [class.invalid]="!registerFormOne.controls.Specialization.valid && registerAttempt" [placeholder]="this.translate.instant('Specialization')" formControlName="Specialization" interface="popover"
+              [(ngModel)]="Specialization" (ngModelChange)="specChanged()">
+              <ion-option  *ngFor="let item of specializations" [value] ="item.id">{{item.value}}</ion-option>
+              
+              </ion-select>
+          </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.Specialization.valid && registerAttempt" no-lines>
+      <p> {{"enterSpecialization" | translate}} </p>
+    </ion-item>
+
+    <ion-item>
+        <ion-label ><img src="assets/icon/book.png"  style="margin: 0 2px;" height="25" width="25"></ion-label>
+        <!-- <ion-select [disabled]="disableCollege" [class.invalid]="!registerFormOne.controls.College.valid && registerAttempt" [placeholder]="this.translate.instant('College')" formControlName="College" interface="popover"
+          [(ngModel)]="College"  (ngModelChange)="collegeChanged()">
+          <ion-option  *ngFor="let item of Colleges" [value] ="item.id">{{item.value}}</ion-option>
+        
+          </ion-select> -->
+          <ion-input *ngIf="langDirection == 'rtl'" placeholder="الكلية" style="border-radius: 2px;padding: 0px;" formControlName="College"
+                [(ngModel)]="College" type="text"></ion-input>
+            <ion-input *ngIf="langDirection != 'rtl'" placeholder="College" style="border-radius: 2px;padding: 0px;" formControlName="College"
+                [(ngModel)]="College" type="text"></ion-input>
+      </ion-item>
+<ion-item *ngIf="!registerFormOne.controls.College.valid && registerAttempt" no-lines>
+  <p> {{"enterCollege" | translate}} </p>
+</ion-item>
+<ion-item>
+    <ion-label ><img src="assets/icon/graduate.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+    <!-- <ion-select [disabled]="disableYears" [class.invalid]="!registerFormOne.controls.gradyear.valid && registerAttempt" formControlName="gradyear" interface="popover"
+      [(ngModel)]="gradyear" (ngModelChange)="yearsChanged()">
+      <ion-option  *ngFor="let item of gradyears" [value] ="item.id">{{item.value}}</ion-option>
+      
+      </ion-select> -->
+      <ion-datetime [class.invalid]="!registerFormOne.controls.gradyear.valid && registerAttempt" [placeholder]="this.translate.instant('gradyear')" formControlName="gradyear" displayFormat="YYYY"
+              [(ngModel)]="gradyear" cancelText="{{cancelTxt}}" doneText="{{doneTxt}}" (ngModelChange)="yearsChanged()"></ion-datetime>
+
+  </ion-item>
+<ion-item *ngIf="!registerFormOne.controls.gradyear.valid && registerAttempt" no-lines>
+<p> {{"enterGradyear" | translate}} </p>
+</ion-item>
+<ion-item>
+    <ion-label ><img src="assets/icon/degree.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+    <ion-select [disabled]="disableDegrees" [class.invalid]="!registerFormOne.controls.Degree.valid && registerAttempt" [placeholder]="this.translate.instant('Degree')" formControlName="Degree" interface="popover"
+      [(ngModel)]="Degree">
+      <ion-option  *ngFor="let item of Degrees" [value] ="item.id">{{item.value}}</ion-option>
+      
+      </ion-select>
+  </ion-item>
+<ion-item *ngIf="!registerFormOne.controls.Degree.valid && registerAttempt" no-lines>
+<p> {{"enterDegree" | translate}} </p>
+</ion-item>
+<ion-item >
+    <ion-label ><img src="assets/icon/aboutdoc.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+    <ion-textarea [class.invalid]="!registerFormOne.controls.aboutdr.valid && registerAttempt" [placeholder]="this.translate.instant('aboutdr')"  formControlName="aboutdr" [(ngModel)]="aboutdr"
+    type="text"></ion-textarea>
+    
+</ion-item>
+<ion-item *ngIf="!registerFormOne.controls.aboutdr.valid && registerAttempt" no-lines>
+<p> {{"enteraboutdr" | translate}} </p>
+</ion-item>
+
+<ion-item>
+        <ion-label ><img src="assets/icon/service.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
+        <ion-select multiple="true" [disabled]="disableCollege" [class.invalid]="!registerFormOne.controls.drservices.valid && registerAttempt" [placeholder]="this.translate.instant('drservices')"  formControlName="drservices" cancelText="{{cancelTxt}}" okText="{{doneTxt}}"
+          [(ngModel)]="DrServices">
+          <ion-option  *ngFor="let item of DrServicesData" [value] ="item.id">{{item.value}}</ion-option>
+          
+          </ion-select>
+      </ion-item>
+    <ion-item *ngIf="!registerFormOne.controls.drservices.valid && registerAttempt" no-lines>
+    <p> {{"enterdrservices" | translate}} </p>
+    </ion-item>
+
+    <div class="form-group">
+        <button type="button" (click)="getCertificates()" style="color:rgba(27, 26, 26, 0.270588); background-color: rgba(1, 106, 56, 0.2313725) ; border-color: rgba(1, 106, 56, 0.2313725)" class="btn btn-primary btn-lg btn-block"> <img src="assets/icon/file.png" height="25" width="25">   {{"certificates" | translate}}</button>  
+      </div>
+      <table style="margin-bottom: 5px;">
+        <tr *ngFor="let item of user_certficits">
+            <td>{{item}}</td>
+        </tr>
+    </table>
+
+     
+      
+    <ion-item id="btnSignIn" style="text-align:center;" no-lines>
+  
+       <button type="button"   class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black'" (click)="registerUser()"> {{"editProfil" | translate}}</button>  
+     </ion-item>
+
+ 
+
+  </form>
+ 
+ </ion-content>

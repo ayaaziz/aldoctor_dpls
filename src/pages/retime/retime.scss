@@ -1,0 +1,65 @@
+page-retime {
+    input[type="radio"] {
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background-color: #016a38
+    }
+    .item-block{
+        flex-direction: row-reverse !important;
+    }
+.form-check-input {
+     position: inherit !important; 
+    margin-top: 0.3rem;
+    margin-left: 0rem; 
+}
+.ltr .timeArrow {
+    position: absolute;
+    top: 16px;
+    right: 22px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.datetime-text {
+    color: white !important;
+}
+.rtl .timeArrow {
+    position: absolute;
+    top: 16px;
+    left: 38px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.content-md
+{
+    color:#929292;
+}
+.form-control
+{
+    background-color: #389e6e;
+    color:#f1f1f1;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #016a38;
+    border-color: #016a38;
+}
+.form-control:focus {
+    background-color: #016a38;
+    color:#ffffff;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #016a38;
+    border-color: #016a38;
+}
+  .btn-primary:not(:disabled):not(.disabled):active{
+    color: #fff;
+    background-color: #016a38 !important;
+    border-color: #016a38 !important;
+}
+.btn-block
+{
+    width:60%;
+}
+}

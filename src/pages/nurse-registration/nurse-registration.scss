@@ -1,0 +1,213 @@
+page-nurse-registration {
+    .rtl {
+        text-align:right;
+    }
+    .ltr {
+        text-align:left;
+    }
+    ion-datetime{
+        width: calc(100% - 40px) !important;
+    }
+    .form-control
+    {
+        font-family: "FontAwesome";
+        border-top: 0px;
+        border-left: 0px;
+        border-bottom: 1px solid #b2b3b354;
+        border-right: 1px solid #b2b3b354;
+        box-shadow: 1px 1px 1px 2px rgba(169, 167, 167, 0.17);
+ 
+
+}
+.item{
+    padding-left: 0px !important;
+}
+
+.item.item-md .checkbox-md{
+    margin: 0px !important;
+}
+ion-select{
+    max-width: 100% !important;
+    width: calc(100% - 40px) !important;
+}
+
+.form-control:focus
+{
+    border-top: 0px;
+    border-left: 0px;
+    border-bottom: 1px solid #b2b3b354;
+    border-right: 1px solid #b2b3b354;
+    box-shadow: 1px 1px 1px 2px rgba(1, 106, 56, 0.17);
+}
+.form-check-input {
+    
+     margin-left: 1rem;
+     position: inherit;
+}
+.form-control::-webkit-input-placeholder {
+     color: rgba(1, 106, 56, 0.27);
+    size: 7px;
+    font-family: "FontAwesome";
+}
+    .toolbar-title-md {
+        padding: 0 12px;
+        font-size: 2rem;
+        direction: ltr;
+        //text-align: right;
+        font-weight: 500;
+        color: #424242;
+    }
+    p {
+        font-size: 0.8em;
+        color: red !important;
+    }
+
+    .invalid {
+        border: 1px solid #ea6153;
+    }
+    // img {
+    //     max-width: 40%;
+    //     border: 0;
+    // }
+    .btn-primary {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+    }
+    
+  select:required:invalid
+  {
+      color:rgba(1, 106, 56, 0.27);;
+  }
+  option[value=""][disabled]
+  {
+      display: none;
+  }
+  option{
+      color:black;
+  }
+    
+ 
+
+
+
+      .btn-primary:focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(169, 167, 167, 0.17);
+        box-shadow: 0 0 0 0.2rem rgba(169, 167, 167, 0.17);
+    }
+      .btn-primary:hover {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+    }
+      .btn-primary:not(:disabled):not(.disabled):active{
+        color: #fff;
+        background-color: #016a38 !important;
+        border-color: #016a38 !important;
+    }  .rtl {
+        text-align:right;
+    }
+    .ltr {
+        text-align:left;
+    }
+    ion-datetime{
+        width: calc(100% - 40px) !important;
+    }
+    .form-control
+    {
+        font-family: "FontAwesome";
+        border-top: 0px;
+        border-left: 0px;
+        border-bottom: 1px solid #b2b3b354;
+        border-right: 1px solid #b2b3b354;
+        box-shadow: 1px 1px 1px 2px rgba(169, 167, 167, 0.17);
+ 
+
+}
+.item{
+    padding-left: 0px !important;
+}
+
+.item.item-md .checkbox-md{
+    margin: 0px !important;
+}
+ion-select{
+    max-width: 100% !important;
+    width: calc(100% - 40px) !important;
+}
+
+.form-control:focus
+{
+    border-top: 0px;
+    border-left: 0px;
+    border-bottom: 1px solid #b2b3b354;
+    border-right: 1px solid #b2b3b354;
+    box-shadow: 1px 1px 1px 2px rgba(1, 106, 56, 0.17);
+}
+.form-check-input {
+    
+     margin-left: 1rem;
+     position: inherit;
+}
+.form-control::-webkit-input-placeholder {
+     color: rgba(1, 106, 56, 0.27);
+    size: 7px;
+    font-family: "FontAwesome";
+}
+    .toolbar-title-md {
+        padding: 0 12px;
+        font-size: 2rem;
+        direction: ltr;
+        //text-align: right;
+        font-weight: 500;
+        color: #424242;
+    }
+    p {
+        font-size: 0.8em;
+        color: red !important;
+    }
+
+    .invalid {
+        border: 1px solid #ea6153;
+    }
+    // img {
+    //     max-width: 40%;
+    //     border: 0;
+    // }
+    .btn-primary {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+    }
+    
+  select:required:invalid
+  {
+      color:rgba(1, 106, 56, 0.27);;
+  }
+  option[value=""][disabled]
+  {
+      display: none;
+  }
+  option{
+      color:black;
+  }
+    
+ 
+
+
+
+      .btn-primary:focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(169, 167, 167, 0.17);
+        box-shadow: 0 0 0 0.2rem rgba(169, 167, 167, 0.17);
+    }
+      .btn-primary:hover {
+        color: #fff;
+        background-color: #016a38;
+        border-color: #016a38;
+    }
+      .btn-primary:not(:disabled):not(.disabled):active{
+        color: #fff;
+        background-color: #016a38 !important;
+        border-color: #016a38 !important;
+    }
+}

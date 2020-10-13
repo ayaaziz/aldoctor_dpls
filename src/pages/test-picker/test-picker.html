@@ -1,0 +1,139 @@
+<ion-header class={{lang_direction}}>
+ 
+    <ion-navbar >
+      <ion-title> {{"workingDays" | translate }} </ion-title>
+      <ion-buttons style="display: inherit;" right>
+        <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="25" height="25" style="border: 0px;"></button>
+    </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+
+<ion-content padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-row style="color: #868080;text-align: center;margin:8px" >
+    <ion-col>اليوم</ion-col>
+    <ion-col>من</ion-col>
+    <ion-col>إلى</ion-col>
+  </ion-row>
+  <!-- background-color: #d5e6d5; -->
+  <!-- border: 2px solid lightgray;  -->
+
+  <!-- <ion-datetime  id="ionDate1" style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" cancelText="إلغاء" doneText="موافق"></ion-datetime> -->
+
+
+<div *ngFor="let item of days; let i = index">
+<ion-row  style="text-align: center;margin:8px;box-shadow: 2px 2px #eae4e4;border-radius: 5px;border: 1px solid #eae4e4;"   >
+  <ion-col > 
+    <!-- <div> -->
+ 
+    <ion-checkbox [(ngModel)]="item[0].checked" (click)="dayChecked(item)" style="margin-top: 5px;"></ion-checkbox>
+  <!-- </div> -->
+  
+    <!-- <ion-checkbox [(ngModel)]="item.checked" (click)="doctorChecked(item ,$event)" [disabled]="item.offline"></ion-checkbox>   -->
+    <!-- margin-top:18px; -->
+    <p style="margin: 0px;color: #868080;">{{item[0].day}}</p> 
+    <p (click)="resetDay(item)" style="color: #016a38;margin-bottom: 0px;">إعادة الضبط</p> 
+  </ion-col>
+
+  <ion-col>
+
+    <ion-row>
+      <!-- (click)="chooseDate()" -->
+  <ion-col style="padding: 0px;height: 38px;" >
+  
+      <div style="background-color: #075a07;width: 60%;height: 90%;    margin: auto auto;" >
+       
+           <!-- <ion-item (click)="chooseDate()">
+      <ion-label style="margin:0px">
+        <ion-icon color="main" name="ios-time"></ion-icon>{{"appointmentTimeXray" | translate}}
+      </ion-label>
+      <ion-label style="margin:0px"> {{mendata}} </ion-label> 
+    </ion-item>-->
+        <ion-datetime  id="ionDate1" style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[1][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+
+ 
+          <!-- <button [id]="i+x1" style="background-color: #075a07; font-size: 10px !important;color: white;margin-top: 10px;" displayFormat="hh:mm a" [value]="mendata" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق" (click)="chooseDate(i,x1)">
+            <span *ngIf="!item[1][0]">من</span>
+            <span *ngIf="item[1][0]">{{item[1][0]}}</span>
+          </button> -->
+
+          <ion-item>
+            <ion-input [id]="i+x1" style="background-color: #075a07; font-size: 10px !important;color: white;margin-top: 10px;" displayFormat="hh:mm a" [(ngModel)]="item[1][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق" (click)="chooseDate(i,x1)">
+              <!-- <span *ngIf="!item[1][0]">من</span>
+              <span *ngIf="item[1][0]">{{item[1][0]}}</span> -->
+              </ion-input>
+          </ion-item>
+        
+        
+      </div>
+
+      <!-- <div>
+          <dp-date-picker disabled="false" mode="daytime" (onChange)="date()" [(ngModel)]="selectedDate"></dp-date-picker>  
+      </div> -->
+    
+  </ion-col>
+ 
+    </ion-row>
+    <ion-row>
+
+    
+    <ion-col style="padding: 0px;height: 38px;">
+      <div style="background-color: #075a07;width: 60%;height: 90%;    margin: auto auto;">
+        <!-- <ion-datetime style="font-size: 10px !important;color: white;" placeholder="من" displayFormat="hh:mm a" [(ngModel)]="item[2][0]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime> -->
+
+        <button [id]="i+1" style="background-color: transparent; font-size: 10px !important;color: white;margin-top: 10px;" displayFormat="hh:mm a" [value]="mendata" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق" (click)="chooseDate(i,x2)">
+          <span *ngIf="!item[2][0]">من</span>
+          <span *ngIf="item[2][0]">{{item[2][0]}}</span>
+        </button>
+
+      </div>
+      </ion-col> 
+  </ion-row>
+
+  </ion-col>
+  <ion-col> 
+
+
+      <ion-row>
+          <ion-col style="padding: 0px;">
+            
+            <!-- cd0724 -->
+            <div style="background-color: #ab051d;width: 60%;height: 90%;    margin: auto auto;">
+              <ion-datetime style="font-size: 10px !important;color: white;" placeholder="إلى" displayFormat="hh:mm a" [(ngModel)]="item[1][1]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+          </div>
+
+          </ion-col>
+         
+            </ion-row>
+            <ion-row>
+        
+            
+            <ion-col style="padding: 0px;">
+              <div style="background-color: #ab051d;width: 60%;height: 90%;    margin: auto auto;">
+                <ion-datetime style="font-size: 10px !important;color: white;" placeholder="إلى" displayFormat="hh:mm a" [(ngModel)]="item[2][1]" [disabled]="!item[0].checked" cancelText="إلغاء" doneText="موافق"></ion-datetime>
+            </div>
+              </ion-col> 
+          </ion-row>
+
+          
+    
+
+    
+  </ion-col>
+    
+</ion-row>
+<p *ngIf="item[0].err" style="color: red;padding-right: 9px;" >{{item[0].err}}</p>
+</div>
+
+
+<ion-item no-lines style="text-align:center;width:100%">
+ 
+<button ion-button type="submit"   style="font-size:16px;background-color: #016a38;color:white;border:2px solid #016a38;width:35%;padding:15px;text-align:center;" (click)="save()" [disabled]="savebtnClicked" > {{"save" | translate}}</button>
+</ion-item>
+
+</ion-content>

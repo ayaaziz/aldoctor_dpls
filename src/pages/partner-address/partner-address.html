@@ -1,0 +1,27 @@
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title style=" color:#7a7a7a">{{"detectLocation" | translate}}</ion-title> 
+    
+  <ion-buttons style="display: inherit;" right>
+    <button ion-button icon-only  menuToggle><img src="assets/imgs/dlogo.png" width="40" style="border: 0px;"></button>
+</ion-buttons>
+  </ion-navbar>
+
+</ion-header> -->
+<ion-header class={{lang_direction}}>
+
+  <ion-navbar>
+
+          <ion-title style="text-align: right;">{{"detectLocation" | translate}}</ion-title>  
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color:white">
+  <div #map id="map" ></div>
+  <ion-icon name="locate" style="position: absolute; bottom: 120px; right: 32px; font-size: 30px;color:#016a38;" (click)="locateUser()"></ion-icon>
+
+</ion-content>

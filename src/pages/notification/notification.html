@@ -1,0 +1,83 @@
+<ion-header class="{{lang_direction}}">
+
+    <ion-navbar  hideBackButton>
+        <ion-title style="color:#7a7a7a">{{"notifications" | translate}} </ion-title>
+        <ion-buttons style="display: inherit;" left>
+          <button ion-button icon-only  menuToggle><img src="assets/icon/menu.png" width="25" height="25" style="border: 0px;"></button>
+      </ion-buttons>
+      <ion-buttons *ngIf="!fromNotification" style="display: inherit;" right>
+        <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="30" style="border: 0px;"></button>
+    </ion-buttons>
+
+
+    <!-- ayaaaaaaaa -->
+    <ion-buttons *ngIf="fromNotification" right>
+      <button ion-button>
+        <img src="assets/imgs/dlogo.png" style="width:30px;" >         
+      </button>
+      <button ion-button  (click)="dismiss()">
+          <img src="assets/icon/leftarrow.png"  (click)="dismiss()" class="customIcon">
+      </button>
+    </ion-buttons>
+    <!-- /////////// -->
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="background-color:white" padding class="{{lang_direction}}">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <ion-item padding *ngIf="noData == true" style="text-align: center;color: #016a38;margin-top: 50%;" no-lines>{{"noData" | translate}}</ion-item>
+    <ion-card *ngFor="let item of data" >  
+        <ion-card-content style="padding: 0px;">
+          <ion-row style="width:100%;margin: 0px" >
+    <ion-col col-2 style="max-width:62px;">
+      
+        <img [src]="item.user?.profile_pic" onerror="this.onerror=null;this.src='assets/imgs/default-avatar.png';" class="rounded-circle" style="border: 2px solid #016a38;width: 50px; height: 50px;">
+     
+    </ion-col>
+    <ion-col col-8 class="{{lang_direction}}">
+      <table style="font-size:12px;margin-top: 10px;width: 100%;" >
+        <tr *ngIf="item.user"><td>
+        <h2 color="kawaeb" style="color: #595959">
+            {{item.user?.name}}
+          </h2>
+      </td></tr>
+      <tr *ngIf="item.user"><td style="color:#9f9f9f">
+          
+              <ion-icon name="pin" style="margin: 0 4px;color:#016a38"></ion-icon><span style="color:#9f9f9f" *ngIf="item.patient_address"> {{item.patient_address}} </span><span style="color:#9f9f9f" *ngIf="!item.patient_address"> {{item.user?.address}} </span>
+
+          
+      </td></tr>
+      <tr><td>
+        {{item.data.text}} 
+      </td></tr>
+      <tr><td>
+        
+              <span style="color:#d2d2d2"> {{item.created_at_new}} </span>
+          
+      </td></tr>
+    </table>
+   
+    </ion-col>
+
+    <!-- ayaaaaaaaaaa -->
+  <ng-container *ngIf="item.user">
+    <ion-col col-12 style="display: flex;justify-content: flex-end;" *ngIf="(item.orderstatus == 0 || item.orderstatus == 1 || item.orderstatus == 2 || item.orderstatus == 7 || item.orderstatus == 8 || item.orderstatus == 13 || item.orderstatus == 12) && item.ordercurrentstatus != 4 && item.orderstatus != 20">
+        <!-- <button class="btn btn-primary " style="padding: 4px 6px;margin-top: 10px;float:left;margin-bottom: 2px;" (click)="openOrder(item)" >{{"follow" | translate}}</button> -->
+        <button class="btn btn-primary" (click)="openOrder(item)" >{{"follow" | translate}}</button>
+    </ion-col>
+    <ion-col col-12 style="display: flex;justify-content: flex-end;" *ngIf="(item.orderstatus == 3 || item.ordercurrentstatus == 3) && item.orderstatus != 0">
+      <button class="btn btn-danger " style="color:#fff;" >{{"missed" | translate}}</button>
+    </ion-col>
+  </ng-container>
+  <!-- ////////////// -->
+  </ion-row>
+  </ion-card-content>
+  </ion-card>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

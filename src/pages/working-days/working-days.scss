@@ -1,0 +1,90 @@
+page-working-days {
+
+    font-family: HarfWebCD;
+
+    .text-input-md {
+      margin: 5px 8px !important;
+      text-align: center;
+    }
+  
+    #btnLogin {
+      background-color: #996478;
+      width: 50%;
+    }
+  
+    ion-picker-cmp {
+      direction: ltr !important;
+    }
+  
+    .picker-md {
+      direction: ltr !important;
+    }
+
+    .select-md {
+        padding: 0px;
+        }
+
+        .select-ios {
+            padding: 0px;
+            }
+
+            .select-md .select-icon {
+                margin:  0px 5px;
+            }
+
+            .select-ios .select-icon {
+                margin:  0px 5px;
+            }
+
+            .datetime-md .datetime-placeholder {
+              color: white;
+            }
+            .datetime-ios .datetime-placeholder {
+              color: white;
+            }
+            .checkbox-icon {
+              width: 20px !important;
+              height: 20px !important;
+              }
+
+              .checkbox-inner {
+                height: 13px !important;
+                width: 7px !important;
+                right: 4px !important;
+            }
+
+
+         ion-item div.input-wrapper {
+           justify-content: center;
+         }
+
+
+
+
+         //ayaaaaaaaa
+         .datetime-md,
+         .datetime-ios {
+           padding: 0;
+         }
+
+
+         .checkbox-ios > .checkbox-checked > .checkbox-inner {
+          top: 1px !important;
+         }
+         ///////////
+         
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

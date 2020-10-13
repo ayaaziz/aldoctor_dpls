@@ -14,3 +14,281 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+//ayaaaaaaaaaaaaaaa
+
+.picker-wrapper {
+    width: 361px !important;
+}
+
+.picker-col.picker-opts-right {
+    justify-content: flex-start;
+    order: 3 !important;
+
+    .picker-opts {
+      max-width: 63px !important;
+    }
+}
+
+.picker-opts-left {
+    justify-content: flex-end;
+    order: 1 !important;
+
+    .picker-opts {
+      max-width: 63px !important;
+    }
+}
+
+.picker-md .picker-col:nth-of-type(3),
+.picker-ios .picker-col:nth-of-type(3) {
+    order: 2 !important;
+    justify-content: flex-start;
+}
+
+.picker-toolbar {
+  height: 126px !important;
+}
+
+div.picker-toolbar-button:first-of-type {
+
+  & button.picker-button {
+    position: absolute;
+    top: 41px;
+    z-index: 1000;
+    left: 88px;
+    // left: 90px;
+  }
+}
+
+div.picker-toolbar-button:nth-of-type(2) {
+
+  & button.picker-button {
+    position: absolute;
+    top: 41px;
+    z-index: 1000;
+    // left: 147px;
+    left: 150px;
+  }
+}
+
+div.picker-toolbar-button:nth-of-type(3) {
+
+  & button.picker-button {
+    position: absolute;
+    top: 41px;
+    z-index: 1000;
+    left: 226px;
+
+    .button-inner {
+      width: 15px;
+      white-space: normal;
+    }
+  }
+}
+
+
+.picker-md .picker-button,
+.picker-md .picker-button.activated,
+.picker-ios .picker-button,
+.picker-ios .picker-button.activated {
+    color: #016a38;
+}
+
+.picker-md .picker-prefix, 
+.picker-md .picker-suffix, 
+.picker-md .picker-opt.picker-opt-selected,
+.picker-ios .picker-prefix, 
+.picker-ios .picker-suffix, 
+.picker-ios .picker-opt.picker-opt-selected{
+    color: #016a38;
+}
+
+
+.popover-ios > .popover-wrapper > .popover-content,
+.popover-md > .popover-wrapper > .popover-content {
+    width: 280px !important;
+}
+
+//////////////////////////
+
+
+
+.bar-button-default-ios{
+    color: #016a38 !important;
+}
+.rtl .back-button.show-back-button {
+    transform: rotate(180deg) !important;
+}
+.ios .rtl .back-button.show-back-button {
+    transform: rotate(0deg) !important;
+}
+ion-icon.back-button-icon.icon.icon-ios.back-button-icon-ios.ion-ios-arrow-back{
+    transform: rotate(180deg) !important;
+}
+html[dir="rtl"] body > ion-app {
+    text-align: right;
+}
+.alert-ios [aria-checked=true] .alert-radio-inner{
+    left: 25px !important;
+}
+.tab-badge{
+    background-color: #016a38 !important;
+}
+.back-button-text-ios{
+    display: none !important;
+}
+.checkbox-ios .checkbox-checked {
+    border-color: #016a38 !important;
+    background-color: #016a38 !important;
+}
+html[dir="rtl"] body > ion-app {
+    text-align: right !important;
+}
+.checkbox-md .checkbox-checked {
+    border-color: #016a38 !important;
+    background-color: #016a38 !important;
+}
+#notifications-badge {
+    background-color: #016a38;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+html[dir="rtl"] body > ion-app > ion-alert .alert-button-group {
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+    
+}
+.popover-content{
+    right: 32px !important;
+}
+html[dir="rtl"] body > ion-app > ion-picker-cmp .picker-toolbar {
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+    
+}
+// .alert-button-group {
+//     flex-direction: row-reverse !important;
+//     justify-content: flex-start !important;
+//   }
+.ion-page.show-page {
+    font-family: "Cairo" !important;
+}
+button:focus{
+    outline: 0px !important;
+}
+.alert-radio-icon {
+    right: 13px !important;
+}
+.alert-message {
+    text-align: center !important;
+}
+.alert-md .alert-checkbox-icon {
+    right: 13px !important;
+}
+#side_menu .label-md {
+    margin: 0px !important;
+}
+#side_menu .label-ios {
+    margin: 0px !important;
+}
+.checkbox-inner{
+    height: 18px !important;
+    width: 9px !important;
+    right: 9px !important;
+}
+.checkbox-icon{
+    width: 30px !important;
+    height: 30px !important;
+}
+.rtl .item-input-has-focus .label-md[floating], .rtl .input-has-focus .label-md[floating], .rtl .item-input-has-value .label-md[floating], .rtl .input-has-value .label-md[floating], .rtl .item-input-has-value .label-ios[floating]{
+    -webkit-transform: translate3d(20%, 0, 0) scale(0.8) !important; 
+       transform: translate3d(20%, 0, 0) scale(0.8) !important; 
+   }
+   .toast-message {
+       font-family: "Cairo-Bold" !important;
+    }
+    
+  .rtl input.text-input{
+    direction: rtl !important;
+   }
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: #016a38;
+    -webkit-transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 0);
+}
+.tabs-md
+{
+    font-family: "FontAwesome";
+}.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+    color: #016a38;
+    -webkit-transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 0);
+}
+.tabs-ios
+{
+    font-family: "FontAwesome";
+}
+.userImage {
+    height: 100px; 
+    width: 100px; 
+   border: 2px solid #fff;
+   border-radius: 50%;
+   box-shadow: 0 0 5px gray;
+   display: inline-block;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 5px;
+} 
+.btn-primary:hover{
+    background-color: #016a38 !important;
+    border-color: #016a38 !important;
+}
+@font-face {
+    font-family: "Cairo Black";
+    src:url("../assets/cairofont/Cairo-Black.ttf");
+}
+@font-face {
+    font-family: "Cairo-Bold";
+    src:url("../assets/cairofont/cairo-bold.ttf");
+}
+@font-face {
+    font-family: "Cairo-Regular";
+    src:url("../assets/cairofont/cairo.ttf");
+}
+@font-face {
+    font-family: "Cairo";
+    src:url("../assets/cairofont/Cairo-Bold_0.ttf");
+}
+@font-face {
+    font-family: "Cairo-ExtraLight";
+    src:url("../assets/cairofont/cairo-extra-light.ttf");
+}
+@font-face {
+    font-family: "Cairo Light";
+    src:url("../assets/cairofont/cairo-light.ttf");
+}
+@font-face {
+    font-family: "Cairo SemiBold";
+    src:url("../assets/cairofont/Cairo-SemiBold.ttf");
+}
+ion-app{
+    font-family: "Cairo" !important;
+}
+.rtl{
+    text-align: right !important;
+}
+.ltr{
+    text-align: left !important;
+}
+.alert-checkbox-label{
+    white-space: pre-wrap !important;
+}
+
+
+
+
+
+
+

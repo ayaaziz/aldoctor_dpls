@@ -1,14 +1,136 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+  
+<ion-header class={{langDirection}}>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+  <ion-navbar   hideBackButton>
+       <!-- <ion-title style=" color:#7a7a7a">{{"trailVersion" | translate}}</ion-title>  -->
+      <ion-buttons style="display: inherit;" left>
+        <button ion-button icon-only  menuToggle><img src="assets/icon/menu.png" width="25" height="25" style="border: 0px;"></button>
+    </ion-buttons>
+    <ion-buttons style="display: inherit;" right>
+      <button ion-button icon-only  ><img src="assets/imgs/dlogo.png" width="30" style="border: 0px;"></button>
+  </ion-buttons>
+    </ion-navbar> 
+  </ion-header>
+<ion-content  class={{lang_direction}} padding style="height: 100%;font-family: 'Cairo';background-color:white">
+  <!-- <button button (click)="openReview()">review</button> -->
+  <!-- <button button (click)="orders()">orders</button> -->
+  <!-- <button button (click)="cancelorder()">cancel</button>  -->
+  <!-- <button button (click)="reorder()">cancel</button>  -->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="text-center" style="max-height: 100%;">
+    <div style="display: inline-block;margin: 0 auto;position: relative;">
+    <img [src]="userImageUrl" onerror="this.onerror=null;this.src='assets/imgs/default-avatar.png';" width="120" height="120" class="rounded-circle "><br>
+    <!-- <ion-icon *ngIf="noOrder && busyUser == true" (click)="unBusyUser()" name="ios-radio-button-on-outline" style="border-radius: 50% !important; font-size: 25px; position: absolute; top: 113px; margin-left: 18px; background-color: white; width: 28px; height: 28px; color:red;    border: 2px solid;"></ion-icon> -->
+    <ion-toggle style="position: absolute;top: 97px;left: 2px;" (ngModelChange)="changeAvailablity()" color="main" [(ngModel)]="user_availablity"></ion-toggle>
+    <!-- <ion-icon *ngIf="noOrder" (click)="changeAvailablity()" [ngStyle]="{'color': user_availablity == '1' ? '#016a38' : 'gray'}" name="ios-radio-button-on-outline" style="border-radius: 50% !important; font-size: 25px; position: absolute; top: 113px; margin-left: 18px; background-color: white; width: 28px; height: 28px; color: #026938;    border: 2px solid;"></ion-icon> -->
+  </div>
+    <h4  style="color:#5d5a5a;margin: 8px 0px 0px 0px;" >{{userName}} </h4>
+
+       <!-- ayaaaaaaaaaaaa -->
+       <div *ngIf="slognImage && slogn" style="text-align: center;margin-top: 3px;margin-bottom: 6px;">
+        <img [src]="slognImage" onerror="this.onerror=null;this.src='assets/imgs/default_slogn.png';" class="slogn" style="width:15px;height:15px;">
+        <span style="font-size:14px">{{slogn}}</span>
+      </div>
+      <!-- //////////// -->
+
+    <h5  style="color:#928f8f; margin: 0px" >{{userAddress}}</h5>
+    <ion-icon name="md-star" *ngIf="ratingStatus == 0" class="star" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 0 && ratingStatus < 1" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 1" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 1 && ratingStatus < 2" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 2" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus < 2 && ratingStatus <=1" class="star" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 2 && ratingStatus < 3" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 3" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus < 3 && ratingStatus <=2 " class="star" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 3 && ratingStatus < 4" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 4" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus < 4 && ratingStatus <=3" class="star" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus > 4 && ratingStatus < 5" class="star half" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus >= 5" class="star on" style="font-size: 20px;"></ion-icon>
+    <ion-icon name="md-star" *ngIf="ratingStatus < 5 && ratingStatus <=4" class="star" style="font-size: 20px;"></ion-icon>
+          <br>
+          <br>
+          </div>
+    <div class="text-center" *ngIf="noOrder">
+            <img src="assets/imgs/homevector.png" class="img-responsive" style="border-color:#ffffff;max-width:100%;max-height:100%">
+           </div>
+           <div *ngIf="!noOrder">
+             
+              <h4 style="color: #016a38;text-align: center;text-decoration: underline;margin-top: 10px;">{{"currentOrders" | translate}}</h4>
+              <span *ngFor="let item of currentOrders; let i = index">
+              <ion-card *ngIf="item.patient" (click)="openOrder(item.id,item.patient.id)">  
+                <ion-card-content style="padding: 0px;">
+                  
+                  <ion-grid padding>
+                  <ion-row >
+                    <ion-col col-4 style="text-align:center">
+                      <img style="height: 70px; width: 70px; margin: auto;" class="rounded-circle " [src]="item.patient.profile_pic" >
+                      #{{item.id}}
+                      <!-- <div *ngIf="item.status == 12" style="color:black;background-color: yellow;font-weight: bold"> {{"waiting_order" | translate}} </div> -->
+                  </ion-col>
+                  <ion-col col-8 class="col2">
+                    <h2 style="width:100%;margin-top:0px;">{{item.patient.name}}  &#x200e;</h2>
+          <div>
+            <ion-icon name="pin" style="margin: 0 4px;color:#016a38"></ion-icon><span style="color:#9f9f9f;font-size: 13px;"> {{item.patient.extraInfo.address}} </span>
+          </div>
+          <div>
+            <span *ngIf="item.patient.rate">
+          <!-- <ion-icon name="md-star" [ngStyle]="{'color': item.patient.rate >= 1 ? '#016a38' : '#cce1d7'}" style="font-size: 20px;"></ion-icon> -->
+          <ion-icon name="md-star" *ngIf="item.patient.rate == 0" class="star" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate > 0 && item.patient.rate < 1" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate >= 1" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate > 1 && item.patient.rate < 2" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate >= 2" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate < 2 && item.patient.rate <=1" class="star" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate > 2 && item.patient.rate < 3" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate >= 3" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate < 3 && item.patient.rate <=2 " class="star" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate > 3 && item.patient.rate < 4" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate >= 4" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate < 4 && item.patient.rate <=3" class="star" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate > 4 && item.patient.rate < 5" class="star half" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate >= 5" class="star on" style="font-size: 20px;"></ion-icon>
+          <ion-icon name="md-star" *ngIf="item.patient.rate < 5 && item.patient.rate <=4" class="star" style="font-size: 20px;"></ion-icon>
+        </span>
+        </div>
+        <div style="font-size: 14px; color: #788087;">
+          {{item.created_at}}
+        </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+                </ion-card-content>
+          </ion-card>
+          </span>
+           </div>
+           <ion-infinite-scroll *ngIf="!noOrder" (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="">
+              <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+
+            <ion-fab left bottom>
+              <button ion-fab style="background-color:#026938;font-family: 'Cairo Black';font-size:9px;width: 65px;
+              height: 65px;" (click)="customerService()">
+               <!-- خدمة عملاء -->
+
+               <span style="height: 61px;
+               font-size: 12px;
+               position: absolute;
+               right: 10px;
+               top: -5px;    left: 10px;">خدمة</span>
+         
+         <span style="text-align: center;
+         
+         height: 30px;
+         justify-content: center;
+         font-size: 12px;
+         position: absolute;
+         top: 10px;">عملاء</span>
+
+                  </button>
+        
+                  </ion-fab>
+
 </ion-content>
