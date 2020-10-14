@@ -213,19 +213,6 @@ status;
         }
       }]
     }
-
-    //ayaaaaaaaaa
-    this.status = navParams.get("status");
-    if(this.status == "16") {
-      this.orderAccepted = true;
-      this.newOrder = false;
-      this.noOrder = false;
-      this.moveToPatientStatus = false;
-      this.cancelDetectionStatus = false;
-      this.endDetectionStatus = true;
-    }
-    ////////////////
- 
     }
 
     openAppointment() {

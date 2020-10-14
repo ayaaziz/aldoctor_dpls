@@ -151,6 +151,26 @@ export class ContactPage {
                ordersData[j].desc = this.translate.instant("running_order")
              }
 
+             //ayaaaaaaa
+
+            //  else if(ordersData[j].status == "15") {
+            //   // ordersData[j].color="orange";
+            //   ordersData[j].desc = ordersData[j].entity_service_Name;
+            // }
+
+            //assigned to you from admin
+             else if(ordersData[j].status == "16") {
+              ordersData[j].color="green";
+              ordersData[j].desc = ordersData[j].entity_service_Name;
+            }
+            //canceled by admin
+            else if(ordersData[j].status == "18") {
+              ordersData[j].color="red";
+              ordersData[j].desc = "ملغي";
+            }
+
+             ////////////
+
             //  else if(ordersData[j].status == "12"){
             //   ordersData[j].color="yellow";
             //   ordersData[j].desc = this.translate.instant("waiting_order")
@@ -595,7 +615,7 @@ export class ContactPage {
       7 start detection
       8 move to paient 
     */
-if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 || item.order_status==8 || item.order_status ==7 || item.order_status == 2 || item.order_status == 0)
+if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 || item.order_status==8 || item.order_status ==7 || item.order_status == 2 || item.order_status == 0 || item.order_status == 16)
 {
   //alert()
  // this.storage.set("recievedNotificat",item.orderId ).then(()=> {
@@ -616,7 +636,14 @@ if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 |
         this.navCtrl.push(NeworderPage, {recievedNotificat : item.orderId})
       }
       else if (val == 5) {
-        this.navCtrl.push("NursingOrderPage", {recievedNotificat : item.orderId})
+
+        //ayaaaa
+        if(item.order_status != 16) {
+          this.navCtrl.push("NursingOrderPage", {recievedNotificat : item.orderId})
+        } else {
+          console.log("new nursing page");
+          this.navCtrl.push("LongTimeNursingOrderPage", {recievedNotificat : item.orderId});
+        }
       }
     })
  // })

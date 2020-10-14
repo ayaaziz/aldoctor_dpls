@@ -390,7 +390,16 @@ this.market.open(market);
                             
                           }
                           else if (val == 5) {
-                            this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]})
+                            // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]})
+
+                            //ayaaaaaaaaa
+                            if(notification.additionalData.order_status != "16") {
+                              this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});
+                            } else {
+                              console.log("new nursing page 3");     
+                              this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});
+                            }
+                            ///////////
                       
                         }
 
@@ -443,10 +452,17 @@ this.market.open(market);
                             
                           }else if (val == 5){
                             
-                            this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
+                            // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
+                             
+                            //ayaaaaaaaaa
+                            if(notification.additionalData.order_status != "16") {
+                              this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});
+                            } else {
+                              console.log("new nursing page 1");   
+                              this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});                 
+                            }
 
                           }
-
 
                         })
                   //     })
@@ -486,14 +502,15 @@ this.market.open(market);
                   this.nav.push(NeworderPage, {recievedNotificat : notification.additionalData.OrderID})
                 }else if (val == 5){
 
-                  this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
+                  // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
                   
-                  //ayaaaaa
-                  // if(this.status != "16") {
-                  //   this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
-                  // } else {
-                  //   this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID,status:this.status})
-                  // }
+                  //ayaaaaaaaaa
+                  if(notification.additionalData.order_status != "16") {
+                    this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});
+                  } else {
+                    console.log("new nursing page 2");       
+                    this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});               
+                  }
 
                 }
               })
