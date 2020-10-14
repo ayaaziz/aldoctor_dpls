@@ -72,6 +72,8 @@ DayNumbers;
 WeekDays;
 TotalPrice;
 priceByOnce;
+PreferedTime;
+PreferedGender;
 
 
 constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
@@ -199,6 +201,10 @@ ionViewDidEnter(refresh?) {
           this.WeekDays = data.order.WeekDays;
           this.TotalPrice = data.order.TotalPrice;
           this.priceByOnce = data.order.priceByOnce;
+          this.PreferedTime = data.order.PreferedTime;
+          this.PreferedGender = data.order.PreferedGender;
+
+          console.log("this.PreferedGender: "+ this.PreferedGender);
         }
           
       }, (data) => {

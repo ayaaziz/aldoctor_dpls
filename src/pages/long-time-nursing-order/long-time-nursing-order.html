@@ -47,7 +47,18 @@
       <tr *ngIf="DayHours > 0"><td class="title">عدد الساعات في اليوم: </td><td> {{DayHours}}</td></tr>
       <tr *ngIf="DayNumbers > 0"><td class="title">عدد المرات في اليوم: </td><td> {{DayNumbers}}</td></tr>
       <tr *ngIf="WeekDays > 0"><td class="title">عدد الأيام في الأسبوع:</td><td> {{WeekDays}}</td></tr>
-      <tr *ngIf="TotalPrice"><td class="title"> السعر الإجمالي: </td><td> {{TotalPrice}}</td></tr>
+      <tr *ngIf="PreferedTime">
+        <td class="title"> وقت الخدمة: </td>
+        <td *ngIf="PreferedTime == 1">صباحاً</td>
+        <td *ngIf="PreferedTime == 2">مساءًا</td>
+        <td *ngIf="PreferedTime == 3">طوال اليوم</td>
+      </tr>
+      <tr>
+        <td class="title"> نوع الممرض المطلوب: </td>
+        <td *ngIf="PreferedGender == 0">ذكر</td>
+        <td *ngIf="PreferedGender == 1">أنثى</td>
+      </tr>
+      <tr *ngIf="TotalPrice"><td class="title"> إجمالي سعر الخدمة: </td><td> {{TotalPrice}}</td></tr>
       <tr *ngIf="priceByOnce"><td class="title"> سعر الزيارة: </td><td> {{priceByOnce}}</td></tr>
       <tr *ngIf="patient_tel"><td class="title">  رقم هاتف المريض: </td><td> {{patient_tel}}</td></tr>
       <tr *ngIf="userAddress"><td class="title" style="vertical-align: top;">  موقع المريض: </td><td><ion-icon name="pin" style="margin: 0 4px;color:#016a38;font-size: 25px;" (click)="shareLoc()"></ion-icon> {{userAddress}}</td></tr>
