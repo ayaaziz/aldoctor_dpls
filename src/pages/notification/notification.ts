@@ -113,6 +113,10 @@ else{
   }
  
   openOrder(item){
+
+    console.log("order item id: "+item.data.url);
+
+
     if(item.data.url){
       this.storage.get('type').then(val => {
         if (val == 1) {
@@ -127,7 +131,15 @@ else{
         else if (val == 0) {
           this.navCtrl.push(NeworderPage, {recievedNotificat : item.data.url})
         } else if (val == 5) {
-          this.navCtrl.push("NursingOrderPage", {recievedNotificat : item.data.url})
+          
+          //ayaaaa
+          if(item.ordercurrentstatus != 16) {
+            this.navCtrl.push("NursingOrderPage", {recievedNotificat : item.data.url})
+          
+          } else {
+            console.log("new nursing page");
+            this.navCtrl.push("LongTimeNursingOrderPage", {recievedNotificat : item.data.url});
+          }
         }
 
       })

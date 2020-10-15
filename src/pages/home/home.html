@@ -61,7 +61,7 @@
              
               <h4 style="color: #016a38;text-align: center;text-decoration: underline;margin-top: 10px;">{{"currentOrders" | translate}}</h4>
               <span *ngFor="let item of currentOrders; let i = index">
-              <ion-card *ngIf="item.patient" (click)="openOrder(item.id,item.patient.id)">  
+              <ion-card *ngIf="item.patient" (click)="openOrder(item.id,item.patient.id,item.status)">  
                 <ion-card-content style="padding: 0px;">
                   
                   <ion-grid padding>

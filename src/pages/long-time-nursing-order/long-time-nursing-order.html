@@ -58,8 +58,8 @@
         <td *ngIf="PreferedGender == 0">ذكر</td>
         <td *ngIf="PreferedGender == 1">أنثى</td>
       </tr>
-      <tr *ngIf="TotalPrice"><td class="title"> إجمالي سعر الخدمة: </td><td> {{TotalPrice}}</td></tr>
-      <tr *ngIf="priceByOnce"><td class="title"> سعر الزيارة: </td><td> {{priceByOnce}}</td></tr>
+      <tr *ngIf="TotalPrice"><td class="title"> إجمالي سعر الخدمة: </td><td> {{TotalPrice}} جنيه</td></tr>
+      <tr *ngIf="priceByOnce"><td class="title"> سعر الزيارة: </td><td> {{priceByOnce}} جنيه</td></tr>
       <tr *ngIf="patient_tel"><td class="title">  رقم هاتف المريض: </td><td> {{patient_tel}}</td></tr>
       <tr *ngIf="userAddress"><td class="title" style="vertical-align: top;">  موقع المريض: </td><td><ion-icon name="pin" style="margin: 0 4px;color:#016a38;font-size: 25px;" (click)="shareLoc()"></ion-icon> {{userAddress}}</td></tr>
       <tr *ngIf="order_remark"><td class="title">ملاحظات : </td><td> {{order_remark}}</td></tr>

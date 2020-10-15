@@ -121,8 +121,10 @@ ionViewDidLoad() {
 }
 
 shareLoc() {
-  let urlDecoded = decodeURIComponent("http://maps.google.com/maps?q=loc:" + this.patient_lat + "," + this.patient_long);
-  window.open("whatsapp://send?text=" + urlDecoded, "_system", "location=yes");
+  console.log("this.patient_lat: "+this.patient_lat);
+  console.log("this.patient_long: "+this.patient_long);
+
+  window.open("http://maps.google.com/maps?q=loc:" + this.patient_lat + "," + this.patient_long, "_system", "location=yes");
 }
 
 openReview() {
@@ -169,7 +171,10 @@ ionViewDidEnter(refresh?) {
             }
           }
       
-          let patient_loc = String(data.order.extra).split(',')
+          // let patient_loc = String(data.order.extra).split(',')
+
+          let patient_loc = String(data.order.patientProfile.extraInfo.address_location).split(',');
+
           this.userImageUrl = data.order.patientProfile.profile_pic;
           this.userName = data.order.patientProfile.name;
 

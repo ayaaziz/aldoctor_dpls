@@ -90,7 +90,19 @@
       <ion-col  col-10 col-sm-10>
         <ion-item style="padding:0px" text-wrap>
 
-          <h2 style="width:100%;margin-top:0px;">{{item.name}}  &#x200e;</h2>
+          <ion-row>
+            <ion-col col-4>
+              <h2 style="width:100%;margin-top:0px;">{{item.name}}  &#x200e;</h2>
+            </ion-col>
+
+            <ion-col col-8>
+              <!-- ayaaaa -->
+              <div style="float: left;max-width: 117px;margin-left: 5px;">
+                <ion-icon [style.color]="item.color" name="radio-button-on"></ion-icon><span [ngStyle]="{'background-color': item.status == 0 ? '#016a38' : 'none'}" ><span [ngStyle]="{'color': item.status == 0 ? 'white' : 'black'}" style="padding: 2px;">{{item.desc}}</span></span> 
+              </div>
+            </ion-col>
+          </ion-row>
+
           <div style="margin-top: 15px;"> 
             <ion-icon name="pin" style="margin: 0 4px;color:#016a38"></ion-icon><span style="color:#9f9f9f;font-size: 13px;"> {{item.patient_address}} </span>
           </div>
@@ -118,9 +130,9 @@
         </div>
         </ion-item>
 
-        <div style="display: inline-block;position: absolute;left: 5px;top: 13px;max-width: 172px;">
+        <!-- <div style="display: inline-block;position: absolute;left: 5px;top: 13px;max-width: 172px;">
           <ion-icon [style.color]="item.color" name="radio-button-on"></ion-icon><span [ngStyle]="{'background-color': item.status == 0 ? '#016a38' : 'none'}" ><span [ngStyle]="{'color': item.status == 0 ? 'white' : 'black'}" style="padding: 2px;">{{item.desc}}</span></span> 
-        </div>
+        </div> -->
 
         <button *ngIf="item.rated == 0 && (item.status == 5 || item.status == 6)" class="btn btn-primary " style="padding: 4px 6px;float: left;margin-left: 5px;" (click)="rateagain(item)" >{{"rateOrder" | translate}}</button>
         

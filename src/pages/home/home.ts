@@ -418,8 +418,11 @@ export class HomePage {
     })
 
   }
-  openOrder(order_id, Patient_id) {
+  openOrder(order_id, Patient_id,orderStatus) {
     console.log("open order")
+
+    console.log("orderStatus: "+orderStatus);
+
     // this.storage.set("recievedNotificat", order_id).then(() => {
     //    this.storage.set("patient_id", Patient_id).then(() => {
     this.storage.get('type').then(val => {
@@ -438,7 +441,14 @@ export class HomePage {
         this.navCtrl.push(NeworderPage, { recievedNotificat: order_id })
       }else if (val == 5){
         
-        this.navCtrl.push("NursingOrderPage", { recievedNotificat: order_id })
+         //ayaaaa
+         if(orderStatus != 16) {
+          this.navCtrl.push("NursingOrderPage", { recievedNotificat: order_id })
+
+        } else {
+          console.log("new nursing page");
+          this.navCtrl.push("LongTimeNursingOrderPage", {recievedNotificat : order_id});
+        }
       }
     })
     //  })
