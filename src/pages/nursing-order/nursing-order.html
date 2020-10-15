@@ -151,25 +151,17 @@
   <!-- <button type="button" disabled *ngIf="disablePrescription"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#b2d2c3;"  >   {{"prescription" | translate}}      </button> <br><br> 
   <button type="button" *ngIf="!disablePrescription"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#b2d2c3;"  (click)="openPrescription()">   {{"prescription" | translate}}      </button> <br><br>  -->
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#80b49b;" [disabled]="moveToPatientStatus"  (click)="orderUpdateStatus(8)" >   {{"moveToPatient" | translate}}       </button>  <br><br>
+
+  <!-- ayaaaaa -->
+  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#80b49b;" [disabled]="startDetectionStatus"  (click)="orderUpdateStatus(7)" >   {{"startDetectionNursing" | translate}}       </button>  <br><br>
+
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#80b49b;" [disabled]="cancelDetectionStatus" (click)="orderUpdateStatus(11)" >   {{"pharmCancelNoMedicine" | translate}}       </button>  <br><br>
-  <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#418f6a;" (click)="shareLoc()" [disabled]="shareStatus" >    {{"shareLoc" | translate}}      </button>  <br><br>
+  <!-- <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#418f6a;" (click)="shareLoc()" [disabled]="shareStatus" >    {{"shareLoc" | translate}}      </button>  <br><br> -->
   <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:250px;border-color:#016a38;" [disabled]="endDetectionStatus" (click)="orderUpdateStatus(5)">   {{"orderDelivered" | translate}}       </button>  
 </span>
   </div>
   
-      <ion-fab *ngIf="orderAccepted && !anotherOneAccepted" left bottom>
-        <button ion-fab style="background-color:#026938" [disabled]="contactStatus">
-         
-        اتصال
-        </button>
-        <ion-fab-list side="right" *ngIf="orderAccepted && !anotherOneAccepted">
-            <a button ion-fab  (click)="whatsAppPatient()" >
-                <ion-icon   style="color:#026938;" name="logo-whatsapp"></ion-icon></a>
-       
-                <a button ion-fab  (click)="callPatient()" >
-                    <ion-icon   style="color:#026938;" name="call"></ion-icon></a>
-            </ion-fab-list>
-      </ion-fab>
+  
 
     </div>
 
@@ -227,7 +219,19 @@
       </ion-row>
       
 
-      
+      <ion-fab *ngIf="orderAccepted && !anotherOneAccepted" left bottom>
+          <button ion-fab style="background-color:#026938" [disabled]="contactStatus">
+           
+          اتصال
+          </button>
+          <ion-fab-list side="right" *ngIf="orderAccepted && !anotherOneAccepted">
+              <a button ion-fab  (click)="whatsAppPatient()" >
+                  <ion-icon   style="color:#026938;" name="logo-whatsapp"></ion-icon></a>
+         
+                  <a button ion-fab  (click)="callPatient()" >
+                      <ion-icon   style="color:#026938;" name="call"></ion-icon></a>
+              </ion-fab-list>
+        </ion-fab>
 
     </ion-content>
 

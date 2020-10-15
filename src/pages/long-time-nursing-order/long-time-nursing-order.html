@@ -68,10 +68,10 @@
   </div>
 
   <ion-fab left bottom>
-    <button ion-fab style="background-color:#026938" [disabled]="contactStatus"> 
+    <button ion-fab style="background-color:#026938"> 
       اتصال
     </button>
-    <ion-fab-list side="right" *ngIf="orderAccepted && !anotherOneAccepted">
+    <ion-fab-list side="right">
       <a button ion-fab  (click)="whatsAppPatient()" >
         <ion-icon   style="color:#026938;" name="logo-whatsapp"></ion-icon></a>
         <a button ion-fab  (click)="callPatient()" >

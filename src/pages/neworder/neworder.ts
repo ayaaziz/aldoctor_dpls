@@ -45,10 +45,10 @@ export class NeworderPage {
   coupon
   //appInBackground = 0
   moveToPatientStatus = true
-  startDetectionStatus = true
+  startDetectionStatus = false
   requestReturnStatus = true
   terminateStatus = true
-  cancelOrder = true
+  cancelOrder = false
   patient_lat;
   patient_long;
   patient_id;
@@ -222,6 +222,8 @@ console.log("myTime constructor: ",this.myTime)
 
     }, this.timeLeft * 1000);
   }
+
+
   orderUpdateStatus(status) {
     this.stopAudio()
     // if (status == 2 || status == 10) {

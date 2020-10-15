@@ -293,5 +293,6 @@
       "selectGraduateFrom":"يرجى اختيار كلية/معهد",
       "enteraboutNurse":"الرجاء إدخال نبذة عن الممرض",
       "aboutNurse":"نبذة عن الممرض",
-      "appointmentNursing":"موعد الكشف"
+      "appointmentNursing":"موعد الخدمة التمريضية",
+      "startDetectionNursing":"بدء الخدمة التمريضية"
 }

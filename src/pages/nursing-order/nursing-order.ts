@@ -101,6 +101,7 @@ customPickerOptions:any;
 customPickerOptionsHours:any;
 
 status;
+startDetectionStatus:boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
@@ -414,6 +415,7 @@ status;
 
     }
   }
+
   orderUpdateStatus(status) {
     this.stopAudio()
     if (this.helper.userAvailable == 1) {
@@ -517,7 +519,7 @@ status;
                 else if (data.order.status == "8") {
                   this.moveToPatientStatus = true
                   this.cancelDetectionStatus = true
-                  this.endDetectionStatus = false
+                  this.endDetectionStatus = true;
                   this.newAppointment = false
 
 
@@ -537,8 +539,17 @@ status;
                   //     );
                   // }
                 }
+                //ayaaaaaa
                 else if (data.order.status == "7") {
+                  this.helper.updateBusy(1)
+                  this.moveToPatientStatus = true
+                  this.startDetectionStatus = true
+                  this.endDetectionStatus = false;
+                  this.cancelDetectionStatus = true;
                 }
+                ////////////
+
+
                 else if (data.order.status == "2") {
                   //this.helper.updateServiceProfile(this.currentOrderID)
                   this.orderAccepted = true
@@ -833,13 +844,21 @@ status;
                 this.noOrder = false
                 this.moveToPatientStatus = true
                 this.cancelDetectionStatus = true
-                this.endDetectionStatus = false
+                this.endDetectionStatus = true;
                 this.newAppointment = false
               }
               else if (data.order.status == "7") {
                 this.orderAccepted = true
                 this.newOrder = false;
                 this.noOrder = false
+
+                // ayaaaaa
+                this.moveToPatientStatus = true;
+                this.cancelDetectionStatus = true;
+                this.endDetectionStatus = false;
+                this.newAppointment = false;
+                this.startDetectionStatus = true;
+                ///////
 
               }
               else if (data.order.status == "12") {
