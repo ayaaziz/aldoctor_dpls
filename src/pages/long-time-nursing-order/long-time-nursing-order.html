@@ -57,6 +57,7 @@
         <td class="title"> نوع الممرض المطلوب: </td>
         <td *ngIf="PreferedGender == 0">ذكر</td>
         <td *ngIf="PreferedGender == 1">أنثى</td>
+        <td *ngIf="PreferedGender == 2">ذكر/أنثى</td>
       </tr>
       <tr *ngIf="TotalPrice"><td class="title"> إجمالي سعر الخدمة: </td><td> {{TotalPrice}} جنيه</td></tr>
       <tr *ngIf="priceByOnce"><td class="title"> سعر الزيارة: </td><td> {{priceByOnce}} جنيه</td></tr>
