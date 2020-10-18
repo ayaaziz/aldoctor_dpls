@@ -182,11 +182,10 @@ export class NurseRegistrationPage {
             }
             this.services = servicesArr
 
-            //ayaaaa
+            //ayaaaaaaaaaaa
             this.servicesPrices = val.extraInfo.service_prices;
             this.servicesPrices = JSON.parse(this.servicesPrices.toString());
             let servicesArr1 = [];
-
 
             for (let i = 0; i < services.length; i++) {
               servicesArr1.push({id:services[i].id,price:this.servicesPrices[i]});
@@ -292,34 +291,7 @@ export class NurseRegistrationPage {
     this.loginservice.getGovernerates(this.helper.currentLang, data => {
       this.governorates = data
     }, data => { this.helper.presentToast(this.translate.instant('serverError')) })
-    // this.loginservice.getNursingTypes(this.helper.currentLang, (data) => { this.ServicesData = data }, (data) => { this.helper.presentToast(this.translate.instant('serverError')) })
-
-    //ayaaaaa
-    this.loginservice.getNursingTypes(this.helper.currentLang, 
-      data => { 
-        this.ServicesData = data; 
-
-        // let servicesDataArr = [];
-
-        // console.log("services prices: "+this.servicesPrices);
-
-
-        // for(var i = 0; i < this.ServicesData.length; i++) {
-
-        //   if(!this.servicesPrices[i]) this.servicesPrices[i] = 0;
-        //   servicesDataArr.push({id:this.ServicesData[i].id,value:this.ServicesData[i].value,price:this.servicesPrices[i]});
-        // }
-
-        // this.ServicesData = servicesDataArr;
-        // console.log("services yaaa ayaaaa: "+JSON.stringify(this.ServicesData));
-
-
-      }, 
-      error => { 
-        this.helper.presentToast(this.translate.instant('serverError'));
-    })
-    /////////////
-
+    this.loginservice.getNursingTypes(this.helper.currentLang, (data) => { this.ServicesData = data }, (data) => { this.helper.presentToast(this.translate.instant('serverError')) })
   }
   registerUser() {
     this.submitAttempt = true;
@@ -640,11 +612,8 @@ export class NurseRegistrationPage {
   selectServices(ev) {
     console.log("event: "+JSON.stringify(ev));
     console.log("servicesWithPrice: "+this.servicesWithPrice);
-    let arr = [];
-
-    arr = ev;
-
-    arr.forEach(id => {
+   
+    ev.forEach(id => {
       console.log("dd: "+id)
       let isFound = this.servicesWithPrice.find(element => {
 
@@ -654,54 +623,27 @@ export class NurseRegistrationPage {
 
       if(!isFound) {
         this.servicesWithPrice.push({id:id,price:0});
-        this.servicesWithPrice.sort(function(a, b){return a-b});
-        // for(let i = 0; i < this.servicesWithPrice.length; i++) {
-
-        //   if(this.servicesWithPrice.length > 1) {
-        //     if(id < this.servicesWithPrice[i].id) {
-        //       this.servicesWithPrice.splice(i,0,{id:id,price:0}); 
-        //       break;           
-        //     }
-        //     else if(id > this.servicesWithPrice[i].id && id < this.servicesWithPrice[i + 1].id) {
-        //       //insert element
-        //       this.servicesWithPrice.splice(i+1,0,{id:id,price:0});
-        //       break;
-        //     }
-        //   } else {
-        //     if(id < this.servicesWithPrice[i].id) {
-        //       this.servicesWithPrice.splice(i,0,{id:id,price:0});
-        //       break;
-        //     } else {
-        //       this.servicesWithPrice.push({id:id,price:0});
-        //       break;
-        //     }
-        //   }
-
-          
-        // }
+        this.servicesWithPrice.sort(function(a, b){return a.id-b.id});
       }
 
-
-    console.log("servicesWithPrice"+JSON.stringify(this.servicesWithPrice));
-  
+      console.log("servicesWithPrice"+JSON.stringify(this.servicesWithPrice));
     });
 
-       ///delete service
-       this.servicesWithPrice.forEach((element,index) => {
-        console.log("ss: "+element.id)
-        let isFound2 = arr.find((id) => {
-  
-        console.log("ss2: "+id)
-          return element.id == id;
-        });
+    //remove service
+    this.servicesWithPrice.forEach((element,index) => {
+      console.log("ss: "+element.id)
+      let isFound2 = ev.find((id) => {
 
-        if(!isFound2) {    
-          //insert element
-          this.servicesWithPrice.splice(index,1);   
-        }
-  
+      console.log("ss2: "+id)
+        return element.id == id;
+      });
+
+      if(!isFound2) {    
+        this.servicesWithPrice.splice(index,1);   
+      }
+
       console.log("servicesWithPrice"+JSON.stringify(this.servicesWithPrice));
-  
+
     });
 
 
@@ -712,6 +654,7 @@ export class NurseRegistrationPage {
     this.servicesPrices = selectedPrices;
 
   }
+  ////////////////////
 
 
 }
