@@ -46,6 +46,10 @@
     <div class="text-center" *ngIf="noOrder || anotherOneAccepted" >
         <table style="margin:auto; ">
             <tr *ngIf="order_no" ><td style="color:#016a38;font-weight: bold;width: 150px;">رقم الطلب: </td><td> {{order_no}}</td></tr>
+            
+            <!-- ayaaaaaa -->
+            <tr *ngIf="order_type != ''" ><td style="color:#016a38;font-weight: bold;width: 100px;">نوع الطلب: </td><td> {{order_type}}</td></tr>
+
             <!-- <tr *ngIf="patient_forfit" ><td style="color:#016a38;font-weight: bold;width: 150px;">غرامات مستحقة: </td><td> {{patient_forfit}}</td></tr> -->
             <!-- <tr *ngIf="showReview" ><td style="color:#016a38;font-weight: bold;width: 100px;">
                 <button type="button"  class="btn btn-primary btn-lg btn-sx" style="background-color:#016a38;width:100px;border-color:#80b49b;width:50%"   (click)="openReview()" >تقييم الطلب</button>
@@ -58,6 +62,10 @@
             <div *ngIf="newOrder" style=" text-align: center;"> 
               <table style="margin:auto; ">
                 <tr *ngIf="order_no" ><td style="color:#016a38;font-weight: bold;width: 150px;">رقم الطلب: </td><td> {{order_no}}</td></tr>
+
+                <!-- ayaaaaaa -->
+                <tr *ngIf="order_type != ''" ><td style="color:#016a38;font-weight: bold;width: 100px;">نوع الطلب: </td><td> {{order_type}}</td></tr>
+
                 <!-- <tr *ngIf="patient_forfit" ><td style="color:#016a38;font-weight: bold;width: 150px;">غرامات مستحقة: </td><td> {{patient_forfit}}</td></tr> -->
                 </table>
               <img src = "assets/imgs/loading.png" style="width: 48px;height: 48px;border:0px;" >

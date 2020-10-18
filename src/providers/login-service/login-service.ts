@@ -1434,12 +1434,16 @@ terms(access_token,lang, SuccessCallback,FailureCallback){
     .set('governorate_id',data.governorate_id).set('city_id',data.city_id)
     .set('staff_num',data.deliveryCount).
     set('entity_phone',data.entityphone).set('extra_info',data.extra_info)
+
+    //ayaaaa
     .set('birthdate',data.birthdate)
     .set('aboutdr',data.aboutdr)
     .set('gradyear',data.gradyear)
     .set('graduateFrom',data.graduateFrom)
     .set('College',data.College)
     .set('Syndicate',data.Syndicate)
+    .set('service_prices',data.servicesPrices)
+
 
     
     

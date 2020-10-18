@@ -432,7 +432,8 @@
         <img src="assets/icon/service.png" style="margin: 0 2px;" height="25" width="25">{{'nursinService' | translate}}
       </ion-label>
       <ion-select multiple="true" 
-        formControlName="services" interface="popover" [(ngModel)]="services" cancelText="{{this.translate.instant('canceltxt')}}" okText="{{this.translate.instant('doneTxt')}}">
+        formControlName="services" interface="popover" [(ngModel)]="services" cancelText="{{this.translate.instant('canceltxt')}}" okText="{{this.translate.instant('doneTxt')}}"
+        (ionChange)="selectServices($event)">
         <ion-option *ngFor="let item of ServicesData" [value]="item.id">{{item.value}}</ion-option>
 
       </ion-select>
