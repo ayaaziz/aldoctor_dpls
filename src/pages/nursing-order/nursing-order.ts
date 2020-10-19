@@ -448,7 +448,7 @@ startDetectionStatus:boolean = false;
 
             this.loginservice.updateCurrentOrder(this.currentOrderID, status, this.helper.userType,0, val.access_token, (data) => {
               if(data.status == -2){
-                this.helper.presentToast("لا يمكنك إستقبال المزيد من الطلبات حتى يتم إنهاء الطلبات الحالية")
+                this.helper.presentToast("لا يمكنك استقبال المزيد من الطلبات حتى يتم إنهاء الطلبات الحالية")
                 this.navCtrl.pop()
               }
               else if (data.success == true) {

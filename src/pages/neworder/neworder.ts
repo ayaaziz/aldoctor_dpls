@@ -256,7 +256,7 @@ console.log("myTime constructor: ",this.myTime)
             this.loginservice.updateCurrentOrder(this.currentOrderID, status, this.helper.userType,0, val.access_token, (data) => {
              
                if(data.status == -2){
-                 this.helper.presentToast("لا يمكنك إستقبال المزيد من الطلبات حتى يتم إنهاء الطلب الحالي")
+                 this.helper.presentToast("لا يمكنك استقبال المزيد من الطلبات حتى يتم إنهاء الطلب الحالي")
                  this.navCtrl.pop()
                }
              
