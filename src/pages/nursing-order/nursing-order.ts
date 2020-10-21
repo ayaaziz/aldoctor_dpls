@@ -1047,14 +1047,21 @@ startDetectionStatus:boolean = false;
   }
   sendPrice(){
 
-    if(!this.LE) {
-      this.helper.presentToast("الرجاء إدخال سعر التحاليل");
+     //ayaaaaa
+
+     if(!this.LE && !this.PT) {
+      this.helper.presentToast("الرجاء إدخال سعر الخدمة");
       return;
     } 
 
     if(!this.PT) {
       this.PT = "00";
     }
+
+    if(!this.LE) {
+      this.LE = "00";
+    }
+
 
     let poundsArr = this.LE.split(".");
     let pTArr = this.PT.split(".");
@@ -1077,7 +1084,8 @@ startDetectionStatus:boolean = false;
       return;
     }
 
-    if(this.LE == "0" || this.LE == "00" || this.LE == "000" || this.LE == "0000" || this.LE == "00000" || this.LE == "000000") {
+    if((!this.PT || this.PT == "0" || this.PT == "00")
+      && (this.LE == "0" || this.LE == "00" || this.LE == "000" || this.LE == "0000" || this.LE == "00000" || this.LE == "000000")) {
       this.helper.presentToast("الرجاء إدخال سعر أكبر من صفر");
       return;
     }

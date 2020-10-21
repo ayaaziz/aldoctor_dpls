@@ -393,7 +393,7 @@ this.market.open(market);
                             // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]})
 
                             //ayaaaaaaaaa
-                            if(notification.additionalData.order_status != "16") {
+                            if(notification.additionalData["gcm.notification.order_status"] != "16") {
                               this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});
                             } else {
                               console.log("new nursing page 3");     
