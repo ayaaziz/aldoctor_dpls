@@ -46,14 +46,6 @@ export class LongTimeNursingOrderPage {
   order_remark = ""
   order_no
   androidIS42 = 0
-
-
-
-
-
-
-
-  
   
   // shareStatus  = false
 contactStatus = false
@@ -74,6 +66,8 @@ TotalPrice;
 priceByOnce;
 PreferedTime;
 PreferedGender;
+pageLoaded:boolean = false;
+
 
 
 constructor(public navCtrl: NavController, public navParams: NavParams, public loginservice: LoginServiceProvider, private alertCtrl: AlertController
@@ -138,11 +132,15 @@ doRefresh(ev) {
   if (this.interval) {
     clearInterval(this.interval)
   }
-  this.ionViewDidEnter(1)
+  // this.ionViewDidEnter(1)
+  this.ionViewWillEnter(1)
 }
 
-ionViewDidEnter(refresh?) {
+// ionViewDidEnter(refresh?) {
+  ionViewWillEnter(refresh?) {
 
+
+  this.pageLoaded = false;
   console.log("DidEnter")
 
 
@@ -163,7 +161,7 @@ ionViewDidEnter(refresh?) {
         if (data.success == true) {
           if (data.order.service_profile_id) {
             if (data.order.service_profile_id != this.helper.userId) {
-              this.helper.presentToast(this.translate.instant("orderAcceptedByCenter"))
+              this.helper.presentToast(this.translate.instant("orderAssignedToAnotherNurse"));
               setTimeout(() => {
                 this.navCtrl.pop()
               }, 3000);
@@ -208,6 +206,8 @@ ionViewDidEnter(refresh?) {
           this.priceByOnce = data.order.priceByOnce;
           this.PreferedTime = data.order.PreferedTime;
           this.PreferedGender = data.order.PreferedGender;
+
+          this.pageLoaded = true;
 
           console.log("this.PreferedGender: "+ this.PreferedGender);
         }

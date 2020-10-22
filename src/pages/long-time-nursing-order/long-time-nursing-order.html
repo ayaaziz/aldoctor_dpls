@@ -7,14 +7,14 @@
   </ion-navbar> 
 </ion-header>
 
-<ion-content  class={{lang_direction}} padding style="height: 100%;font-family: 'Cairo';background-color:white">
+<ion-content class={{lang_direction}} padding style="height: 100%;font-family: 'Cairo';background-color:white">
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
 
-  <div [style.opacity]="opacityOfAllContent">
+  <div *ngIf="pageLoaded">
 
     <div class="text-center" style="max-height: 100%; min-height: 100px;">
       <div>

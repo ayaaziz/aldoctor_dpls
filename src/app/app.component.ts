@@ -393,6 +393,8 @@ this.market.open(market);
                             // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]})
 
                             //ayaaaaaaaaa
+
+                            //order assigned to current nurse
                             if(notification.additionalData["gcm.notification.order_status"] == "16") {
                              
                               console.log("new nursing page 3");     
@@ -404,7 +406,9 @@ this.market.open(market);
                                 this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});                                
                               }
                             
-                            } else if(notification.additionalData["gcm.notification.order_status"] == "5") {
+                            }
+                            //order assigned to another nurse                            
+                            else if(notification.additionalData["gcm.notification.order_status"] == "5") {
 
                               if(!notification.additionalData["foreground"]) {
                                 this.nav.setRoot(TabsPage);  
