@@ -291,5 +291,6 @@
       "selectGraduateFrom":"Please select faculty/institute",
       "enteraboutNurse":"Please enter about nurse",
       "aboutNurse":"About Nurse",
-      "appointmentNursing":"Nursing Appointment"
+      "appointmentNursing":"Nursing Appointment",
+      "orderAssignedToAnotherNurse":"Order has been assigned to another Nurse"
 }

@@ -294,5 +294,6 @@
       "enteraboutNurse":"الرجاء إدخال نبذة عن الممرض",
       "aboutNurse":"نبذة عن الممرض",
       "appointmentNursing":"موعد الخدمة التمريضية",
-      "startDetectionNursing":"بدء الخدمة التمريضية"
+      "startDetectionNursing":"بدء الخدمة التمريضية",
+      "orderAssignedToAnotherNurse":"لقد تم إسناد الطلب لممرض آخر"
 }

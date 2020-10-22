@@ -591,6 +591,11 @@ export class NurseRegistrationPage {
 
   }
 
+  ionViewDidLeave() {
+    console.log("ionViewDidLeave nurse regesteration");
+    this.navCtrl.pop();
+  }
+
   openAboutInfo() {
     let alert = this.alertCtrl.create({
       title: this.translate.instant("aboutDRInfo"),
@@ -610,49 +615,52 @@ export class NurseRegistrationPage {
 
   //ayaaaaaaaaaaa
   selectServices(ev) {
-    console.log("event: "+JSON.stringify(ev));
-    console.log("servicesWithPrice: "+this.servicesWithPrice);
-   
-    ev.forEach(id => {
-      console.log("dd: "+id)
-      let isFound = this.servicesWithPrice.find(element => {
 
-      console.log("dd2: "+element.id)
-        return element.id == id;
+    if(this.servicesWithPrice) {
+      console.log("event: "+JSON.stringify(ev));
+      console.log("servicesWithPrice: "+this.servicesWithPrice);
+    
+      ev.forEach(id => {
+        console.log("dd: "+id)
+        let isFound = this.servicesWithPrice.find(element => {
+
+        console.log("dd2: "+element.id)
+          return element.id == id;
+        });
+
+        if(!isFound) {
+          this.servicesWithPrice.push({id:id,price:0});
+          this.servicesWithPrice.sort(function(a, b){return a.id-b.id});
+        }
+
+        console.log("servicesWithPrice"+JSON.stringify(this.servicesWithPrice));
       });
 
-      if(!isFound) {
-        this.servicesWithPrice.push({id:id,price:0});
-        this.servicesWithPrice.sort(function(a, b){return a.id-b.id});
-      }
+      //remove service
+      this.servicesWithPrice.forEach((element,index) => {
+        console.log("ss: "+element.id)
+        let isFound2 = ev.find((id) => {
 
-      console.log("servicesWithPrice"+JSON.stringify(this.servicesWithPrice));
-    });
+        console.log("ss2: "+id)
+          return element.id == id;
+        });
 
-    //remove service
-    this.servicesWithPrice.forEach((element,index) => {
-      console.log("ss: "+element.id)
-      let isFound2 = ev.find((id) => {
+        if(!isFound2) {    
+          this.servicesWithPrice.splice(index,1);   
+        }
 
-      console.log("ss2: "+id)
-        return element.id == id;
+        console.log("servicesWithPrice"+JSON.stringify(this.servicesWithPrice));
+
       });
 
-      if(!isFound2) {    
-        this.servicesWithPrice.splice(index,1);   
-      }
 
-      console.log("servicesWithPrice"+JSON.stringify(this.servicesWithPrice));
+      let selectedPrices = this.servicesWithPrice.map(element => {
+        return element.price;
+      });
 
-    });
-
-
-    let selectedPrices = this.servicesWithPrice.map(element => {
-      return element.price;
-    });
-
-    this.servicesPrices = selectedPrices;
-
+      this.servicesPrices = selectedPrices;
+ 
+    }
   }
   ////////////////////
 

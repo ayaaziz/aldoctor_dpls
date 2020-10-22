@@ -103,7 +103,14 @@
             </ion-col>
           </ion-row>
 
-          <div style="margin-top: 15px;"> 
+          <!-- ayaaaaaaaaa -->
+          <ion-row *ngIf="item.serviceTitle" style="margin-top: 1px;">
+            <ion-col>
+              <span style="font-size: 15px;color: #016a38;">{{item.serviceTitle}}</span>
+            </ion-col>
+          </ion-row>
+
+          <div style="margin-top: 8px;"> 
             <ion-icon name="pin" style="margin: 0 4px;color:#016a38"></ion-icon><span style="color:#9f9f9f;font-size: 13px;"> {{item.patient_address}} </span>
           </div>
           <div>

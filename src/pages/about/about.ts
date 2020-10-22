@@ -47,6 +47,9 @@ export class AboutPage {
 
   }
   ionViewDidEnter() {
+
+    console.log("ionViewDidEnter Profile");
+
     this.storage.get("user_login_info").then((val) => {
 console.log("val from storage enter : ",val);
 

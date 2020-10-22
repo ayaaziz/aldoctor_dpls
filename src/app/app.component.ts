@@ -393,12 +393,26 @@ this.market.open(market);
                             // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]})
 
                             //ayaaaaaaaaa
-                            if(notification.additionalData["gcm.notification.order_status"] != "16") {
-                              this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});
-                            } else {
+                            if(notification.additionalData["gcm.notification.order_status"] == "16") {
+                             
                               console.log("new nursing page 3");     
-                              this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});
-                            }
+
+                              if(notification.additionalData["foreground"]) {
+                                this.presentOrderAssigningAlert(notification.title, notification.message,data.orderId);
+                                
+                              } else {
+                                this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});                                
+                              }
+                            
+                            } else if(notification.additionalData["gcm.notification.order_status"] == "5") {
+
+                              if(!notification.additionalData["foreground"]) {
+                                this.nav.setRoot(TabsPage);  
+                                this.nav.push(NotificationPage,{"fromNotification":true}); 
+                              }
+                            } else {
+                              this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});
+                            } 
                             ///////////
                       
                         }
@@ -455,11 +469,25 @@ this.market.open(market);
                             // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
                              
                             //ayaaaaaaaaa
-                            if(notification.additionalData.order_status != "16") {
-                              this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});
+                            if(notification.additionalData.order_status == "16") {
+
+                              console.log("new nursing page 2");   
+                              if(notification.additionalData.foreground) {
+                                this.presentOrderAssigningAlert(notification.title, notification.message,data.orderId);
+                                
+                              } else {
+                                this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});                               
+                              }  
+                          
+                            } else if(notification.additionalData.order_status == "5") {
+
+                              if(!notification.additionalData.foreground) {
+                                this.nav.setRoot(TabsPage);  
+                                this.nav.push(NotificationPage,{"fromNotification":true}); 
+                              }
+
                             } else {
-                              console.log("new nursing page 1");   
-                              this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});                 
+                              this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});
                             }
 
                           }
@@ -503,14 +531,29 @@ this.market.open(market);
                 }else if (val == 5){
 
                   // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
-                  
+                                    
                   //ayaaaaaaaaa
-                  if(notification.additionalData.order_status != "16") {
-                    this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});
+                  if(notification.additionalData.order_status == "16") {
+
+                    console.log("new nursing page 2");   
+                    if(notification.additionalData.foreground) {
+                      this.presentOrderAssigningAlert(notification.title, notification.message,data.orderId);
+                      
+                    } else {
+                      this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});                               
+                    }  
+                
+                  } else if(notification.additionalData.order_status == "5") {
+                   
+                    if(!notification.additionalData.foreground) {
+                      this.nav.setRoot(TabsPage);  
+                      this.nav.push(NotificationPage,{"fromNotification":true}); 
+                    }
+
                   } else {
-                    console.log("new nursing page 2");       
-                    this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});               
+                    this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});
                   }
+                  ///////////////
 
                 }
               })
@@ -548,5 +591,28 @@ this.market.open(market);
   }
 
 
+  // ayaaaaaa
+  presentOrderAssigningAlert(title, msg,orderId) {
+     
+    console.log("enter presentdelivaryAlert");
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: msg,
+      cssClass: 'foo',
+      buttons: [
+        {
+          text:"متابعة الطلب",
+          handler: () => {
+           this.nav.setRoot(TabsPage);
+           this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : orderId}); 
+          }
+        },
+        {
+         text:"تم"
+       }
+      ]
+    });
+    alert.present();
+  }
 
 }

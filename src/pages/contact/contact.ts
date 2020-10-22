@@ -37,7 +37,7 @@ export class ContactPage {
 
   orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
   "name":"","profile_pic":"","rate":"","patient_id":"",
-"custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
+"custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":"","serviceTitle":""};
 
   tostClass ;
   refresher;
@@ -161,7 +161,8 @@ export class ContactPage {
             //assigned to you from admin
              else if(ordersData[j].status == "16") {
               ordersData[j].color="green";
-              ordersData[j].desc = ordersData[j].entity_service_Name;
+              ordersData[j].serviceTitle = ordersData[j].entity_service_Name;
+              ordersData[j].desc = "متابعة";
             }
             //canceled by admin
             else if(ordersData[j].status == "18") {
@@ -212,6 +213,8 @@ export class ContactPage {
                   this.orderobject.order_status = ordersData[j].status;
                   this.orderobject.created_at = ordersData[j].created_at_new
                   this.orderobject.service_id = ordersData[j].service_id
+                  this.orderobject.serviceTitle = ordersData[j].serviceTitle
+
 
                   if(ordersData[j].reorder == "1")
                   {
@@ -228,7 +231,7 @@ export class ContactPage {
 
                   this.orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
                   "name":"","profile_pic":"","rate":"","patient_id":"",
-                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
+                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":"","serviceTitle":""};
                   //  }
 
           //   }
@@ -352,7 +355,7 @@ export class ContactPage {
                   this.data.push(this.orderobject);
                   this.orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
                   "name":"","profile_pic":"","rate":"","patient_id":"",
-                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
+                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":"","serviceTitle":""};
             //         }
 
             // }
@@ -462,7 +465,7 @@ export class ContactPage {
                   this.data.push(this.orderobject);
                   this.orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
                   "name":"","profile_pic":"","rate":"","patient_id":"",
-                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
+                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":"","serviceTitle":""};
             //         }
 
             // }
@@ -566,7 +569,7 @@ export class ContactPage {
                   this.data.push(this.orderobject);
                   this.orderobject={"orderId":"","order_status":"","color":"","reorder":"","rated":"",
                   "name":"","profile_pic":"","rate":"","patient_id":"",
-                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":""};
+                  "custom_date":"","date_id":"","patient_address":"","status":"","created_at":"","desc":"","service_id":"","serviceTitle":""};
             //         }
 
             // }
