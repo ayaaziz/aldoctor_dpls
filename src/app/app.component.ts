@@ -53,6 +53,12 @@ export class MyApp {
             localStorage.removeItem('kdkvfkhggsso')
             localStorage.removeItem('reefdfdfvcvc')
             this.userLoged = false;
+
+            //ayaaaaaaa
+            this.helper.registration = "";
+            console.log("registrationId: "+ this.helper.registration);
+            ///////////
+
             this.nav.setRoot(LoginPage);
           })
     });
@@ -400,7 +406,7 @@ this.market.open(market);
                               console.log("new nursing page 3");     
 
                               if(notification.additionalData["foreground"]) {
-                                this.presentOrderAssigningAlert(notification.title, notification.message,data.orderId);
+                                this.presentOrderAssigningAlert(notification.title, notification.message,notification.additionalData["gcm.notification.OrderID"]);
                                 
                               } else {
                                 this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});                                
@@ -477,7 +483,7 @@ this.market.open(market);
 
                               console.log("new nursing page 2");   
                               if(notification.additionalData.foreground) {
-                                this.presentOrderAssigningAlert(notification.title, notification.message,data.orderId);
+                                this.presentOrderAssigningAlert(notification.title, notification.message,notification.additionalData.OrderID);
                                 
                               } else {
                                 this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});                               
@@ -541,7 +547,7 @@ this.market.open(market);
 
                     console.log("new nursing page 2");   
                     if(notification.additionalData.foreground) {
-                      this.presentOrderAssigningAlert(notification.title, notification.message,data.orderId);
+                      this.presentOrderAssigningAlert(notification.title, notification.message,notification.additionalData.OrderID);
                       
                     } else {
                       this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});                               
@@ -576,6 +582,7 @@ this.market.open(market);
     pushObject.on('registration').subscribe((registration: any) => {
       console.log("registrationId " + registration.registrationId)
       this.helper.registration = registration.registrationId;
+      
       // if(localStorage.getItem("firebaseRegNoti")){
       //   if(localStorage.getItem("firebaseRegNoti") == registration.registrationId){
       //     localStorage.setItem("regChanged","0")

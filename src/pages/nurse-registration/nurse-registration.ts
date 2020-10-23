@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ActionSheetController, ToastController, AlertController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ActionSheetController, ToastController, AlertController, Events, App } from 'ionic-angular';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { Base64 } from '@ionic-native/base64';
 import { FilePath } from '@ionic-native/file-path';
@@ -80,7 +80,8 @@ export class NurseRegistrationPage {
   customPickerOptionsOnlyYear:any;
 
   servicesPrices = [];
-  servicesWithPrice
+  servicesWithPrice;
+  currentView;
 
 
   constructor(public toastCtrl: ToastController, private camera: Camera, public helper: HelperProvider,
@@ -88,7 +89,7 @@ export class NurseRegistrationPage {
     public translate: TranslateService, public formBuilder: FormBuilder,  private file: File,
     public filePicker: IOSFilePicker, public platform: Platform, private alertCtrl: AlertController,
     private filePath: FilePath, public navCtrl: NavController, public navParams: NavParams,
-    private fileChooser: FileChooser, private base64: Base64, public storage: Storage) {
+    private fileChooser: FileChooser, private base64: Base64, public storage: Storage,public app: App) {
 
 
 
@@ -589,11 +590,17 @@ export class NurseRegistrationPage {
       this.address = this.helper.serviceAddress;
     }
 
+    this.currentView = "NurseRegistrationPage";
+
   }
 
+  //ayaaaaaa
   ionViewDidLeave() {
-    console.log("ionViewDidLeave nurse regesteration");
+   console.log("this.currentView: "+this.currentView);
+   if(this.currentView == "NurseRegistrationPage") {
     this.navCtrl.pop();
+    this.currentView = "";
+   }
   }
 
   openAboutInfo() {
