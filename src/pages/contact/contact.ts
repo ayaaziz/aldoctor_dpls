@@ -169,6 +169,11 @@ export class ContactPage {
               ordersData[j].color="red";
               ordersData[j].desc = "ملغي";
             }
+             //rejected by admin
+             else if(ordersData[j].status == "17") {
+              ordersData[j].color="red";
+              ordersData[j].desc = "مرفوض";
+            }
 
              ////////////
 
@@ -617,7 +622,7 @@ export class ContactPage {
       7 start detection
       8 move to paient 
     */
-if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 || item.order_status==8 || item.order_status ==7 || item.order_status == 2 || item.order_status == 0 || item.order_status == 16 || item.order_status == 18)
+if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 || item.order_status==8 || item.order_status ==7 || item.order_status == 2 || item.order_status == 0 || item.order_status == 16)
 {
   //alert()
  // this.storage.set("recievedNotificat",item.orderId ).then(()=> {
@@ -640,7 +645,7 @@ if(item.order_status == 13 ||item.order_status == 12 || item.order_status == 1 |
       else if (val == 5) {
 
         //ayaaaa
-        if(item.order_status != 16 && item.order_status != 18) {
+        if(item.order_status != 16) {
           this.navCtrl.push("NursingOrderPage", {recievedNotificat : item.orderId})
         } else {
           console.log("new nursing page");

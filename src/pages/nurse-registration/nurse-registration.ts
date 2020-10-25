@@ -594,14 +594,14 @@ export class NurseRegistrationPage {
 
   }
 
-  //ayaaaaaa
-  ionViewDidLeave() {
-   console.log("this.currentView: "+this.currentView);
-   if(this.currentView == "NurseRegistrationPage") {
-    this.navCtrl.pop();
-    this.currentView = "";
-   }
-  }
+  // //ayaaaaaa
+  // ionViewDidLeave() {
+  //  console.log("this.currentView: "+this.currentView);
+  //  if(this.currentView == "NurseRegistrationPage") {
+  //   this.navCtrl.pop();
+  //   this.currentView = "";
+  //  }
+  // }
 
   openAboutInfo() {
     let alert = this.alertCtrl.create({
