@@ -49,11 +49,13 @@ page-report-for-labs-or-centers {
         border-color: #016a38 !important;
     }
 
+    //ayaaaa
     .deleteIcon {
       color: #016a38 !important;
       position: absolute !important;
       top: 1px;
-      right: 4px;
+      right: 50%;
+      transform: translateX(50%);
     }
 
     .deleteIconWrapper {
@@ -61,7 +63,6 @@ page-report-for-labs-or-centers {
       height: 22px;
       border-radius: 50%;
       border: 1px solid #016a38;
-      padding: 5px;
       background-color: #fff;
       position: absolute !important;
       right: -9px;
@@ -79,6 +80,7 @@ page-report-for-labs-or-centers {
     .deleteIcon:before {
       font-size: 17px !important;
     }
+    /////////////
 
     .label-md {
       margin: 6px 8px 4px 0;

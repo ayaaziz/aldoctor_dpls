@@ -295,5 +295,7 @@
       "aboutNurse":"نبذة عن الممرض",
       "appointmentNursing":"موعد الخدمة التمريضية",
       "startDetectionNursing":"بدء الخدمة التمريضية",
-      "orderAssignedToAnotherNurse":"لقد تم إسناد الطلب لممرض آخر"
+      "orderAssignedToAnotherNurse":"لقد تم إسناد الطلب لممرض آخر",
+      "developedBy":"تم التطوير بواسطة",
+      "itroots":"شركة الجذور لتكنولوجيا المعلومات"
 }
