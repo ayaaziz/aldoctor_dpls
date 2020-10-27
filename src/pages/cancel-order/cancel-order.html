@@ -32,7 +32,7 @@
         <textarea [(ngModel)]="desc" class="form-control" rows="5" id="comment" style="background-color: #e8f1ed"></textarea>
       </div>
     <ion-item style="text-align:center;" no-lines>
-        <button type="button" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black';margin:10px auto;" (click)="cancelOrder()"> {{"cancelOrder" | translate}}</button>  
+        <button type="button" [disabled]="disableCancelBtn" class="btn btn-primary btn-lg btn-block" style="font-family: 'Cairo Black';margin:10px auto;" (click)="cancelOrder()"> {{"cancelOrder" | translate}}</button>  
       </ion-item>
 
 </ion-content>

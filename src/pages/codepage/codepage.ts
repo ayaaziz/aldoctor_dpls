@@ -223,5 +223,29 @@ time=60;
 }
 
 
+changeTxt(){
+  console.log("code...",this.code);
+  this.code = this.textArabicNumbersReplacment(this.code);
+  console.log("code after replacement: ",this.code); 
+
+}
+
+textArabicNumbersReplacment(strText) { 
+  var strTextFiltered = strText.trim();
+  strTextFiltered = strText;
+
+  strTextFiltered = strTextFiltered.replace(/[\٩]/g, '9');
+  strTextFiltered = strTextFiltered.replace(/[\٨]/g, '8');
+  strTextFiltered = strTextFiltered.replace(/[\٧]/g, '7');
+  strTextFiltered = strTextFiltered.replace(/[\٦]/g, '6');
+  strTextFiltered = strTextFiltered.replace(/[\٥]/g, '5');
+  strTextFiltered = strTextFiltered.replace(/[\٤]/g, '4');
+  strTextFiltered = strTextFiltered.replace(/[\٣]/g, '3');
+  strTextFiltered = strTextFiltered.replace(/[\٢]/g, '2');
+  strTextFiltered = strTextFiltered.replace(/[\١]/g, '1');
+  strTextFiltered = strTextFiltered.replace(/[\٠]/g, '0');
+  
+  return strTextFiltered;
+}
 
 }

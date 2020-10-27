@@ -16,10 +16,10 @@
         <form [formGroup]="activationForm" style="background-color: white;width: 100%">
         <ion-item style="margin: 0px; box-shadow: 1px 1px 1px 1px lightgrey;margin-bottom: 15px;" [class.invalid]="!activationForm.controls.code.valid && submitAttempt">
       <ion-label style="margin: 0"><img src="assets/icon/mark.png" style="margin: 0 2px;" height="25" width="25"></ion-label>
-      <ion-input *ngIf="lang_direction == 'rtl'" placeholder="ادخل الكود"   style="border-radius: 2px;padding: 0px;" formControlName="code" [(ngModel)]="code"
-      type="password"></ion-input>
-      <ion-input *ngIf="lang_direction != 'rtl'" placeholder="Enter code"    style="border-radius: 2px;padding: 0px;" formControlName="code" [(ngModel)]="code"
-  type="password"></ion-input>
+      <ion-input *ngIf="lang_direction == 'rtl'" placeholder="أدخل الكود"  (input)="changeTxt()" style="border-radius: 2px;padding: 0px;" formControlName="code" [(ngModel)]="code"
+      type="text"></ion-input>
+      <ion-input *ngIf="lang_direction != 'rtl'" placeholder="Enter code"  (input)="changeTxt()"  style="border-radius: 2px;padding: 0px;" formControlName="code" [(ngModel)]="code"
+  type="text"></ion-input>
   </ion-item>
   <ion-item *ngIf="!activationForm.controls.code.valid && submitAttempt" no-lines>
   <p> {{"enterCode" | translate}} </p>

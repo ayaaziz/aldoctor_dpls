@@ -27,6 +27,8 @@ export class CancelOrderPage {
   tostClass;
   orderStatus;
 
+  disableCancelBtn:boolean = false;
+
   constructor(public storage: Storage, public helper: HelperProvider,
     public service: LoginServiceProvider, public translate: TranslateService,
     public navCtrl: NavController, public navParams: NavParams,
@@ -40,6 +42,10 @@ export class CancelOrderPage {
       this.tostClass = "toastLeft";
     //this.translate.use(this.helper.currentLang);
     console.log("orderId from cancel order: ", this.orderId);
+
+     //ayaaa
+     this.disableCancelBtn = false;
+  
   }
   doRefresh(ev){
     ev.complete();
@@ -87,6 +93,11 @@ export class CancelOrderPage {
 
   }
   cancelOrder() {
+
+    //ayaaa
+    this.disableCancelBtn = true;
+    ///
+
     console.log("user reasons", this.userReasons.join());
     console.log("desc: ", this.desc);
     console.log("order id from cancle: ", this.orderId);
