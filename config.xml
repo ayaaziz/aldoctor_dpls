@@ -31,6 +31,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="cordova.plugins.diagnostic.modules" value="LOCATION WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
+    <preference name="orientation" value="portrait" />
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
