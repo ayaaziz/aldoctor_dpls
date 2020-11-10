@@ -86,7 +86,7 @@ export class ContactPage {
 
   ionViewDidLoad() {
 
-    console.log('ionViewDidLoad OrderhistoryPage');
+    console.log('ionViewDidLoad contactPage');
   }
  
   private presentToast(text) {

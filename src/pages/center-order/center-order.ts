@@ -970,7 +970,14 @@ this.opacityOfAllContent = 0.1;
 
             //ayaaaaaaaa
             // this.navCtrl.pop();
-            this.navCtrl.setRoot(ContactPage);
+            // this.navCtrl.setRoot(ContactPage);
+
+            //  this.navCtrl.setRoot(TabsPage).then(() => {
+            //   this.navCtrl.setRoot(ContactPage);
+            // });
+
+            this.navCtrl.setRoot(TabsPage);
+
           }
         },
         {

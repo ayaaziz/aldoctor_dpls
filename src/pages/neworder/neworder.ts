@@ -185,7 +185,7 @@ console.log("myTime constructor: ",this.myTime)
     this.orderAccepted = false;
     this.newOrder = false;
     this.noOrder = true;
-    console.log('ionViewDidLoad NotificationPage');
+   
     //alert("here")
     this.storage.get("user_login_info").then((val) => {
       if (val != null) {
@@ -810,7 +810,13 @@ console.log("myTime constructor: ",this.myTime)
 
             //ayaaaaaa
             // this.navCtrl.pop();
-            this.navCtrl.setRoot(ContactPage);
+            
+            // this.navCtrl.setRoot(ContactPage);
+        
+            this.navCtrl.setRoot(TabsPage);
+        
+
+
           }
         },
         {

@@ -367,8 +367,11 @@ this.market.open(market);
 
             //ayaaaaaaaaa
             console.log("general notification");
-            this.nav.setRoot(TabsPage);  
-            this.nav.push(NotificationPage,{"fromNotification":true}); 
+            // this.nav.setRoot(TabsPage).then(() => {
+            //   this.nav.push(NotificationPage,{"fromNotification":true}); 
+            // })  
+            this.nav.setRoot(TabsPage, { tabIndex: 3 });
+
             /////////////
 
             return;
@@ -417,8 +420,9 @@ this.market.open(market);
                             else if(notification.additionalData["gcm.notification.order_status"] == "5") {
 
                               if(!notification.additionalData["foreground"]) {
-                                this.nav.setRoot(TabsPage);  
-                                this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                this.nav.setRoot(TabsPage).then(() => {
+                                  this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                })
                               }
                             } else {
                               this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});
@@ -440,8 +444,11 @@ this.market.open(market);
 
             //ayaaaaaaaaa
             console.log("general notification");
-            this.nav.setRoot(TabsPage);  
-            this.nav.push(NotificationPage,{"fromNotification":true}); 
+            // this.nav.setRoot(TabsPage).then(() => {
+            //   this.nav.push(NotificationPage,{"fromNotification":true}); 
+            // }) 
+            
+            this.nav.setRoot(TabsPage, { tabIndex: 3 });
             /////////////
 
             return;
@@ -492,8 +499,9 @@ this.market.open(market);
                             } else if(notification.additionalData.order_status == "5") {
 
                               if(!notification.additionalData.foreground) {
-                                this.nav.setRoot(TabsPage);  
-                                this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                this.nav.setRoot(TabsPage).then(() => {
+                                  this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                })  
                               }
 
                             } else {
@@ -515,8 +523,11 @@ this.market.open(market);
 
            //ayaaaaaaaaa
            console.log("general notification");
-           this.nav.setRoot(TabsPage);  
-           this.nav.push(NotificationPage,{"fromNotification":true}); 
+          //  this.nav.setRoot(TabsPage).then(() => {
+          //   this.nav.push(NotificationPage,{"fromNotification":true}); 
+          //  })  
+          this.nav.setRoot(TabsPage, { tabIndex: 3 });
+
            /////////////
            
            return;
@@ -556,8 +567,10 @@ this.market.open(market);
                   } else if(notification.additionalData.order_status == "5") {
                    
                     if(!notification.additionalData.foreground) {
-                      this.nav.setRoot(TabsPage);  
-                      this.nav.push(NotificationPage,{"fromNotification":true}); 
+                      this.nav.setRoot(TabsPage).then(() => {
+                        this.nav.push(NotificationPage,{"fromNotification":true}); 
+                      })  
+                     
                     }
 
                   } else {
@@ -614,8 +627,9 @@ this.market.open(market);
         {
           text:"متابعة الطلب",
           handler: () => {
-           this.nav.setRoot(TabsPage);
-           this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : orderId}); 
+           this.nav.setRoot(TabsPage).then(() => {
+            this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : orderId}); 
+           })
           }
         },
         {

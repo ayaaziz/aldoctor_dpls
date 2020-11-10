@@ -8,6 +8,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { AlertController } from 'ionic-angular';
 import { isEmpty } from 'rxjs/operators';
 import { ContactPage } from '../contact/contact';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the PharmacyOrderPage page.
@@ -641,7 +642,10 @@ this.opacityOfAllContent = 0.1;
 
             //ayaaaaaa
             // this.navCtrl.pop();
-            this.navCtrl.setRoot(ContactPage);
+            // this.navCtrl.setRoot(ContactPage);
+
+            this.navCtrl.setRoot(TabsPage);
+
           }
         },
         {

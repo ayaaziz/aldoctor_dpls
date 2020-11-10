@@ -985,7 +985,10 @@ startDetectionStatus:boolean = false;
 
             //ayaaaaaaa
             // this.navCtrl.pop();
-            this.navCtrl.setRoot(ContactPage);
+            // this.navCtrl.setRoot(ContactPage);
+
+            this.navCtrl.setRoot(TabsPage);
+
           }
         },
         {

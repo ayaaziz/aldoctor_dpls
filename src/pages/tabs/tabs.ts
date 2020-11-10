@@ -4,7 +4,7 @@ import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { NotificationPage } from '../notification/notification';
-import { Events} from 'ionic-angular';
+import { Events, NavParams} from 'ionic-angular';
 
 
 @Component({
@@ -18,7 +18,9 @@ export class TabsPage {
   tab3Root = ContactPage;
   tab4Root = NotificationPage;
 
-  constructor(public events: Events) {
+  tabIndex: Number = 0;
+
+  constructor(public events: Events,public params: NavParams) {
     this.audio = new Audio();
     this.audio.src = 'assets/mp3/notify.mp3';
       this.audio.load();
@@ -32,6 +34,13 @@ export class TabsPage {
         }, 1000);
       }
   });
+
+
+    let tabIndex = this.params.get('tabIndex');
+    if (tabIndex) {
+      this.tabIndex = tabIndex;
+    }
+
   }
   
 }
