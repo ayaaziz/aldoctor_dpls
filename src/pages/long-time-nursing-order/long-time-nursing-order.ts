@@ -55,6 +55,8 @@ customPickerOptionsHours:any;
 
 status;
 
+isCreatedByAdmin;
+
 //////////
 
 serviceName;
@@ -206,6 +208,7 @@ doRefresh(ev) {
           this.priceByOnce = data.order.priceByOnce;
           this.PreferedTime = data.order.PreferedTime;
           this.PreferedGender = data.order.PreferedGender;
+          this.isCreatedByAdmin = data.order.createdByAdmin;
 
           this.pageLoaded = true;
 
