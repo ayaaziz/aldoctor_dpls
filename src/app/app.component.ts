@@ -404,6 +404,7 @@ this.market.open(market);
                             //ayaaaaaaaaa
 
                             //order assigned to current nurse
+                            //long term nursing
                             if(notification.additionalData["gcm.notification.order_status"] == "16") {
                              
                               console.log("new nursing page 3");     
@@ -416,15 +417,19 @@ this.market.open(market);
                               }
                             
                             }
-                            //order assigned to another nurse                            
+                            //order finishd or assigned to another nurse                            
                             else if(notification.additionalData["gcm.notification.order_status"] == "5") {
 
                               if(!notification.additionalData["foreground"]) {
                                 this.nav.setRoot(TabsPage).then(() => {
-                                  this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                 // this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                this.nav.setRoot(TabsPage, { tabIndex: 3 });
                                 })
                               }
-                            } else {
+                            }
+
+                            //short term nursing
+                             else {
                               this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]});
                             } 
                             ///////////
@@ -486,6 +491,7 @@ this.market.open(market);
                             // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
                              
                             //ayaaaaaaaaa
+                            //long term nursing
                             if(notification.additionalData.order_status == "16") {
 
                               console.log("new nursing page 2");   
@@ -496,15 +502,20 @@ this.market.open(market);
                                 this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});                               
                               }  
                           
-                            } else if(notification.additionalData.order_status == "5") {
-
+                            } 
+                            //order finishd or assigned to another nurse   
+                            else if(notification.additionalData.order_status == "5") {
                               if(!notification.additionalData.foreground) {
                                 this.nav.setRoot(TabsPage).then(() => {
-                                  this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                  // this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                  this.nav.setRoot(TabsPage, { tabIndex: 3 });
                                 })  
                               }
 
-                            } else {
+                            }
+
+                            //short term nursing
+                             else {
                               this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});
                             }
 
@@ -554,6 +565,7 @@ this.market.open(market);
                   // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID})
                                     
                   //ayaaaaaaaaa
+                  //long term nursing
                   if(notification.additionalData.order_status == "16") {
 
                     console.log("new nursing page 2");   
@@ -564,16 +576,21 @@ this.market.open(market);
                       this.nav.push("LongTimeNursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});                               
                     }  
                 
-                  } else if(notification.additionalData.order_status == "5") {
+                  } 
+                  //order finishd or assigned to another nurse   
+                  else if(notification.additionalData.order_status == "5") {
                    
                     if(!notification.additionalData.foreground) {
                       this.nav.setRoot(TabsPage).then(() => {
-                        this.nav.push(NotificationPage,{"fromNotification":true}); 
+                        //this.nav.push(NotificationPage,{"fromNotification":true}); 
+                        this.nav.setRoot(TabsPage, { tabIndex: 3 });
                       })  
                      
                     }
+                  }
 
-                  } else {
+                  //short term nursing
+                   else {
                     this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData.OrderID});
                   }
                   ///////////////
