@@ -417,14 +417,14 @@ this.market.open(market);
                               }
                             
                             }
-                            //order finishd or assigned to another nurse                            
-                            else if(notification.additionalData["gcm.notification.order_status"] == "5") {
+                            //order assigned to another nurse                            
+                            else if(notification.additionalData["gcm.notification.order_status"] == "5" && notification.additionalData["gcm.notification..othernurse"] == "1") {
 
                               if(!notification.additionalData["foreground"]) {
-                                this.nav.setRoot(TabsPage).then(() => {
-                                 // this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                // this.nav.setRoot(TabsPage).then(() => {
+                                //  // this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                // })
                                 this.nav.setRoot(TabsPage, { tabIndex: 3 });
-                                })
                               }
                             }
 
@@ -503,13 +503,13 @@ this.market.open(market);
                               }  
                           
                             } 
-                            //order finishd or assigned to another nurse   
-                            else if(notification.additionalData.order_status == "5") {
+                            //order assigned to another nurse   
+                            else if(notification.additionalData.order_status == "5" && notification.additionalData.othernurse == "1") {
                               if(!notification.additionalData.foreground) {
-                                this.nav.setRoot(TabsPage).then(() => {
-                                  // this.nav.push(NotificationPage,{"fromNotification":true}); 
-                                  this.nav.setRoot(TabsPage, { tabIndex: 3 });
-                                })  
+                                // this.nav.setRoot(TabsPage).then(() => {
+                                //   // this.nav.push(NotificationPage,{"fromNotification":true}); 
+                                // }) 
+                                this.nav.setRoot(TabsPage, { tabIndex: 3 });
                               }
 
                             }
@@ -577,14 +577,14 @@ this.market.open(market);
                     }  
                 
                   } 
-                  //order finishd or assigned to another nurse   
-                  else if(notification.additionalData.order_status == "5") {
+                  //order assigned to another nurse   
+                  else if(notification.additionalData.order_status == "5" && notification.additionalData.othernurse == "1") {
                    
                     if(!notification.additionalData.foreground) {
-                      this.nav.setRoot(TabsPage).then(() => {
-                        //this.nav.push(NotificationPage,{"fromNotification":true}); 
-                        this.nav.setRoot(TabsPage, { tabIndex: 3 });
-                      })  
+                      // this.nav.setRoot(TabsPage).then(() => {
+                      //   //this.nav.push(NotificationPage,{"fromNotification":true}); 
+                      // }) 
+                      this.nav.setRoot(TabsPage, { tabIndex: 3 });
                      
                     }
                   }

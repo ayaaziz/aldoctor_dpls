@@ -890,6 +890,7 @@ startDetectionStatus:boolean = false;
               }
               else if (data.order.status == "5") {
                 //  this.storage.remove("recievedNotificat")
+            
                 this.orderAccepted = false
                 this.newOrder = false;
                 this.noOrder = true;
