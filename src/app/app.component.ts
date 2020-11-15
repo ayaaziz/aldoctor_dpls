@@ -399,6 +399,7 @@ this.market.open(market);
                             
                           }
                           else if (val == 5) {
+
                             // this.nav.push("NursingOrderPage", {recievedNotificat : notification.additionalData["gcm.notification.OrderID"]})
 
                             //ayaaaaaaaaa
@@ -418,7 +419,7 @@ this.market.open(market);
                             
                             }
                             //order assigned to another nurse                            
-                            else if(notification.additionalData["gcm.notification.order_status"] == "5" && notification.additionalData["gcm.notification..othernurse"] == "1") {
+                            else if(notification.additionalData["gcm.notification.order_status"] == "5" && notification.additionalData["gcm.notification.othernurse"] == "1") {
 
                               if(!notification.additionalData["foreground"]) {
                                 // this.nav.setRoot(TabsPage).then(() => {
