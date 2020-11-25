@@ -957,7 +957,13 @@ console.log("myTime constructor: ",this.myTime)
     
     var current2=Date.parse(new Date().toString());
     console.log("current : ",current2)
-    var JobStartTime=Date.parse(this.appointementDate);
+
+
+    //ayaaaaaaa 24-11-2020
+    var JobStartTime = Date.parse(this.appointementDate.replace(/^(.*-[0-9][0-9])(\ )([0-9][0-9]\:.*$)/, '$1T$3'));
+    /////
+
+    // var JobStartTime=Date.parse(this.appointementDate);
     console.log("JobStartTime : ",JobStartTime)
     if(current2 > JobStartTime){
       console.log("current2 > started")

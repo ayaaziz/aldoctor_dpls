@@ -136,7 +136,8 @@ export class ContactPage {
               ordersData[j].color = "red";
               ordersData[j].desc = this.translate.instant("patient_cancel")
              }
-           else if(ordersData[j].status == "11" || ordersData[j].status == "10" ){
+          //  else if(ordersData[j].status == "11" || ordersData[j].status == "10" ){
+           else if(ordersData[j].status == "10"){
               ordersData[j].color = "red";
               ordersData[j].desc = this.translate.instant("canceled_order")
            } //canceled by doctor
@@ -165,7 +166,7 @@ export class ContactPage {
               ordersData[j].desc = "متابعة";
             }
             //canceled by admin
-            else if(ordersData[j].status == "18") {
+            else if(ordersData[j].status == "18" || ordersData[j].status == "11") {
               ordersData[j].color="red";
               ordersData[j].desc = "ملغي";
             }
@@ -308,10 +309,18 @@ export class ContactPage {
             ordersData[j].color = "red";
             ordersData[j].desc = this.translate.instant("patient_cancel")
            }
-         else if(ordersData[j].status == "11" || ordersData[j].status == "10" ){
+        //  else if(ordersData[j].status == "11" || ordersData[j].status == "10" ){
+         else if(ordersData[j].status == "10" ){
             ordersData[j].color = "red";
             ordersData[j].desc = this.translate.instant("canceled_order")
          } //canceled by doctor
+
+         else if(ordersData[j].status == "11"){
+          ordersData[j].color = "red";
+          ordersData[j].desc = "ملغي"
+       } //canceled by doctor
+
+
           
          else if(ordersData[j].status == "5" || ordersData[j].status == "6") {
            ordersData[j].color="grey";
@@ -418,10 +427,15 @@ export class ContactPage {
             ordersData[j].color = "red";
             ordersData[j].desc = this.translate.instant("patient_cancel")
            }
-         else if(ordersData[j].status == "11" || ordersData[j].status == "10" ){
+         else if(ordersData[j].status == "10" ){
             ordersData[j].color = "red";
             ordersData[j].desc = this.translate.instant("canceled_order")
          } //canceled by doctor
+
+         else if(ordersData[j].status == "11"){
+          ordersData[j].color = "red";
+          ordersData[j].desc = "ملغي"
+       } //canceled by doctor
           
          else if(ordersData[j].status == "5" || ordersData[j].status == "6") {
            ordersData[j].color="grey";
@@ -523,10 +537,15 @@ export class ContactPage {
             ordersData[j].color = "green";
             ordersData[j].desc = "متابعة"
            }
-         else if(ordersData[j].status == "11" || ordersData[j].status == "10" ){
+         else if(ordersData[j].status == "10" ){
             ordersData[j].color = "red";
             ordersData[j].desc = this.translate.instant("canceled_order")
          } //canceled by doctor
+
+         else if(ordersData[j].status == "11"){
+          ordersData[j].color = "red";
+          ordersData[j].desc = "ملغي"
+       } //canceled by doctor
           
          else if(ordersData[j].status == "5" || ordersData[j].status == "6") {
            ordersData[j].color="grey";

@@ -176,9 +176,12 @@
       </ion-fab>
 
 
-      <ion-fab  *ngIf="orderAccepted && !anotherOneAccepted && !appointement" right bottom>
+      <!-- <ion-fab  *ngIf="orderAccepted && !anotherOneAccepted && !appointement" right bottom>
         <button ion-fab style="background-color:#026938;font-family: 'Cairo Black';font-size:9px;width: 65px;
-        height: 65px;" [disabled]="cancelOrder" (click)="orderUpdateStatus(11)">
+        height: 65px;" [disabled]="cancelOrder" (click)="orderUpdateStatus(11)"> -->
+        <ion-fab  *ngIf="orderAccepted && !anotherOneAccepted && !appointement" right bottom>
+          <button ion-fab style="background-color:#026938;font-family: 'Cairo Black';font-size:9px;width: 65px;
+          height: 65px;" [disabled]="cancelOrder" (click)="orderUpdateStatus(10)">
          <!-- خدمة عملاء -->
       
          <span style="height: 61px;

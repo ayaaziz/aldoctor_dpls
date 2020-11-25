@@ -374,8 +374,14 @@ console.log("new Date() local ar : ",new Date().toLocaleString('ar'));
     
     var current2=Date.parse(new Date().toString());
     console.log("current : ",current2)
-    var JobStartTime=Date.parse(this.appointementDate);
-    console.log("JobStartTime : ",JobStartTime)
+
+
+    //ayaaaaaaa 24-11-2020
+    var JobStartTime = Date.parse(this.appointementDate.replace(/^(.*-[0-9][0-9])(\ )([0-9][0-9]\:.*$)/, '$1T$3'));
+    /////
+
+    // var JobStartTime=Date.parse(this.appointementDate);
+    console.log("JobStartTime : ",JobStartTime) 
     if(current2 > JobStartTime){
       console.log("current2 > started")
       this.helper.presentToast("من فضلك أختر تاريخ ووقت أكبر من التاريخ والوقت الحالي")

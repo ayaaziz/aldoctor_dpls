@@ -261,6 +261,7 @@
       "enterAppointmentXrayData": "الرجاء إدخال تاريخ ووقت الأشعة للمريض.",
       "enterAppointmentdoctorData":"الرجاء إدخال التاريخ و الوقت",
       "enterAppointmentLabData": "الرجاء إدخال تاريخ ووقت أخذ العينة للمريض.",
+      "enterAppointmentLabDataNursing":"الرجاء إدخال تاريخ ووقت تنفيذ الخدمة.",
       "appointementCreatedsuccess": "تم إرسال الموعد للمريض بنجاح",
       "registerationFillData": "من فضلك قم بإدخال البيانات المطلوبة",
       "close": "حسناً",

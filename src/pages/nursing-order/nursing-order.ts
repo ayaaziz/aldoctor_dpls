@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, Events, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Events, Platform, DateTime } from 'ionic-angular';
 import { LoginServiceProvider } from '../../providers/login-service/login-service';
 import { Storage } from '@ionic/storage';
 import { HelperProvider } from '../../providers/helper/helper';
@@ -10,6 +10,7 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { AlertController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { ContactPage } from '../contact/contact';
+import { convertDataToISO } from 'ionic-angular/umd/util/datetime-util';
 
 
 /**
@@ -344,12 +345,13 @@ startDetectionStatus:boolean = false;
     this.appointementDate = this.mystartdate + " "+ this.myTime ;
 
     console.log("this.mystartdate : ,",this.mystartdate)
+
     if (this.appointementDate.split(" ")[0] == "undefined"){
       if (this.type == 2) {
         this.helper.presentToast(this.translate.instant("enterAppointmentXrayData"))
       }
       else {
-        this.helper.presentToast(this.translate.instant("enterAppointmentLabData"))
+        this.helper.presentToast(this.translate.instant("enterAppointmentLabDataNursing"))
       }
 
       // this.helper.presentToast(this.translate.instant("enterAppointmentdoctorData"))       
@@ -361,7 +363,7 @@ startDetectionStatus:boolean = false;
         this.helper.presentToast(this.translate.instant("enterAppointmentXrayData"))
       }
       else {
-        this.helper.presentToast(this.translate.instant("enterAppointmentLabData"))
+        this.helper.presentToast(this.translate.instant("enterAppointmentLabDataNursing"))
       }
 
       // this.helper.presentToast(this.translate.instant("enterAppointmentdoctorData"))       
@@ -371,7 +373,13 @@ startDetectionStatus:boolean = false;
     
     var current2=Date.parse(new Date().toString());
     console.log("current : ",current2)
-    var JobStartTime=Date.parse(this.appointementDate);
+
+
+    //ayaaaaaaa 24-11-2020
+    var JobStartTime = Date.parse(this.appointementDate.replace(/^(.*-[0-9][0-9])(\ )([0-9][0-9]\:.*$)/, '$1T$3'));
+    /////
+
+    // var JobStartTime=Date.parse(this.appointementDate);
     console.log("JobStartTime : ",JobStartTime)
     if(current2 > JobStartTime){
       console.log("current2 > started")
@@ -410,7 +418,7 @@ startDetectionStatus:boolean = false;
         this.helper.presentToast(this.translate.instant("enterAppointmentXrayData"))
       }
       else {
-        this.helper.presentToast(this.translate.instant("enterAppointmentLabData"))
+        this.helper.presentToast(this.translate.instant("enterAppointmentLabDataNursing"))
       }
 
     }

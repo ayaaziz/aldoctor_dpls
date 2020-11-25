@@ -616,9 +616,26 @@ this.storage.get("user_login_info").then((val) => {
               i[2][0] =""
               i[2][1] = ""
             }
-            xarray.push([[i[1][0],i[1][1]],[i[2][0],i[2][1]]])
+            xarray.push([ [i[1][0],i[1][1]],[i[2][0],i[2][1]] ])
           });
           console.log("xarray : ",xarray)
+
+
+          //ayaaaaaaaaaa 25-11-2020
+          let isDataFound = xarray.find((el,index) => {
+            // return ([el[1][0], el[1][1]] != ["",""] || [ el[2][0], el[2][1] ] != ["",""]);
+              return (el[0][0] != "" && el[0][1] != "" ) || ( el[1][0] != "" && el[1][1] != "");
+          })
+
+          console.log("isDataFound: " + isDataFound);
+
+          if(!isDataFound) {
+            this.helper.presentToast("من فضلك أدخل ساعات العمل");
+            this.savebtnClicked = false;
+            return;
+          }
+          /////////////////////////
+
           this.loginServiceProvider.addWorkingDays(val.id,xarray).subscribe(
             resp=>{
               console.log("resp from addWorkingDays",resp);

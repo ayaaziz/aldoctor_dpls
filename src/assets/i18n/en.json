@@ -260,6 +260,7 @@
       "appointmentNotes": "Notes",
       "enterAppointmentXrayData": "Please enter Xray datetime and your notes to patient",
       "enterAppointmentLabData": "Please enter Analysis datetime and your notes to patient",
+      "enterAppointmentLabDataNursing": "Please enter the servive date and time and your notes",
       "appointementCreatedsuccess": "Appointment sent to patient successfully",
       "registerationFillData": "Please enter all required form data",
       "close": "Ok",
