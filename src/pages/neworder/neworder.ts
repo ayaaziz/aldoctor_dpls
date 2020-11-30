@@ -944,6 +944,13 @@ console.log("myTime constructor: ",this.myTime)
     this.appointementDate = this.mystartdate + " "+ this.myTime ;
 
     console.log("this.mystartdate : ,",this.mystartdate)
+
+    //30-11-2020 ayaaaaaaa
+    this.appointementDate = this.appointementDate.toString().replace(/-/g,"/");
+    /////////
+
+    console.log("this.appointementDate : ,",this.appointementDate)
+
     if (this.appointementDate.split(" ")[0] == "undefined"){
       this.helper.presentToast(this.translate.instant("enterAppointmentdoctorData"))       
       return
@@ -960,7 +967,7 @@ console.log("myTime constructor: ",this.myTime)
 
 
     //ayaaaaaaa 24-11-2020
-    var JobStartTime = Date.parse(this.appointementDate.replace(/^(.*-[0-9][0-9])(\ )([0-9][0-9]\:.*$)/, '$1T$3'));
+    var JobStartTime = Date.parse(this.appointementDate.toString().replace(/^(.*-[0-9][0-9])(\ )([0-9][0-9]\:.*$)/, '$1T$3'));
     /////
 
     // var JobStartTime=Date.parse(this.appointementDate);
