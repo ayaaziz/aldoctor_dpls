@@ -19,16 +19,9 @@
     <ion-icon (click)="selectImage()" name="md-camera" style="border-radius: 50% !important;position: absolute; top: 113px; margin-left: 18px; background-color: white; width: 35px; height: 35px; color: #026938;    border: 2px solid;    line-height: 34px;font-size: 20px;"></ion-icon>
     <h4  style="color:#919191;margin-bottom: 10px" > {{userName}} </h4>
 
-     <!-- ayaaaaaaaaaaaa -->
-     <div *ngIf="slognImage && slogn" style="text-align: center;margin-top: -7px;margin-bottom: 6px;">
-      <img [src]="slognImage" onerror="this.onerror=null;this.src='assets/imgs/default_slogn.png';" class="slogn" style="width:15px;height:15px;">
-      <span style="font-size:14px">{{slogn}}</span>
-    </div>
-    <!-- //////////// -->
 
-
-    <h5   style="color:#c4c4c4; margin-top:0px;margin-bottom: 10px" >{{userAddress}}</h5>
-    <div style="padding-bottom: 40px; border-bottom: 2px solid lightgray">
+    <h5   style="color:#c4c4c4; margin-top:-4px;margin-bottom: 10px" >{{userAddress}}</h5>
+    <div style="margin-bottom: 10px;margin-top: -6px;">
       <ion-icon name="md-star" *ngIf="ratingStatus == 0" class="star" style="font-size: 20px;"></ion-icon>
       <ion-icon name="md-star" *ngIf="ratingStatus > 0 && ratingStatus < 1" class="star half" style="font-size: 20px;"></ion-icon>
       <ion-icon name="md-star" *ngIf="ratingStatus >= 1" class="star on" style="font-size: 20px;"></ion-icon>
@@ -45,6 +38,14 @@
       <ion-icon name="md-star" *ngIf="ratingStatus >= 5" class="star on" style="font-size: 20px;"></ion-icon>
       <ion-icon name="md-star" *ngIf="ratingStatus < 5 && ratingStatus <=4" class="star" style="font-size: 20px;"></ion-icon>
     </div>
+
+      <!-- ayaaaaaaaaaaaa -->
+      <div *ngIf="slognImage && slogn" style="text-align: center;margin-top: -7px;padding-bottom: 26px;border-bottom: 2px solid lightgray">
+        <img [src]="slognImage" onerror="this.onerror=null;this.src='assets/imgs/default_slogn.png';" class="slogn" style="width:15px;height:15px;">
+        <span style="font-size:14px;font-weight: bold;">{{slogn}}</span>
+      </div>
+      <!-- //////////// -->
+
     </div>
     <ion-grid >
       <div (tap)="openEditProfile()" class="edit_img">

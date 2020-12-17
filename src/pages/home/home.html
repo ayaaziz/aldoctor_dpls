@@ -28,12 +28,7 @@
   </div>
     <h4  style="color:#5d5a5a;margin: 8px 0px 0px 0px;" >{{userName}} </h4>
 
-       <!-- ayaaaaaaaaaaaa -->
-       <div *ngIf="slognImage && slogn" style="text-align: center;margin-top: 3px;margin-bottom: 6px;">
-        <img [src]="slognImage" onerror="this.onerror=null;this.src='assets/imgs/default_slogn.png';" class="slogn" style="width:15px;height:15px;">
-        <span style="font-size:14px">{{slogn}}</span>
-      </div>
-      <!-- //////////// -->
+     
 
     <h5  style="color:#928f8f; margin: 0px" >{{userAddress}}</h5>
     <ion-icon name="md-star" *ngIf="ratingStatus == 0" class="star" style="font-size: 20px;"></ion-icon>
@@ -52,6 +47,12 @@
     <ion-icon name="md-star" *ngIf="ratingStatus >= 5" class="star on" style="font-size: 20px;"></ion-icon>
     <ion-icon name="md-star" *ngIf="ratingStatus < 5 && ratingStatus <=4" class="star" style="font-size: 20px;"></ion-icon>
           <br>
+    <!-- ayaaaaaaaaaaaa -->
+      <div *ngIf="slognImage && slogn" style="text-align: center;margin-top: 3px;margin-bottom: 6px;">
+      <img [src]="slognImage" onerror="this.onerror=null;this.src='assets/imgs/default_slogn.png';" class="slogn" style="width:15px;height:15px;">
+      <span style="font-size:14px;font-weight: bold;">{{slogn}}</span>
+    </div>
+    <!-- //////////// -->
           <br>
           </div>
     <div class="text-center" *ngIf="noOrder">

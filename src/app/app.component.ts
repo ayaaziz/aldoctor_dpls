@@ -39,7 +39,10 @@ export class MyApp {
   userImageUrl: string = "assets/imgs/first.jpg";
   userName: string = "";
   reportStr = ""
-  message_id
+  message_id;
+
+  userType;
+  
   constructor(public kawaeeb_service: LoginServiceProvider, public events: Events, public helper: HelperProvider, public platform: Platform, public storage: Storage,
     statusBar: StatusBar, splashScreen: SplashScreen, public push: Push, private alertCtrl: AlertController,private market: Market, 
     public translate: TranslateService, public socialSharing: SocialSharing) {
@@ -72,7 +75,12 @@ export class MyApp {
     events.subscribe('user:userLoginSucceededPending', (userData) => {
       this.userLogged();
       console.log("userLoginSucceeded: " + JSON.stringify(userData))
-       this.storage.get('type').then(type_val => {
+      
+      this.storage.get('type').then(type_val => {
+
+        
+        this.userType = type_val;
+        
           if(type_val == 0){
             this.reportStr = "تقرير مالي"
             this.userName = userData.nickname
